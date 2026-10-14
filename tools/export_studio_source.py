@@ -20,7 +20,8 @@ TOOLS = ("package_studio_linux.py", "build_studio_tutorial.py", "build_studio_we
          "test_smoke_studio_window.py", "test_smoke_studio_lifecycle.py",
          "test_install_studio_linux.py", "test_package_studio_linux.py",
          "test_studio_package_policy.py", "test_studio_workflows.py",
-         "test_export_studio_source.py", "test_portable_metadata_literal.py")
+         "test_export_studio_source.py", "test_portable_metadata_literal.py",
+         "smoke_studio_native.py", "test_smoke_studio_native.py")
 PRIVATE = {".git", ".local-build", "0_BRAINSTORM", "recordings", "__pycache__"}
 SUFFIXES = {".hpp", ".h", ".cpp", ".c", ".cmake", ".sh", ".py", ".md", ".yml", ".desktop"}
 
@@ -49,7 +50,7 @@ def selection(root=ROOT):
     selected.update(("rasgo-synth-app/CMakeLists.txt", "rasgo-synth-app/build_app.sh",
                      "rasgo-synth-app/build_juce_minimal.sh", "rasgo-synth-core/CMakeLists.txt",
                      "rasgo-synth-core/LICENSE", ".github/workflows/package-native.yml",
-                     ".github/workflows/package-linux.yml"))
+                     ".github/workflows/package-linux.yml", ".github/workflows/smoke-native.yml"))
     for directory in ("rasgo-synth-app/src", "rasgo-synth-app/tests", "rasgo-synth-core/src",
                       "packaging"):
         for path in (root / directory).rglob("*"):

@@ -1,0 +1,98 @@
+name: Studio — existing native packages smoke (manual)
+
+# No compilation or deployment. Three eight-minute jobs = 24 runner-min ceiling.
+# Reuses the exact candidate hashes; uploaded diagnostics never include audio.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_budget:
+        description: Approve isolated runtime tests of existing candidates
+        type: boolean
+        required: true
+        default: false
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: studio-native-smoke-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  smoke:
+    if: ${{ inputs.confirm_budget }}
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - runner: windows-2022
+            platform: windows-x64
+            package: rasgo-synth-studio-0.1.0-windows-x64.exe
+            sha256: 5f014015414766ee49c3072800f650ee116bb0caa159ae52a025ceb323266c0a
+          - runner: macos-15-intel
+            platform: macos-x86_64
+            package: rasgo-synth-studio-0.1.0-macos-x86_64.dmg
+            sha256: 2c19ad1d99a5dbcb2d7b7dd12626c60f34833f5e3aad87f939ecd0864d093faf
+          - runner: macos-15
+            platform: macos-arm64
+            package: rasgo-synth-studio-0.1.0-macos-arm64.dmg
+            sha256: 87b5dd908678b01be74d31e1acd0a031fbf5a6e5c4902c026b19c3360df2fcb9
+    runs-on: ${{ matrix.runner }}
+    env:
+      STUDIO_PACKAGE: ${{ matrix.package }}
+      STUDIO_SHA256: ${{ matrix.sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-${{ matrix.platform }}-candidates
+          path: .local-build/candidates
+          run-id: 38642240658
+          github-token: ${{ github.token }}
+      - name: Verify exact existing package before execution
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $file = Join-Path "$pwd/.local-build/candidates" $env:STUDIO_PACKAGE
+          $hash = (Get-FileHash $file -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($hash -ne $env:STUDIO_SHA256) { throw "Candidate SHA256 mismatch" }
+      - name: Install Windows candidate in private runner directory
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $installer = Join-Path "$pwd/.local-build/candidates" $env:STUDIO_PACKAGE
+          $target = "$pwd/.local-build/installed-studio"
+          # NSIS requires /D last. Only the disposable runner registry is used.
+          $process = Start-Process -FilePath $installer -ArgumentList @('/S', "/D=$target") -PassThru
+          if (!$process.WaitForExit(60000)) { $process.Kill(); throw "NSIS timeout" }
+          if ($process.ExitCode -ne 0) { throw "NSIS installation failed" }
+          python -B tools/smoke_studio_native.py --binary "$target/Rasgo Synth Studio.exe" --output "$pwd/.local-build/native-smoke"
+          if ($LASTEXITCODE -ne 0) { throw "Windows runtime smoke failed" }
+      - name: Mount DMG read-only, copy bundle, render and close
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mountpoint="$PWD/.local-build/dmg-mount"
+          mkdir "$mountpoint"
+          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" ".local-build/candidates/$STUDIO_PACKAGE"
+          trap 'hdiutil detach "$mountpoint"' EXIT
+          ditto "$mountpoint/Rasgo Synth Studio.app" "$PWD/.local-build/installed-studio.app"
+          bundle="$PWD/.local-build/installed-studio.app"
+          python -B tools/smoke_studio_native.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" \
+            --bundle "$bundle" --output "$PWD/.local-build/native-smoke"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-${{ matrix.platform }}-runtime-diagnostics
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            .local-build/native-smoke/report.json
+            .local-build/native-smoke/launcher.log
+            .local-build/native-smoke/dados-*/lifecycle-history.jsonl
+            .local-build/native-smoke/dados-*/Logs/*.log
