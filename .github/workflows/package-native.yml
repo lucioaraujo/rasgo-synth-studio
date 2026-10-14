@@ -54,6 +54,9 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: actions/checkout@v4
         with:
           repository: juce-framework/JUCE
@@ -80,7 +83,17 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
             "-DCMAKE_OSX_ARCHITECTURES=$STUDIO_ARCHITECTURE" \
             "-DRASGO_JUCE_ROOT=$PWD/.dependencies/JUCE"
-      - name: Serial native build, install tree and packages
+      - name: Verify native Unicode file publication before the full build
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          cmake -S rasgo-synth-core -B .local-build/native-core -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+          if ($LASTEXITCODE -ne 0) { throw "Core test configure failed" }
+          cmake --build .local-build/native-core --config Release --target rasgo_native_portability_tests --parallel 1
+          if ($LASTEXITCODE -ne 0) { throw "Core portability build failed" }
+          ctest --test-dir .local-build/native-core -C Release -R '^rasgo_native_portability_tests$' --output-on-failure
+          if ($LASTEXITCODE -ne 0) { throw "Core native UTF-8/formatting regression" }
+      - name: Serial native build and install tree
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
@@ -88,6 +101,20 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Native build failed" }
           cmake --install .local-build/native --config Release --prefix .local-build/native-stage
           if ($LASTEXITCODE -ne 0) { throw "Install tree failed" }
+      - name: Render and close the fresh installed binary without audio playback
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          if ($IsWindows) {
+            python -B tools/smoke_studio_native.py --binary "$pwd/.local-build/native-stage/Rasgo Synth Studio.exe" --output "$pwd/.local-build/native-runtime"
+          } else {
+            $bundle = "$pwd/.local-build/native-stage/Rasgo Synth Studio.app"
+            python -B tools/smoke_studio_native.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" --bundle "$bundle" --output "$pwd/.local-build/native-runtime"
+          }
+          if ($LASTEXITCODE -ne 0) { throw "Fresh native runtime failed" }
+      - name: Package only after the native runtime passes
+        shell: pwsh
+        run: |
           cpack --config .local-build/native/CPackConfig.cmake -C Release -B .local-build/native-packages
           if ($LASTEXITCODE -ne 0) { throw "Native packaging failed" }
       - name: Inspect macOS binary architecture and linked libraries
@@ -121,6 +148,17 @@ jobs:
             .local-build/native-packages/*.zip
             .local-build/native-packages/*.dmg
             .local-build/native-packages/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-${{ matrix.platform }}-fresh-runtime-diagnostics
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            .local-build/native-runtime/report.json
+            .local-build/native-runtime/launcher.log
+            .local-build/native-runtime/dados-*/lifecycle-history.jsonl
+            .local-build/native-runtime/dados-*/Logs/*.log
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

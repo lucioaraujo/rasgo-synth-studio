@@ -50,10 +50,11 @@ public:
     // safe fallback: everyone starts at their own coded baseline).
     void load(const std::string &path) {
         std::error_code error;
-        if (!std::filesystem::is_regular_file(std::filesystem::symlink_status(path, error)) || error) return;
-        const auto size = std::filesystem::file_size(path, error);
+        const auto nativePath = std::filesystem::u8path(path);
+        if (!std::filesystem::is_regular_file(std::filesystem::symlink_status(nativePath, error)) || error) return;
+        const auto size = std::filesystem::file_size(nativePath, error);
         if (error || size > kMaxStateBytes) return;
-        std::ifstream in(path);
+        std::ifstream in(nativePath);
         if (!in.is_open()) return;
         std::string line;
         unsigned linesRead = 0;
@@ -119,7 +120,7 @@ public:
         if (!serialized.good() || text.size() > kMaxStateBytes) fail("state budget exceeded");
         // Same local cooperative writer contract as the index, but replace a
         // complete state rather than copying/appending old bytes. Offline only.
-        const std::filesystem::path target(path);
+        const auto target = std::filesystem::u8path(path);
         index_detail::Lease lease(target);
         if (lease.status() != IndexAppendStatus::Complete) fail(indexAppendMessage(lease.status()));
         index_detail::Snapshot before;

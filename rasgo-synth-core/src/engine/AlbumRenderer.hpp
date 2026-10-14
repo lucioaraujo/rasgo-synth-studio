@@ -409,7 +409,7 @@ inline std::vector<AlbumTrackResult> renderAlbum(const AlbumConfig &cfg,
             }
             manifest << "]}\n";
             if (!manifest.good() || !publishTextNoReplace(
-                    resolvedOutDir + "/album_plan.json", manifest.str())) {
+                    std::filesystem::u8path(resolvedOutDir + "/album_plan.json"), manifest.str())) {
                 // Completed WAVs/sidecars remain recoverable. The app's existing
                 // render-session failure path must not announce album success.
                 throw std::runtime_error("Album manifest publication failed; completed tracks preserved in: "

@@ -125,9 +125,13 @@ def run(binary, output, bundle=None):
                     break
                 time.sleep(.1)
             else:
+                report["earlyExitCode"] = process.poll()
                 raise RuntimeError("child exited early or render exceeded 180 seconds")
             report["renderWallSeconds"] = round(time.monotonic() - start, 3)
             wavs = list(recordings.rglob("*.wav"))
+            report["actualWaveCount"] = len(wavs)
+            report["savedPath"] = next((e.get("savedPath") for e in reversed(events)
+                                        if e.get("savedPath")), "")
             if len(wavs) != 1:
                 raise RuntimeError("expected exactly one generated WAV")
             report["pcm"] = inspect_wave(wavs[0])
@@ -143,6 +147,13 @@ def run(binary, output, bundle=None):
             report["phases"] = [e.get("phase") for e in history(data / "lifecycle-history.jsonl")]
             if report["exitCode"] != 0 or not REQUIRED_PHASES <= set(report["phases"]):
                 raise RuntimeError("cooperative shutdown not completed")
+            console = data / "Logs/rasgo_synth_console.log"
+            if console.is_file():
+                if console.stat().st_size > MAX_HISTORY:
+                    raise RuntimeError("console log budget exceeded")
+                report["juceAssertions"] = console.read_text(encoding="utf-8", errors="replace").count("JUCE Assertion failure")
+                if report["juceAssertions"]:
+                    raise RuntimeError("JUCE assertion in native runtime")
             report["normalClose"] = True
     except Exception as error:
         report["error"] = str(error)

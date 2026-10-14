@@ -19,6 +19,7 @@
 
 #include "RasgoLookAndFeel.h"
 #include "RasgoPaths.h"
+#include "PortableTextFormat.h"
 #include "WaveformView.h"
 #include "OscilloscopeView.h"
 #include "SpectrumView.h"
@@ -46,6 +47,12 @@
 #include "../../rasgo-synth-core/src/engine/AlbumRenderer.hpp"
 
 namespace rasgo::ui {
+
+template <std::size_t N, typename... Args>
+inline juce::String formatUtf8(const char (&format)[N], Args... args) {
+    const auto text = portableTextFormat(format, args...);
+    return juce::String::fromUTF8(text.data(), static_cast<int>(text.size()));
+}
 
 struct RenderUpdate {
     rasgo::PieceProgress progress;
@@ -808,7 +815,7 @@ public:
         if (audioInitError.isNotEmpty()) {
             audioMsg = "audio: falha ao abrir dispositivo -- " + audioInitError;
         } else if (auto *device = audioDeviceManager_.getCurrentAudioDevice()) {
-            audioMsg = juce::String::formatted(
+            audioMsg = formatUtf8(
                 "audio: %s (%s), %d Hz, %d canal(is) de saida",
                 device->getName().toRawUTF8(),
                 device->getTypeName().toRawUTF8(),
@@ -1376,7 +1383,7 @@ private:
 
     static juce::String formatTime(double seconds) {
         int totalSecs = (int)juce::jmax(0.0, seconds);
-        return juce::String::formatted("%02d:%02d", totalSecs / 60, totalSecs % 60);
+        return formatUtf8("%02d:%02d", totalSecs / 60, totalSecs % 60);
     }
 
     static juce::String defaultOutDir() {
@@ -1933,10 +1940,10 @@ private:
                     ? formatTime(plan.tracks[index].targetDurationSeconds)
                     : ui::text(ui::strings::albumEmergentDuration, uiLanguage_)));
 
-        appendLog(juce::String::formatted("compondo album -- seed %u, tema '%s', %d faixas",
+        appendLog(formatUtf8("compondo album -- seed %u, tema '%s', %d faixas",
                                            acfg.albumSeed, acfg.themeName.c_str(), acfg.trackCount));
         lastBpm_ = acfg.bpm;
-        bpmValueLabel_.setText(juce::String::formatted("%d bpm", (int)acfg.bpm), juce::dontSendNotification);
+        bpmValueLabel_.setText(formatUtf8("%d bpm", (int)acfg.bpm), juce::dontSendNotification);
 
         try {
             albumSession_ = std::make_shared<AlbumSession>();
@@ -1981,10 +1988,10 @@ private:
         albumTrackBox_.clear();
         for (int i = 0; i < (int)albumResults_.size(); ++i) {
             albumTrackBox_.addItem(ui::text(ui::strings::trackItem, uiLanguage_)
-                                   + juce::String::formatted(" %d (seed %u)", i + 1,
+                                   + formatUtf8(" %d (seed %u)", i + 1,
                                                              albumResults_[(size_t)i].trackSeed), i + 1);
         }
-        appendLog(juce::String::formatted("album gravado -- %d faixas.", (int)albumResults_.size()));
+        appendLog(formatUtf8("album gravado -- %d faixas.", (int)albumResults_.size()));
 
         if (!albumResults_.empty()) {
             albumTrackBox_.setSelectedId(1, juce::dontSendNotification);
@@ -1993,7 +2000,7 @@ private:
         // loadAlbumTrack() -> finishRender() resets the label to COMPOR --
         // put it back since album mode is still active.
         composeButton_.setLabelText("ALBUM");
-        setStatusText(juce::String::formatted("album gravado -- %d faixas.", (int)albumResults_.size()), false);
+        setStatusText(formatUtf8("album gravado -- %d faixas.", (int)albumResults_.size()), false);
     }
 
     // Wires a single album track's already-rendered result into the same
@@ -2051,14 +2058,14 @@ private:
         // Duration is no longer set here -- the generative arc's Markov
         // walk decides when the piece reaches its coda and stops. See
         // GenerativeArc.hpp / the phase-13 plan note.
-        appendLog(juce::String::formatted("compondo -- seed %u, %d bpm%s",
+        appendLog(formatUtf8("compondo -- seed %u, %d bpm%s",
                                            cfg.seed, (int)cfg.bpm,
                                            cfg.organismStemAuditEnabled
                                                ? " | auditoria relacional ativa"
                                                : ""));
         lastLoggedSection_.clear();
         lastBpm_ = cfg.bpm;
-        bpmValueLabel_.setText(juce::String::formatted("%d bpm", (int)cfg.bpm), juce::dontSendNotification);
+        bpmValueLabel_.setText(formatUtf8("%d bpm", (int)cfg.bpm), juce::dontSendNotification);
 
         try {
             pieceSession_ = std::make_shared<PieceSession>();
@@ -2104,7 +2111,7 @@ private:
         const juce::String rawSection(p.arcState.currentSectionName);
         if (rawSection.isNotEmpty() && rawSection != lastLoggedSection_) {
             const auto localized = ui::strings::sectionName(rawSection, uiLanguage_);
-            if (!update.album) appendLog(juce::String::formatted("  %.1fs -- entrando em \"%s\"", p.seconds, localized.toRawUTF8()));
+            if (!update.album) appendLog(formatUtf8("  %.1fs -- entrando em \"%s\"", p.seconds, localized.toRawUTF8()));
             arcView_.addSection(localized); genealogyView_.addSection(localized);
             lastLoggedSection_ = rawSection;
         }
@@ -2224,33 +2231,33 @@ private:
         } else {
             setStatusText(ui::text(ui::strings::saved, uiLanguage_), false);
             appendLog("gravado: " + juce::String::fromUTF8(result.path.c_str()));
-            appendLog(juce::String::formatted(
+            appendLog(formatUtf8(
                 "identidade: foco %s | escala %s | raiz MIDI %d | voz %s | ritmo %s | harmonia %s | conjunto %s",
                 result.info.materialFocus.c_str(), result.info.scaleFamily.c_str(), result.info.initialRootMidiNote,
                 result.info.leadVoiceModel.c_str(), result.info.sequenceRhythmModel.c_str(),
                 result.info.harmonicLanguage.c_str(), result.info.ensembleModel.c_str()));
-            appendLog(juce::String::formatted(
+            appendLog(formatUtf8(
                 "modulos manifestados: %d/%d no painel (presenca, nao hierarquia perceptiva).",
                 modulePanel_.activeCount(), modulePanel_.totalCount()));
-            appendLog(juce::String::formatted(
+            appendLog(formatUtf8(
                 "jogo: estrategia %s | regra %s | energia %.2f memoria %.2f risco %.2f liberdade %.2f oculto %.2f",
                 result.info.gameStrategy.c_str(), result.info.gameRule.c_str(), result.info.gameEnergy,
                 result.info.gameMemory, result.info.gameRisk, result.info.gameFreedom,
                 result.info.gameHiddenInformation));
-            appendLog(juce::String::formatted(
+            appendLog(formatUtf8(
                 "saida: PCM24/%d Hz | %.2f dBTP | trim entrega %.2f dB | limiter %.2f dB | protecao de sobrecarga %.2f dB em %llu frame(s)",
                 result.sampleRate, result.info.outputTruePeakDbtp,
                 result.info.deliveryTruePeakTrimDb, result.info.limiterMaxGainReductionDb,
                 result.info.overloadMaxGainReductionDb,
                 static_cast<unsigned long long>(result.info.overloadFrameCount)));
             if (result.info.drumsEnabled) {
-                appendLog(juce::String::formatted(
+                appendLog(formatUtf8(
                     "bateria: %s | pico %.3f RMS %.4f | audivel em %.0f%% dos frames",
                     result.info.drumsProtagonist ? "protagonista" : "suporte",
                     result.info.drumsPeak, result.info.drumsRms,
                     result.info.drumsAudibleFrameRatio * 100.0));
                 if (result.info.drumArchetype) {
-                    appendLog(juce::String::formatted(
+                    appendLog(formatUtf8(
                         // Keep this printf-style format string ASCII-only:
                         // JUCE's formatted() path is not a UTF-8 boundary,
                         // and the accent previously appeared as replacement
@@ -2262,7 +2269,7 @@ private:
                 const auto &drumStem = result.info.organismStemMetrics[
                     static_cast<std::size_t>(rasgo::OrganismStem::Drums)];
                 if (drumStem.preSpaceRms > 0.0 || drumStem.postSpaceRms > 0.0) {
-                    appendLog(juce::String::formatted(
+                    appendLog(formatUtf8(
                         "sobrevivencia bateria: pre %.4f pos %.4f | soterrado %.0f%%",
                         drumStem.preSpaceRms, drumStem.postSpaceRms,
                         drumStem.levelBuriedRatio * 100.0));
@@ -2296,7 +2303,7 @@ private:
                 }
             }
             if (result.info.narrativeAttention) {
-                appendLog(juce::String::formatted(
+                appendLog(formatUtf8(
                     "atencao narrativa: %d secao(oes), %d mudanca(s), %d foco(s) em evento | ultimo %s/%s (%.2f)",
                     result.info.narrativeAttentionObservedSectionCount,
                     result.info.narrativeAttentionFocusChangeCount,
@@ -2306,7 +2313,7 @@ private:
                     result.info.narrativeAttentionLastValue));
             }
             if (result.info.relationalChamber) {
-                appendLog(juce::String::formatted(
+                appendLog(formatUtf8(
                     "chamber: %d decisao(oes), %d consequencia(s) | ultima acao %s",
                     result.info.relationalChamberDecisionCount,
                     result.info.relationalChamberConsequenceCount,
@@ -2319,7 +2326,7 @@ private:
             // configurada, contagem real de sinais genuinos/blefes,
             // confianca final, e se houve traicao real.
             if (result.info.bluffSignal) {
-                appendLog(juce::String::formatted(
+                appendLog(formatUtf8(
                     "blefe: veracidade %.0f%%, %d sinal(is) (%d genuino, %d blefe), confianca final %.2f%s",
                     result.info.bluffTruthfulness * 100.0, result.info.bluffSignalCount,
                     result.info.bluffGenuineCount, result.info.bluffBluffCount, result.info.bluffFinalTrust,
@@ -2328,13 +2335,13 @@ private:
             // Fase 116 -- rasgo espectral: mesma logica, o LOG e onde o
             // detalhe rico do modelo de feixe de fibras fica visivel.
             if (result.info.rasgoFracture) {
-                appendLog(juce::String::formatted(
+                appendLog(formatUtf8(
                     "rasgo espectral: %d/5 fibra(s) rasgada(s) (fio sobrevivente intacto), forma de Weibull k=%.2f",
                     result.info.rasgoFractureBreaks, result.info.rasgoFractureShapeK));
             }
             // Fase 117 -- ruptura por excesso de coerencia: mesma logica.
             if (result.info.coherenceCollapse) {
-                appendLog(juce::String::formatted(
+                appendLog(formatUtf8(
                     "colapso por coerencia: %d evento(s) real(is) -- a melodia ficou repetitiva demais e sofreu ruptura.",
                     result.info.coherenceCollapseCount));
             }
@@ -2397,7 +2404,7 @@ private:
         playRegionButton_.setEnabled(true);
         deriveSeedButton_.setEnabled(true);
         double totalSecs = lastResult_.samples.size() / 2.0 / juce::jmax(1.0, (double)lastResult_.sampleRate);
-        appendLog(juce::String::formatted("trecho selecionado: %.1fs - %.1fs", a * totalSecs, b * totalSecs));
+        appendLog(formatUtf8("trecho selecionado: %.1fs - %.1fs", a * totalSecs, b * totalSecs));
     }
 
     void playSelectedRegion() {
@@ -2435,7 +2442,7 @@ private:
         seedEditor_.setText(juce::String(currentSeed_));
 
         double sr = juce::jmax(1.0, (double)lastResult_.sampleRate);
-        appendLog(juce::String::formatted("seed %u derivada do trecho %.1fs-%.1fs -- compondo nova peca...",
+        appendLog(formatUtf8("seed %u derivada do trecho %.1fs-%.1fs -- compondo nova peca...",
                                            derivedSeed, (double)startFrame / sr, (double)endFrame / sr));
         startRender();
     }
@@ -2467,7 +2474,7 @@ private:
         currentSeed_ = derivedSeed;
         seedEditor_.setText(juce::String(currentSeed_));
 
-        appendLog(juce::String::formatted(
+        appendLog(formatUtf8(
             "VARIAR SEED -- seed %u derivada do instante %.1fs -- compondo nova peca (a atual continua tocando ate a nova ficar pronta)...",
             derivedSeed, posSeconds));
         startRender();
@@ -2523,7 +2530,7 @@ private:
         double liveBpm = currentBpmAtSeconds(pos);
         double beatPhase = std::fmod(pos * liveBpm / 60.0, 1.0);
         beatPulse_.setLit(beatPhase < 0.15);
-        bpmValueLabel_.setText(juce::String::formatted("%d bpm", (int)std::lround(liveBpm)), juce::dontSendNotification);
+        bpmValueLabel_.setText(formatUtf8("%d bpm", (int)std::lround(liveBpm)), juce::dontSendNotification);
 
         if (regionPlaybackActive_ && pos >= regionEndSeconds_) {
             stopPlayback();

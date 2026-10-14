@@ -21,7 +21,8 @@ TOOLS = ("package_studio_linux.py", "build_studio_tutorial.py", "build_studio_we
          "test_install_studio_linux.py", "test_package_studio_linux.py",
          "test_studio_package_policy.py", "test_studio_workflows.py",
          "test_export_studio_source.py", "test_portable_metadata_literal.py",
-         "smoke_studio_native.py", "test_smoke_studio_native.py")
+         "smoke_studio_native.py", "test_smoke_studio_native.py",
+         "test_native_portability_contract.py")
 PRIVATE = {".git", ".local-build", "0_BRAINSTORM", "recordings", "__pycache__"}
 SUFFIXES = {".hpp", ".h", ".cpp", ".c", ".cmake", ".sh", ".py", ".md", ".yml", ".desktop"}
 
@@ -91,7 +92,7 @@ def prepare(root=ROOT):
         raise ValueError("combined source/site budget exceeded")
     files["SOURCE_MANIFEST.json"] = (json.dumps({
         "schema": 1, "kind": "Studio-only public source export, not release approval",
-        "date": "2026-10-14", "author": "Lucio de Araujo",
+        "date": "2026-10-15", "author": "Lucio de Araujo",
         "history": "Private monorepository history intentionally not exported",
         "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
         "files": records, "site": "site/public-manifest.json",

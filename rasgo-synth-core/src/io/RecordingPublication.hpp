@@ -16,7 +16,7 @@ class RecordingPublication {
 public:
     explicit RecordingPublication(std::filesystem::path target) : target_(std::move(target)) {
         for (unsigned attempt = 0; attempt < 64; ++attempt) {
-            staging_ = target_.parent_path() / ("." + target_.filename().string()
+            staging_ = target_.parent_path() / std::filesystem::u8path("." + target_.filename().u8string()
                 + ".pending-" + uniqueToken());
             std::error_code error;
             if (std::filesystem::create_directory(staging_, error)) {

@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <filesystem>
 #include <cstdint>
 #include <algorithm>
 #include <cmath>
@@ -76,7 +77,7 @@ inline bool writeWavFile(const std::string &path,
                           int numChannels,
                           int sampleRate,
                           const WavMetadata &meta) {
-    std::ofstream f(path, std::ios::binary);
+    std::ofstream f(std::filesystem::u8path(path), std::ios::binary);
     if (!f) return false;
 
     // Convert to packed little-endian 24-bit PCM up front so we know the

@@ -46,9 +46,9 @@ public:
 
         std::string path = outputDirectory_ + "/" + baseName + "_" + timestamp
             + "_" + RecordingPublication::uniqueToken() + ".wav";
-        RecordingPublication publication(path);
+        RecordingPublication publication(std::filesystem::u8path(path));
         if (!publication.ready()) return {};
-        bool ok = writeWavFile(publication.temporaryPath().string(),
+        bool ok = writeWavFile(publication.temporaryPath().u8string(),
             interleavedSamples, numChannels, sampleRate, meta) && publication.publish();
         if (ok) appendIndexEntry(path, meta);
         return ok ? path : std::string();
@@ -77,7 +77,7 @@ private:
             line = "{\"path\":\"" + jsonEscape(path) + "\",\"date\":\"" + jsonEscape(meta.date)
                 + "\",\"comment\":\"" + jsonEscape(meta.comment) + "\"}";
         }
-        const auto status = appendIndexLine(std::filesystem::path(outputDirectory_) / "rasgo_index.jsonl", line);
+        const auto status = appendIndexLine(std::filesystem::u8path(outputDirectory_) / "rasgo_index.jsonl", line);
         if (status != IndexAppendStatus::Complete) indexFailure(path, status);
     }
 
@@ -88,7 +88,7 @@ private:
 
     static void ensureDirectoryExists(const std::string &dir) {
         std::error_code ignored;
-        std::filesystem::create_directories(dir, ignored);
+        std::filesystem::create_directories(std::filesystem::u8path(dir), ignored);
     }
 
     static std::string jsonEscape(const std::string& value) {

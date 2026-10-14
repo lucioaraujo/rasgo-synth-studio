@@ -94,8 +94,8 @@ public:
         rows_.push_back({"BLOOM", info.bloom});
         rows_.push_back({"XDOM", info.crossDomainContagion});
         rows_.push_back({"GSCALE", info.generatedScale});
-        rows_.push_back({"CONT↑", info.melodicContourDirection > 0});
-        rows_.push_back({"CONT↓", info.melodicContourDirection < 0});
+        rows_.push_back({juce::String::fromUTF8("CONT↑"), info.melodicContourDirection > 0});
+        rows_.push_back({juce::String::fromUTF8("CONT↓"), info.melodicContourDirection < 0});
         rows_.push_back({"CSTEP", info.chaosStepAddress});
         rows_.push_back({"TVOICE", info.thereminVoice});
         rows_.push_back({"ORQR", info.relationalOrchestra

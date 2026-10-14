@@ -38,7 +38,7 @@ namespace index_detail {
 class Lease {
 public:
     explicit Lease(const std::filesystem::path& target)
-        : path_(target.parent_path() / ("." + target.filename().string() + ".lock")) {
+        : path_(target.parent_path() / std::filesystem::u8path("." + target.filename().u8string() + ".lock")) {
         const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(1);
         for (;;) {
             std::error_code error;

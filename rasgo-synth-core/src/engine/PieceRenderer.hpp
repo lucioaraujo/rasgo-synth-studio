@@ -10223,7 +10223,7 @@ inline PieceResult renderIntegratedPiece(const PieceConfig &cfg, const ProgressC
         // pending. Allow a normal progress/cancellation checkpoint here,
         // without claiming Complete or rolling back the published recording.
         if (onProgress) onProgress(renderProgress);
-        publishRecordingScore(path, score.str());
+        publishRecordingScore(std::filesystem::u8path(path), score.str());
     }
 
     PieceResult result;

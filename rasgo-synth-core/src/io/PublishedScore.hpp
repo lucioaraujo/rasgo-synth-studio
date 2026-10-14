@@ -17,6 +17,6 @@ inline void publishRecordingScore(const std::filesystem::path& recording,
     target.replace_extension(".txt");
     if (!publishTextNoReplace(target, text))
         throw std::runtime_error("Score publication failed; completed WAV preserved at: "
-            + recording.string() + "; recovery folder: " + recording.parent_path().string());
+            + recording.u8string() + "; recovery folder: " + recording.parent_path().u8string());
 }
 } // namespace rasgo

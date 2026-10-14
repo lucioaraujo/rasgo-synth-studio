@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "kind": "Studio-only public source export, not release approval",
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "author": "Lucio de Araujo",
   "history": "Private monorepository history intentionally not exported",
   "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
@@ -14,7 +14,7 @@
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "e79208c95aa0f0111376f8ce7be48ec69fa7eb81cebb1d97169127569ee058ec"
+      "sha256": "ffd187cfe36ec46d792303f1af4d48a7210558064648fa04b73b696579b61e50"
     },
     {
       "path": ".github/workflows/smoke-native.yml",
@@ -379,12 +379,12 @@
     {
       "path": "rasgo-synth-app/src/MainComponent.h",
       "source": "rasgo-synth-app/src/MainComponent.h",
-      "sha256": "aedfa2a3b87370db8e9052c0b5fc9a37bae8ab3c71977597fe25eacd65fcde94"
+      "sha256": "334074e8cf095c9209e6d1cbae2dce7e5468d003c1fcbb09bc9f0fd5ed1b5693"
     },
     {
       "path": "rasgo-synth-app/src/ModulePanelView.h",
       "source": "rasgo-synth-app/src/ModulePanelView.h",
-      "sha256": "70ff9b4e27b5804afa2e4e33593b04c93332a516ef541f805645a72e1df45337"
+      "sha256": "b08451faf40a2e46d83720e2ce8b6c4386ae7bbcac157375f3e85020547715c5"
     },
     {
       "path": "rasgo-synth-app/src/ModuleSelectionPanel.h",
@@ -400,6 +400,11 @@
       "path": "rasgo-synth-app/src/PhasePortraitView.h",
       "source": "rasgo-synth-app/src/PhasePortraitView.h",
       "sha256": "3ad6ee1b03119ed8567d06256beb7437187cc244998f4b6d6fc6348260c075a4"
+    },
+    {
+      "path": "rasgo-synth-app/src/PortableTextFormat.h",
+      "source": "rasgo-synth-app/src/PortableTextFormat.h",
+      "sha256": "c25be1ad8be2189b18cfd566363d25e6e83eead40b6176b1f46a132cb2cad352"
     },
     {
       "path": "rasgo-synth-app/src/RasgoLookAndFeel.h",
@@ -504,7 +509,7 @@
     {
       "path": "rasgo-synth-core/CMakeLists.txt",
       "source": "rasgo-synth-core/CMakeLists.txt",
-      "sha256": "a2d33015a62122fb3df4958c6c95627995fa0020d9660c076415290c610b9250"
+      "sha256": "b40f0b4f9b3a9384ef9012474191026378bd8954fc2fbade6aad11926c7ad9ea"
     },
     {
       "path": "rasgo-synth-core/LICENSE",
@@ -899,7 +904,7 @@
     {
       "path": "rasgo-synth-core/src/engine/AlbumRenderer.hpp",
       "source": "rasgo-synth-core/src/engine/AlbumRenderer.hpp",
-      "sha256": "c628710afa6d6b0beac5cd1ad7686b3c07e937960b48d6628af1f3fec0585cdd"
+      "sha256": "c2e0a09c1fcbc9133bb2282c8701c33934a5bdd8203bfb8065043a81e6fd43bc"
     },
     {
       "path": "rasgo-synth-core/src/engine/BassBodyAdapters.hpp",
@@ -1104,12 +1109,12 @@
     {
       "path": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
       "source": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
-      "sha256": "ece30f868c3100c17ba395b80aaa24cf1db19578f6b625522791c5b8b71e883d"
+      "sha256": "7a4dbec0fc6cc9be87917e3d001e408d40fafe7ac135793f421d4144c60e7ee6"
     },
     {
       "path": "rasgo-synth-core/src/engine/ProbabilityMarket.hpp",
       "source": "rasgo-synth-core/src/engine/ProbabilityMarket.hpp",
-      "sha256": "4bc7dd3adfbb61da82165ff948d4559ef090eb6b2e51dff7908f5b8a46522926"
+      "sha256": "8fb987a8d998fa79c3e9e203ab9253d973b1ea46934be904616a4a0175a1b82b"
     },
     {
       "path": "rasgo-synth-core/src/engine/RasgarAccentField.hpp",
@@ -1184,12 +1189,12 @@
     {
       "path": "rasgo-synth-core/src/io/PublishedIndex.hpp",
       "source": "rasgo-synth-core/src/io/PublishedIndex.hpp",
-      "sha256": "ed1bf3393675033b43b97e6183992fb0c80edb932043b95257b9c937e37e6d50"
+      "sha256": "c8ae041570ea5fab7aa2deb542d3066368738e7c3a283ef0da8d91db9fb28b8f"
     },
     {
       "path": "rasgo-synth-core/src/io/PublishedScore.hpp",
       "source": "rasgo-synth-core/src/io/PublishedScore.hpp",
-      "sha256": "fbf34f46d0e175914866771bd5a9646463b2a959aa967428bdc96e714bca00b0"
+      "sha256": "9a397cdc39cb8bc2734f5d21119b1533734c41613bda022b2222e35f12f088d4"
     },
     {
       "path": "rasgo-synth-core/src/io/PublishedText.hpp",
@@ -1199,12 +1204,12 @@
     {
       "path": "rasgo-synth-core/src/io/Recorder.hpp",
       "source": "rasgo-synth-core/src/io/Recorder.hpp",
-      "sha256": "d15bfc59581e980b381222a8a96989fdb5003700e74c3808102c8aef63551f6d"
+      "sha256": "d8bb66674d32cb87adc4e69af459d1ca9784708a09035085a8bc7902faa51cde"
     },
     {
       "path": "rasgo-synth-core/src/io/RecordingPublication.hpp",
       "source": "rasgo-synth-core/src/io/RecordingPublication.hpp",
-      "sha256": "f75e26478617b5804b1114de776b9475cc680c0ee3596af8fad695732ab92f17"
+      "sha256": "73fb0108ca11f477b2f50c10c5cd341e9d8942e278e6d5dfbd3e2c5e6605b935"
     },
     {
       "path": "rasgo-synth-core/src/io/Utf8PathComponent.hpp",
@@ -1214,7 +1219,7 @@
     {
       "path": "rasgo-synth-core/src/io/WavWriter.hpp",
       "source": "rasgo-synth-core/src/io/WavWriter.hpp",
-      "sha256": "b1372246604816d34e0b5d63ddb64461f61563f9b78a76fdf79adbf1b2564384"
+      "sha256": "0453cd446ec78f5ddb8aa4233310c176c376f8c8e02d4aed2425344598fbff60"
     },
     {
       "path": "rasgo-synth-core/src/sequencer/ArcGenerator.hpp",
@@ -1487,6 +1492,11 @@
       "sha256": "517d00d402fe93d8b8ae67ab0bfc753ee80235ff9bc4d31d2e3c2caddb1a8544"
     },
     {
+      "path": "rasgo-synth-core/src/tests/test_native_portability.cpp",
+      "source": "rasgo-synth-core/src/tests/test_native_portability.cpp",
+      "sha256": "5baf4085fa9292d95a58759789d29e27825a785cd51821a2795bbc507fbad006"
+    },
+    {
       "path": "rasgo-synth-core/src/tests/test_note_morphology.cpp",
       "source": "rasgo-synth-core/src/tests/test_note_morphology.cpp",
       "sha256": "34c127646cd5d5e60bd5d3fab4e99f41b0c0ad9ed10d9ea245c700463717b1f1"
@@ -1719,7 +1729,7 @@
     {
       "path": "tools/export_studio_source.py",
       "source": "tools/export_studio_source.py",
-      "sha256": "47dd6d10872d6f8aad2cd2e4fab4153257bd405eb19736706003faf2289aad88"
+      "sha256": "d691f7219a1bf1b515f2534b5346ba8c3cffa95ab382e5dc1f74215502db5e64"
     },
     {
       "path": "tools/package_studio_linux.py",
@@ -1734,7 +1744,7 @@
     {
       "path": "tools/smoke_studio_native.py",
       "source": "tools/smoke_studio_native.py",
-      "sha256": "d1da570e1d16243da0e08a4a12b9a2562dc38ddc098274c292a58bcde5c606a3"
+      "sha256": "d55410eb252a7307f565cc9baefc16f1ef93a1fae3f0879e423aa0686abb8a2d"
     },
     {
       "path": "tools/smoke_studio_window.py",
@@ -1760,6 +1770,11 @@
       "path": "tools/test_install_studio_linux.py",
       "source": "tools/test_install_studio_linux.py",
       "sha256": "df13521c4ab58af6b31b9e4802b11c85d790f5d3101536bd3e6e840c95dc75a3"
+    },
+    {
+      "path": "tools/test_native_portability_contract.py",
+      "source": "tools/test_native_portability_contract.py",
+      "sha256": "d0f7b616bf9a1061bc8bbdfb53ac6ac456abc6461d91275ab87f7048c1f02e57"
     },
     {
       "path": "tools/test_package_studio_linux.py",
