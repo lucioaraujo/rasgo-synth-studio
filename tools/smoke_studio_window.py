@@ -112,12 +112,17 @@ def main():
                     report["windowQueryWarning"] = query.stderr.strip() or "wmctrl returned no client list"
                     time.sleep(.2)
                     continue
+                report["ownedWindowListing"] = [
+                    line[:512] for line in query.stdout.splitlines()
+                    if len(line.split()) >= 3 and line.split()[2] == str(process.pid)
+                ][:8]
                 window, geometry = window_for_pid(query.stdout, process.pid)
                 if window:
                     report.update(window=window, geometry=geometry)
                     break
                 time.sleep(.2)
             if not window:
+                report["preCloseReturnCode"] = process.poll()
                 raise RuntimeError("spawned process did not expose an X11 window within15 seconds")
             subprocess.run(["wmctrl", "-ia", window], check=True, timeout=3)
             if args.size:

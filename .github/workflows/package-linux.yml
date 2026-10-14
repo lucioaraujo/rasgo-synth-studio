@@ -133,4 +133,11 @@ jobs:
         with:
           name: studio-launch-${{ strategy.job-index }}
           retention-days: 7
-          path: .local-build/launch/*-smoke/report.json
+          path: |
+            .local-build/launch/*-smoke/report.json
+            .local-build/launch/*-smoke/launcher.log
+            .local-build/launch/*-smoke/data/*.log
+            .local-build/launch/*-smoke/data/logs/*.log
+            .local-build/launch/*-smoke/data/Logs/*.log
+            .local-build/launch/*-smoke/data/layout-audit.json
+            .local-build/launch/openbox.log

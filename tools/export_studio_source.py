@@ -20,7 +20,7 @@ TOOLS = ("package_studio_linux.py", "build_studio_tutorial.py", "build_studio_we
          "test_smoke_studio_window.py", "test_smoke_studio_lifecycle.py",
          "test_install_studio_linux.py", "test_package_studio_linux.py",
          "test_studio_package_policy.py", "test_studio_workflows.py",
-         "test_export_studio_source.py")
+         "test_export_studio_source.py", "test_portable_metadata_literal.py")
 PRIVATE = {".git", ".local-build", "0_BRAINSTORM", "recordings", "__pycache__"}
 SUFFIXES = {".hpp", ".h", ".cpp", ".c", ".cmake", ".sh", ".py", ".md", ".yml", ".desktop"}
 

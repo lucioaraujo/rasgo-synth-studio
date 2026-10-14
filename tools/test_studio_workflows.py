@@ -43,6 +43,8 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertEqual(linux["permissions"], {"contents": "read"})
 
     def test_pinned_juce_and_no_publication_step(self):
+        native = (ROOT / ".github/workflows/package-native.yml").read_text(encoding="utf-8")
+        self.assertIn('lipo "$studio_binary" -verify_arch "$STUDIO_ARCHITECTURE"', native)
         for name in ("package-native.yml", "package-linux.yml"):
             document = workflow(name)
             for job in document["jobs"].values():

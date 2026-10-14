@@ -97,7 +97,7 @@ jobs:
         run: |
           set -euo pipefail
           studio_binary=".local-build/native-stage/Rasgo Synth Studio.app/Contents/MacOS/Rasgo Synth Studio"
-          lipo -verify_arch "$STUDIO_ARCHITECTURE" "$studio_binary"
+          lipo "$studio_binary" -verify_arch "$STUDIO_ARCHITECTURE"
           otool -L "$studio_binary"
       - name: Retain native checksums (not runtime or signing acceptance)
         shell: pwsh

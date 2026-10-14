@@ -9,12 +9,12 @@
     {
       "path": ".github/workflows/package-linux.yml",
       "source": ".github/workflows/package-linux.yml",
-      "sha256": "ad623cc18a86a4f12a5e3eed7aec431920b617426e09434475d4e2fd4d67776d"
+      "sha256": "d0afca7f14ff92c03e59120d770b2a89bf99fe6dfbe98e53ee1369f5e0865d46"
     },
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "79995c50c0408708d1ef63e468c7c0d708b01212ed2c8ec5eff1fd7b60ef7be3"
+      "sha256": "6f01e7db7ad386a97e9554be92f7b9bab9d4b9dec7215994e23aa9b3202ac2c2"
     },
     {
       "path": ".gitignore",
@@ -1099,7 +1099,7 @@
     {
       "path": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
       "source": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
-      "sha256": "27acab1f313990778c64813523af6c779636caf21cfea7cfaaff93119c6b833e"
+      "sha256": "ece30f868c3100c17ba395b80aaa24cf1db19578f6b625522791c5b8b71e883d"
     },
     {
       "path": "rasgo-synth-core/src/engine/ProbabilityMarket.hpp",
@@ -1714,7 +1714,7 @@
     {
       "path": "tools/export_studio_source.py",
       "source": "tools/export_studio_source.py",
-      "sha256": "26c7755fd88efc4c4b02c35ef94b85a83c11baefb82edfad7c53a96acd606a48"
+      "sha256": "5b89870dd0bdd0e375ed6ce6098045e6d9f63a3f25a4fbac960ae9c138265e3f"
     },
     {
       "path": "tools/package_studio_linux.py",
@@ -1729,7 +1729,7 @@
     {
       "path": "tools/smoke_studio_window.py",
       "source": "tools/smoke_studio_window.py",
-      "sha256": "f8d9ce215df8f2e3e2ccfeb76ca7e746dd9aa4c64dc26dcd1e977509886e294f"
+      "sha256": "a6db3d489a702b11a891c3865f891e3eb9d77e6edbd84c435615baa8aa5da3af"
     },
     {
       "path": "tools/studio_x11_click.py",
@@ -1757,6 +1757,11 @@
       "sha256": "a40ab3bbcd47d54a02bdccb53c757019917a13272be92d7aa9ec30c1e10e58db"
     },
     {
+      "path": "tools/test_portable_metadata_literal.py",
+      "source": "tools/test_portable_metadata_literal.py",
+      "sha256": "958b849b816c3c79dfe86c22f53fe13e0a8fbf26871995a76804d253f9d38628"
+    },
+    {
       "path": "tools/test_smoke_studio_lifecycle.py",
       "source": "tools/test_smoke_studio_lifecycle.py",
       "sha256": "556d26e7d2754fbaf0ebb360f34a0ed3c870fb2fbdcef049f45cb1ca9cdc3076"
@@ -1774,7 +1779,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "59cc2b390b2609e6cd0d8c131c8b89fec816abbfcabefb645a40d92f35facdef"
+      "sha256": "238f3f46d6695c88c0eba3333085381c920e18b9ce1f6368a14af75c63f536d6"
     },
     {
       "path": "tools/validate_portable_install.py",
