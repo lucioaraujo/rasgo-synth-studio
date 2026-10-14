@@ -17,7 +17,7 @@ class WorkflowContractTests(unittest.TestCase):
     def test_native_is_manual_read_only_and_budget_gated(self):
         document = workflow("package-native.yml")
         self.assertEqual(set(document["on"]), {"workflow_dispatch"})
-        self.assertEqual(document["permissions"], {"contents": "read"})
+        self.assertEqual(document["permissions"], {"contents": "read", "actions": "read"})
         inputs = document["on"]["workflow_dispatch"]["inputs"]
         self.assertEqual(inputs["confirm_budget"]["default"], "false")
         self.assertEqual(inputs["build_linux"]["default"], "false")
@@ -40,7 +40,12 @@ class WorkflowContractTests(unittest.TestCase):
                          "./.github/workflows/package-linux.yml")
         linux = workflow("package-linux.yml")
         self.assertEqual(set(linux["on"]), {"workflow_dispatch", "workflow_call"})
-        self.assertEqual(linux["permissions"], {"contents": "read"})
+        self.assertEqual(linux["permissions"], {"contents": "read", "actions": "read"})
+        launch = linux["jobs"]["launch"]
+        script = next(step["run"] for step in launch["steps"]
+                      if step.get("name") == "Launch extracted packages on virtual display")
+        self.assertIn("'-screen 0 1920x1080x24'", script)
+        self.assertIn("candidate_run_id", linux["jobs"]["package"]["if"])
 
     def test_pinned_juce_and_no_publication_step(self):
         native = (ROOT / ".github/workflows/package-native.yml").read_text(encoding="utf-8")

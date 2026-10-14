@@ -9,12 +9,12 @@
     {
       "path": ".github/workflows/package-linux.yml",
       "source": ".github/workflows/package-linux.yml",
-      "sha256": "d0afca7f14ff92c03e59120d770b2a89bf99fe6dfbe98e53ee1369f5e0865d46"
+      "sha256": "88bec7320b3814a90adeae3ffb1c001dade6bd3811b43682dcc9f995f94f9b67"
     },
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "6f01e7db7ad386a97e9554be92f7b9bab9d4b9dec7215994e23aa9b3202ac2c2"
+      "sha256": "e79208c95aa0f0111376f8ce7be48ec69fa7eb81cebb1d97169127569ee058ec"
     },
     {
       "path": ".gitignore",
@@ -1754,7 +1754,7 @@
     {
       "path": "tools/test_package_studio_linux.py",
       "source": "tools/test_package_studio_linux.py",
-      "sha256": "a40ab3bbcd47d54a02bdccb53c757019917a13272be92d7aa9ec30c1e10e58db"
+      "sha256": "6e5d015e695d641e1c8a9b00e62566f90f2d288f16294da8848363dd7b302bf9"
     },
     {
       "path": "tools/test_portable_metadata_literal.py",
@@ -1779,7 +1779,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "238f3f46d6695c88c0eba3333085381c920e18b9ce1f6368a14af75c63f536d6"
+      "sha256": "de112c566a4ec1c88e5caf1bc3e0821a883a210045a1ff0afaddf2284db72271"
     },
     {
       "path": "tools/validate_portable_install.py",

@@ -19,6 +19,7 @@ on:
         default: false
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: studio-native-candidates-${{ github.ref }}
   cancel-in-progress: true

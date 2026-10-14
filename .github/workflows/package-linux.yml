@@ -7,16 +7,24 @@ name: Studio — Linux packaging (manual release gate)
 # Actual service pricing/allowance must be reviewed before the first invocation.
 # No push/PR trigger, automatic release, Pages deployment or Windows/macOS jobs.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      candidate_run_id:
+        description: Existing successful Linux artifact run; empty builds a new candidate
+        required: false
+        type: string
+        default: ""
   workflow_call: {}
 permissions:
   contents: read
+  actions: read
 concurrency:
-  group: studio-linux-package-${{ github.ref }}
+  group: studio-linux-package-${{ github.ref }}-${{ inputs.candidate_run_id || 'new' }}
   cancel-in-progress: true
 
 jobs:
   package:
+    if: ${{ !inputs.candidate_run_id }}
     runs-on: ubuntu-22.04
     timeout-minutes: 25
     steps:
@@ -74,6 +82,7 @@ jobs:
   # Startup tests only. Not an audio/hardware/musical-acceptance certificate.
   launch:
     needs: package
+    if: ${{ always() && !cancelled() && (needs.package.result == 'success' || (needs.package.result == 'skipped' && inputs.candidate_run_id != '')) }}
     runs-on: ubuntu-22.04
     timeout-minutes: 15
     strategy:
@@ -88,6 +97,8 @@ jobs:
         with:
           name: studio-linux-candidates
           path: packages
+          run-id: ${{ inputs.candidate_run_id || github.run_id }}
+          github-token: ${{ github.token }}
       - name: Minimal desktop test environment
         run: |
           case '${{ matrix.image }}' in
@@ -116,7 +127,7 @@ jobs:
           cd .local-build/launch/appimage
           ../../../packages/*.AppImage --appimage-extract
           cd ../../..
-          xvfb-run -a sh -c '
+          xvfb-run -a -s '-screen 0 1920x1080x24' sh -c '
             set -eu
             openbox >.local-build/launch/openbox.log 2>&1 &
             studio_wm_pid=$!

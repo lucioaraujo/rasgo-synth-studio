@@ -108,7 +108,7 @@ class LinuxPackageTest(unittest.TestCase):
         import yaml
         workflow = yaml.load((ROOT / ".github/workflows/package-linux.yml").read_text(), Loader=yaml.BaseLoader)
         self.assertEqual(set(workflow["on"]), {"workflow_dispatch", "workflow_call"})
-        self.assertEqual(workflow["permissions"], {"contents": "read"})
+        self.assertEqual(workflow["permissions"], {"contents": "read", "actions": "read"})
         self.assertEqual(workflow["concurrency"]["cancel-in-progress"], "true")
         self.assertEqual(workflow["jobs"]["package"]["runs-on"], "ubuntu-22.04")
         self.assertEqual(workflow["jobs"]["launch"]["strategy"]["max-parallel"], "1")
