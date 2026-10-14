@@ -1,0 +1,222 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth — Document de Référence du Projet</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO — famille d’instruments et recherche sonore</a></div><main class="quickstart"><nav><a href="../../fr.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-document-de-reference-du-projet">Rasgo Synth — Document de Référence du Projet</h1>
+<p>Instrument génératif — concept, histoire, architecture, fonctionnalités, flux d'utilisation, travail effectué, validations, sécurité, layout et points en suspens.</p>
+<blockquote>
+<p><strong>À propos de ce document</strong> : c'est la référence technique stable du projet, mise à jour au fil des vraies évolutions (pas à chaque session). Pour le journal de bord phase par phase, avec l'historique complet des décisions et la raison de chacune, la source de vérité reste <a href="../../publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed"><code>Plano_de_Upgrade_Instrumento_Generativo.md</code></a> (portugais uniquement) à la racine du projet — en cas de divergence entre les deux, ce document fait autorité.</p>
+</blockquote>
+<p>Dernière mise à jour : 22 août 2026 (référence synchronisée avec le travail opérationnel des phases 118–123).</p>
+<hr />
+<h2 id="1-concept">1. Concept</h2>
+<p>Rasgo Synth est un <strong>instrument génératif</strong> : vous définissez une configuration initiale (une graine numérique, un tempo) et appuyez sur composer, le logiciel écrit seul une pièce entière, avec un développement et une variation continus dans le temps, pas une boucle qui se répète. Une console de performance en direct reste possible comme mode secondaire (l'application joue déjà de l'audio en temps réel via <code>juce_audio_devices</code>), mais la cible principale a toujours été autre chose : servir de base à des pistes d'album.</p>
+<p>La phrase qui résume le projet, et qui apparaît aujourd'hui dans l'interface même de l'application, est : <strong>« il prend un risque, et il sonne »</strong> (« se arrisca, e soa »). Chaque exécution est sonorement unique par nature, le moteur est construit sur une dynamique chaotique (neuf cartes — Lorenz, Hénon, Latoocarfian et six autres du « Chaos Cookbook ») et des oscillateurs instables qui se croisent et se rebouclent, la même qualité sonore trouvée en expérimentant avec les circuits CMOS du projet matériel Antitotem qui précède ce logiciel.</p>
+<p>Un principe de conception qui traverse tout le projet : <strong>porter l'idée, pas copier le circuit</strong>. Chaque fois qu'un schéma réel (CBS, Buchla, TR-808, MFOS/Ray Wilson, Instruō, Qu-Bit Electronix et plusieurs autres) a été étudié, l'objectif était de comprendre le comportement sonore et de le réimplémenter en C++ pur, jamais de simuler transistor par transistor.</p>
+<p>Le pourquoi philosophique derrière cette technique est consigné dans <a href="Manifesto.html"><code>Manifesto.md</code></a>.</p>
+<p>Autre principe, réaffirmé plusieurs fois au cours du développement : quand un paramètre peut être décidé soit par la graine soit par un contrôle manuel de l'utilisateur, le projet tend à choisir l'un ou l'autre, jamais un mélange arbitraire. La gamme elle-même a cessé d'être un contrôle manuel (phase 48) — aujourd'hui c'est toujours un choix de la graine elle-même, parmi un répertoire de 39 gammes étudiées plus une part de gammes générées algorithmiquement (cribles de Xenakis, phase 61). Les contrôles manuels n'ont survécu que là où ils ont du sens comme « accordage de l'instrument » (le tempo, le volume de sortie), pas comme une couche superposée à des décisions structurelles que la graine prend déjà.</p>
+<p>Un tournant explicite s'est produit à la phase 80 : passer de « ajouter des modules isolés » à « multiplier les rencontres entre des modules déjà existants ». Les <strong>poids de jeu de Caillois</strong> (Alea/Agon/Ilinx/Mimicry, voir section 4.9) formalisent cela en une véritable machine à règles, et la phase 84 (Curto-Circuito/Court-Circuit, section 4.10) pousse cette logique à l'extrême : un même événement peut rompre le protocole même que la graine avait établi.</p>
+<hr />
+<h2 id="2-histoire">2. Histoire</h2>
+<h3 id="21-kosmische-2013">2.1 Kosmische (2013)</h3>
+<p>L'une des références techniques initiales fut une expertise sur Kosmische, projet externe de Nicolas Steven Miller : une application Android qui embarquait un serveur SuperCollider complet via le NDK. Le binaire natif de Kosmische comportait trois familles d'UGens pertinentes : <code>ChaosUGens</code> (les neuf cartes chaotiques), <code>GendynUGens</code> (synthèse stochastique dynamique de Xenakis) et <code>AY_UGen</code> (émulation de la puce AY-3-8910). Cette investigation a informé des concepts de Rasgo Synth, mais Kosmische ne fait pas partie de Rasgo et ne constitue pas son origine d'auteur.</p>
+<h3 id="22-antitotem-et-les-modules-physiques-de-rasgo">2.2 Antitotem et les modules physiques de Rasgo</h3>
+<p>Antitotem est un instrument matériel construit à la main, de nature modulaire et CMOS/discrète, qui précède Rasgo et fut ensuite incorporé au projet comme son précurseur et son patron. L'expression « Rasgo en matériel » désigne l'ensemble des modules physiques d'auteur de cette phase (depuis 2013), déjà conçus en visant le standard Eurorack.</p>
+<p>Depuis, Rasgo a évolué vers quelque chose de plus grand : c'est aujourd'hui le projet-cadre qui rassemble tous les instruments et logiciels musicaux d'auteur de Lucio de Araujo. Rasgo Synth est une œuvre au sein de cet ensemble, tandis qu'Antitotem demeure simultanément une œuvre incorporée et l'origine symbolique de la lignée. Rasgo Synth Performance est désormais un prototype standalone local et indépendant pour le DSP live ; une console embarquée ou du matériel restent des possibilités ultérieures, non la définition de cet instrument logiciel.</p>
+<h3 id="23-decision-darchitecture">2.3 Décision d'architecture</h3>
+<p>La décision technique fut de ne pas relancer le serveur SuperCollider comme dépendance d'exécution. Les concepts investigués ont été réimplémentés en C++ comme code propre de Rasgo Synth, puis largement étendus — aujourd'hui, des dizaines de mécanismes au-delà de ce qui existait en 2013.</p>
+<h3 id="24-licence">2.4 Licence</h3>
+<p>Le code original actuel de Rasgo Synth Studio utilise <strong>AGPL-3.0-or-later</strong>. Kosmische est aussi en GPLv3, de manière indépendante. Les conditions spécifiques de l'application construite avec JUCE sont consignées dans <code>THIRD_PARTY_NOTICES.md</code> ; toute l'attribution par mécanisme est dans <code>CREDITS.md</code>.</p>
+<hr />
+<h2 id="3-architecture-juce-c">3. Architecture JUCE / C++</h2>
+<p>Le projet est divisé en deux sous-projets indépendants.</p>
+<h3 id="31-rasgo-synth-core-le-moteur-dsp">3.1 <code>rasgo-synth-core</code> — le moteur DSP</h3>
+<p>C++17 pur, sans aucune dépendance de plateforme. Compilé directement avec g++ (pas de CMake sur cette machine).</p>
+<ul>
+<li><strong><code>src/dsp/</code></strong> — des dizaines de classes DSP : oscillateurs classiques avec PolyBLEP ; neuf cartes chaotiques ; un oscillateur Walsh (base orthogonale ±1, phase 59) ; VOSIM (impulsions sin² décroissantes, phase 72) ; filtre ladder Moog, filtre state-variable Chamberlin et filtre Polivoks auto-oscillant (phase 75) ; waveshaper à diode ; résonateur modal ; nuage granulaire ; diviseur d'horloge XOR polyrythmique ; huit voix de percussion numériques ; <code>RhythmSieve.hpp</code> (crible rythmique de Xenakis, phase 82) et <code>DrumArchetypes.hpp</code> (7 archétypes nommés + un emplacement de crible) ; Rungler, Fracture Folder, Leibniz Rectifier ; <code>ParenthesisGlitch.hpp</code> (phase 70) ; <code>SieveScale.hpp</code> (gamme générée par crible de Xenakis, phase 61) ; Gendyn, AY-3-8910 ; une source de tension aléatoire de type Buchla.</li>
+<li><strong><code>src/sequencer/</code></strong> — 39 gammes étudiées (<code>Scales.hpp</code>, phase 48) plus des cribles générés ; un séquenceur pas à pas (<code>StepSequencer.hpp</code>) avec une conduite de voix réelle par demi-tons, hocketing/cascade polyphonique, progressions d'accords et transformations néo-riemanniennes P/L/R (mutuellement exclusives) ; un arc narratif par chaîne de Markov avec des grammaires enfichables (<code>GenerativeArc.hpp</code> + <code>ArcTemplates.hpp</code>).</li>
+<li><strong><code>src/engine/</code></strong> — <code>PieceRenderer.hpp</code> (la fonction de rendu principale, ~50 mécanismes contrôlés par la graine) et <code>AlbumRenderer.hpp</code> (phase 83 : chaque piste d'album occupe un point interpolé sur une trajectoire de poids de jeu de Caillois, choisissant librement sa propre gamme — plus de centre tonal forcé).</li>
+<li><strong><code>src/io/</code></strong> — <code>WavWriter.hpp</code> (métadonnées via un chunk RIFF LIST/INFO) et <code>Recorder.hpp</code>.</li>
+<li><strong>Démos CLI</strong> — <code>rasgo_integrated_demo</code> (pièce isolée) et <code>rasgo_album_demo</code> (ensemble de pistes).</li>
+<li><strong><code>regression_test.py</code></strong> — script de test automatisé (section 7).</li>
+</ul>
+<h3 id="32-rasgo-synth-app-lapplication-de-bureau-juce">3.2 <code>rasgo-synth-app</code> — l'application de bureau JUCE</h3>
+<ul>
+<li><strong><code>src/MainComponent.h</code></strong> — l'écran principal (section 5).</li>
+<li><strong><code>src/RasgoLookAndFeel.h</code></strong> — l'identité visuelle « Cobre »/Cuivre (section 9), incluant le <code>LogoMark</code> (le vrai logo vectorisé par l'auteur lui-même, chargé au moment de l'exécution depuis un fichier SVG via <code>juce::Drawable</code>).</li>
+<li><strong><code>src/ArcTimelineView.h</code>, <code>WaveformView.h</code>, <code>OscilloscopeView.h</code></strong> (désormais stéréo), <strong><code>SpectrumView.h</code></strong> (banc de filtres Goertzel), <strong><code>LevelMetersView.h</code></strong> (RMS/crête horizontal), <strong><code>GameWeightsView.h</code></strong>, <strong><code>GranulationView.h</code></strong> (particules) — les visualisations de l'écran principal.</li>
+<li><strong><code>src/BufferPlaybackSource.h</code></strong> — la source de lecture JUCE construite à partir du buffer déjà rendu, avec un filtre en direct et un gain master.</li>
+<li><strong><code>src/Main.cpp</code></strong> — la fenêtre s'ouvre maximisée par défaut (<code>setFullScreen</code>) ; un <code>juce::Viewport</code> (<code>RasgoViewport</code>) garantit un vrai défilement sur les moniteurs plus petits que ce que le layout confortable exige, au lieu de couper ou de superposer les contrôles.</li>
+<li><strong><code>build_juce_minimal.sh</code> / <code>build_app.sh</code></strong> — la recette de compilation sans CMake/Projucer.</li>
+<li><strong><code>autotest.sh</code></strong> — le test de fumée automatisé de l'application (section 7).</li>
+</ul>
+<p>L'audio en direct est servi par <code>juce_audio_devices</code>/<code>juce_audio_basics</code>, avec ALSA comme seul chemin sous Linux, et le pseudo-périphérique « pulse » préféré au « default » brut.</p>
+<hr />
+<h2 id="4-fonctionnalites">4. Fonctionnalités</h2>
+<h3 id="41-noyau-sonore">4.1 Noyau sonore</h3>
+<p>Six principes de synthèse distincts coexistent : soustractive (oscillateurs + ladder numérique, Chamberlin ou Polivoks), additive (Walsh, VOSIM), résonante (résonateur modal, incluant la voix de tuba/souffle continu), granulaire (<code>GranularCloud</code>), stochastique (<code>GendynOscillator</code>) et vectorielle (Vector Synthesis, phase 76 — un vrai crossfade 2D à travers un banc dédié de Gendyn/Walsh/Atari Punk/bruit coloré, position pilotée par deux cartes chaotiques). Les neuf cartes chaotiques et les quatre LFO lents restent tous actifs.</p>
+<p>Les deux oscillateurs principaux (<code>osc1</code>/<code>osc2</code>) peuvent se moduler mutuellement en <strong>cross-FM bidirectionnel</strong>. Un suiveur d'enveloppe lent peut reboucler la propre sortie audio de la pièce dans le taux de la carte de Lorenz (<strong>self-feedback</strong>). Une couche de <strong>bruit coloré</strong> s'ajoute à la texture granulaire/Gendyn.</p>
+<p>Couches additives d'accompagnement : <strong>Harmonàig</strong> (phase 77, un vrai pad d'accord à 4 voix — fondamentale/3ce/5te/7me, inspiré du vrai module Instruō de Jason Lim), <strong>polyphonie de cribles de Xenakis</strong> (phase 78, 4 canaux indépendants — bois/souffle, métal/verre, eau, plasma réactif) et <strong>Bloom</strong> (phase 79, une mélodie fractale Trunk/Branch/Path, inspirée du vrai module Qu-Bit Electronix d'Andrew Ikenberry).</p>
+<h3 id="42-la-couche-narrative-larc-generatif">4.2 La couche narrative — l'arc génératif</h3>
+<p>La durée et la forme de chaque pièce sont une <strong>marche de Markov</strong> sur cinq rôles structurels, ne se terminant qu'à la coda. Deux grammaires enfichables et mélangeables : <strong>Dramatic</strong> (pyramide de Freytag) et <strong>Kishōtenketsu</strong>. Un accelerando vers le climax (phase 68) reflète le ritardando de coda déjà existant.</p>
+<h3 id="43-sequencage-et-gammes">4.3 Séquençage et gammes</h3>
+<p>39 gammes étudiées (phase 48) plus des gammes générées algorithmiquement par la théorie des cribles de Xenakis (phase 61, rejetées par échantillonnage contre le catalogue réel). Conduite de voix réelle par distance en demi-tons (phase 62), vraies progressions d'accords (phase 34), et, comme alternative mutuellement exclusive, transformations triadiques néo-riemanniennes P/L/R (phase 65, conduite de voix parcimonieuse vérifiée). Hocketing avec une cascade polyphonique de type registre à décalage (phase 63). Un diviseur d'horloge XOR génère une polyrythmie indépendante de la grille euclidienne principale ; le pointeur de lecture de la mélodie peut être adressé par une source chaotique dédiée au lieu de l'horloge linéaire (phase 64).</p>
+<h3 id="44-percussion">4.4 Percussion</h3>
+<p>Huit voix numériques indépendantes (grosse caisse, caisse claire, charleston, cowbell, clap, tom/conga, cymbale, maracas), inspirées en partie par la TR-808. La présence est désormais liée à la densité de l'arc, pas une constante fixe (phase 66) — 12 % des pièces n'ont aucune batterie, et une fraction a de vrais échecs par coup. Huit options d'archétype rythmique par section de l'arc (phases 67 + 82) : Marche, Soul-backbeat, Metal-blast-beat, Jazz-swing, Samba-inspiré, deux archétypes aksak balkaniques réels (Constantin Brăiloiu/Stoyan Dzhudzhev, 9+7 et 7+7+2), et un crible rythmique de Xenakis généré (même mathématique que la section 4.3, appliquée à des points dans le temps). Vrai rythme euclidien (Bjorklund/Toussaint) comme alternative pour le cowbell (phase 57). Dynamique étendue : charleston dans la contagion du chaos, ratchets sur les toms, sustain de cymbale étendu (phase 56).</p>
+<h3 id="45-sortie-stereo">4.5 Sortie stéréo</h3>
+<p>Les canaux divergent réellement à partir de l'étage de delay/réverbération (lignes indépendantes, légèrement désynchronisées). Un battement binaural chaotique (phase 73) ajoute une seconde source réelle et vérifiable de divergence L/R, indépendante du panoramique/delay.</p>
+<h3 id="46-mode-album">4.6 Mode album</h3>
+<p>Une graine d'album dérive de manière déterministe N graines de piste. Jusqu'à la phase 82, toutes les pistes partageaient un centre tonal forcé (même gamme/tonique). <strong>À partir de la phase 83</strong>, cela a changé : l'album parcourt désormais une <strong>trajectoire en ligne droite à travers les quatre poids de jeu de Caillois</strong> (section 4.9) — la première piste naît en un point tiré au hasard, la dernière se termine en un autre point également tiré au hasard, chaque piste entre les deux occupe son propre point interpolé, et chaque piste choisit librement sa propre gamme, comme le ferait une pièce isolée. Un <strong>thème</strong> nommé définit toujours le tempo/la tonique/le biais d'énergie (l'ambiance), mais plus la gamme.</p>
+<h3 id="47-qualite-sonore-hygiene-technique-et-mastering">4.7 Qualité sonore — hygiène technique et mastering</h3>
+<p>Dither TPDF, <code>DcBlocker</code>, <code>LookaheadLimiter</code> + saturateur de sécurité, PolyBLEP (~46dB de réduction d'aliasing mesurée), suréchantillonnage dans le mélange à diode, mastering d'album en deux passes. Un vrai bug d'instabilité soutenue dans le <code>ModalResonator</code> du canal tuba/bois (excitation continue poussant le résonateur près de son propre plafond de sécurité, ~25x plus fort que la pièce) a été corrigé en phase 81 avec un limiteur de sortie doux <code>tanh</code>, le même motif déjà utilisé pour Polivoks.</p>
+<h3 id="48-capture-metadonnees-et-index">4.8 Capture, métadonnées et index</h3>
+<p>Chaque WAV enregistre des métadonnées intégrées (chunk RIFF LIST/INFO) et un fichier <code>.txt</code> compagnon lisible comme une partition (phase 54) avec la trajectoire complète de la pièce. Un récit en texte brut de la pièce elle-même (graine, sections) vit dans un chunk RIFF final lisible dans un éditeur de texte/hexadécimal, invisible pour tout lecteur (self-epitaph, phase 46). Chaque enregistrement réussi ajoute une ligne à <code>rasgo_index.jsonl</code>.</p>
+<h3 id="49-poids-de-jeu-de-caillois-phase-80">4.9 Poids de jeu de Caillois (phase 80)</h3>
+<p>Quatre poids continus — <strong>Alea, Agon, Ilinx, Mimicry</strong> — échantillonnés uniformément sur le 4-simplexe via le « stick-breaking » (trois points de coupure aléatoires triés, les quatre écarts sont les poids), de sorte que chaque pièce obtient son propre mélange d'auteur au lieu de choisir dans une liste fixe de « jeux ». Alea n'a pas de groupe de mécanismes propre — il EST l'absence de biais thématique, le comportement de base du moteur. Les trois autres influencent (sans jamais forcer) onze mécanismes déjà existants : <strong>Agon</strong> (voix en compétition/coordination) → Agon lui-même, Harmonàig, polyphonie de cribles ; <strong>Ilinx</strong> (vertige/perte de contrôle) → Rungler, effondrement de Rössler, thermal fade, self-feedback, stochastic mute, Leibniz rectifier — et, depuis la phase 84, aussi Curto-Circuito (section 4.10) ; <strong>Mimicry</strong> (simulacre) → déchirure apocryphe, self-epitaph, signal étranger, parenthèse, élément étrange. Honnêtement attribué à Roger Caillois (<em>Les Jeux et les Hommes</em>, 1958).</p>
+<h3 id="410-curto-circuito-court-circuit-phase-84">4.10 Curto-Circuito / « Court-Circuit » (phase 84)</h3>
+<p>Un événement unique par pièce, influencé par Ilinx, avec deux fonctions dans la même instance. <strong>Une vraie coupure sèche</strong> : une porte (~3ms de rampe linéaire, jamais une courbe de fondu) se ferme sur un silence véritable pendant 100-400ms puis se rouvre de la même manière — exactement la signature identifiée dans une vraie analyse de forme d'onde/spectrogramme d'un des propres morceaux de référence de l'auteur. Une « étincelle » de bruit ne chevauche que les bords de transition, littéralisant le « court-circuit » comme un artefact électrique, pas une simple coupure de son. <strong>Mécanismes intrus</strong> : au même instant, six mécanismes que la graine avait déjà tirés comme DÉSACTIVÉS pour cette pièce (déchirure apocryphe, intonation libre, modulation tonale, self-feedback, rungler, élément étrange) obtiennent chacun une vraie chance élevée de 40 % de s'activer quand même — réutilisant exactement le même idiome d'« activation forcée » que la garantie d'intensité de la phase 40 avait déjà établi, simplement déclenché par une rupture au milieu de la pièce plutôt qu'un filet de sécurité en début de pièce.</p>
+<h3 id="411-autres-ruptures-et-glitchs">4.11 Autres ruptures et glitchs</h3>
+<p>Fracture Folder + Rungler (phase 41), Leibniz Rectifier (phase 42), contagion du chaos (phase 44), thermal fade (phase 45), effondrement de Rössler + self-epitaph (phase 46), stochastic mute (phase 47), élément étrange (phase 50), un vrai signal étranger via la température/charge de l'hôte (phase 51, la seule exception honnête à la reproductibilité pure), débordement en virgule fixe Q1.15 (phase 52), spectral ghost via FFT/IFFT (phase 53), sample-hold glitch (phase 55), contagion inter-domaines (un pic audio poussant l'horloge, phase 60), Parenthèse (redirection vers une boucle de bégaiement, phase 70), lecture de pas adressée par le chaos (phase 64), et Curto-Circuito (section 4.10, phase 84) couronnant la famille.</p>
+<hr />
+<h3 id="etat-operationnel-actuel-22-aout-2026">État opérationnel actuel (22 août 2026)</h3>
+<p>Le Studio comprend désormais l'agence matérielle, l'observation d'audibilité
+après espace, la mémoire d'orchestration relationnelle, les contrats mélodiques
+et de gammes élargis, une articulation de percussion variée et un Mode Sauvage
+auditable. Le Mode Sauvage est le réglage par défaut du Studio : une entropie
+réelle réensemence le générateur partagé aux frontières de mesure. Le désactiver
+rétablit la reproductibilité par graine si le tempo, la configuration, la version
+du moteur et l'état externe pertinent sont identiques. Des prises récentes avec
+la même graine en mode normal et sauvage avaient des hashes SHA-256 différents
+tout en conservant le même matériau macro. La base de vérification actuelle est
+CTest 19/19, régression normale 6/6 et régression sauvage 3/3, sans clipping.</p>
+<h2 id="5-flux-dutilisation">5. Flux d'utilisation</h2>
+<h3 id="51-dans-lapplication-de-bureau">5.1 Dans l'application de bureau</h3>
+<ol>
+<li>Ouvrir l'application : <code>cd rasgo-synth-app &amp;&amp; ./rasgo_synth_app</code> — s'ouvre maximisée.</li>
+<li>Définir la graine dans le champ SEED, ou cliquer sur ALEA pour en tirer une nouvelle.</li>
+<li>Ajuster le tempo sur le curseur TEMPO (20–220 bpm). La gamme n'est plus un contrôle manuel — la graine la choisit.</li>
+<li>Ajuster le volume de sortie sur le curseur MASTER (à côté de NÍVEL, un vumètre RMS/crête horizontal).</li>
+<li>Vérifier/ajuster le RÉPERTOIRE DE SORTIE, le TITRE et l'ARTISTE (plus étroits maintenant, partageant l'espace avec PESOS DE JOGO/poids de jeu).</li>
+<li>Cliquer sur le bouton rond COMPOR (icône de croche ♪, rouge) — le rendu s'exécute sur un thread séparé ; la timeline de l'arc éclaire la section active, la forme d'onde se dessine.</li>
+<li>Cliquer sur PLAY (icône lecture/pause, doré) pour entendre le résultat, ou cliquer directement sur la forme d'onde (intitulée WAVEFORM) pour lire à partir de ce point.</li>
+<li>Glisser sur la forme d'onde sélectionne un passage — active TOCAR TRECHO et SEED DO TRECHO (dérive une nouvelle graine via un hash FNV-1a et déclenche immédiatement une nouvelle composition).</li>
+<li>Pendant la lecture : le curseur BRILHO AO VIVO applique un vrai filtre passe-bas ajustable en direct ; VARIAR SEED capture l'instant exact et dérive une nouvelle graine.</li>
+<li>Sous la forme d'onde : ESPECTRO (banc Goertzel) et GRANULAÇÃO (particules réactives à l'amplitude). PESOS DE JOGO montre les quatre barres colorées d'Alea/Agon/Ilinx/Mimicry de la pièce actuelle. Le panneau de mécanismes montre, en grille, lesquels des ~50 fonctionnalités du moteur se sont manifestées dans cette pièce spécifique.</li>
+<li>OSCILOSCÓPIO (ESTÉREO) (doré) et LOG (avec COPIAR/LIMPAR sous la boîte) se partagent la bande inférieure, 60%/40% de largeur.</li>
+<li>TUTORIAL et ABOUT (coin supérieur droit) ouvrent des dialogues thématisés avec les instructions d'utilisation et la vraie description du projet.</li>
+<li>MODO ALBUM (bouton rectangulaire, se remplit de cuivre lorsqu'activé) fait passer le panneau à TEMA/FAIXAS/OUVIR.</li>
+</ol>
+<h3 id="52-par-ligne-de-commande">5.2 Par ligne de commande</h3>
+<pre><code class="language-bash"># Pièce isolée
+./rasgo_integrated_demo [seed] [outDir] [bpm]
+
+# Ensemble de pistes (album) -- trajectoire de poids de jeu, plus une gamme fixe
+./rasgo_album_demo [albumSeed] [trackCount] [outDir] [theme]
+
+# Batterie de régression
+python3 regression_test.py --seeds 20
+
+# Test de fumée de l'application
+./autotest.sh --skip-build --timeout=30
+</code></pre>
+<hr />
+<h2 id="6-travail-effectue-chronologie-par-phases">6. Travail effectué (chronologie par phases)</h2>
+<p>Le document vivant du projet (<a href="../../publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed"><code>Plano_de_Upgrade_Instrumento_Generativo.md</code></a>, portugais uniquement) est la source de vérité complète, phase par phase. Résumé chronologique :</p>
+<ul>
+<li><strong>Phases 1–23</strong> — noyau DSP validé, séquenceur, couche narrative par chaîne de Markov, refonte visuelle « Sinal » (remplacée ensuite par « Cobre »/Cuivre, voir section 9), huit voix de percussion, vraie sortie stéréo, mode album initial, qualité sonore audiophile (dither/DC-block/limiter/PolyBLEP), les neuf cartes chaotiques actives, vrais modules de circuits (Atari Punk, envelope-oscillator, Noise Cornucopia), caractère Turing Machine dans le séquenceur, self-feedback audio réel, cross-FM, bruit coloré.</li>
+<li><strong>Phases 24–48</strong> — batterie réelle audible avec gigue de mixage par graine, déchirure apocryphe, interaction réelle avec la forme d'onde, mode album dans l'UI, variation de tempo, première harmonie fonctionnelle, performance en direct (filtre + VARIAR AGORA), modulation de centre tonal, modulation modale, vraies progressions d'accords, humanisation rythmique, effets par voix de percussion, hocketing, réseau d'influence croisée, intonation libre, garantie d'intensité (chaque pièce se teste contre au moins un mécanisme de risque), Fracture Folder + Rungler, Leibniz Rectifier, voix de tuba, contagion du chaos, thermal fade, effondrement de Rössler + self-epitaph, stochastic mute, et l'expansion des gammes de 9 à 39 avec le contrôle ESCALA retiré de l'UI.</li>
+<li><strong>Phases 49–68</strong> — Agon (quatre voix en compétition pour le pouvoir, avec une « rusga »), élément étrange (interne et littéral via une vraie lecture de l'hôte), débordement en virgule fixe, spectral ghost, partition .txt compagnon, sample-hold glitch, dynamique de batterie étendue, vrai rythme euclidien, oscillateur Walsh, contagion inter-domaines (audio→horloge), gamme générée par crible de Xenakis, vraie conduite de voix, cascade polyphonique, lecture de pas adressée par le chaos, transformations néo-riemanniennes, batterie comme un vrai instrument (à partir d'une vraie écoute d'un album complet), archétypes rythmiques avec une identité réelle, accelerando vers le climax.</li>
+<li><strong>Phases 69–76</strong> — marché de probabilités (prix persistés entre les rendus), Parenthèse (redirection vers une boucle de bégaiement), Heisenberg (précision rythmique/de hauteur couplées inversement), VOSIM, battement binaural chaotique, enveloppe d'asphyxie par sidechain, filtre Polivoks auto-oscillant, Vector Synthesis (vrai crossfade 2D).</li>
+<li><strong>Phases 77–82</strong> — Harmonàig (pad à 4 voix, attribué à Jason Lim/Instruō), polyphonie de cribles de Xenakis (4 canaux), Bloom (mélodie fractale, attribuée à Andrew Ikenberry/Qu-Bit Electronix), poids de jeu de Caillois (phase 80, un tournant explicite), correction d'un vrai bug d'instabilité soutenue dans le <code>ModalResonator</code> du tuba/bois (phase 81), recherche rythmique approfondie — deux vrais archétypes aksak + un crible rythmique de Xenakis généré (phase 82).</li>
+<li><strong>Phase 83</strong> — fin de l'affinité tonale forcée de l'album, remplacée par une trajectoire en ligne droite à travers les poids de jeu de Caillois ; chaque piste choisit librement sa propre gamme.</li>
+<li><strong>Phase 84</strong> — « Curto-Circuito » (« Court-Circuit ») : une vraie coupure sèche (porte + étincelle de bruit) qui, au même instant, donne aux mécanismes que la graine avait laissés désactivés une seconde chance de s'imposer dans la pièce.</li>
+<li><strong>Refonte du layout de l'application</strong> (entre les phases 82 et 83) — identité visuelle changée du vert phosphorescent (« Sinal ») au cuivre ; le vrai logo de l'auteur vectorisé et appliqué comme emblème ; le panneau de modules étendu en une grille couvrant ~50 mécanismes ; oscilloscope stéréo ; nouveaux panneaux ESPECTRO/NÍVEL/GRANULAÇÃO/PESOS DE JOGO (bancs Goertzel, vumètre RMS/crête, particules, barres colorées) ; BPM et MASTER en curseurs horizontaux ; vraies icônes pour COMPOR/PLAY ; ABOUT/TUTORIAL thématisés ; la fenêtre s'ouvre maximisée avec un repli de défilement.</li>
+</ul>
+<hr />
+<h2 id="7-validations">7. Validations</h2>
+<h3 id="71-ce-qui-existe">7.1 Ce qui existe</h3>
+<ul>
+<li><strong><code>regression_test.py</code></strong> — compile le moteur, rend un lot de graines, mesure la durée/le pic/la fraction d'écrêtage/l'historique des sections. Critères : durée 15–300s, écrêtage &lt; 0,05%, historique non vide.</li>
+<li><strong><code>autotest.sh</code></strong> — compile l'application, l'exécute avec <code>RASGO_AUTOTEST=1</code>, confirme la ligne « gravado : » dans le journal et une console native propre.</li>
+</ul>
+<h3 id="72-ce-qui-a-reellement-ete-verifie">7.2 Ce qui a réellement été vérifié</h3>
+<p>Chaque phase depuis la 13 est passée par <code>regression_test.py</code> (lots de 15–20 graines) avec zéro échantillon saturé, et l'application a été recompilée et a passé <code>autotest.sh</code> après chacune. Au-delà de cela, chaque nouveau mécanisme contrôlé par la graine depuis la phase 49 a reçu un <strong>audit empirique de taux de déclenchement</strong> (rendre un lot de graines et confirmer dans les métadonnées que le mécanisme se déclenche réellement au taux attendu, pas seulement qu'il compile) — une discipline qui a déjà attrapé de vrais bugs (un taux de collision de 11,6% dans le crible de hauteur avant sa correction, un compteur d'écart dans la mauvaise unité dans Agon, l'instabilité du <code>ModalResonator</code> du tuba). Plusieurs phases sont nées directement d'une <strong>vraie écoute</strong> de l'utilisateur, pas seulement d'une mesure : la batterie (phase 66), l'audibilité du tuba (phase 81), et l'analyse même de forme d'onde/spectrogramme qui a donné naissance à Curto-Circuito (phase 84).</p>
+<h3 id="73-ce-qui-na-pas-encore-ete-verifie">7.3 Ce qui n'a pas encore été vérifié</h3>
+<p>Toutes les combinaisons possibles des ~50 mécanismes du moteur n'ont pas été écoutées à la main — la couverture vient d'audits empiriques des métadonnées (confirmant un vrai déclenchement) plus une écoute ciblée guidée par des retours spécifiques de l'utilisateur, pas un balayage exhaustif de toutes les combinaisons.</p>
+<hr />
+<h2 id="8-securite">8. Sécurité</h2>
+<ul>
+<li><strong>Exécution entièrement locale</strong> — aucun réseau, télémétrie ou collecte de données personnelles dans aucun composant du moteur ou de l'application.</li>
+<li><strong>Aucune donnée sensible ni identifiant</strong> nulle part dans le code ou les scripts de build/test.</li>
+<li><strong>Attention à l'espace disque</strong> et à <code>recordings/</code> — c'est le vrai répertoire de sortie de l'utilisateur (vrais albums, index accumulé) ; les scripts de test écrivent dans des sous-dossiers isolés ou nettoient exactement le fichier qu'ils viennent de créer, jamais un balayage large.</li>
+<li><strong>Licence AGPL-3.0-or-later</strong> du code original actuel ; texte intégral dans <code>LICENSE</code>.</li>
+<li><strong>Compilation sans privilèges élevés</strong> — la compilation (g++ direct) ne nécessite pas sudo.</li>
+</ul>
+<hr />
+<h2 id="9-layout-lidentite-visuelle-cobre-cuivre">9. Layout — l'identité visuelle « Cobre » (Cuivre)</h2>
+<p>L'identité visuelle est passée de « Sinal » (vert phosphorescent sur presque-noir froid) à <strong>« Cobre »/« Cuivre »</strong> : la couleur d'accent est un orange cuivré oxydé (<code>#e8865f</code>), choisi parce qu'il fait directement référence à l'objet physique réel derrière le nom « rasgo » — des panneaux Eurorack gravés à l'acide que l'auteur construit à la main depuis 2013. Le fond reste presque noir, désormais avec un biais chaud plutôt que froid.</p>
+<ul>
+<li><strong>Emblème</strong> — le vrai logo de l'auteur (sa propre vectorisation Inkscape) chargé via <code>juce::Drawable::createFromSVGFile</code>, teinté de cuivre, appliqué à côté du titre.</li>
+<li><strong>Palette étendue</strong> — <code>Palette::action</code> (doré, <code>#f2c14e</code>) pour les boutons d'action primaire (COMPOR/PLAY) ; <code>Palette::danger</code> (rouge) réutilisé spécifiquement comme couleur propre de COMPOR ; un petit cycle cuivre/rouge/doré (<code>vizAccent</code>) colore les barres des nouveaux panneaux (poids de jeu, spectre par bande, vumètres L/R) au lieu de tout en cuivre monochrome.</li>
+<li><strong>Vraies icônes</strong> — COMPOR utilise le glyphe Unicode de croche (♪, plus fiable qu'un tracé dessiné à la main) ; PLAY utilise un triangle/deux barres selon l'état de lecture.</li>
+<li><strong>Oscilloscope stéréo</strong> — deux voies indépendantes (L/R), doré, une fenêtre temporelle plus longue qu'avant.</li>
+<li><strong>Typographie</strong> — monospace partout dans le titre, les étiquettes et le journal ; tailles augmentées par rapport à la version « Sinal ».</li>
+<li><strong>Texture de fond</strong> — une grille de graticule d'oscilloscope derrière toute la fenêtre.</li>
+<li><strong>Fenêtre</strong> — s'ouvre maximisée par défaut (<code>setFullScreen</code>), avec un vrai repli de défilement (<code>juce::Viewport</code>) sur les moniteurs plus petits que ce que le layout confortable (1100×760) exige.</li>
+</ul>
+<p><strong>Tentative annulée</strong> : un effet visuel de « déchirure » (papier déchiré traversant le panneau de contrôle et/ou le haut de la fenêtre) a été implémenté puis complètement supprimé à la demande de l'utilisateur — ne pas le réintroduire sans une nouvelle demande explicite.</p>
+<hr />
+<h2 id="10-points-en-suspens-et-prochaines-etapes">10. Points en suspens et prochaines étapes</h2>
+<p>Voir la liste vivante complète dans <code>CONTINUIDADE.md</code> (« Tarefas em aberto », portugais uniquement) et dans le Plano de Upgrade (« Em aberto »). Résumé de ce qui reste réellement ouvert :</p>
+<ul>
+<li><strong>Une « note de bas de page » et une voix narrante</strong> — le mécanisme de note de bas de page existe ; une voix littéraire plus riche reste ouverte.</li>
+<li><strong>Une synthèse vocale plus physique</strong> — Scat et Chœur existent comme voix originales à formants ; un sous-système complet de conduit vocal reste une frontière à long terme.</li>
+<li><strong>L'expansion des rôles relationnels</strong> — thérémine, flûte FM, tuba, voix, polyphonies et archive nécessitent encore des contrats causaux plus profonds.</li>
+<li><strong>De vrais changements de mesure/signature rythmique</strong> — se connecte à la recherche rythmique (phase 82), délibérément hors de portée jusqu'à présent (changerait l'ossature rythmique fixe à 16 pas).</li>
+<li><strong>La console embarquée de la Version Performance</strong> — une étape après la Version Studio, par décision explicite de l'utilisateur.</li>
+<li><strong>Synchronisation documentaire</strong> — les quatre documents publics principaux sont synchronisés en EN/FR/ES/PT ; les audits internes de phases et le plan vivant restent des documents de travail en portugais.</li>
+</ul>
+<hr />
+<h2 id="11-references-et-influences">11. Références et influences</h2>
+<p>Un vide n'explique pas Rasgo Synth ; c'est un projet de synthèse générative qui se déclare, honnêtement, en dialogue direct avec de vrais circuits, des instruments commerciaux, des articles académiques et la trajectoire propre de l'auteur. Aucun code source d'un autre instrument ni aucun schéma électrique exact n'a été copié : les comportements ont été implémentés originalement en C++ à partir de concepts et de documentation publics. Voir <code>CREDITS.md</code> pour le tableau complet par mécanisme.</p>
+<h3 id="111-trajectoire-dauteur-et-reference-externe-initiale">11.1 Trajectoire d'auteur et référence externe initiale</h3>
+<ul>
+<li><strong>Antitotem et modules physiques de Rasgo (2013–)</strong> — œuvres construites par l'auteur. Antitotem précède Rasgo, fut incorporé comme son précurseur et son patron.</li>
+<li><strong>Kosmische (2013)</strong> — instrument génératif Android de Nicolas Steven Miller (github.com/zrnsm/kosmische, GPLv3), référence technique et conceptuelle initiale, ne fait pas partie de Rasgo.</li>
+</ul>
+<h3 id="112-materiel-commercial-et-circuits-diy-publiquement-documentes">11.2 Matériel commercial et circuits DIY publiquement documentés</h3>
+<ul>
+<li><strong>Roland TR-808</strong> — référence sonore pour une partie des huit voix de percussion.</li>
+<li><strong>Music Thing Modular — Turing Machine</strong> (Tom Whitwell) — le caractère de verrouillage/mutation par pas du séquenceur.</li>
+<li><strong>Mutable Instruments</strong> (Émilie Gillet) — Rings, Clouds, Branches, réinterprétés.</li>
+<li><strong>Instruō — ochd</strong> (Ben « DivKid » Wilson) et <strong>Harmonàig</strong> (Jason Lim) — le banc de LFO et le pad d'accord à 4 voix, respectivement.</li>
+<li><strong>Qu-Bit Electronix — Bloom</strong> (Andrew Ikenberry) — la mélodie fractale Trunk/Branch/Path.</li>
+<li><strong>Frap Tools — Sapèl</strong> — quatre couleurs de bruit.</li>
+<li><strong>Make Noise — Maths</strong> / mixage sans entrée — vrai self-feedback audio.</li>
+<li><strong>Buchla</strong> — processeurs leveler/lag.</li>
+<li><strong>Rob Hordijk — Benjolin</strong> — cross-FM bidirectionnel.</li>
+<li><strong>Ken Stone — CGS22 « Master Divider »</strong> — le diviseur d'horloge XOR polyrythmique.</li>
+<li><strong>Forrest Mims III — Stepped Tone Generator</strong> (« Atari Punk Console ») — texture stepped/glitch.</li>
+<li><strong>Ray Wilson — MFOS « Noise Cornucopia »</strong> — bruit granuleux et porte aléatoire.</li>
+<li><strong>General Instrument AY-3-8910</strong> — arpège/texture chiptune.</li>
+<li><strong>Pantala Labs</strong> — mode delay lo-fi, saturateurs bande/lampe.</li>
+<li><strong>Robert Moog ; Tim Stilson et Julius O. Smith</strong> — le filtre ladder.</li>
+<li><strong>Hal Chamberlin</strong> — le filtre state-variable.</li>
+<li><strong>Polivoks (Formanta, URSS)</strong> — la troisième couleur de filtre, vraie auto-oscillation.</li>
+<li><strong>Rob Hordijk/Benjolin, Xaoc Devices Leibniz-Rectifier</strong> — Rungler et rectification/corruption de bits.</li>
+<li><strong>Sequential Circuits Prophet VS</strong> — vrai crossfade 2D (Vector Synthesis).</li>
+<li><strong>Technique de sidechain/ducking de la production techno/EDM</strong> — l'enveloppe d'asphyxie.</li>
+</ul>
+<h3 id="113-mathematiques-informatique-et-synthese-academique">11.3 Mathématiques, informatique et synthèse académique</h3>
+<ul>
+<li><strong>Iannis Xenakis</strong> — Synthèse Stochastique Dynamique (« Gendyn ») ; et, dans <em>Formalized Music</em> (chapitre XI, « Sieves: A User's Guide »), la théorie des cribles par congruence de module/résidu, appliquée aussi bien aux classes de hauteur (phase 61) qu'aux points dans le temps (phase 82).</li>
+<li><strong>Joe Pritchard — <em>The Chaos Cookbook</em> (1992)</strong> ; <strong>Lance Putnam — Chaos UGens de SuperCollider (2004)</strong> — références de recherche pour les neuf cartes chaotiques.</li>
+<li><strong>Vesa Välimäki et Antti Huovilainen — PolyBLEP</strong> — l'anti-aliasing des oscillateurs.</li>
+<li><strong>Dither TPDF</strong> — une technique standard de traitement audio numérique.</li>
+<li><strong>Werner Kaegi et Stan Tempelaars, Institut de Sonologie d'Utrecht — VOSIM</strong> — synthèse par impulsions sin² décroissantes.</li>
+<li><strong>Constantin Brăiloiu ; Stoyan Dzhudzhev</strong> — la théorie du rythme additif/aksak balkanique, deux archétypes réels (9+7 et 7+7+2).</li>
+<li><strong>David Lewin ; théorie néo-riemannienne</strong> — transformations triadiques P/L/R.</li>
+</ul>
+<h3 id="114-structures-narratives-ludologiques-et-compositionnelles">11.4 Structures narratives, ludologiques et compositionnelles</h3>
+<ul>
+<li><strong>Gustav Freytag — la Pyramide de Freytag</strong> (1863) — la grammaire narrative « Dramatic ».</li>
+<li><strong>Kishōtenketsu</strong> — la structure narrative chinoise/japonaise en 4 parties (qǐ-chéng-zhuǎn-hé).</li>
+<li><strong>Roger Caillois — <em>Les Jeux et les Hommes</em></strong> (1958) — les quatre catégories de jeu (Alea, Agon, Ilinx, Mimicry), formalisées mécaniquement comme des poids continus influençant onze mécanismes existants (phase 80).</li>
+</ul>
+<p>Quiconque souhaite approfondir l'un de ces points de départ avant de porter la prochaine idée doit maintenir le même standard d'honnêteté : citer la vraie source, comprendre le comportement avant de réimplémenter, et indiquer clairement dans cette section (ou dans la phase correspondante du <code>Plano_de_Upgrade_Instrumento_Generativo.md</code>) que l'idée dialogue avec le travail d'autrui, pas qu'elle est née isolée.</p></main></body></html>

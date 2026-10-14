@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rasgo Synth Studio — Catálogo técnico</title>
+<meta name="description" content="Rasgo Synth Studio: instrumento musical generativo em C++/JUCE. Conceitos, tutorial, arquitetura e catálogo de mecanismos e referências." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+
+
+<link rel="stylesheet" href="assets/site.css?v=6" />
+<link rel="stylesheet" href="assets/studio.css?v=2" />
+</head>
+<body id="top" class="studio-public">
+<div class="rasgo-strip" aria-label="RASGO"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div>
+
+<header class="studio-header topbar">
+<a class="studio-mark mark" href="index.html#top"><img class="mark-logo" src="assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
+<nav aria-label="Instrumento">
+<a href="index.html#instrument">Instrumento</a>
+<a href="index.html#first-piece">Primeira peça</a>
+<a href="index.html#documentation">Documentação</a>
+<a href="index.html#release">Versão e créditos</a>
+</nav>
+<nav class="studio-languages" aria-label="Language / Idioma / Langue">
+<a href="en.html" lang="en" hreflang="en">English</a>
+<a href="index.html" lang="pt-BR" hreflang="pt-BR" aria-current="page">Português</a>
+<a href="fr.html" lang="fr" hreflang="fr">Français</a>
+<a href="es.html" lang="es" hreflang="es">Español</a>
+</nav>
+</header>
+
+<header class="hero">
+  <div>
+    <p class="eyebrow">Documentação · Conceitos e catálogo técnico em português</p>
+    <h1 class="hero-title">Rasgo<br />Synth<span class="studio">Versão Studio</span></h1>
+    <p class="hero-tag">“<strong>Se arrisca, e soa.</strong>” Uma semente numérica decide o caminho; o instrumento materializa a composição — nunca obedecendo cegamente, sempre dentro de um espaço desenhado, autoral, de propósito.</p>
+    <div class="hero-meta">
+      <span><b id="catalog-total">—</b> registros no catálogo documental</span>
+      <span>Em desenvolvimento</span>
+      <span>AGPL-3.0-or-later</span>
+    </div>
+  </div>
+  <div class="scope-panel">
+    <canvas id="scope-canvas" role="img" aria-label="Traço decorativo derivado do mapa caótico de Hénon, um dos nove mapas usados no motor"></canvas>
+    <div class="caption"><span>MAPA DE HÉNON</span><span>a=1.4 b=0.3</span></div>
+  </div>
+</header>
+
+<main>
+
+<section class="section" id="instrumento">
+  <div class="section-head">
+    <p class="eyebrow">02 · O instrumento inteiro</p>
+    <h2>Da seed à escuta</h2>
+    <p class="prose" style="max-width:var(--measure); color:var(--text-dim); font-size:0.98rem">O Rasgo Synth não recebe notas prontas para depois colori-las. Ele interpreta uma seed dentro de um espaço autoral e constrói uma peça enquanto tempo, matéria, narrativa, relação e escuta se influenciam.</p>
+  </div>
+
+  <div class="layers">
+    <div class="layer"><span class="tag">01 · Origem</span><p>A <strong>seed</strong> é o ponto de partida de uma trajetória. Ela escolhe identidade composicional, escalas, ritmos, vozes possíveis, probabilidades e condições do render.</p></div>
+    <div class="layer"><span class="tag">02 · Jogo</span><p>Alea, Agon, Ilinx e Mimicry combinam energia, memória, risco, liberdade e informação oculta. São forças que enviesam decisões, não etiquetas decorativas.</p></div>
+    <div class="layer"><span class="tag">03 · Tempo</span><p>Grade, pulso, subdivisão, swing, microtiming, acento, gate, probabilidade, fase, polimetria, deriva e memória temporal formam a arquitetura do tempo musical.</p></div>
+    <div class="layer"><span class="tag">04 · Matéria</span><p>Osciladores, ressonadores, ruídos, granularidade, FM, filtros e percussão transformam decisões abstratas em som. Tuba, acid e core-sub são corpos graves diferentes.</p></div>
+    <div class="layer"><span class="tag">05 · Forma</span><p>Uma caminhada narrativa organiza abertura, desenvolvimento, clímax, ruptura, decantação e fechamento. A duração da peça avulsa emerge da trajetória; no álbum há também planejamento opcional de duração.</p></div>
+    <div class="layer"><span class="tag">06 · Relação</span><p>As vozes podem responder, competir, interromper, preservar, deformar ou ceder. Bateria, baixo, melodia, texturas e câmara relacional possuem funções próprias.</p></div>
+    <div class="layer"><span class="tag">07 · Expressão</span><p>No A/B expressivo, eventos recebem gesto: articulação, dinâmica interna, ataque, slide, estabilidade, falha, recuperação e memória.</p></div>
+    <div class="layer"><span class="tag">08 · Mix</span><p>A atenção narrativa mede a sobrevivência pós-espaço e aplica apenas correções limitadas. Não transforma ausência legítima em volume obrigatório.</p></div>
+    <div class="layer"><span class="tag">09 · Registro</span><p>O <code>PieceRenderer</code> entrega PCM24/48 kHz, metadata, partitura textual e telemetria, distinguindo módulo disponível, manifestado, audível e influente.</p></div>
+  </div>
+
+  <div class="two-col" style="margin-top:2rem">
+    <div class="prose">
+      <h3>Como ler os fluxos</h3>
+      <p>O fluxograma da arquitetura mostra causalidade: a seed alimenta o núcleo, o sequenciamento e o arco; o arco modula densidade, registro e energia; jogo, relação e mixagem observam ou transformam decisões dentro de limites explícitos.</p>
+      <p>A grade de módulos mostra o que se manifestou naquela peça. A genealogia mostra de onde vieram as seções e como o arco se transformou. O log registra acontecimentos com horário. A partitura <code>.txt</code> acompanha o WAV como relato legível da trajetória, não como notação tradicional completa.</p>
+    </div>
+    <div class="card-mini" style="align-self:start">
+      <h3>Novos controles do Studio</h3>
+      <p><strong>Modo Selvagem</strong> abre trajetórias adicionais; desligado favorece reprodução determinística.</p>
+      <p><strong>Auditoria Stems</strong> mede sobrevivência pós-espaço e atenção narrativa; não é necessária para ouvir.</p>
+      <p><strong>A/B Expressivo</strong> ativa memória temporal, articulação e comportamento performativo experimental.</p>
+      <p><strong>ALEA / seed</strong> muda o ponto de partida; <strong>COMPOR</strong> renderiza; <strong>VARIAR SEED</strong> deriva uma nova seed de uma região ou instante em reprodução.</p>
+      <p style="margin-top:0.75rem"><a href="../docs/pt/Instrumento_Integral.md">Ler a explicação integral →</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="manifesto">
+  <div class="section-head">
+    <p class="eyebrow">03 · Manifesto</p>
+    <h2>O que este instrumento é</h2>
+  </div>
+  <div class="prose">
+    <p class="lede">Um dado lançado materializa o acaso. O Studio explora uma composição que conserva e transforma acontecimentos dentro da peça: repetição, memória local, resposta e ruptura. Aprender e crescer entre execuções continuam sendo horizontes conceituais, não capacidades implementadas ou inteligência artificial treinada.</p>
+    <p>A semente decide o caminho. O instrumento materializa a composição, mas materializar aqui nunca significou obedecer cegamente — dentro do espaço desenhado, das regras, do repertório de escolhas possíveis, o instrumento se arrisca de verdade: modula para intervalos que ninguém esperaria, cita e distorce sua própria história recente num rasgo, numa ruptura, nunca um crossfade suave.</p>
+    <p>A música que se ouve é ação artística, ato político e ação existencial ao mesmo tempo, sem hierarquia entre elas: artística porque a escolha ali é estética de verdade; política porque recusar a padronização e a fórmula comercial já é tomar posição; existencial porque a peça assume sua própria trajetória e se arrisca nela, sem medo do incerto.</p>
+    <p class="quote">“Uma semente entra, uma peça inteira sai: a semente é o rasgo, a ruptura originária de onde as escolhas se ramificam.”</p>
+    <p class="fine">Comentário real no código-fonte do motor.</p>
+  </div>
+
+  <div class="games-grid">
+    <div class="game"><h4>Alea</h4><p>O acaso — espinha dorsal desde o início: a semente, os nove mapas de caos, cada sorteio independente que decide se um módulo existe nesta peça específica.</p></div>
+    <div class="game"><h4>Ilinx</h4><p>A vertigem, a perda de controle buscada de propósito — a família inteira de mecanismos de ruptura: Rungler, colapso de Rössler, morte térmica, self-feedback, silêncio cirúrgico.</p></div>
+    <div class="game"><h4>Mimicry</h4><p>O simulacro — portar o comportamento de um TR-808 ou de uma tuba sem copiar o esquema elétrico, e a narrativa que a peça conta sobre si mesma: seções nomeadas, arquivo apócrifo.</p></div>
+    <div class="game"><h4>Agon</h4><p>Mérito decidindo entre opções em vez de sorteio decidindo sozinho — quatro vozes do instrumento carregam poder próprio, que solidifica conforme a peça acumula tempo vivido.</p></div>
+  </div>
+  <p class="fine" style="margin-top:1rem">Roger Caillois, <em>Os Jogos e os Homens</em> (1958) — as quatro categorias formalizadas mecanicamente como pesos contínuos que enviesam onze mecanismos do motor.</p>
+</section>
+
+<section class="section" id="conceito">
+  <div class="section-head">
+    <p class="eyebrow">04 · Conceito</p>
+    <h2>Instrumento, não gerador</h2>
+  </div>
+  <div class="two-col">
+    <div class="prose">
+      <p>Você define uma configuração inicial — uma semente numérica, um andamento — e aperta compor: o software escreve sozinho uma peça inteira, com desenvolvimento e variação contínua ao longo do tempo, não um loop que se repete.</p>
+      <p>Um princípio de design atravessa o projeto inteiro: <strong style="color:var(--copper)">portar a ideia, não copiar o circuito</strong>. Sempre que um esquema real foi estudado — CBS, Buchla, TR-808, MFOS, Instruō, Qu-Bit Electronix — o objetivo foi entender o comportamento sonoro e reimplementá-lo em C++ puro, nunca simular transistor por transistor.</p>
+      <p>A seed atua junto com andamento, escolhas de participantes e opções de render. ESCOLHER MÓDULOS oferece 34 participantes com Automático/Incluir/Excluir, não knobs individuais para todos os mecanismos. A escala continua sendo escolhida pelo motor. Direção musical, Expressivo e planejamento de álbum orientam os próximos renders; não alteram retroativamente um WAV.</p>
+    </div>
+    <div class="card-mini" style="align-self:start">
+      <h3>Dois subprojetos</h3>
+      <p><code>rasgo-synth-core</code> — motor DSP em C++17 puro, sem dependência de plataforma. Osciladores, nove mapas caóticos, filtros, sequenciamento, arco narrativo, render de WAV + metadados.</p>
+      <p style="margin-top:0.75rem"><code>rasgo-synth-app</code> — aplicativo desktop JUCE: reprodução ao vivo, visualizações (osciloscópio estéreo, espectro, goniômetro, painel de módulos), captura e derivação de seed a partir de um trecho da própria forma de onda.</p>
+    </div>
+  </div>
+
+  <figure class="app-shot">
+    <img src="assets/app_screenshot.png" alt="Captura de tela real do aplicativo desktop Rasgo Synth, identidade visual 'Cobre': painel de controles (semente, tempo, pesos de jogo), osciloscópio estéreo, espectro, goniômetro e log de eventos." loading="lazy" />
+    <figcaption>O aplicativo desktop (JUCE) — identidade visual “Cobre”: placa de circuito verde, cobre oxidado, tipografia monoespaçada. Captura real, sessão de desenvolvimento.</figcaption>
+  </figure>
+</section>
+
+<section class="section section-dark" id="performance">
+  <div class="section-head">
+    <p class="eyebrow">04 · Studio / Performance</p>
+    <h2>Studio e Performance</h2>
+  </div>
+  <div class="two-col">
+    <div class="prose">
+      <p><strong>Rasgo Synth Studio</strong> é o instrumento existente: um
+        aplicativo desktop para compor, renderizar, ouvir e investigar peças
+        generativas. Seu foco é autonomia, documentação, precisão e a história
+        registrada de cada seed.</p>
+      <p><strong>Rasgo Synth Performance</strong> é um instrumento irmão para
+        execução ao vivo, gesto e baixa latência, com motor e host próprios.
+        No Studio, a composição é calculada antes da escuta; no Performance,
+        a execução acontece ao vivo.</p>
+    </div>
+    <div class="card-mini" style="align-self:start">
+      <h3>Conhecer o Studio</h3>
+      <p>Este catálogo reúne conceitos e referências técnicas em português.
+        Na apresentação, você encontra o instrumento e seus manuais nos
+        quatro idiomas. O tutorial acompanha os controles, a primeira
+        composição e o modo álbum.</p>
+      <p><a href="quickstart.html#pt">Primeira peça — tutorial em quatro idiomas →</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="arquitetura">
+  <div class="section-head">
+    <p class="eyebrow">05 · Arquitetura</p>
+    <h2>Da semente ao arquivo</h2>
+  </div>
+
+  <div class="layers">
+    <div class="layer"><span class="tag">Origem</span><p>A seed inicia a trajetória. Comparações reproduzíveis exigem também o mesmo andamento, configuração, versão e estado externo pertinente, com Modo Selvagem desligado. A seed sozinha não é a receita completa.</p></div>
+    <div class="layer"><span class="tag">Núcleo DSP</span><p>O repertório inclui síntese subtrativa, aditiva, ressonante, granular, estocástica, vetorial e FM, além de ruídos, filtros e mapas caóticos. Disponibilidade não significa que todas as fontes estejam ativas ou audíveis em cada peça.</p></div>
+    <div class="layer"><span class="tag">Sequenciamento</span><p>39 escalas pesquisadas mais peneiras de Xenakis geradas; condução de voz real, progressões de acorde, transformações Neo-Riemannianas; oito vozes de percussão com arquétipos rítmicos reais.</p></div>
+    <div class="layer"><span class="tag">Arco narrativo</span><p>A caminhada narrativa organiza seções, energia e encerramento. Os diagramas abaixo resumem relações históricas; não são inventário exaustivo do motor atual. O tutorial descreve os controles disponíveis hoje.</p></div>
+    <div class="layer"><span class="tag">Pesos de jogo</span><p>Alea/Agon/Ilinx/Mimicry, amostrados do 4-simplex, enviesam onze mecanismos já existentes em três grupos temáticos — cada peça ganha sua própria mistura autoral.</p></div>
+    <div class="layer"><span class="tag">Render</span><p><code>PieceRenderer</code> escreve o WAV com metadados embutidos, um <code>.txt</code> companheiro legível como partitura, e um índice acumulado entre sessões.</p></div>
+  </div>
+
+  <div class="diagram-frame">
+    <img class="diagram-native" src="assets/architecture.svg" alt="Da seed ao render: núcleo DSP, sequenciamento e arco narrativo convergem na mixagem. Os pesos de jogo modulam DSP e sequenciamento; o render alimenta o aplicativo e o álbum.">
+    <details><summary>Relações completas — notação textual histórica</summary>
+    <pre class="diagram-source">
+flowchart TB
+    SEED["Semente numérica<br/>mt19937"] --> DSP["Núcleo DSP<br/>osciladores · 9 mapas caóticos · filtros · percussão"]
+    SEED --> SEQ["Sequenciamento<br/>39 escalas + peneiras · acordes · voice leading"]
+    SEED --> ARC["Arco narrativo<br/>cadeia de Markov · 5 papéis estruturais"]
+    ARC -- "densidade · filtro · registro" --> DSP
+    ARC -- "densidade · registro" --> SEQ
+    ARC --> GAME["Pesos de jogo de Caillois<br/>Alea · Agon · Ilinx · Mimicry"]
+    GAME -. viés de probabilidade .-> DSP
+    GAME -. viés de probabilidade .-> SEQ
+    DSP --> MIX["Mixagem e masterização<br/>dither · limiter lookahead · PolyBLEP"]
+    SEQ --> MIX
+    ARC --> MIX
+    MIX --> RENDER["PieceRenderer<br/>WAV + metadados + partitura .txt"]
+    RENDER --> APP["App JUCE<br/>reprodução · visualização · captura"]
+    RENDER --> ALBUM["AlbumRenderer<br/>trajetória multi-faixa pelo simplex"]
+    </pre></details>
+  </div>
+</section>
+
+<section class="section" id="genealogia">
+  <div class="section-head">
+    <p class="eyebrow">06 · Genealogia</p>
+    <h2>Uma rede, não uma linha reta</h2>
+  </div>
+  <div class="prose">
+    <p>A história real deste projeto não é uma evolução linear — é uma rede: ideias que bifurcam em direções que ninguém previu no início, mecanismos que se sobrepõem entre módulos que parecem não ter relação nenhuma, e perguntas que retornam fases depois vestidas de outra coisa. Só relações que realmente aconteceram, cada uma citável à sua fase de origem.</p>
+  </div>
+  <div class="diagram-frame">
+    <img class="diagram-native" src="assets/genealogy.svg" alt="Genealogia: nota de rodapé e voz narrante originam Atropelo, gesto isolado e scat; scat se relaciona ao coral. Elemento estranho se divide em duas interpretações; espectralismo e ruptura se relacionam a rasgo espectral e colapso.">
+    <details><summary>Relações completas — notação textual histórica</summary>
+    <pre class="diagram-source">
+flowchart LR
+    NN["'nota de rodapé' + 'voz narrante'<br/>(item antigo da lista de pendências)"] -->|"cresceu em algo que já<br/>não era uma 'voz que narra'"| ATR["Atropelo<br/>vozes competindo, interrompendo"]
+    NN -->|"resolvida à parte"| FN["Nota de rodapé<br/>gesto isolado fora da escala"]
+    NN -->|"síntese vocal real,<br/>escopo dividido em duas metades"| SC["Voz de scat<br/>formantes reais"]
+    SC -->|"coral, polifonia"| CR["Coral polifônico<br/>quatro vozes SATB"]
+
+    EE["'elemento estranho'<br/>uma ideia"] -->|"versão interna"| EEI["comparador de amplitude cru"]
+    EE -->|"versão literal"| EEL["Sinal Estrangeiro<br/>única quebra honesta de reprodutibilidade"]
+
+    TER["território conceitual<br/>não explorado"] --> ESP["Espectralismo<br/>objeto espectral"]
+    TER --> MET["Métrica experimental<br/>polimetria · phasing"]
+    TER --> JOG["Jogo<br/>sinal de blefe e confiança"]
+    TER --> RAS["Ruptura e rasgo"]
+    ESP -->|"mesmos parciais,<br/>nova pergunta"| RF["Rasgo espectral<br/>Fiber Bundle Model"]
+    RAS -->|"segundo eixo,<br/>mesma tarefa"| COL["Colapso por coerência<br/>entropia de Shannon"]
+    </pre></details>
+  </div>
+</section>
+
+<div class="scope-strip" aria-hidden="true">
+  <canvas id="lorenz-strip"></canvas>
+</div>
+
+<section class="section" id="catalogo">
+  <div class="section-head">
+    <p class="eyebrow">07 · Catálogo técnico</p>
+    <h2>Mecanismos e suas referências</h2>
+    <p class="prose" style="max-width:var(--measure); color:var(--text-dim); font-size:0.95rem">Catálogo documental extraído do histórico de desenvolvimento. O número de registros não equivale ao número de módulos selecionáveis nem certifica o estado atual de cada implementação. Participação e contribuição audível dependem da configuração, da seed e do contexto musical; nenhum mecanismo precisa atuar em toda peça.</p>
+  </div>
+
+  <div class="catalog-controls">
+    <input id="search" type="search" placeholder="Buscar por nome, técnica ou referência…" aria-label="Buscar mecanismos" aria-controls="catalog-grid" disabled />
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema">◑ SISTEMA</button>
+  </div>
+  <div class="chip-row" id="chip-row" role="group" aria-label="Filtrar por categoria"></div>
+  <p class="count-line" id="count-line" role="status" aria-live="polite" aria-atomic="true">Catálogo interativo disponível com JavaScript.</p>
+  <button id="catalog-retry" type="button" hidden>Tentar carregar novamente</button>
+  <p id="catalog-empty" hidden>Nenhum registro corresponde aos filtros. Limpe a busca ou escolha Todos.</p>
+  <div class="catalog-grid" id="catalog-grid" aria-busy="false"></div>
+  <p class="fine"><a href="../docs/pt/_catalogo_mecanismos.md">Consultar o catálogo textual em português →</a></p>
+  <noscript><p>O catálogo interativo requer JavaScript; leia a <a href="../docs/pt/_catalogo_mecanismos.md">versão textual</a>. Os guias continuam acessíveis em <a href="../docs/en/Instrument_Overview.md">EN</a>, <a href="../docs/pt/Instrumento_Integral.md">PT</a>, <a href="../docs/fr/Instrument_Integral.md">FR</a> e <a href="../docs/es/Instrumento_Integral.md">ES</a>.</p></noscript>
+</section>
+
+<section class="section" id="referencias">
+  <div class="section-head">
+    <p class="eyebrow">08 · Referências</p>
+    <h2>Em diálogo direto, com honestidade</h2>
+    <p class="prose" style="max-width:var(--measure); color:var(--text-dim); font-size:0.95rem">Nenhum código-fonte de outro instrumento nem esquema elétrico exato foi copiado — os comportamentos foram reimplementados originalmente em C++ a partir de conceitos e documentação públicos. Tabela completa por mecanismo em <code>CREDITS.md</code>.</p>
+  </div>
+  <ul class="ref-columns">
+    <li><b>Antitotem</b> (2013–) — instrumento de hardware autoral, precursor e patrono do projeto.</li>
+    <li><b>Kosmische</b> — Nicolas Steven Miller, referência técnica/conceitual inicial (GPLv3, não integrante).</li>
+    <li><b>Roland TR-808</b> — referência sonora para parte das oito vozes de percussão.</li>
+    <li><b>Music Thing Modular — Turing Machine</b> (Tom Whitwell) — trava/mutação por passo.</li>
+    <li><b>Mutable Instruments</b> (Émilie Gillet) — Rings, Clouds, Branches, reinterpretados.</li>
+    <li><b>Instruō — ochd / Harmonàig</b> (Ben Wilson / Jason Lim).</li>
+    <li><b>Qu-Bit Electronix — Bloom</b> (Andrew Ikenberry).</li>
+    <li><b>Frap Tools — Sapèl</b> — quatro cores de ruído.</li>
+    <li><b>Rob Hordijk — Benjolin</b> — cross-FM, Rungler.</li>
+    <li><b>Ken Stone — CGS22</b> — divisor de clock XOR polirrítmico.</li>
+    <li><b>Forrest Mims III</b> — Stepped Tone Generator (Atari Punk Console).</li>
+    <li><b>Ray Wilson — MFOS Noise Cornucopia.</b></li>
+    <li><b>Robert Moog; Stilson &amp; Smith</b> — filtro ladder.</li>
+    <li><b>Hal Chamberlin</b> — state-variable filter.</li>
+    <li><b>Polivoks</b> (Formanta, URSS) — auto-oscilação real.</li>
+    <li><b>Sequential Circuits Prophet VS</b> — Vector Synthesis.</li>
+    <li><b>Iannis Xenakis</b> — Gendyn; teoria de sieves (peneiras).</li>
+    <li><b>Joe Pritchard — The Chaos Cookbook</b> (1992).</li>
+    <li><b>Vesa Välimäki &amp; Antti Huovilainen</b> — PolyBLEP.</li>
+    <li><b>Kaegi &amp; Tempelaars</b> — VOSIM.</li>
+    <li><b>Brăiloiu; Stoyan Dzhudzhev</b> — ritmo aksak balcânico.</li>
+    <li><b>David Lewin; teoria neo-riemanniana.</b></li>
+    <li><b>Gustav Freytag</b> (1863) — a Pirâmide de Freytag.</li>
+    <li><b>Kishōtenketsu</b> — estrutura narrativa de 4 partes.</li>
+    <li><b>Roger Caillois</b> (1958) — os quatro jogos.</li>
+    <li><b>John Chowning</b> (1973) — síntese FM.</li>
+    <li><b>John Coltrane; McCoy Tyner; Miles Davis</b> — harmonia jazz.</li>
+    <li><b>Komitas Vardapet; Tigran Hamasyan</b> — modalismo armênio.</li>
+    <li><b>Claude Debussy; Stravinsky; Milhaud; Poulenc.</b></li>
+    <li><b>Harry Partch</b> (1949) — afinação justa.</li>
+    <li><b>Alois Hába; Ivan Wyschnegradsky; Easley Blackwood</b> — microtonalismo.</li>
+    <li><b>Steve Reich</b> — Piano Phase, Clapping Music.</li>
+    <li><b>Elliott Carter</b> — modulação métrica.</li>
+    <li><b>Justin London</b> (2004) — métrica não-isócrona.</li>
+    <li><b>Fletcher &amp; Rossing</b> — física de instrumentos musicais.</li>
+    <li><b>Lerdahl &amp; Jackendoff</b> (1983) — teoria gerativa da música tonal.</li>
+    <li><b>Peterson &amp; Barney</b> (1952) — formantes vocálicos.</li>
+    <li><b>Pierce (1926); Daniels (1945); Weibull; Harlow &amp; Phoenix (1978)</b> — Fiber Bundle Model.</li>
+    <li><b>Claude Shannon</b> (1948) — entropia da informação.</li>
+    <li><b>Johan Huizinga; Michel de Certeau.</b></li>
+    <li><b>Gilles Deleuze</b> — repetição com diferença.</li>
+    <li><b>Derrida; Foucault; Agamben; Ricœur; Benjamin</b> — arquivo e memória.</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <span>Rasgo Synth Studio — AGPL-3.0-or-later. Código autoral de Lucio de Araujo.</span>
+  <span>Conceitos e referências técnicas em português · Studio 0.1.0 experimental.</span>
+</footer>
+
+<script src="assets/site.js?v=5"></script>
+</body>
+</html>

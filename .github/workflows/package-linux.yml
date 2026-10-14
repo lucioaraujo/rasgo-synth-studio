@@ -1,0 +1,136 @@
+name: Studio — Linux packaging (manual release gate)
+
+# Prepared, NOT executed. In the private monorepo this nested workflow is inert.
+# After approved extraction to a dedicated repository it remains manual only.
+# Estimate: one Linux build ~10–20 runner minutes plus four launch-test jobs
+# ~5–10 minutes each; budget ~30–60 Linux runner minutes per invocation.
+# Actual service pricing/allowance must be reviewed before the first invocation.
+# No push/PR trigger, automatic release, Pages deployment or Windows/macOS jobs.
+on:
+  workflow_dispatch: {}
+  workflow_call: {}
+permissions:
+  contents: read
+concurrency:
+  group: studio-linux-package-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: juce-framework/JUCE
+          ref: f8f8864172464b9adf9eba6101e1f784838d1597
+          path: JUCE-checkout
+      - name: Build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config dpkg-dev file libasound2-dev \
+            libfreetype6-dev libfontconfig1-dev libx11-dev libxext-dev libxrender-dev \
+            libpng-dev libjpeg-dev zlib1g-dev
+      - name: Serial build with locked JUCE
+        run: |
+          mkdir .local-build
+          bash packaging/linux/preparar-build.sh JUCE-checkout .local-build/linux-baseline
+      - name: Packaging tools (explicit pins, verified before execution)
+        run: |
+          mkdir .local-build/tooling
+          curl --fail --location --connect-timeout 15 --max-time 90 --max-filesize 33554432 \
+            -o .local-build/tooling/linuxdeploy-x86_64.AppImage \
+            https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-x86_64.AppImage
+          curl --fail --location --connect-timeout 15 --max-time 60 --max-filesize 2097152 \
+            -o .local-build/tooling/runtime-x86_64 \
+            https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64
+          curl --fail --location --connect-timeout 15 --max-time 30 --max-filesize 65536 \
+            -o .local-build/tooling/AppImage-runtime-LICENSE \
+            https://raw.githubusercontent.com/AppImage/type2-runtime/8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa/LICENSE
+          chmod +x .local-build/tooling/linuxdeploy-x86_64.AppImage
+      - name: Three formats, same application tree
+        run: |
+          timeout 420 bash packaging/linux/empacotar.sh \
+            --binary .local-build/linux-baseline/rasgo_synth_app \
+            --output .local-build/packages --deb \
+            --linuxdeploy .local-build/tooling/linuxdeploy-x86_64.AppImage \
+            --runtime .local-build/tooling/runtime-x86_64 \
+            --runtime-license .local-build/tooling/AppImage-runtime-LICENSE
+          cd .local-build/packages
+          sha256sum -c SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-linux-candidates
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            .local-build/packages/*.deb
+            .local-build/packages/*.AppImage
+            .local-build/packages/*.tar.gz
+            .local-build/packages/SHA256SUMS
+            .local-build/packages/package-manifest.json
+
+  # Startup tests only. Not an audio/hardware/musical-acceptance certificate.
+  launch:
+    needs: package
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        image: ['debian:12', 'ubuntu:24.04', 'fedora:latest', 'archlinux:latest']
+    container: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-linux-candidates
+          path: packages
+      - name: Minimal desktop test environment
+        run: |
+          case '${{ matrix.image }}' in
+            debian:*|ubuntu:*)
+              apt-get update
+              studio_alsa=libasound2
+              case '${{ matrix.image }}' in ubuntu:24.04) studio_alsa=libasound2t64 ;; esac
+              DEBIAN_FRONTEND=noninteractive apt-get install -y xvfb xauth openbox wmctrl imagemagick python3 \
+                "$studio_alsa" libfreetype6 libfontconfig1 libx11-6 libxext6 libxrender1 \
+                zlib1g fonts-dejavu-core
+              apt-get install -y ./packages/*.deb ;;
+            fedora:*)
+              dnf install -y xorg-x11-server-Xvfb xorg-x11-xauth openbox wmctrl ImageMagick python3 \
+                alsa-lib freetype fontconfig libX11 libXext libXrender libpng \
+                libjpeg-turbo zlib dejavu-sans-fonts ;;
+            archlinux:*)
+              pacman -Syu --noconfirm xorg-server-xvfb xorg-xauth openbox wmctrl imagemagick python \
+                alsa-lib freetype2 fontconfig libx11 libxext libxrender libpng \
+                libjpeg-turbo zlib ttf-dejavu ;;
+          esac
+      - name: Launch extracted packages on virtual display
+        run: |
+          mkdir -p .local-build/launch/tar .local-build/launch/appimage
+          tar -xzf packages/*.tar.gz -C .local-build/launch/tar
+          chmod +x packages/*.AppImage
+          cd .local-build/launch/appimage
+          ../../../packages/*.AppImage --appimage-extract
+          cd ../../..
+          xvfb-run -a sh -c '
+            set -eu
+            openbox >.local-build/launch/openbox.log 2>&1 &
+            studio_wm_pid=$!
+            trap "kill $studio_wm_pid" EXIT
+            sleep 2
+            python3 -B tools/smoke_studio_window.py --binary .local-build/launch/tar/rasgo-synth-studio-0.1.0-linux-x86_64/run --output .local-build/launch/tar-smoke --size 1366 768
+            python3 -B tools/smoke_studio_window.py --binary .local-build/launch/appimage/squashfs-root/AppRun --output .local-build/launch/appimage-smoke --size 1366 768
+            if test -x /usr/bin/rasgo-synth-studio; then
+              python3 -B tools/smoke_studio_window.py --binary /usr/bin/rasgo-synth-studio --output .local-build/launch/deb-smoke --size 1366 768
+            fi
+          '
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-launch-${{ strategy.job-index }}
+          retention-days: 7
+          path: .local-build/launch/*-smoke/report.json

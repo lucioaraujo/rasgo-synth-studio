@@ -1,0 +1,68 @@
+/* Studio pages use the catalog's Cobre visual grammar, as chosen by the author.
+   JavaScript only enhances the decorative trace and optional catalog controls. */
+.studio-public { font-family: system-ui, sans-serif; }
+.rasgo-strip { background: #0b0e0d; color: #f4c842; padding: .55rem clamp(1rem, 5vw, 5rem); font-size: .9rem; position: relative; z-index: 2; }
+.rasgo-strip a { color: inherit; text-decoration: none; }
+.rasgo-strip a:hover { text-decoration: underline; }
+.rasgo-strip a[hidden] { display: none; }
+.rasgo-strip a:focus-visible, .studio-public a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+.studio-skip { position: absolute; left: 1rem; top: -12rem; z-index: 50; padding: .65rem 1rem; background: var(--bg); }
+.studio-skip:focus { top: 3rem; }
+.quickstart { max-width: 54rem; margin: 2rem auto; line-height: 1.7; }
+.quickstart h1 { font-family: system-ui, sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.quickstart h2 { font-family: system-ui, sans-serif; font-size: 1.35rem; padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid var(--line); }
+.quickstart ol { padding-left: 1.5rem; }
+.quickstart li { margin: .65rem 0; }
+.quickstart p { margin: .75rem 0; }
+.quickstart code { overflow-wrap: anywhere; }
+.quickstart table { display: block; overflow-x: auto; font-size: .9rem; }
+.quickstart pre { overflow-x: auto; }
+.quickstart h2 { scroll-margin-top: 8rem; }
+.quickstart [data-internal-reference]::after { content: " [internal]"; font-size: .8em; }
+.studio-controls dt { margin-top: 1rem; font-weight: 600; }
+.studio-controls dd { margin: .35rem 0 1rem; max-width: 70ch; }
+.studio-main, .studio-footer { position: relative; z-index: 1; }
+.studio-header {
+  position: sticky; top: 0; z-index: 20;
+  padding: .85rem 1.75rem;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 2rem;
+  border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.studio-mark { color: var(--text-bright); font-family: var(--font-display); font-weight: 700; letter-spacing: .04em; text-decoration: none; display: flex; align-items: center; gap: .6rem; white-space: nowrap; }
+.studio-mark span { color: var(--copper); }
+.studio-header nav, .studio-footer nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.studio-header a, .studio-footer a { padding: .3rem 0; }
+.studio-languages { margin-left: auto; font-size: .78rem; font-family: var(--font-mono); }
+.studio-public [aria-current="page"] { color: var(--text-bright); text-decoration-thickness: 3px; text-underline-offset: .3em; }
+.studio-main { max-width: 1180px; padding: 0 1.75rem; margin: auto; }
+.studio-hero { padding: 5rem 0 3rem; }
+.studio-hero h1 { font-family: var(--font-display); margin: 1rem 0; }
+.studio-intro { max-width: 65ch; font-size: 1.05rem; margin-top: 1.25rem; }
+.studio-status { color: var(--text-dim); margin: 1.25rem 0; font-size: .95rem; }
+.studio-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem; }
+.studio-primary { display: inline-block; padding: .75rem 1.2rem; background: var(--text-bright); color: var(--bg); border-radius: var(--radius); text-decoration: none; }
+.studio-primary:hover { text-decoration: underline; }
+.studio-preview { margin: 1.5rem 0 0; }
+.studio-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.studio-preview figcaption { max-width: 75ch; font-size: .85rem; color: var(--text-dim); margin-top: .75rem; }
+.studio-section { padding: 3rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: 1rem; }
+.studio-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.2; margin: .7rem 0 1.5rem; }
+.studio-section h3 { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.4; margin: 1.5rem 0 .6rem; }
+.studio-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.studio-columns h3 { margin-top: 0; }
+.studio-reading p, .studio-reading ol, .studio-reading ul { max-width: 70ch; }
+.studio-reading p { margin: .7rem 0; }
+.studio-reading li { padding: .3rem 0 .5rem; }
+.studio-doc-links { padding-left: 1.2rem; }
+.studio-footer { max-width: 82rem; padding: 2rem clamp(1rem, 5vw, 5rem); margin: auto; display: flex; flex-wrap: wrap; gap: 1rem 2rem; font-size: .9rem; }
+.studio-footer nav { flex-basis: 100%; }
+/* Tablet/phone headers must reflow rather than squeeze labels together. */
+.topbar { flex-wrap: wrap; }
+@media (max-width: 880px) { .catalog-controls { position: relative; top: auto; } }
+@media (max-width: 760px) {
+  .studio-header { position: relative; }
+  .quickstart h2 { scroll-margin-top: 1rem; }
+  .studio-columns { grid-template-columns: 1fr; gap: 1.5rem; }
+  .studio-languages { margin-left: 0; flex-basis: 100%; }
+  .studio-header nav { font-size: .9rem; }
+}

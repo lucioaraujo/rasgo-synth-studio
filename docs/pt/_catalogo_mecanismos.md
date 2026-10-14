@@ -1,0 +1,736 @@
+# Catálogo de mecanismos técnicos — Rasgo Synth
+
+Catálogo estruturado de cada mecanismo/módulo técnico real implementado no motor do Rasgo Synth, extraído e reescrito em tom apresentacional a partir do log de desenvolvimento interno (`Plano_de_Upgrade_Instrumento_Generativo.md`, fases 1 a 117). Cada ficha descreve o que o mecanismo faz e por que é real — preservando integralmente toda citação de pesquisador, teoria ou técnica histórica documentada.
+
+---
+
+### Mistura por diodo (DiodeShaper)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um waveshaper assimétrico que satura a voz principal seguindo o princípio de mistura por diodo dos circuitos CMOS de sintetizadores DIY, em vez de um clipping simétrico e "limpo". A assimetria é deliberada — o mesmo comportamento que dá a esses circuitos seu caráter reconhecível — e mais tarde recebeu oversampling 2x aproximado para conter os harmônicos novos que qualquer waveshaper não-linear introduz.
+REFERÊNCIA: técnica documentada na página "CMOS Synthesizers" do Beavis Audio (mistura resistiva vs. por diodo).
+
+### Osciladores caóticos como fontes sonoras de taxa de áudio
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Os mapas caóticos (Hénon, Lorenz, Latoocarfian) não funcionam só como moduladores lentos — rodam em taxa de áudio como fontes sonoras de primeira classe, dando ao instrumento sua identidade de dinâmica instável e não-repetitiva desde a primeira versão do motor.
+REFERÊNCIA: recorrências matemáticas publicadas em *The Chaos Cookbook* (Joe Pritchard, 1992).
+
+### Modulador em anel (RingModulator)
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Multiplica dois sinais de áudio para gerar as bandas laterais características de um ring modulator analógico, entrando gradualmente na mixagem conforme a ressonância do arco narrativo sobe — quase ausente na abertura, forte no clímax.
+REFERÊNCIA: esquema "Dual Ring Modulator No.111" da CBS Musical Instruments, 1970.
+
+### Console de tons escalonado (AtariPunkConsole)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Reproduz o par astável+monoestável do circuito de dois osciladores 555 que gera o "Stepped Tone Generator", incluindo o salto característico em degraus quando a largura de pulso ultrapassa o período do clock.
+REFERÊNCIA: Forrest Mims III, Stepped Tone Generator (Atari Punk Console).
+
+### Fonte de tensão aleatória tipo Buchla (BuchlaRandomSource)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um registrador de deslocamento (LFSR) de 8 bits que produz quatro saídas correlacionadas por soma ponderada, gerando uma deriva "em degraus" bem diferente em caráter da deriva contínua dos mapas caóticos — usada para modular tempo de delay, mix de reverb e, mais tarde, os ganhos do banco multibanda.
+REFERÊNCIA: Random Voltage Source do Buchla Music Easel / Model 208.
+
+### Banco de filtros multibanda (MultibandFilter)
+CATEGORIA: Espectral
+DESCRIÇÃO: Quatro filtros passa-banda tipo Chamberlin (state-variable) em frequências fixas, cada um com ganho independente, criando uma ênfase espectral que salta entre configurações — como formantes se deslocando em degraus, não uma varredura suave.
+REFERÊNCIA: esquema "Bandpass Filter #194" da CBS Musical Instruments, 1970 (divisor de 4 bandas).
+
+### Oscilador com morph contínuo de forma (MorphOscillator)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um único parâmetro "shape" varre continuamente senoide → triângulo → dente-de-serra → quadrada a partir do mesmo acumulador de fase, sem estalos na transição entre formas. Mais tarde ganhou correção PolyBLEP para eliminar aliasing nas formas com quinas (medido: piso espectral não-harmônico caiu de −83,5dB para −129,3dB).
+REFERÊNCIA: técnica de crossfade com fase alinhada (não um port literal de rede de diodos), correção PolyBLEP de Välimäki/Huovilainen.
+
+### Envelope como oscilador de áudio (EnvelopeOscillator)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um gerador de ataque/repouso rápido e autorretriggado o bastante para funcionar como oscilador — o equilíbrio entre subida e descida de cada ciclo muda o timbre de forma mensurável (energia nos harmônicos 2-5 caindo de ~50% para ~28% conforme o ataque desacelera), a técnica "AD/AR como VCO" clássica de sintetizadores modulares.
+REFERÊNCIA: esquema "Dual Attack Generator #180" da CBS Musical Instruments, 1970; prática documentada em patches Buchla/Serge.
+
+### Nivelador automático de sinal (SignalLeveler)
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Acompanha o volume médio do sinal e corrige suavemente rumo a um alvo, em vez de só cortar picos — ajuda a equilibrar o salto do arco entre uma abertura quieta e um clímax denso. Depois de um susto de estabilidade real causado pela sensibilidade dos mapas caóticos, seu tempo de resposta e piso de ganho foram apertados para conter picos extremos com segurança.
+REFERÊNCIA: circuito "Dual Signal Leveler" modelo 172 da Buchla Musical Instruments (nunca fabricado — nota manuscrita real no esquema: "We don't make. Why?").
+
+### Processador de lag/slew (LagProcessor)
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Transforma o salto instantâneo de uma tensão de controle "em degrau" — como a saída da fonte tipo Buchla — num deslize contínuo tipo portamento, aplicado ao tempo de delay e ao mix de reverb antes de chegarem aos módulos de efeito.
+REFERÊNCIA: circuito "Dual Control Voltage Integrator" modelo 155 da Buchla (nunca fabricado — nota manuscrita real no esquema: "Need circuit").
+
+### Ressoador modal (ModalResonator)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um banco de seis filtros ressonantes de dois polos, cada um representando um modo de vibração de um objeto percutido (barra, sino), com razões e decaimentos levemente dessintonizados por seed — cada peça ganha sua própria identidade de "objeto percutido". Foi a primeira síntese aditiva/ressonante do motor, ao lado da síntese subtrativa já existente.
+REFERÊNCIA: princípio conceitual do Rings, de Mutable Instruments (Emilie Gillet) — reimplementação independente, não port do código.
+
+### Nuvem granular (GranularCloud)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um granulador no domínio do tempo que grava o próprio sinal num buffer circular e espalha grãos curtos e sobrepostos, mais presente quando a seção rarefaz. Investigar uma saturação inesperada nesta fase levou à descoberta de que o problema real estava na sensibilidade dos mapas caóticos a qualquer mudança de código, não no granulador em si.
+REFERÊNCIA: Clouds, de Mutable Instruments — referência conceitual, não código de origem.
+
+### Síntese estocástica dinâmica (GendynOscillator)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um oscilador de breakpoints em random walk que roda como textura de fundo contínua, mais presente quando a seção rarefaz — implementação independente a partir de documentação pública da técnica.
+REFERÊNCIA: síntese estocástica dinâmica de Iannis Xenakis.
+
+### Chip de som AY-3-8910 (AY8910Chip)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Uma camada de arpejo estilo chiptune, afinada numa tríade simples acima da nota do passo atual, implementada a partir da arquitetura documentada do chip.
+REFERÊNCIA: arquitetura documentada do AY-3-8910.
+
+### Nove mapas caóticos com papéis dedicados
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Cada um dos nove mapas caóticos ganhou um papel sonoro real e distinto: o Standard Map (Chirikov) deriva a portadora do ring modulator, o Cusp modula o tempo de delay, o Quad (família logística) dá jitter de pitch ao granular, o LinCong nudgeia o arpejo chiptune, e o FBSine faz micro-detune do cowbell/cymbal — encerrando o padrão de "código morto compilado mas nunca chamado" que a análise inicial do projeto identificou.
+REFERÊNCIA: recorrências publicadas em *The Chaos Cookbook* (Joe Pritchard, 1992); mapa de Chirikov (Standard Map).
+
+### Banco de quatro LFOs (LfoBank)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Quatro formas de onda (seno/triângulo/pulso/sample-and-hold) modulando drift de afinação, largura do segundo oscilador, corte do filtro e tempo de delay numa faixa de "respiração" lenta (0,03–0,3 Hz) — resgatando um subsistema que existia mas nunca era alcançado pela interface original de referência.
+REFERÊNCIA: nenhuma.
+
+### Divisor de clock por XOR (PolyrhythmDivider)
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Um contador binário de quatro estágios cujas saídas combinadas por XOR geram famílias de padrões polirrítmicos a partir de um único clock mestre — a fase inicial e os pares de estágios que cada voz observa são derivados da seed, tornando o padrão percussivo uma consequência genuína dela.
+REFERÊNCIA: Master Divider (CGS22) de Ken Stone.
+
+### Segunda cor de filtro (SallenKeyFilter)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um filtro state-variable de dois polos (Chamberlin), com saídas passa-baixa/passa-alta/passa-banda, cruzado por crossfade com o filtro Moog de quatro polos já existente. Uma correção real de estabilidade (limite de corte apertado e trava defensiva contra divergência numérica) foi necessária depois que a topologia simples mostrou divergir de verdade perto do topo da faixa de ressonância.
+REFERÊNCIA: topologia state-variable de Chamberlin.
+
+### Vozes de bateria fundacionais (DrumVoices)
+CATEGORIA: Percussão
+DESCRIÇÃO: A primeira camada percussiva do motor — bumbo como seno com deriva de afinação, caixa como corpo em seno mais ruído filtrado, chimbal como osciladores quadrados inarmônicos passando por passa-altas — preenchendo o vazio de um motor até então inteiramente melódico ou textural.
+REFERÊNCIA: nenhuma (técnicas comuns de síntese percussiva por circuito CMOS/Lunetta).
+
+### Arquitetura real TR-808 (cowbell, clap, tom, cymbal, maracas)
+CATEGORIA: Percussão
+DESCRIÇÃO: A leitura de esquemáticos reais do TR-808 revelou que tom/conga é literalmente o mesmo circuito do bumbo só reafinado, e recalibrou as razões do banco de osciladores do chimbal a partir de valores reais de componente. Cowbell (dois osciladores em razão fixa por passa-banda), clap (três estalos mais cauda) e, depois, cymbal (oito osciladores inarmônicos) e maracas (estouro curto de ruído) completaram as oito vozes do kit.
+REFERÊNCIA: esquemáticos do clone TR-808 de Eric Archer e o service manual oficial Roland TR-808.
+
+### Saída estéreo real
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: A partir do estágio de delay/reverb, os canais divergem de verdade — uma segunda linha de delay dessincronizada (±7%) e um segundo reverb com room size diferente decorrelacionam as caudas, com um LFO lento automatizando a posição de pan por lei de potência igual, substituindo o antigo mono duplicado.
+REFERÊNCIA: nenhuma (princípio de rig estéreo real: fonte seca mono, efeitos de tempo largos).
+
+### Escala com mistura nota a nota
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Cerca de 40% das peças misturam uma segunda escala genuinamente diferente — mas a mistura acontece nota a nota (cada nota sorteada decide de qual das duas tabelas de grau vem), não em blocos de seção, já que graus de escala são tabelas discretas, sem interpolação possível.
+REFERÊNCIA: nenhuma.
+
+### Índice de gravações entre sessões
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: Toda gravação bem-sucedida acrescenta uma linha a um arquivo JSONL que acumula entre sessões (nunca sobrescreve), reaproveitando o mesmo JSON já embutido no WAV — respondendo à pergunta "o que eu já fiz até agora" sem abrir arquivos binários um por um.
+REFERÊNCIA: nenhuma.
+
+### Álbum com centro tonal compartilhado (AlbumRenderer)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Fixa a mesma nota-raiz, escala primária e bpm para todas as faixas de um álbum, mas cada faixa deriva sua própria seed deterministicamente e mantém identidade própria (template narrativo, mistura de escala, caminhada caótica). Um parâmetro `energyBias` permite temas de álbum "mais contidos" ou "mais luminosos" sem reescrever as fórmulas de energia.
+REFERÊNCIA: nenhuma.
+
+### Cadeia de masterização audiófila
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Dither triangular (TPDF) antes de truncar para 16-bit, DC-blocker por canal, e um limitador com lookahead que fica transparente até um pico real se aproximar — substituindo um `tanh()` incondicional que colorira o sinal inteiro. Uma correção real trocou o clamp duro final por um saturador suave (`ceiling*tanh(x/ceiling)`), eliminando o clipping sem reintroduzir coloração constante.
+REFERÊNCIA: nenhuma.
+
+### Correção de aliasing por PolyBLEP
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Os osciladores clássicos (dente-de-serra e pulso) e o MorphOscillator passaram a usar geração de banda limitada em vez da forma ingênua original — medido em um dente-de-serra a 2kHz, o piso espectral não-harmônico caiu de −83,5dB para −129,3dB.
+REFERÊNCIA: técnica PolyBLEP (Välimäki/Huovilainen).
+
+### Masterização de álbum em duas passadas
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Cada faixa renderiza primeiro só para medir RMS (descartada), depois renderiza de verdade com um ganho de correção parcial (raiz quadrada, não total) rumo à mediana de sonoridade do álbum — alinhamento real sem homogeneizar a dinâmica entre faixas.
+REFERÊNCIA: nenhuma.
+
+### Abertura probabilística
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Corrigindo um bug real em que toda peça nascia de densidade zero absoluta, a abertura agora é um sorteio de personagem por seed: ~65% das peças já nascem presentes no nível-alvo da seção, e uma minoria genuína (~35%) ainda emerge de um fade real a partir do silêncio.
+REFERÊNCIA: nenhuma.
+
+### Arco narrativo generativo (cadeia de Markov)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Substituiu a lista fixa de quatro seções por uma caminhada de Markov real sobre cinco papéis estruturais (intro/subida/clímax/queda/coda) — a caminhada decide sozinha quantas vezes sobe e desce, se o clímax é alcançado uma ou várias vezes, e quando terminar (coda como estado absorvente). A duração total da peça passou a ser consequência da caminhada, não mais um valor escolhido a priori, com transições específicas viradas cortes secos sem interpolação.
+REFERÊNCIA: nenhuma.
+
+### Gramáticas narrativas plugáveis (ArcTemplate)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: A lógica de transição/energia/duração da caminhada narrativa virou uma interface plugável, permitindo múltiplas "gramáticas" além da Pirâmide de Freytag (exposição/ação ascendente/clímax/queda/resolução) original. A seed pode ainda misturar dois gabaritos proporcionalmente ao longo da peça inteira, em vez de trocar de um para outro na metade.
+REFERÊNCIA: Pirâmide de Freytag; estrutura ki-shō-ten-ketsu de 4 partes da narrativa japonesa/chinesa.
+
+### Modo lo-fi de delay
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Tempo de delay quantizado em degraus de ~3ms, filtro de escurecimento no loop de feedback e quantização equivalente a ~12-bit — grão real nas repetições em vez de silêncio digital limpo, ativo como escolha de personagem por seed.
+REFERÊNCIA: inspirado no "Echo 2399" (delay baseado no chip PT2399 real), Pantala Labs.
+
+### Saturador de fita (TapeSaturator)
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Transientes arredondados (não cortados), escurecimento suave de agudos e "wow" (deriva lenta de pitch via um delay curto modulado) — uma cor de personagem aplicada bem cedo na cadeia de sinal, antes do resto do patch reagir a ela.
+REFERÊNCIA: inspirado no "Saturador de fita", Pantala Labs.
+
+### Saturador de válvula (TubeSaturator)
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Curva assimétrica com viés de harmônicos pares, caráter mais "quente" que "granulado" — uma terceira cor de saturação distinta do TapeSaturator e do DiodeShaper existentes.
+REFERÊNCIA: inspirado no "Tube Control", Pantala Labs.
+
+### Estalos estáticos (GrainyNoise + NoiseGateGenerator)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um comparador com histerese transforma ruído branco contínuo num trem irregular de estalos discretos (GrainyNoise), disparado por um divisor binário de sete estágios clocado por ruído limitado em taxa (NoiseGateGenerator) — duas fontes de irregularidade estatisticamente distintas tanto do divisor XOR quanto dos mapas caóticos, combinadas numa voz de estouros curtos.
+REFERÊNCIA: circuito "Noise Cornucopia", MFOS/Ray Wilson.
+
+### Personagem tipo Turing Machine no sequenciador
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Um `lockAmount` sorteado por seed decide, passo a passo, se aquele step mantém o padrão anterior ou é redesenhado — perto de 1, um tema surge e só muta um pouco a cada compasso em vez de recomeçar do zero. Acompanhado de `jumpiness` (enviesamento de salto de grau) e uma chance rara de o loop tocar de trás para frente a cada ciclo.
+REFERÊNCIA: Music Thing Modular Turing Machine.
+
+### Self-feedback de áudio
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um seguidor de envelope bem lento mede o pico do sinal final já masterizado e empurra a taxa do mapa de Lorenz — literalmente o volume de saída de um instante atrás influenciando o próprio caos que gera o próximo instante.
+REFERÊNCIA: ideia de self-patch/no-input mixing do Make Noise Maths.
+
+### Cross-FM bidirecional entre osciladores
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: A saída da amostra anterior de cada um dos dois osciladores principais desvia a frequência do outro nesse mesmo instante, com profundidade sorteada por seed — metade das peças roda com o efeito completamente desligado.
+REFERÊNCIA: princípio de cross-FM do Lyra-8/Benjolin (Rob Hordijk).
+
+### Ruído colorido (ColoredNoise)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Quatro cores digitais de ruído (pink, red, blue, white) disponíveis como fonte de textura, com algoritmo e distribuição próprios do projeto.
+REFERÊNCIA: Frap Tools Sapèl citado como referência da ideia de quatro cores de saída, não como fonte do algoritmo.
+
+### Arquivo apócrifo (ApocryphalTear)
+CATEGORIA: Arquivo/Memória
+DESCRIÇÃO: Uma vez por compasso, com probabilidade baixa, a peça pode citar a si mesma — escolhendo um ponto no mínimo 20 segundos no próprio passado gravado e tocando um fragmento curto de trás para frente com bitcrush grosseiro, enquanto o sinal ao vivo é abruptamente abaixado. É a tradução literal da metáfora que dá nome ao instrumento: quando algo se rasga, o momento de auto-citação soa como uma ruptura real, não um crossfade.
+REFERÊNCIA: nenhuma.
+
+### Seed derivada de um trecho de áudio
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: Um hash FNV-1a real calculado sobre os bytes brutos das amostras de um trecho selecionado na forma de onda deriva uma nova seed — a mesma seleção na mesma peça sempre produz a mesma seed, um "descendente" real daquele momento específico, não um sorteio aleatório disfarçado.
+REFERÊNCIA: função hash FNV-1a (Fowler–Noll–Vo).
+
+### Tempo variável dentro da peça
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Cerca de 35% das peças ganham uma deriva de andamento real ligada à densidade do arco — seções mais cheias empurram o tempo para cima, seções paradas relaxam de volta — exigindo uma reestruturação do agendamento de compasso/passo de um módulo fixo para um agendamento explícito.
+REFERÊNCIA: nenhuma.
+
+### Graus estáveis em tempos fortes
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: O peso de sorteio dos graus de acorde (raiz/terça/quinta) é multiplicado em tempos fortes de compasso, sem virar uma regra fixa — continua sendo um sorteio ponderado, então ainda pode sair uma nota de passagem no tempo forte, só que com menos frequência.
+REFERÊNCIA: princípio básico de harmonia funcional (nota de acorde em tempo forte, nota de passagem em tempo fraco).
+
+### Filtro ao vivo (BRILHO AO VIVO)
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Um filtro passa-baixa de um polo controlado por slider linear que o intérprete pode mexer durante a reprodução, com suavização garantindo que mover o controle nunca causa clique — o primeiro parâmetro audível de verdade sob a mão do intérprete enquanto a peça soa.
+REFERÊNCIA: nenhuma.
+
+### VARIAR AGORA (reseed por gesto de performance)
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: O intérprete aperta um botão no instante de sua escolha; o app captura uma janela de ~1,5s ao redor da posição exata de reprodução, deriva uma seed via hash FNV-1a e dispara uma nova composição — a aleatoriedade real vem da escolha de quando apertar, não só da seed digitada antes de compor.
+REFERÊNCIA: nenhuma.
+
+### Modulação real de centro tonal
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: A raiz e, na maioria das vezes, a própria escala podem mudar de verdade a cada transição de seção do arco — o intervalo é sorteado com peso contra o movimento óbvio de quarta/quinta e a favor de distâncias menos esperadas (segunda menor, trítono, sétima maior), evitando que uma peça longa fique presa numa única tonalidade.
+REFERÊNCIA: nenhuma.
+
+### Variação timbral real da bateria por peça
+CATEGORIA: Percussão
+DESCRIÇÃO: Cada voz de percussão ganhou setters de tempo de decaimento, corte/ressonância de filtro e timing de estouro, jitterizados por seed em torno dos valores default — antes só a frequência fundamental variava, e cada tambor sempre soava como "o mesmo tambor, só afinado diferente".
+REFERÊNCIA: nenhuma.
+
+### Modulação modal
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Um terceiro mecanismo de movimento tonal, mutuamente exclusivo com a modulação tonal completa: troca só a escala, mantendo a raiz exatamente onde estava — "mesma raiz, modo diferente", mais barato e mais frequente que a modulação tonal.
+REFERÊNCIA: nenhuma.
+
+### Progressões de acorde funcionais
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Seis (depois catorze) progressões funcionais comuns expressas como índices de grau de escala, avançando uma vez por compasso e substituindo o alvo fixo de I/III/V pela raiz/terça/quinta do acorde atual na ponderação de tempo forte já existente.
+REFERÊNCIA: progressões funcionais padrão de harmonia popular/jazz (I-IV-V-I, ii-V-I, etc.).
+
+### Humanização rítmica
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Cada disparo de percussão pode ser adiado por um número pequeno e aleatório de amostras (3-12ms) depois da posição nominal no grid — nunca antes, já que não há lookahead — acabando com a grade perfeitamente quantizada como padrão universal.
+REFERÊNCIA: nenhuma.
+
+### Efeitos individuais por voz de percussão
+CATEGORIA: Percussão
+DESCRIÇÃO: Cada uma das oito vozes de percussão ganhou seu próprio par independente de saturadores (fita/válvula), aplicado antes de entrar no barramento compartilhado de bateria — uma peça pode ter o bumbo com fita, o clap limpo e o prato com válvula ao mesmo tempo.
+REFERÊNCIA: reaproveita `TapeSaturator`/`TubeSaturator` já existentes.
+
+### Hocketing aditivo
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Dois osciladores extras "pegam a vez" a cada terceira nota com gate, soando um hit curto na mesma nota, panorizado de forma distinta da voz principal — a melodia parece pular para outro instrumento sem a voz principal nunca ficar muda, uma versão aditiva e segura em vez de uma redistribuição literal.
+REFERÊNCIA: Intellijel Shifty (inspiração de comportamento, não porte do circuito).
+
+### Rede esparsa de influência cruzada entre osciladores
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Quatro links possíveis entre os osciladores de hocketing e os osciladores principais, cada um com ~20% de chance independente de estar ativo e sentido único de modulação — deliberadamente esparsa e assimétrica para evitar uma malha densa "massaroca irreconhecível".
+REFERÊNCIA: nenhuma.
+
+### Entonação livre
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Um termo extra de desvio de pitch, guiado pelo mapa Standard/Chirikov (escolhido por não modular pitch em nenhum outro lugar do motor), permite que a altura de fato tocada se afaste da nota escolhida da escala — a nota continua vindo da escala normalmente, mas a execução pode escapar dela de forma audível.
+REFERÊNCIA: nenhuma.
+
+### Garantia de limite
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Quatro mecanismos que levam uma peça a um limite real (arquivo apócrifo, entonação livre, modulação tonal, self-feedback) são sorteios independentes; se todos sorteiam "não" simultaneamente, um deles é forçado a ligar, escolhido pela própria semente. A rede de segurança decide *que* algo aconteça, nunca decide *qual* — tradução técnica direta de um princípio filosófico do projeto.
+REFERÊNCIA: nenhuma (tradução técnica de um diálogo filosófico registrado em `Manifesto.md`).
+
+### FractureFolder
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um wavefolder West Coast que, além do fold amount normal, jitteriza o próprio ponto de reflexão a cada cruzamento — o dobramento fica não-periódico, como se o tecido da onda estivesse rasgando contra uma borda irregular, em vez de gerar harmônicos limpos e periódicos.
+REFERÊNCIA: linhagem de wavefolder Buchla 259/Serge.
+
+### Rungler
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Porta o núcleo de feedback do Benjolin — dois osciladores simples cruzam um registrador de deslocamento de 8 bits, cuja saída vira uma tensão em degraus que modula o pitch de ambos. Em feedback baixo o loop assenta num padrão repetitivo; em feedback alto lurcha de forma imprevisível entre travamento rítmico e ruído puro.
+REFERÊNCIA: Rob Hordijk, Benjolin.
+
+### LeibnizRectifier
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um estágio original de retificação móvel seguida de corrupção de bits, inspirado no comportamento de subsistemas binários digitais que corrompem o sinal deliberadamente — não um porte nem modelo de nenhum circuito específico.
+REFERÊNCIA: inspirado no Xaoc Devices Leibniz Binary Subsystem.
+
+### Voz de tuba/grave (BreathExciter)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Uma segunda instância do ressoador modal, afinada para território de tubo longo, mas excitada continuamente por ruído branco filtrado multiplicado por um envelope de ataque/release suave — "pulmão enchendo", não um impulso único. O gate só abre quando a densidade da seção passa de um limiar, entrando e saindo com a música como um intérprete respiraria.
+REFERÊNCIA: nenhuma (reaproveita o `ModalResonator` já validado).
+
+### Contágio do caos na percussão
+CATEGORIA: Percussão
+DESCRIÇÃO: Cada disparo individual de bumbo e caixa (depois também chimbal) reutiliza valores de caos já calculados a cada amostra para jitterizar o tempo de decaimento daquela batida específica em torno da base sorteada no setup — pequena variação real entre batidas em vez de um decay constante.
+REFERÊNCIA: nenhuma.
+
+### Morte térmica
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: O fim da peça é moldado pela própria caminhada do arco — a maioria das peças ganha um esmaecimento lento tipo "máquina perdendo energia" (ganho, filtro e um leve chiado estático decaindo juntos), uma minoria tem uma morte abrupta. O multiplicador de ganho térmico entra depois que o nivelador de sinal já calculou seu próprio ganho, para não brigar com a própria morte da peça tentando reanimá-la.
+REFERÊNCIA: nenhuma.
+
+### Rossler collapse
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: O atrator de Rössler espirala devagar e, ao cruzar um limiar no eixo Z, erupciona de repente antes de voltar ao centro — usado para injetar um "chute" de abertura de filtro que decai exponencialmente só quando a seção ainda está minimamente densa, soando como uma passagem calma que de repente desestabiliza.
+REFERÊNCIA: atrator de Otto Rössler, 1976.
+
+### Self-epitaph
+CATEGORIA: Arquivo/Memória
+DESCRIÇÃO: Um chunk RIFF customizado, válido, escrito após o chunk de dados do WAV, contendo texto puro em ASCII com semente, fase do motor e percurso de seções da própria peça — legível num editor de texto/hex, ignorado por qualquer player normal.
+REFERÊNCIA: especificação de chunks customizados do formato RIFF/WAV.
+
+### Stochastic mute
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Uma probabilidade pura por amostra, numa RNG dedicada, dispara silêncios raros e reais com slew de ~1,5ms nas duas bordas — a tentativa original de disparar isso a partir de um valor de caos falhou empiricamente, e a substituição por sorteio direto foi a única forma de garantir o efeito na prática.
+REFERÊNCIA: nenhuma.
+
+### Escala expandida (9 para 39 escalas)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Uma auditoria revelou que a escala padrão do sistema (Harmonic Minor) tinha graus incorretos e que "Bebop"/"Byzantine" eram duplicatas — corrigidas e expandidas para os sete modos diatônicos completos, os modos da menor melódica e harmônica, escalas simétricas, pentatônicas, escalas húngaras/japonesas (rotuladas como aproximações pedagógicas ocidentais) e a escala cromática.
+REFERÊNCIA: nomenclatura modal de jazz padrão.
+
+### Tempo discreto com ritardando real na coda
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Mudanças de andamento passaram a ser eventos discretos de salto-e-espera nas transições do arco, em vez de um wobble contínuo atado à densidade, e a coda ganhou um glide exponencial suave desacelerando de verdade — a técnica composicional real de sinalizar chegada/fechamento.
+REFERÊNCIA: técnica de ritardando/rallentando.
+
+### Agon — disputa de poder entre vozes
+CATEGORIA: Jogo/Caillois
+DESCRIÇÃO: Quatro vozes do instrumento carregam um "poder" que solidifica progressivamente ao longo da peça (do neutro rumo a um extremo, conforme o tempo decorrido). Quando a variância de pitch recente cai abaixo de um limiar e um sorteio próprio dispara, uma disputa breve eleva o ganho da voz vencedora enquanto as demais cedem proporcionalmente à distância do próprio poder até o vencedor — o limitador com lookahead atua como árbitro final.
+REFERÊNCIA: Agon, um dos quatro jogos de Roger Caillois (*Os Jogos e os Homens*, 1958).
+
+### Elemento estranho, versão interna
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um comparador de amplitude cru, amostra a amostra, entre a voz principal e a textura Atari Punk — quem estiver mais alto passa, modulado em fase pelo perdedor. Deliberadamente não suavizado dentro do evento (só entrada/saída), preservando o caráter cru do comparador sem risco real de aliasing duro.
+REFERÊNCIA: nenhuma.
+
+### Elemento estranho, versão literal
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Lê a temperatura real da CPU da máquina uma única vez por render para dar um pequeno empurrão na condição inicial de um mapa caótico — um dado que vem de fora da semente por completo, exposto com honestidade no JSON quando usado, já que a peça deixa de ser 100% reprodutível a partir da própria seed.
+REFERÊNCIA: nenhuma; leitura recusada deliberadamente para teclado/mouse por linha ética própria do projeto.
+
+### Overflow de ponto fixo Q1.15 (FixedPointOverflow)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Converte para Q1.15 e aplica um drive que empurra o valor para fora da faixa de 16 bits de propósito, deixando isso enrolar (wraparound) em vez de saturar — reproduzindo o comportamento real de samplers/chips dos anos 80 sobrecarregados, implementado com aritmética unsigned bem definida para nunca depender de overflow com sinal (comportamento indefinido em C++).
+REFERÊNCIA: comportamento histórico documentado de conversores em samplers/chips como E-mu, Ensoniq e YM2612.
+
+### Spectral Ghost
+CATEGORIA: Espectral
+DESCRIÇÃO: O primeiro processamento genuíno no domínio da frequência do motor — mantém a magnitude real de cada faixa espectral mas substitui a fase verdadeira por uma que deriva devagar e independentemente, produzindo um "fantasma" harmonicamente parecido com a entrada mas sem informação coerente de altura ou transiente. Dois bugs reais de janela/overlap-add (Hann simétrica em vez de periódica, e janela aplicada duas vezes) foram pegos por teste isolado antes de integrar.
+REFERÊNCIA: técnica de "phase randomization"/borrão espectral, mesma ideia por trás do modo espectral do Mutable Clouds/Beads (referência conceitual).
+
+### Partitura .txt por peça
+CATEGORIA: Arquivo/Memória
+DESCRIÇÃO: Um arquivo de texto irmão do WAV, formatado como uma partitura legível por humanos — cabeçalho, trajetória de seções, timeline de andamento e a lista dos mecanismos que de fato se manifestaram naquela peça específica, nunca um dump exaustivo de todo parâmetro possível.
+REFERÊNCIA: nenhuma.
+
+### Sample-hold glitch
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Decimação real — segura o último valor aceito por um número irregular e caos-jitterizado de amostras antes de aceitar um novo, corrompendo o eixo do tempo especificamente, distinto do overflow de amplitude e do borrão de frequência já existentes. A saída é sempre limitada por construção, já que é literalmente um valor passado do próprio sinal de entrada.
+REFERÊNCIA: nenhuma.
+
+### Dinâmica de bateria expandida
+CATEGORIA: Percussão
+DESCRIÇÃO: Toms ganharam ratchet ocasional (1-3 retriggers rápidos imitando um fill de baterista), o prato ganhou sustain estendido ocasional por batida (12% de chance de tocar 2-4,5x mais longo), e o chimbal entrou no contágio do caos com sua própria fonte de caos independente.
+REFERÊNCIA: nenhuma.
+
+### Ritmo euclidiano real (cowbell)
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: O algoritmo de Bjorklund distribui k pulsos o mais uniformemente possível em 16 passos, com dois dos oito valores possíveis identificados e verificados manualmente como tresillo cubano e cinquillo — os demais honestamente rotulados só como "E(k,16)", sem correspondência cultural fabricada.
+REFERÊNCIA: algoritmo de Bjorklund/Toussaint; tresillo cubano e cinquillo (ritmo afro-cubano).
+
+### Oscilador Walsh (WalshOscillator)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Combinação aditiva de funções de Walsh — a base ortogonal completa de ondas retangulares ±1, o equivalente "quadrado" da base seno/cosseno de Fourier — construída via matriz de Hadamard em ordem natural, reordenada por sequency crescente. Um bug real de amostragem discreta que quebrava a ortogonalidade foi pego por teste isolado antes da construção correta.
+REFERÊNCIA: funções de Walsh; matriz de Hadamard.
+
+### Contaminação cruzada (áudio → clock)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um seguidor de pico rápido no sinal final pós-limiter, ao ultrapassar um limiar, dispara um pulso extra no divisor de clock compartilhado — deslocando permanentemente a fase de todos os padrões XOR derivados dele a partir daquele instante, uma perturbação discreta de estado em vez de um ajuste suave contínuo.
+REFERÊNCIA: nenhuma.
+
+### Escala sieve de Xenakis (SieveScale)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Constrói um conjunto de classes de altura algoritmicamente a partir da união de 2-3 condições módulo/resíduo, com rejeição explícita contra o catálogo de escalas reais para garantir que "não catalogada" seja uma propriedade checada, não uma suposição — verificado com 0% de colisão em 2000 sorteios.
+REFERÊNCIA: teoria de sieve (peneiras) de Iannis Xenakis, *Formalized Music*.
+
+### Condução de voz real por distância em semitons
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Um modo alternativo de escolha de nota que mistura três faixas de distância real em semitons (80% passos curtos, 15% movimentos médios, 5% saltos dramáticos) em vez de pesar por índice de grau na escala — território de "melodia por movimento browniano".
+REFERÊNCIA: geradores melódicos DIY inspirados em movimento browniano (Mutable Marbles e clones análogos).
+
+### Cascata polifônica (Shifty literal)
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Toda nota gatilhada (não só a cada terceira) empurra um registrador de deslocamento real entre os dois osciladores de hocketing — a nota mais nova sempre entra numa voz, empurrando a anterior para a outra, que continua seu envelope de onde já tinha decaído, criando sobreposição real de notas recentes que colidem e se saturam mutuamente num mixer não-linear dedicado.
+REFERÊNCIA: registrador de deslocamento analógico do Intellijel Shifty.
+
+### Endereço de passo caótico
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: O ponteiro de leitura da melodia (não o clock mestre) passa a ser escolhido pela saída de um mapa caótico dedicado em vez de seguir o clock em sequência linear — uma mudança cirúrgica isolada de todo o resto do motor.
+REFERÊNCIA: sequenciador não-linear endereçável por CV do Bastl Instruments Popcorn.
+
+### Transformações Neo-Riemannianas (P/L/R)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Três involuções sobre tríades cromáticas de verdade — Parallel, Leading-tone e Relative — cada uma mudando exatamente uma das três classes de altura da tríade, o "voice leading parcimonioso" verificado matematicamente (exemplos canônicos, propriedade de involução, tom compartilhado) antes de integrar.
+REFERÊNCIA: teoria neo-riemanniana de Cohn/Lewin, a partir de Hugo Riemann; inspirado no módulo "Harrington 1200" do Ornament and Crime.
+
+### Bateria como instrumento de verdade
+CATEGORIA: Percussão
+DESCRIÇÃO: A presença da bateria passou a acompanhar a densidade do arco em tempo real (em vez de uma constante fixa por peça), bumbo e caixa ganharam um piso de ganho próprio para nunca afundarem por acaso, e uma fração das peças ganhou falhas reais de batida ou ausência total de bateria — imperfeição genuína em vez de execução robótica perfeita.
+REFERÊNCIA: nenhuma.
+
+### Arquétipos rítmicos com identidade real
+CATEGORIA: Percussão
+DESCRIÇÃO: Cinco grades explícitas de 16 passos para bumbo/caixa/chimbal, escolhidas por seção do arco (nunca repetindo o mesmo arquétipo na troca), cada uma apoiada numa característica ritmicamente real e documentada: marcha (pulso firme em todo tempo), soul/backbeat (caixa em 2 e 4), metal/blast beat (alternância em cada semicolcheia), jazz/swing (timing de contratempo real atrasado), e samba honestamente rotulado como "inspirado", não transcrição.
+REFERÊNCIA: técnicas rítmicas documentadas — backbeat, blast beat, swing.
+
+### Accelerando/stringendo rumo ao clímax
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Espelha o ritardando de coda na estrutura oposta — arma no instante em que o clímax do arco é alcançado pela primeira vez, acelerando o andamento com o mesmo glide exponencial real, nunca um salto instantâneo.
+REFERÊNCIA: técnica de accelerando/stringendo.
+
+### Mercado de probabilidades
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: Oito mecanismos recentes leem um "preço" que sofre um random walk real com reversão à média, persistido num arquivo entre renders — um mecanismo usado com frequência recente fica mais raro, um que não dispara há vários renders fica mais provável. É a primeira vez que o motor tem estado que persiste de verdade entre renders, exposto com honestidade nos metadados de cada peça.
+REFERÊNCIA: nenhuma.
+
+### Parênteses (ParenthesisGlitch)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um reroteamento real do tap de saída final para um loop de stutter capturado, por uma janela curta (0,6-2s), enquanto o motor generativo por baixo continua computando exatamente como sempre — quando a janela fecha, a saída reconecta no sinal ao vivo exatamente onde ele já teria chegado.
+REFERÊNCIA: nenhuma.
+
+### Heisenberg — acoplamento inverso ritmo/afinação
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Um único "balanço" seed-derivado decide de forma inversa a precisão rítmica e a precisão de afinação da peça — perto de um extremo o ritmo fica preso a uma grade mecânica enquanto a afinação vaga amplamente, perto do outro a afinação trava enquanto o ritmo fratura livremente, confirmado numericamente monotônico.
+REFERÊNCIA: nenhuma (nome inspirado no princípio da incerteza de Heisenberg como metáfora).
+
+### VOSIM
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Constrói cada período de altura com um pequeno número de "pips" sin² discretos, cada um mais quieto que o anterior por um fator de decaimento fixo, seguido de silêncio pelo resto do período — a largura do pip determina um pico de formante independente da taxa de repetição, dois controles fazendo dois trabalhos genuinamente diferentes.
+REFERÊNCIA: VOSIM (VOice SIMulation), Kaegi & Tempelaars, 1978.
+
+### Batimento binaural caótico
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Dois osciladores senoidais simples, um por canal, tocam em uníssono com a voz principal mas com um pequeno desvio de frequência entre L e R que o caos já rodando acelera e desacelera continuamente — uma divergência real de frequência entre os canais, verificável objetivamente no próprio arquivo, não só uma alegação perceptiva.
+REFERÊNCIA: fenômeno psicoacústico de batimento binaural.
+
+### Envelope de asfixia por sidechain
+CATEGORIA: Efeitos/Processamento
+DESCRIÇÃO: Cada batida do bumbo fecha o corte do filtro principal quase instantaneamente e o deixa reabrir devagar com recovery exponencial real — o clássico "pumping" de produção eletrônica aplicado ao corte do filtro em vez de ao ganho.
+REFERÊNCIA: técnica de sidechain/ducking, comum em produção de techno/EDM.
+
+### Filtro Polivoks
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Uma terceira cor de filtro com auto-oscilação genuína e áspera — o damping vai deliberadamente negativo perto do topo da faixa de ressonância (ganho de loop maior que 1, instabilidade linear real) e uma saturação tanh na realimentação captura esse crescimento numa oscilação sustentada e distorcida. Um bug real de "nunca auto-oscilava de verdade" foi diagnosticado e corrigido por teste isolado.
+REFERÊNCIA: sintetizador soviético Polivoks, célebre por amplificadores operacionais instáveis não-compensados.
+
+### Vector Synthesis
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Uma posição contínua X/Y move um crossfade bilinear entre quatro texturas (Gendyn/Walsh/AtariPunk/ruído), num banco totalmente separado e dedicado de quatro instâncias frescas — a posição real dentro do quadrado, não só qual textura está ativa, é o parâmetro que se move a cada amostra.
+REFERÊNCIA: Sequential Prophet VS / Korg Wavestation.
+
+### Harmonaig — pad de acorde de quatro vozes reais
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Um banco dedicado de quatro osciladores frescos vozeia raiz/terça/quinta/sétima do acorde ativo como camada aditiva sustentada, com inversão e espalhamento de oitava sorteados por seed — só dispara em peças que já têm uma progressão de acorde de verdade rodando, confirmado empiricamente disparando em zero casos sem isso.
+REFERÊNCIA: harmonaig, Instruō, projetado por Jason Lim.
+
+### Polifonia de peneiras de Xenakis (4 canais)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Quatro canais independentes, cada um com sua própria peneira de Xenakis gerada uma vez por peça: madeira/sopro (razões quase-harmônicas via BreathExciter+ModalResonator), metal/vidro (razões inarmônicas tipo sino), água (tom senoidal alimentando granular), e um canal plasma reativo cuja escala é o complemento (NOT-sieve) da união dos outros três, disparando só quando os três canais colidem numa combinação consonante demais.
+REFERÊNCIA: teoria de sieve de Iannis Xenakis.
+
+### Bloom — melodia fractal Trunk/Branch/Path
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: Uma estrutura genuinamente auto-similar e recursiva — um Trunk de cinco offsets de semitom, e um nível Branch construído reaplicando literalmente o próprio padrão do Trunk sobre si mesmo, com um índice Path alternando entre "zoom out" e "zoom in" a cada ciclo completo.
+REFERÊNCIA: Bloom, Qu-Bit Electronix, projetado por Andrew Ikenberry.
+
+### Pesos de jogo de Caillois
+CATEGORIA: Jogo/Caillois
+DESCRIÇÃO: Quatro pesos contínuos (Alea/Agon/Ilinx/Mimicry), amostrados uniformemente do 4-simplex via "stick-breaking", reescalam a probabilidade de onze mecanismos já existentes curados em três grupos temáticos — cada peça ganha sua própria combinação única, expostos com honestidade no JSON e na partitura de cada gravação.
+REFERÊNCIA: Roger Caillois, *Os Jogos e os Homens* (1958) — os quatro jogos Alea/Agon/Ilinx/Mimicry.
+
+### Coesão de álbum via trajetória de pesos de jogo
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Em vez de forçar uma escala/tom compartilhado entre faixas, o álbum passa a percorrer uma trajetória em linha reta pelos quatro pesos de jogo de Caillois — a primeira faixa nasce num ponto sorteado do simplex, a última termina noutro, e cada faixa intermediária ocupa seu ponto interpolado — uma coesão genuinamente nova, no próprio vocabulário do instrumento.
+REFERÊNCIA: nenhuma (evolução direta dos pesos de jogo de Caillois já implementados).
+
+### Curto-Circuito
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um gate real fecha para silêncio verdadeiro por 100-400ms com uma "faísca" de ruído cavalgando as bordas de transição, literalizando "curto circuito" como artefato de som elétrico real. No mesmo instante, uma lista curada de seis mecanismos que a semente tinha sorteado como desligados ganham uma segunda chance elevada de ligar mesmo assim — "outros módulos entram de penetra na estrutura", rasgando o próprio protocolo da máquina.
+REFERÊNCIA: nenhuma.
+
+### Gerador rítmico combinatório + hierarquia métrica
+CATEGORIA: Métrica
+DESCRIÇÃO: Generaliza o aksak fixo e o cowbell euclidiano para o espaço combinatório completo (qualquer sequência de grupos longos/curtos somando 16, qualquer k euclidiano de 2 a 11), e calcula a força métrica real de cada um dos 16 passos como a valuação 2-ádica do passo — a "ruler sequence" real, não uma metáfora emprestada.
+REFERÊNCIA: Bjorklund/Toussaint (algoritmo euclidiano); Brăiloiu e Stoyan Dzhudzhev (ritmo aditivo aksak); Lerdahl & Jackendoff, *A Generative Theory of Tonal Music* (1983); OEIS A001511 (ruler sequence).
+
+### Peneira rítmica e arquétipos aksak
+CATEGORIA: Métrica
+DESCRIÇÃO: Dois arquétipos aksak reais (9+7 e 7+7+2, células balcânicas 2+2+2+3/2+2+3 concatenadas) com acentuação real no tempo longo, mais uma peneira rítmica gerada pela mesma matemática de sieve de Xenakis aplicada a pontos no tempo em vez de classes de altura — rejeitada contra o catálogo de arquétipos fixos para garantir "não catalogada" como propriedade checada.
+REFERÊNCIA: Brăiloiu e Stoyan Dzhudzhev (aksak); Iannis Xenakis, *Formalized Music*, capítulo XI ("Sieves: A User's Guide"), usada em obras como *Persephassa*.
+
+### Gesto, dinâmica contínua e repetição com diferença
+CATEGORIA: Percussão
+DESCRIÇÃO: Cada golpe de percussão ganha uma velocidade real combinando peso métrico + gesto + densidade do arco; um canal do banco Ochd lido a cada quatro compassos empurra/atrasa frases inteiras; e a cada repetição real do ciclo de 16 passos há uma chance de armar um ghost hihat baixo num passo sorteado, nunca substituindo o padrão principal.
+REFERÊNCIA: repetição com diferença (Gilles Deleuze, já citado no Manifesto do projeto).
+
+### Orquestração e acoplamento narrativo/glitch da bateria
+CATEGORIA: Percussão
+DESCRIÇÃO: Quais das oito vozes de percussão estão "dentro" de uma seção é redecidido na mesma fronteira que já troca o arquétipo — kick e hihat como vozes-âncora, as demais escalando com a densidade. Dois encontros reais entre mecanismos: o kit completo é forçado por dois compassos logo depois de um Curto-Circuito, e também enquanto uma disputa de Agon está em andamento.
+REFERÊNCIA: nenhuma.
+
+### Voz de theremin (ThereminVoice)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Glide sempre ligado rumo à nota atual da melodia, nunca instantâneo — a característica que realmente distingue um theremin de um "synth com portamento" — com timbre próximo de uma senoide pura e vibrato real de mão via LFO dedicado.
+REFERÊNCIA: princípio de heterodinagem do theremin (Lev Termen).
+
+### Corte de montagem (MontageEditCut)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um jump cut real para um momento distante do próprio passado da peça, tocado uma única vez, limpo (sem reverso/bit-crush/loop) e cortado de volta instantaneamente — os dois pontos do segmento são pré-alinhados a zero-crossings reais, a mesma técnica histórica de editores de fita analógica cortando com lâmina de barbear exatamente no zero-crossing para evitar clique.
+REFERÊNCIA: técnica de corte em zero-crossing de edição de fita analógica; jump cut de edição de filme.
+
+### Mudança real de compasso/métrica
+CATEGORIA: Métrica
+DESCRIÇÃO: Comprimento de compasso variável por seção do arco (12/16/20/14 passos), aplicado só às fontes rítmicas generativas já parametrizadas (aksak, euclidiano, peneira) — o catálogo fixo de arquétipos nomeados permanece reservado ao compasso padrão, criando um polimetro real quando ativo (kick/snare/hihat num compasso, o resto do kit em 16).
+REFERÊNCIA: extensão da hierarquia métrica de Lerdahl & Jackendoff para meters compostos/assimétricos.
+
+### Atropelo — vozes competindo, interrompendo, lembrando
+CATEGORIA: Voz/Vocal
+DESCRIÇÃO: Síntese fonte-filtro com formantes deslocados para fora do espaço vocal humano real (excitando um banco de filtros ressonantes com um pulso glótico, técnica clássica de vocoder), três vozes competindo pelo "turno de fala" no mesmo idioma do Agon — mas a consequência de perder é uma interrupção seca real, com o perdedor cortado no próprio zero-crossing. Uma frase interrompida é lembrada (registro, sílaba, contorno de entonação exato) e pode ser retomada mais tarde, ou genuinamente esquecida quando o pool de pendências lota.
+REFERÊNCIA: técnica clássica de síntese fonte-filtro/vocoder de formante.
+
+### Modo Selvagem
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: A cada fronteira de compasso, quando ligado, o gerador aleatório compartilhado do render é re-semeado com entropia real de hardware, quebrando deliberadamente a promessa central do motor ("mesma seed = mesma peça"). Investigar essa quebra revelou um bug real pré-existente de reprodutibilidade — três vozes de percussão usavam o gerador global da libc em vez de um stream próprio, nunca de fato controladas pela seed em sessões longas.
+REFERÊNCIA: nenhuma.
+
+### VCO com hard sync (HardSyncVoice)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um oscilador "escravo" tem sua fase forçada de volta a zero toda vez que um oscilador "mestre" completa um ciclo — o tom da saída fica travado na frequência do mestre enquanto a razão escravo/mestre controla um timbre agressivo e varrível por cima, o clássico "sync sweep" de VCOs analógicos.
+REFERÊNCIA: entrada de sync de VCO analógico (ex.: Polivoks VCO3).
+
+### Dual VCA Polivoks (PolivoksVCA)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: A equação clássica de grande sinal de um par diferencial bipolar (tanh da tensão de entrada) aplicada como curva de transferência real — sinais baixos ficam próximos de um ganho linear limpo, sinais altos comprimem contra o próprio limite do par, com dois canais compartilhando exatamente a mesma curva, como um "par casado" de chip real.
+REFERÊNCIA: equação padrão de circuitos translineares de amplificador diferencial bipolar (Barrie Gilbert, "Translinear Circuits"); Dual VCA Polivoks.
+
+### Voz de baixo acid dedicada (AcidBasslineVoice)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Combina o filtro Polivoks auto-oscilante com um envelope de filtro independente do envelope de amplitude (o "squelch" característico), mais os dois controles reais de performance de todo padrão acid clássico: accent (nota mais alta, filtro varre mais fundo) e slide (a próxima nota desliza sem re-disparar os envelopes).
+REFERÊNCIA: tradição de linha de baixo acid tipo Roland TB-303.
+
+### Envelope com loop e disparo de fim-de-attack (EnvelopeLoopPulse)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: Um envelope pode se auto-ciclar (voltar ao Attack ao chegar no Sustain em vez de assentar) e emitir um pulso dedicado de exatamente uma amostra no instante em que o Attack termina — o único mecanismo do motor que se auto-dispara a partir do próprio envelope completando seu ciclo, o idioma real de realimentar a saída de fim-de-ciclo de um EG nele mesmo.
+REFERÊNCIA: funções reais de loop e end-of-attack do gerador de envelope do Polivoks.
+
+### Nota de rodapé (FootnotePluck)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um gesto isolado de 2-5 notas, no máximo uma vez por peça, armado numa posição métrica fraca de verdade, com alturas tiradas do complemento cromático da escala ativa — toda nota que esse gesto toca fica, por construção, fora do vocabulário harmônico da própria peça, com timbre de dois parciais deliberadamente inarmônicos e reverb próprio e distinto.
+REFERÊNCIA: nenhuma.
+
+### Galo — chamado de animal sintetizado (GaloVoice)
+CATEGORIA: Voz/Vocal
+DESCRIÇÃO: Reaproveita o ressoador modal e o excitador de sopro da voz de tuba, mas com um contorno de frequência genuíno — várias sílabas curtas subindo, seguidas de uma nota longa sustentada com cauda descendente real — timbre deliberadamente mais inarmônico e fora da escala/registro da peça, honestamente rotulado como síntese, não amostra nem reconstrução bioacústica literal.
+REFERÊNCIA: nenhuma.
+
+### Voz de scat (ScatVoice)
+CATEGORIA: Voz/Vocal
+DESCRIÇÃO: A mesma técnica fonte-filtro do Atropelo, mas com os formantes afinados para os valores reais e documentados de vogais humanas — objetivo de design oposto: soar como uma vogal genuína, não uma quase-fala que se recusa a resolver. Cada sílaba escolhe um tom real do acorde atual, delineando a harmonia genuína da peça.
+REFERÊNCIA: Peterson & Barney (1952), "Control Methods Used in a Study of the Vowels" — a referência mais citada de formantes vocálicos na literatura de síntese de fala; tradição do scat vocal do jazz.
+
+### Coral polifônico (ChoirEnsemble)
+CATEGORIA: Voz/Vocal
+DESCRIÇÃO: Quatro instâncias de ScatVoice em registros SATB-like, cada voz conduzida para o tom do acorde mais próximo do seu registro-alvo (harmonia vertical real, não dobras do mesmo pitch), disparadas com a mesma vogal compartilhada mas com atraso de entrada e dinâmica próprios — o "conjunto imperfeito" real de um coro humano.
+REFERÊNCIA: convenção de vozeamento coral SATB (soprano/contralto/tenor/baixo).
+
+### Mashup — recombinação estrutural de seeds
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: Em vez de misturar seeds como números (o que o efeito borboleta tornaria inútil), lê de volta os traços que duas peças já assentaram. A fase 164 ampliou escala/jogo para nove domínios explícitos — material, pitch, voz-base, ritmo, lead, harmonia, ensemble, espectral e jogo — com pais, geração, origem A/B, blend e mutação determinística registrados. A seed filha conserva trajetória própria; os 89 mecanismos observáveis não são ligados diretamente pelo recombinador.
+REFERÊNCIA: nenhuma.
+
+### Arquivo apócrifo aprofundado (Linhagem, Deja vu, Leitura apócrifa)
+CATEGORIA: Arquivo/Memória
+DESCRIÇÃO: Três traduções de um eixo filosófico distinto: uma seção de Linhagem/Proveniência lista, para os mecanismos que dispararam, a referência real de que cada um deriva, tornando explícito que a seed nunca foi origem, só comando; DejaVuVoice sintetiza do zero uma "memória" estatística do caráter recente da peça, nunca de um instante específico; e uma Leitura Apócrifa relata contrafactualmente um caminho que a peça quase tomou, capturando "quase-disparos" sem consumir sorteios extras.
+REFERÊNCIA: Jacques Derrida, Michel Foucault, Giorgio Agamben, Paul Ricœur; Walter Benjamin ("arquivo dos vencidos").
+
+### Motor de genealogia (projeto e peça)
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: Diagramas curados a partir da história real do projeto (bifurcações, sobreposições, retornos entre mecanismos, cada seta citável a uma fase de origem) e, no app, um grafo em tempo real dos papéis estruturais e transições reais que a caminhada do arco de uma peça específica percorre.
+REFERÊNCIA: nenhuma.
+
+### Fade musical de abertura/fechamento variável
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Substituiu um fade de segurança fixo (pensado só como proteção técnica contra clique digital) por faixas de fade seed-variadas, mais curtas quando a morte térmica já faz o trabalho gracioso e mais longas quando é a única coisa moldando o final — verificado por medição real de RMS na cauda de cada peça.
+REFERÊNCIA: nenhuma.
+
+### Objeto de melodia FM (FmFluteVoice)
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: FM real de dois operadores com portador senoidal modulado em fase por um modulador senoidal em razão quase 1:1 — o índice de modulação tem seu próprio envelope, mais alto no ataque (o chiado real de sopro de uma flauta) e decaindo para um sustain mais puro, clareando e depois amaciando dentro de uma única nota.
+REFERÊNCIA: síntese FM de John Chowning, 1973 — a técnica por trás dos patches clássicos de "flauta"/"pipe" do Yamaha DX7.
+
+### Movimento harmônico do objeto de melodia (HarmonicWanderer)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Seis técnicas reais e documentadas de movimento de centro tonal, escolhidas uma por peça: Coltrane changes (ciclo de três centros por terças maiores), substituição tritônica + ii-V-I, giro cromático não-funcional (bossa nova), intercâmbio modal, jazz modal majoritariamente estático, e a cadência backdoor.
+REFERÊNCIA: John Coltrane, "Giant Steps" (1959); substituição tritônica (harmonia jazz); Antônio Carlos Jobim, bossa nova ("Wave", "Corcovado"); Miles Davis, "Kind of Blue" (jazz modal); cadência backdoor ii-V (bVII7→I).
+
+### Estrutura vertical do objeto de melodia (MelodyVoicingBank)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Cinco técnicas reais de empilhamento harmônico sob a flauta: quartal (pilha de quartas justas, ambiguidade maior/menor real), planing paralelo (tríade aumentada movida em bloco rígido), politonal (duas tríades a um trítono de distância), tríade clássica, e um modal armênio (bordão fixo na raiz original sob uma quinta aberta e um tom de cor quartal).
+REFERÊNCIA: McCoy Tyner e Tigran Hamasyan (harmonia quartal); Claude Debussy (planing, ex. "Voiles"); Igor Stravinsky e Darius Milhaud (politonalidade); Komitas Vardapet (coleta sistemática de melodia folclórica/litúrgica armênia, Sharakan); Tigran Hamasyan ("armenian jazz modal", termo do próprio usuário).
+
+### Tratamento de dissonância do objeto de melodia (DissonanceTreatment)
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Quatro técnicas reais de como cada nota se relaciona com o grau de escala de origem: tensão como cor sem resolução, nota errada cromática nunca resolvida, aproximação cromática bebop (nota "errada" no tempo, "certa" logo depois), e suspensão clássica que sempre resolve por um passo, a única das quatro construída para sempre resolver.
+REFERÊNCIA: postura harmônica do jazz modal/impressionismo (tensão como cor); Igor Stravinsky e Francis Poulenc (dissonância nunca resolvida); dispositivo clássico de aproximação cromática do bebop; suspensão 4-3/9-8 da harmonia clássica.
+
+### Timing selvagem do sequenciador
+CATEGORIA: Sequenciamento/Ritmo
+DESCRIÇÃO: A regeneração do padrão do sequenciador, antes sempre disparada exatamente uma vez por compasso, passa a ser guiada por um cruzamento de zero de um mapa caótico dedicado — um padrão pode segurar por vários compassos seguidos ou regenerar duas vezes no mesmo compasso, propriedades reais da dinâmica caótica em vez de uma probabilidade arbitrária.
+REFERÊNCIA: nenhuma.
+
+### Atari Punk Console com clock selvagem
+CATEGORIA: Síntese/Timbre
+DESCRIÇÃO: O mesmo idioma de evento-por-cruzamento-de-zero aplicado ao clock do Atari Punk Console — quando dispara, o clock "hicupa" para uma divisão/múltiplo real da frequência esperada por uma janela breve antes de voltar ao normal, o comportamento real e documentado de um circuito de dois timers 555 levado ao limite.
+REFERÊNCIA: comportamento documentado do Stepped Tone Generator (Forrest Mims) sob condições extremas.
+
+### Catálogo de progressões de acorde expandido
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Ampliado de 6 para 14 progressões reais e genuinamente distintas — um giro de jazz real e sua rotação, um fragmento de círculo de quintas passando pelo grau de sétima diminuta, uma caminhada de baixo descendente, e rotações da progressão "Axis" começando em graus diferentes — corrigindo a recorrência excessiva de progressões clichê entre peças de seeds distintas.
+REFERÊNCIA: harmonia funcional de jazz/pop (círculo de quintas, progressão "Axis").
+
+### Phasing
+CATEGORIA: Métrica
+DESCRIÇÃO: Uma segunda voz lê o mesmo conteúdo vivo do sequenciador principal, mas em seu próprio relógio de passos, independente e levemente mais rápido ou mais lento (0,6%-2,5%) — a relação de fase entre as duas linhas deriva continuamente e, eventualmente, volta perto do uníssono, o efeito nascendo inteiramente de dois relógios discordando entre si.
+REFERÊNCIA: Steve Reich, "Piano Phase" (1967) e "Clapping Music" (1972).
+
+### Microtonalidade e afinação justa
+CATEGORIA: Harmonia/Escala
+DESCRIÇÃO: Dois sistemas históricos de afinação com tabelas de cents verificadas (justa 5-limit e pitagórica), um sistema de quarto-de-tom (24-EDO), e uma extensão original — a mesma matemática de sieve de Xenakis aplicada a uma grade mais fina que 12 tons (19/22/31-EDO). Modulações tonais reais em afinação justa/pitagórica encadeiam o intervalo de razão pura entre tônicas, reproduzindo como consequência matemática honesta o comma pitagórico real (~23,46 cents).
+REFERÊNCIA: Harry Partch, *Genesis of a Music* (1949), afinação justa de Ptolomeu; afinação pitagórica; Alois Hába e Ivan Wyschnegradsky (microtonalismo de quarto-de-tom); Easley Blackwood (19-EDO); Huygens/Fokker (órgão de 31 tons); Iannis Xenakis (sieve).
+
+### Objeto espectral (SpectralObject)
+CATEGORIA: Espectral
+DESCRIÇÃO: Três eixos usando a mesma lista de números inteiros dos parciais como fonte simultânea de altura e ritmo. Eixo A estica os parciais rumo à inarmonicidade pelo modelo real de cordas de piano/sinos, pilotado pela densidade do arco; Eixo B usa buracos de sieve de Xenakis para decidir quais parciais soam; Eixo C faz o parcial p soar p vezes mais rápido que o fundamental — altura e métrica como dois níveis da mesma estrutura.
+REFERÊNCIA: Fletcher & Rossing, *The Physics of Musical Instruments* (modelo de inarmonicidade f_p = f0·p·√(1+B·p²)); Iannis Xenakis (sieve); acústica documentada de tubo cilíndrico fechado/clarinete (harmônicos ímpares, Benade).
+
+### Polimetria real, pulso não isócrono e modulação métrica (PolymeterEnsemble)
+CATEGORIA: Métrica
+DESCRIÇÃO: Quatro vozes percussivas com comprimentos de ciclo coprimos (5/7/8/9/11/13) leem posições diferentes do mesmo relógio mestre, reencontrando-se num macroperíodo real e computável; dentro de cada ciclo, os pontos de ataque são gerados livremente (processo tipo Dirichlet) somando exatamente o comprimento do ciclo; e uma modulação métrica real usa razões pequenas de tercina/quintina para trocar o andamento, em vez de um multiplicador contínuo arbitrário.
+REFERÊNCIA: Justin London, *Hearing in Time: Psychological Aspects of Musical Meter* (2004), métrica não-isócrona; Elliott Carter, modulação métrica.
+
+### Sinal de blefe e confiança (BluffSignal)
+CATEGORIA: Jogo/Caillois
+DESCRIÇÃO: Um sinal soa identicamente toda vez que dispara — informação genuinamente incompleta, impossível distinguir blefe de verdade só pelo som — decidido internamente genuíno ou blefe por uma taxa de veracidade fixa por peça. Uma voz respondente constrói confiança real (EMA) a cada sinal genuíno confirmado e se recusa a responder de vez após uma traição real, que só existe porque houve confiança prévia genuinamente construída.
+REFERÊNCIA: Johan Huizinga (*Homo Ludens*); Roger Caillois; Michel de Certeau (estratégia/tática).
+
+### Rasgo espectral (RasgoFracture)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um Fiber Bundle Model real de mecânica de materiais aplicado aos parciais do objeto espectral — cada parcial é uma fibra com limiar de resistência amostrado de uma distribuição de Weibull, sob tensão ambiente crescente rumo ao clímax; quando a carga acumulada ultrapassa o limiar, a fibra rasga usando local load sharing, liberando carga só para as fibras vizinhas ainda intactas (propagação direcional real, como um rasgo se propaga por um tecido). O fundamental nunca rasga (fio sobrevivente) e uma fibra rasgada nunca mais volta ao estado coerente (cicatriz permanente).
+REFERÊNCIA: Pierce (1926), "Tensile Tests for Cotton Yarns and Fibres"; Daniels (1945), "The Statistical Theory of the Strength of Bundled Filaments"; Weibull (1939/1951), distribuição estatística de resistência de fibra; Harlow & Phoenix (1978), "The Chain-of-Bundles Probability Model" (local load sharing).
+
+### Ruptura por excesso de coerência (CoherenceCollapse)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Mede a entropia real de Shannon sobre a distribuição de classes de altura das últimas notas tocadas pela voz principal; quando a entropia fica baixa demais por barras consecutivas reais, a peça sofre um colapso audível — um estalo mais uma reorganização forçada e temporária do sequenciador — invertendo a suposição usual de que ruptura equivale a caos: ordem extrema também rompe.
+REFERÊNCIA: Claude Shannon (1948), "A Mathematical Theory of Communication" (entropia de Shannon).
+
+### Identidade composicional por seed (CompositionIdentity)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: A seed escolhe primeiro uma identidade perceptual — foco material, família de escala, topologia do núcleo, organização rítmica, protagonista, linguagem harmônica, ensemble e raiz — e só depois os módulos elaboram essa identidade. Subfluxos determinísticos separados impedem que inserir uma decisão desloque todas as seguintes; um orçamento coordenado impede a família espectral de contaminar quase todas as peças.
+REFERÊNCIA: desenvolvimento autoral RASGO; metodologia transversal em `Metodo_RASGO.md`.
+
+### Plano de jogo composicional (GamePlan)
+CATEGORIA: Jogo/Caillois
+DESCRIÇÃO: Seis estratégias (seguir, transformar, contrapor, interromper, ocultar, negociar), seis regras e cinco recursos (energia, memória, risco, liberdade, informação oculta) organizam como a peça trata o próprio material. Memória e liberdade alteram diretamente persistência/mobilidade; estratégia redesenha densidade e relações de ensemble; jogo deixa de ser somente multiplicador da chance de efeitos opcionais.
+REFERÊNCIA: desenvolvimento autoral RASGO; Roger Caillois como campo já existente; arquitetura própria do Aquorbium e TRIOIO consultada como genealogia metodológica, sem copiar suas personalidades.
+
+### Saída PCM24 true-peak e condicionamento auditável
+CATEGORIA: Metadados/Infraestrutura
+DESCRIÇÃO: Escrita PCM24/48 kHz com TPDF, reconstrução true peak 4× pelo banco FIR de 48 coeficientes da ITU-R BS.1770-5, limiter estéreo vinculado de 5 ms a −1 dBTP, saneamento de não finitos e curva contínua de sobrecarga exatamente neutra abaixo do joelho. Depois dos fades, o Studio mede o buffer completo e, somente se necessário, aplica trim constante até −1,8 dBTP. Metadados registram pico de entrada/saída, trim de entrega, redução do limiter, redução e número de frames do condicionador; a regressão mede também o WAV codificado com o EBU meter do FFmpeg e falha acima de −1 dBTP.
+REFERÊNCIA: Recomendação ITU-R BS.1770-5; engenharia própria do Navalha consultada como método RASGO compartilhado; adaptação autoral ao render offline do Rasgo Synth.
+
+### Arquivo aberto de módulos (OpenModuleArchive)
+CATEGORIA: Arquivo/Memória
+DESCRIÇÃO: Módulos publicam páginas tipadas de áudio, matéria, gesto, movimento, pulso, ritmo, altura, harmonia, timbre, voz, energia, resistência, memória, regra, espaço, silêncio, abertura e cicatriz. Ler, reler, reinterpretar e recriar são ações distintas, cada uma preservando fonte, leitor, domínio de entrada/saída, página-mãe e compasso. O arquivo deixa de ser apenas relato posterior: durante um cismo, a harmonia lê uma página rítmica anterior e o ritmo a recria como nova densidade de chimbal.
+REFERÊNCIA: desenvolvimento autoral RASGO; conceitos de arquiviagem, módulos como livros abertos, atravessamentos e proveniência formulados em `Metodo_RASGO.md`.
+
+### Topologia composicional mutável (CompositionalTopology)
+CATEGORIA: Topologia/Cartografia
+DESCRIÇÃO: Regiões de tempo, ritmo, harmonia, espaço, regra e arquivo são ligadas por passagens tipadas com direção, força, resistência, memória, modo interpretativo e possibilidade de feedback. Um cismo desativa a região una, cria descendentes interior/exterior em estados divergentes, redistribui rotas existentes e abre uma passagem bidirecional; atravessar muda viajante, destino e passagem e deixa vestígio no arquivo.
+REFERÊNCIA: desenvolvimento autoral RASGO; outra topologia, dentro/fora, contaminações, novas rotas, feedbacks, novas cartografias e forças descartógrafas formulados em `Metodo_RASGO.md`.
+
+### Gesto de rasgar (RasgarGesture)
+CATEGORIA: Ruptura/Rasgo
+DESCRIÇÃO: Um processo stateful acumula pressão a partir da densidade, energia recente, repetição e cruzamentos de seção contra uma resistência influenciada pelo jogo. Percorre chão, pressão, rasgo, propagação e cicatriz; seis movimentos — avanço, arrasto, cisalhamento, gagueira, suspensão e recuo — deformam duração de passos, posições de leitura, atrasos entre vozes, dinâmica e presença da bateria. Cada rasgo produz cismo topológico, feedback, deslocamento harmônico e vestígio posterior, em vez de ser um efeito sonoro local.
+REFERÊNCIA: desenvolvimento autoral RASGO; “atingir o limite”, “o rasgo soa”, gesto, movimento, cismo e instabilidade formulados em `Metodo_RASGO.md`.
+
+### Orquestração de agência material (MaterialAgency)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Separa módulo habilitado, presença mensurável e agência musical sem distribuir turnos. Núcleo, textura, instrumento, voz, polifonia e ritmo possuem temperamentos seed-variados de ousadia, persistência, resposta ao silêncio, resistência e sociabilidade; escutam RMS e ocupação reais do trecho anterior, conservam memória/fadiga e recebem influências esparsas, assimétricas e positivas ou negativas das outras famílias. Cada trecho pode não ter reivindicante, ter um ou vários; permanência, recusa, escuta e disputa são possibilidades, não etapas obrigatórias. Ruptura continua acontecimento, sem reservar seção. A identidade escolhida cria resistência perceptiva ao core quando outra voz deve liderar. Telemetria e `agency-off` tornam trajetória, consequência e contrafactual auditáveis.
+REFERÊNCIA: desenvolvimento autoral RASGO; distinção ativação/presença/agência e agência sem fila formuladas em `Metodo_RASGO.md`; fases 120 e 123.
+
+### Orquestra relacional bateria–theremin–harmonia (IntermodularOrchestra)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Primeiro contrato causal entre módulos que preservam relógios e alturas próprios. O bus real da bateria publica gesto, ataque e pressão; o theremin interpreta segundo sensibilidade, resistência, permeabilidade, fadiga e memória, propondo altura independente; o campo harmônico pode aceitar, tensionar, resistir ou reconfigurar; a consequência volta à dinâmica e ao atraso futuros da bateria. Presença temporal é um grau autônomo com afinidade e persistência por identidade: pode sustentar-se, permanecer latente, mudar ou voltar, sem roteiro obrigatório. Memória atravessa silêncio sem comandar reaparição. Telemetria reconstrói observação, resposta, resistência, transformação, feedback, presença e latência; `relations-off` produz o contrafactual da mesma seed.
+REFERÊNCIA: desenvolvimento autoral RASGO; método de orquestra, jogo relacional, presença não prescritiva e memória formulado em `Metodo_RASGO.md`; fase 121.
+
+### Auditoria pós-espaço e ecologia móvel (OrganismStemAuditor / OrganismAudibility)
+CATEGORIA: Estrutura Narrativa/Arco
+DESCRIÇÃO: Vinte e duas mesas internas reconstroem, em modo explícito de auditoria, as contribuições pós-delay/reverb e pré-edição, publicando emissão, ocupação, energia, sobrevivência e soterramento por nível com erro residual declarado. A ecologia móvel corrige diferenças de escala comprovadas — sobretudo monopólios de Sieve/core e ocultação recorrente de bateria, flauta e vozes — e permite a cada organismo abrir, permanecer ou recuar independentemente por seção, com suavização e viés de identidade. Não normaliza, não dispara módulos, não impõe solo nem reaparição; transientes reais da bateria podem fazer o restante do barramento ceder. `stems-audit` mede sem mudar o áudio e `audibility-off` produz o contrafactual.
+REFERÊNCIA: desenvolvimento autoral RASGO; auditoria de seis identidades e método de direito de emergir sem obrigação registrados em `Auditoria_Pos_Espaco_e_Ecologia_Movel_Fase_122.md`.
+
+---
+
+## Resumo por categoria
+
+- Síntese/Timbre: 30
+- Ruptura/Rasgo: 19
+- Harmonia/Escala: 17
+- Efeitos/Processamento: 12
+- Sequenciamento/Ritmo: 10
+- Percussão: 10
+- Estrutura Narrativa/Arco: 14
+- Metadados/Infraestrutura: 8
+- Métrica: 5
+- Voz/Vocal: 4
+- Arquivo/Memória: 5
+- Jogo/Caillois: 4
+- Espectral: 3
+- Topologia/Cartografia: 1
+
+**Total: 142 fichas técnicas.**

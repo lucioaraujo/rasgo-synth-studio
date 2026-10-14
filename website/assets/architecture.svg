@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" role="img" aria-labelledby="title desc">
+<title id="title">Da semente ao arquivo — referência histórica</title>
+<desc id="desc">Seed alimenta DSP, sequenciamento e arco. Arco alimenta os pesos de jogo e a mixagem; os pesos enviesam DSP e sequenciamento. DSP e sequenciamento chegam à mixagem e ao PieceRenderer, que alimenta app e álbum. Relações completas na notação textual acompanhante.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#4a7ba6"/></marker></defs>
+<rect width="1100" height="500" rx="6" fill="#ede4cf"/>
+<g fill="none" stroke="#4a7ba6" stroke-width="2" marker-end="url(#arrow)">
+<path d="M550 65V90H190V115"/><path d="M550 65V115"/><path d="M550 65V90H910V115"/>
+<path d="M910 185V210H550V235"/><path d="M440 270H190V185" stroke-dasharray="6 4"/><path d="M550 235V185" stroke-dasharray="6 4"/>
+<path d="M190 185V345H440"/><path d="M550 185V210H360V345H440"/><path d="M910 185V345H660"/>
+<path d="M550 375V410"/><path d="M440 445H280"/><path d="M660 445H820"/>
+</g>
+<g fill="#e3d7ba" stroke="#4a7ba6" stroke-width="1.5">
+<rect x="440" y="15" width="220" height="50" rx="6"/>
+<rect x="80" y="115" width="220" height="70" rx="6"/><rect x="440" y="115" width="220" height="70" rx="6"/><rect x="800" y="115" width="220" height="70" rx="6"/>
+<rect x="440" y="235" width="220" height="70" rx="6"/><rect x="440" y="320" width="220" height="55" rx="6"/>
+<rect x="440" y="410" width="220" height="70" rx="6"/><rect x="60" y="420" width="220" height="50" rx="6"/><rect x="820" y="420" width="220" height="50" rx="6"/>
+</g>
+<g fill="#1f3322" font-family="system-ui, sans-serif" font-size="20" text-anchor="middle">
+<text x="550" y="47">Seed · mt19937</text><text x="190" y="145">Núcleo DSP</text><text x="190" y="170" font-size="16">Osciladores, filtros, percussão</text>
+<text x="550" y="145">Sequenciamento</text><text x="550" y="170" font-size="16">Escalas, acordes, condução</text>
+<text x="910" y="145">Arco narrativo</text><text x="910" y="170" font-size="16">Papéis estruturais · Markov</text>
+<text x="550" y="263">Pesos de jogo</text><text x="550" y="288" font-size="16">Alea · Agon · Ilinx · Mimicry</text>
+<text x="550" y="354">Mixagem e masterização</text><text x="550" y="439">PieceRenderer</text><text x="550" y="464" font-size="16">WAV · metadados · partitura</text>
+<text x="170" y="452">App JUCE</text><text x="930" y="452">AlbumRenderer</text>
+</g></svg>

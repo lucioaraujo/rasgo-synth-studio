@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rasgo Synth Studio — English</title>
+<meta name="description" content="Rasgo Synth Studio — an independent generative musical instrument. Explore composition, listen, and document your experiments.">
+<link rel="alternate" hreflang="en" href="en.html">
+<link rel="alternate" hreflang="pt-BR" href="index.html">
+<link rel="alternate" hreflang="fr" href="fr.html">
+<link rel="alternate" hreflang="es" href="es.html">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/studio.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body class="studio-public">
+<div class="rasgo-strip" aria-label="RASGO"><a href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO — instrument family and sound research</a></div>
+<header class="studio-header topbar">
+<a class="studio-mark mark" href="#top"><img class="mark-logo" src="assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
+<nav aria-label="Instrument">
+<a href="#instrument">Instrument</a>
+<a href="#first-piece">First piece</a>
+<a href="#documentation">Documentation</a>
+<a href="#release">Version and credits</a>
+</nav>
+<nav class="studio-languages" aria-label="Language / Idioma / Langue">
+<a href="en.html" lang="en" hreflang="en" aria-current="page">English</a>
+<a href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
+<a href="fr.html" lang="fr" hreflang="fr">Français</a>
+<a href="es.html" lang="es" hreflang="es">Español</a>
+</nav>
+</header>
+<main id="top" class="studio-main">
+<section class="studio-hero hero">
+<div>
+<p class="eyebrow">Independent musical instrument · C++ / JUCE</p>
+<h1 class="hero-title">Rasgo<br>Synth<span class="studio">Studio version</span></h1>
+<p class="hero-tag">Take risks, then sound.</p>
+<p class="studio-intro">Rasgo Synth Studio builds compositions from a seed, musical decisions and interacting sound processes. It is part of RASGO: a family of original instruments by Lucio de Araujo, made for experimentation, composition and learning.</p>
+<p class="studio-status">Experimental version 0.1.0 · Linux</p>
+<div class="studio-actions">
+<a class="studio-primary" href="quickstart.html#en">Make your first piece</a>
+<a href="docs/en/manual.html">Read the manual</a>
+</div>
+</div>
+<div class="scope-panel">
+<canvas id="scope-canvas" role="img" aria-label="Hénon map illustration — not application audio"></canvas>
+<p class="caption">HÉNON · a=1.4 · b=0.3 · Hénon map illustration — not application audio</p>
+</div>
+</section>
+<figure class="studio-preview">
+<img src="assets/app_screenshot.png" width="1920" height="1006" alt="Studio interface — seed, composition, module activity and listening views. The image is illustrative, not a live audio display.">
+<figcaption>Studio interface — seed, composition, module activity and listening views. The image is illustrative, not a live audio display.</figcaption>
+</figure>
+<section id="instrument" class="studio-section">
+<p class="eyebrow">01 · RASGO SYNTH STUDIO</p>
+<h2>Composition as a space to explore</h2>
+<div class="studio-columns">
+<article><h3>A seed is a starting point</h3><p>Explore tempo, scales, rhythm, sound material and narrative form. A seed is not the complete recipe: settings, modes and saved state also matter.</p></article>
+<article><h3>Voices and relationships</h3><p>Percussion, low-register voices, melodic material and textures can enter, withdraw and interact. Module selection changes the available palette; availability is not a promise of equal audibility.</p></article>
+<article><h3>A piece, or an album</h3><p>Generate a single piece or use album mode to explore a collection. Listen, compare trajectories and keep the files and companion information for your research.</p></article>
+</div>
+</section>
+<section id="controls" class="studio-section studio-reading">
+<h2>What you can decide before composing</h2>
+<dl class="studio-controls">
+<dt>Choose modules</dt><dd>34 participants covering sources, textures and drums. Automatic, Include and Exclude set eligibility for the next render; they are not knobs, solo or mute of the current WAV.</dd>
+<dt>Musical Direction and Expressive</dt><dd>Separate options for exploring arrangement, relationships and interpretation. Both start off. Enable before composing and compare with the same seed and settings.</dd>
+<dt>Plan an album</dt><dd>Choose theme and track count, vary initial BPM between tracks and optionally plan total duration and its distribution. Preview separates your request from what fits within the plan limits.</dd>
+<dt>Compose and listen</dt><dd>The ♪ button composes; PLAY plays generated audio. Percentage follows the current musical pass, not the album’s remaining time. Composition changes require a new render.</dd>
+</dl>
+<a href="quickstart.html#en">Learn through listening exercises →</a>
+</section>
+<section id="album" class="studio-section studio-reading">
+<h2>Thinking about an album</h2>
+<p>An album lets you work with a group of pieces. You can look for continuity or place different tempos, lengths and materials alongside one another. Listening order matters too: a short track can leave space for a longer one, and a dense passage feels different after silence.</p>
+<p>In Studio, the theme guides the collection while each track follows its own course. Choose the track count, optionally vary initial BPM and plan the total duration and its distribution. Module selection determines which sources may take part across the album. Start with two tracks and listen for what connects or separates them.</p>
+<a href="quickstart.html#en--your-first-album">Learn to compose an album →</a>
+</section>
+<section id="first-piece" class="studio-section studio-reading">
+<p class="eyebrow">02 · SEED → WAV</p>
+<h2>From an idea to a first listen</h2>
+<ol>
+<li>Choose an output folder and keep MASTER low for the first listen.</li>
+<li>Set SEED and TEMPO. Start with WILD MODE off to compare controlled experiments.</li>
+<li>Use the musical-direction and module-selection controls to shape the available material, then start composition.</li>
+<li>Wait for rendering to finish, play the piece and compare what you hear with the module activity and log.</li>
+<li>Keep the WAV and companion files. Report the seed, settings, version and operating system if something goes wrong.</li>
+</ol>
+<a href="quickstart.html#en">Make your first piece →</a>
+</section>
+<section id="documentation" class="studio-section studio-reading">
+<h2>Explore further</h2>
+<ul class="studio-doc-links">
+<li><a href="docs/en/manual.html">Read the manual</a></li>
+<li><a href="docs/en/Instrument_Overview.html">Whole-instrument guide</a></li>
+<li><a href="docs/en/Manifesto.html">Manifesto</a></li>
+<li><a href="catalogo.html#catalogo">Technical catalog (Portuguese)</a></li>
+</ul>
+<p>The manual and whole-instrument guide are maintained in four languages. The historical technical catalog remains in Portuguese; it is a research reference, not a count of audible modules.</p>
+</section>
+<section id="release" class="studio-section studio-reading">
+<h2 id="requirements">Installation and requirements</h2>
+<p>Linux x86_64 with SSE2, X11 or XWayland and ALSA audio output. Screen reference: 1366 × 768; scrolling is available at 900 × 600. MIDI, a dedicated GPU and internet are not required to compose.</p>
+<p>Provisional reference: 8 GiB RAM, with 4 GiB available; 16 GiB recommended for albums. This is not a certified minimum. Allow 500 MiB for application/workspace, plus about 1.1 GB per hour of audio.</p>
+<p>Linux x86_64 candidate built on Ubuntu 22.04 and tested in that isolated environment and on Mint 22. Requires glibc 2.35+ and GLIBCXX_3.4.30. Other distributions are not yet validated.</p>
+<p><a href="INSTALL.html#english">How to start and install: .deb, AppImage and .tar.gz →</a></p>
+<h2>An experimental instrument, openly developed</h2>
+<p>This documentation covers Studio 0.1.0, an experimental version tested on Linux.</p>
+<h3>Known musical limitations</h3>
+<p>Some voices can be quiet in the mix while certain percussion sounds stand out. Timbres can also recur across pieces. Listen at a comfortable volume and compare module choices. Noise, silence and rupture are among the instrument's musical possibilities.</p>
+<h3>Authorship, references and method</h3>
+<p>RASGO brings together original code, artistic research, composition and learning. The <a href="CREDITS.html">credits</a> record references and influences. Original project code uses AGPL-3.0-or-later; JUCE and the other components retain their <a href="THIRD_PARTY_NOTICES.html">own licenses</a>.</p>
+</section>
+</main>
+<footer class="studio-footer">
+<p>By Lucio de Araujo · RASGO instrument family</p>
+<a href="catalogo.html">Research and technical documentation</a>
+<nav aria-label="Language / Idioma / Langue"><a href="en.html" lang="en" hreflang="en" aria-current="page">English</a>
+<a href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
+<a href="fr.html" lang="fr" hreflang="fr">Français</a>
+<a href="es.html" lang="es" hreflang="es">Español</a></nav>
+</footer>
+</body>
+</html>

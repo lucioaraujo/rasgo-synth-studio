@@ -1,0 +1,388 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth -- fluxograma de arquitetura (base phase84, atualização operacional 2026-08-22)</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="../../index.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-fluxograma-de-arquitetura-base-phase84-atualizacao-operacional-2026-08-22">Rasgo Synth -- fluxograma de arquitetura (base phase84, atualização operacional 2026-08-22)</h1>
+<p>Substitui o fluxograma Mermaid publicado como artifact na fase 38 (e a versão
+ilustrada/blueprint redesenhada depois, ambas fora do repositório -- essa
+sessão não tem acesso à ferramenta de publicar artifact, então esta versão
+vive como arquivo versionado, o que tem a vantagem de nunca mais ficar
+defasada silenciosamente). Cinco partes: escolhas por semente, fluxo de sinal
+por amostra, cadeia de masterização, classificação dos mecanismos, e mapa de
+entrecruzamento/simbiose entre eles, e a pista de percepção por seção.
+Atualizado de phase76 para phase84 --
+Harmonàig/polifonia de peneiras/Bloom (77-79), pesos de jogo de Caillois (80,
+agora um hub próprio de viés cruzado, ver Parte 5), aksak/peneira rítmica
+(82), e Curto-Circuito (84).</p>
+<p>Cada mecanismo citado tem sua fase de origem entre parênteses -- consulte
+<a href="../../publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed"><code>Plano_de_Upgrade_Instrumento_Generativo.md</code></a>
+pra a história completa de qualquer um deles.</p>
+<p>O diagrama da phase84 permanece como base estrutural. As fases 118–124, 163 e 164
+adicionaram agência material, ecologia de audibilidade pós-espaço, orquestração
+relacional, memória, atenção narrativa e linhagem explícita de seed. A Parte 6
+explicita a nova pista de descritores sem confundi-la com o fluxo de áudio por
+amostra.</p>
+<h2 id="parte-1-o-que-a-semente-decide-uma-vez-no-inicio-da-peca">Parte 1 -- o que a semente decide, uma vez, no início da peça</h2>
+<pre><code class="language-mermaid">flowchart TB
+    SEED([&quot;Semente (cfg.seed)&quot;]) --&gt; RNG[&quot;std::mt19937 rng(seed)&quot;]
+    PAISA[&quot;Identidade do pai A&quot;] --&gt; LINHAGEM
+    PAISB[&quot;Identidade do pai B&quot;] --&gt; LINHAGEM
+    LINHAGEM[&quot;SeedLineage (fase 164): 9 domínios,&lt;br/&gt;blend + mutação + proveniência&quot;] --&gt; SEED
+    LINHAGEM -. override explícito .-&gt; IDENTIDADE
+    SEED --&gt; IDENTIDADE[&quot;CompositionIdentity: streams estáveis&lt;br/&gt;material/pitch/vozes/ritmo/harmonia/&lt;br/&gt;ensemble/espectral&quot;]
+
+    RNG --&gt; CAILLOIS
+    RNG --&gt; ESCALA
+    RNG --&gt; RITMO
+    RNG --&gt; HARMONIA
+    RNG --&gt; TEXTURA
+    RNG --&gt; ESTRUTURA
+    RNG --&gt; RARO
+    RNG --&gt; GARANTIA
+    IDENTIDADE --&gt; ESCALA
+    IDENTIDADE --&gt; RITMO
+    IDENTIDADE --&gt; HARMONIA
+    IDENTIDADE --&gt; TEXTURA
+
+    subgraph CAILLOIS[&quot;Pesos de jogo de Caillois (fase 80)&quot;]
+        direction TB
+        C1[&quot;4-simplex via stick-breaking:\nAlea/Agon/Ilinx/Mimicry&quot;]
+        C2[&quot;enviesa (nunca força) onze\nmecanismos existentes -- ver Parte 5&quot;]
+    end
+
+    subgraph ESCALA[&quot;Escala&quot;]
+        direction TB
+        E1[&quot;catálogo de 39 escalas (padrão)&quot;]
+        E2[&quot;OU escala sieve de Xenakis gerada,\nnão-catalogada (12%, fase 61,\nmercado de probabilidade)&quot;]
+        E3[&quot;blend secundário do catálogo (40%)&quot;]
+        E4[&quot;modulação modal (fase 33) OU\nmodulação tonal (fase 32/48) --\nmutuamente exclusivas&quot;]
+    end
+
+    subgraph HARMONIA[&quot;Harmonia/melodia&quot;]
+        direction TB
+        H1[&quot;peso funcional em tempo forte (50%, fase 29)&quot;]
+        H2[&quot;progressão de acorde fixa I-IV-V... (50%)&quot;]
+        H3[&quot;OU Neo-Riemanniano P/L/R,\ntríade real vagando (35% de H2, fase 65)&quot;]
+        H4[&quot;condução de voz por índice de grau\n(closenessFactor, padrão)&quot;]
+        H5[&quot;OU condução de voz real por semitom,\nmistura 80/15/5% (20%, fase 62)&quot;]
+        H6[&quot;entonação livre (caos empurra o pitch\npra fora da escala) -- acoplada\nINVERSAMENTE ao ritmo via Heisenberg\n(25%, fase 71)&quot;]
+        H7[&quot;Harmonàig -- pad de 4 vozes reais\n(raiz/3a/5a/7a), só com progressão de\nacorde ativa, viesado por Agon\n(fase 77)&quot;]
+    end
+
+    subgraph RITMO[&quot;Ritmo/percussão&quot;]
+        direction TB
+        R1[&quot;divisor XOR (CGS22) -- bumbo/caixa/\nchimbal/cowbell/clap/tom/prato/maracas&quot;]
+        R2[&quot;cowbell: XOR padrão OU euclidiano\nreal Bjorklund/Toussaint (25%, fase 57)&quot;]
+        R3[&quot;OU arquétipo entre 8 opções (5 nomeados\n+ 2 aksak balcânicos reais + 1 peneira\nrítmica de Xenakis gerada), re-sorteado\na cada seção do arco (fases 67/82,\nmercado de probabilidade)&quot;]
+        R4[&quot;endereço de passo caótico -- ponteiro\nda MELODIA (não da percussão) lido\npor StandardMap dedicado (15%, fase 64,\nmercado de probabilidade)&quot;]
+        R5[&quot;humanização rítmica (~50%) --\nacoplada INVERSAMENTE à afinação\nvia Heisenberg (fase 71)&quot;]
+        R6[&quot;contágio do caos: decay de bumbo/caixa/\nchimbal jitterizado por hit&quot;]
+        R7[&quot;ratchet nos toms, sustain estendido\nno prato (por hit, não por peça)&quot;]
+        R8[&quot;bateria como instrumento real:\npresença rida à densidade do arco,\n12% sem bateria, falhas reais por hit\nem 35% das peças (fase 66,\nmercado de probabilidade)&quot;]
+    end
+
+    subgraph TEXTURA[&quot;Texturas de fundo&quot;]
+        direction TB
+        T1[&quot;Gendyn (Xenakis), ruído colorido,\nAtari Punk, AY8910 arpejo, Ochd LFOs&quot;]
+        T2[&quot;Oscilador Walsh -- base ortogonal +-1,\nHadamard/sequency (30%, fase 59,\nmercado de probabilidade)&quot;]
+        T3[&quot;hocketing aditivo (40%)&quot;]
+        T4[&quot;OU cascata polifônica -- Shifty real,\nregistro de deslocamento (35% de T3,\ndiode-mixado, fase 63, mercado de\nprobabilidade)&quot;]
+        T5[&quot;granular cloud da própria peça&quot;]
+        T6[&quot;VOSIM -- 6º princípio de síntese,\nrajadas sin² decaindo (20%, fase 72)&quot;]
+        T7[&quot;Vector Synthesis -- crossfade 2D real\n(Prophet VS-inspirado) entre banco\ndedicado Gendyn/Walsh/AtariPunk/ruído,\nposição por 2 mapas de caos (20%,\nfase 76)&quot;]
+        T8[&quot;batimento binaural caótico -- L/R\ndivergem em frequência de verdade\n(20%, fase 73)&quot;]
+        T9[&quot;polifonia de peneiras de Xenakis --\n4 canais independentes (madeira/sopro,\nmetal/vidro, água, plasma reativo),\nviesado por Agon (20%, fase 78)&quot;]
+        T10[&quot;Bloom -- melodia fractal Trunk/Branch/\nPath, trunk reaplicado sobre si mesmo\n(22%, fase 79)&quot;]
+    end
+
+    subgraph ESTRUTURA[&quot;Arco/estrutura&quot;]
+        direction TB
+        S1[&quot;template narrativo: dramatic OU\nkishotenketsu (cadeia de Markov)&quot;]
+        S2[&quot;andamento variável discreto +\nritardando real na coda&quot;]
+        S2b[&quot;OU accelerando/stringendo rumo ao\nclímax -- ritardando tem a palavra\nfinal na coda (fase 68, mercado de\nprobabilidade)&quot;]
+        S3[&quot;morte térmica: esmaecimento lento OU\ncorte abrupto no final -- viesado\npor Ilinx&quot;]
+        S4[&quot;rossler collapse, self-epitaph,\narquivo apócrifo, stochastic mute --\nviesados por Ilinx/Mimicry&quot;]
+        S5[&quot;Parênteses -- reroteamento real do\náudio final pra loop de stutter\ncapturado, retorno exato, viesado\npor Mimicry (20%, fase 70)&quot;]
+    end
+
+    subgraph RARO[&quot;Mecanismos raros/ruptura&quot;]
+        direction TB
+        X1[&quot;Agon -- 4 vozes competindo por poder\n(main/atari/gendyn/tuba), viesado\npor Agon (30%)&quot;]
+        X2[&quot;elemento estranho interno (15%) +\nversão literal, lê CPU real (25%) --\nquebra reprodutibilidade quando dispara,\nviesado por Mimicry&quot;]
+        X3[&quot;overflow Q1.15, spectral ghost,\nsample-hold glitch -- 15% cada&quot;]
+        X4[&quot;contaminação cruzada: pico de áudio\nreal empurra o divisor de clock (25%,\nfase 60, mercado de probabilidade)&quot;]
+        X5[&quot;fracture folder, rungler,\nleibniz rectifier -- viesados por Ilinx&quot;]
+        X6[&quot;filtro Polivoks -- 3ª cor, auto-\noscilação genuína (damping negativo +\ntanh), mutuamente exclusivo com\nSallenKeyFilter no mesmo slot (25%,\nfase 75)&quot;]
+        X7[&quot;envelope de asfixia por sidechain --\nbumbo fecha o filtro, recovery\nexponencial (25%, fase 74)&quot;]
+        X8[&quot;Curto-Circuito -- corte seco real\n(gate + faísca) + re-sorteio forçado\nde 6 mecanismos que ficaram desligados,\nviesado por Ilinx, evento único por\npeça (fase 84)&quot;]
+    end
+
+    subgraph GARANTIA[&quot;Rede de segurança (fase 40)&quot;]
+        direction TB
+        G1[&quot;se apócrifo + entonação livre +\nmodulação tonal + self-feedback\ntodos saíram 'não' por acaso...&quot;]
+        G2[&quot;...um deles é forçado --\ntoda peça testa 1 limite real&quot;]
+        G1 --&gt; G2
+    end
+</code></pre>
+<p><code>SeedLineage</code> não controla diretamente os indicadores do painel. A identidade
+recombinada atua antes da trajetória; o renderer ainda contém um RNG sequencial
+compartilhado para muitas decisões downstream. Portanto, herança fina de cada
+módulo depende de futura separação de domínios e não é presumida neste diagrama.</p>
+<h2 id="parte-2-fluxo-de-sinal-uma-amostra-de-cada-vez">Parte 2 -- fluxo de sinal, uma amostra de cada vez</h2>
+<pre><code class="language-mermaid">flowchart LR
+    OSC1[&quot;osc1 (saw, PolyBLEP)&quot;] --&gt; XFM
+    OSC2[&quot;osc2 (MorphOscillator)&quot;] --&gt; XFM
+    XFM[&quot;cross-FM bidirecional\n(Lyra-8-style, 50%)&quot;] --&gt; DIODE
+
+    HOCKET[&quot;hocketOsc1/hocketOsc2\n(hocketing ou cascata)&quot;] -.rede esparsa.-&gt; XFM
+
+    DIODE[&quot;DiodeMixer\n(mixagem não-linear, 2x oversampled)&quot;] --&gt; FILTRO
+    FILTRO[&quot;MoogFilter &lt;-&gt; 2ª cor\n(SallenKey OU Polivoks,\ncrossfade via GbmanMap)&quot;] --&gt; ASPHYXIA
+    ASPHYXIA[&quot;envelope de asfixia\n(bumbo fecha o cutoff)&quot;] -.duck.-&gt; FILTRO
+
+    FILTRO --&gt; RESON
+    RESON[&quot;ModalResonator (corpo) +\ntuba/breath voice (30%,\nsaturador tanh de segurança, fase 81)&quot;] --&gt; MIX
+
+    PERC[&quot;8 vozes TR-808\n(divisor XOR, euclidiano OU arquétipo/\naksak/peneira gerada)&quot;] --&gt; MIX
+    TEXT[&quot;texturas: Gendyn, colorNoise, Walsh,\nAtariPunk, EnvOsc, AY8910, hocket/cascata,\nVOSIM, Vector Synthesis, binaural,\npeneiras de Xenakis, Bloom&quot;] --&gt; MIX
+    HARM[&quot;Harmonàig -- pad de 4 vozes\n(fase 77)&quot;] --&gt; MIX
+    GRANULAR[&quot;GranularCloud\n(a própria peça recente)&quot;] --&gt; MIX
+
+    MIX[&quot;Mix principal&quot;] --&gt; AGON
+    AGON[&quot;Agon: redistribuição proporcional\nde poder entre main/atari/gendyn/tuba&quot;] --&gt; GLITCH
+
+    GLITCH[&quot;família raro/ruptura:\nestranho, overflow Q1.15, spectral ghost,\nsample-hold glitch (crossfade in/out)&quot;] --&gt; BLOOMFX
+    BLOOMFX[&quot;multiband bloom + ring modulator&quot;] --&gt; DELAY
+
+    DELAY[&quot;delay + reverb (L/R independentes,\ntempo via stepped CV + LFO + CuspMap)&quot;] --&gt; PAN
+    PAN[&quot;pan equal-power (LFO lento)&quot;] --&gt; CURTO
+
+    CONTAGION[&quot;contaminação cruzada:\npico de áudio -&gt; pulso extra no\ndivisor de clock&quot;] -.realimenta.-&gt; PERC
+
+    CURTO[&quot;Curto-Circuito: gate real (~3ms rampa)\n+ faísca de ruído nas bordas,\nevento único por peça (fase 84)&quot;] --&gt; PARENTH
+    PARENTH[&quot;Parênteses: reroteamento pra loop\nde stutter capturado (janela curta)&quot;] --&gt; FADE
+    FADE[&quot;thermal fade / rossler collapse /\napócrifo / stochastic mute&quot;] --&gt; MASTER([&quot;-&gt; Parte 3, masterização&quot;])
+</code></pre>
+<h2 id="parte-3-cadeia-de-masterizacao">Parte 3 -- cadeia de masterização</h2>
+<pre><code class="language-mermaid">flowchart TB
+    IN([&quot;Sinal final por amostra\n(fim da Parte 2)&quot;]) --&gt; DC
+    DC[&quot;DC blocker (L/R)&quot;] --&gt; LIM
+    LIM[&quot;LookaheadLimiter\n(teto 0.95)&quot;] --&gt; TRIM
+    TRIM[&quot;trim de masterização de álbum\n(outputGainTrim)&quot;] --&gt; SAT
+    SAT[&quot;safety saturator\n(tanh suave, só perto do teto 0.98)&quot;] --&gt; MUTE
+    MUTE[&quot;stochastic mute gate\n(silêncios cirúrgicos raros)&quot;] --&gt; DITHER
+    DITHER[&quot;dither (evita quantização audível)&quot;] --&gt; WAV
+
+    WAV[&quot;Recorder::record() --\ngrava o .wav de 16-bit&quot;] --&gt; META
+    WAV --&gt; EPITAPH
+    WAV --&gt; SCORE
+    WAV --&gt; MARKET
+
+    META[&quot;metadados JSON no comentário\ndo próprio WAV -- todo mecanismo\nseed-gated, honestamente true/false,\nincluindo os 4 pesos de jogo&quot;]
+    EPITAPH[&quot;self-epitaph: chunk RIFF de texto\npuro, legível em hex editor (15%)&quot;]
+    SCORE[&quot;partitura .txt irmã do WAV --\nprosa legível, só o que se manifestou\nde verdade nesta peça específica&quot;]
+    MARKET[&quot;mercado de probabilidade:\n.rasgo_market.txt atualizado\n(random walk, sobrevive à peça)&quot;]
+</code></pre>
+<h2 id="parte-4-classificacao-dos-mecanismos">Parte 4 -- classificação dos mecanismos</h2>
+<p>Não é uma lista exaustiva de todos os mecanismos do motor (isso duplicaria
+o <code>Plano_de_Upgrade_Instrumento_Generativo.md</code> inteiro) -- é uma
+classificação por <strong>tipo estrutural</strong>, a pergunta "que espécie de decisão é
+essa, e o que ela compete ou não compete com". Todo mecanismo do motor cai
+numa (ou mais de uma) destas cinco categorias:</p>
+<h3 id="a-escolha-estrutural-unica-roda-uma-vez-decide-entre-alternativas-que-se-excluem">A. Escolha estrutural única (roda uma vez, decide entre alternativas que se excluem)</h3>
+<p>A semente decide uma bifurcação e só um dos lados existe na peça inteira --
+nunca os dois ao mesmo tempo, disciplina de "um modo limpo, não camadas"
+deste projeto.</p>
+<table>
+<thead>
+<tr>
+<th>Mecanismo (fase)</th>
+<th>Alternativa mutuamente exclusiva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filtro Polivoks (75)</td>
+<td>SallenKeyFilter -- mesmo slot de crossfade com MoogFilter</td>
+</tr>
+<tr>
+<td>Neo-Riemanniano P/L/R (65)</td>
+<td>Progressão de acordes fixa I-IV-V...</td>
+</tr>
+<tr>
+<td>Condução de voz por semitom (62)</td>
+<td>Condução de voz por índice de grau (padrão)</td>
+</tr>
+<tr>
+<td>Escala sieve de Xenakis (61)</td>
+<td>Catálogo de 39 escalas (padrão)</td>
+</tr>
+<tr>
+<td>Arquétipo rítmico de 16 passos (67/82)</td>
+<td>Divisor XOR padrão pra bumbo/caixa/chimbal</td>
+</tr>
+<tr>
+<td>Cowbell euclidiano (57)</td>
+<td>Cowbell via divisor XOR padrão</td>
+</tr>
+<tr>
+<td>Modulação modal (33)</td>
+<td>Modulação tonal (32/48)</td>
+</tr>
+<tr>
+<td>Cascata polifônica/Shifty (63)</td>
+<td>Hocketing aditivo simples (37)</td>
+</tr>
+<tr>
+<td>Ritardando de coda (48)</td>
+<td>Accelerando/stringendo (68) -- ritardando vence se a coda chega de verdade</td>
+</tr>
+<tr>
+<td>Escala por peça (48)</td>
+<td>Não mais forçada por tema de álbum (fase 83) -- toda peça, álbum ou não, sorteia a própria</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-camada-aditiva-independente-ligadesliga-nao-compete-por-um-slot">B. Camada aditiva independente (liga/desliga, não compete por um "slot")</h3>
+<p>Mistura continuamente quando habilitada, junto de qualquer outra coisa que
+esteja acontecendo -- não há conflito, só presença ou ausência.</p>
+<p>Exemplos: Oscilador Walsh (59), VOSIM (72), Vector Synthesis (76), batimento
+binaural caótico (73), tuba/breath voice (43), granular cloud, ring
+modulator, multiband bloom, ratchet de toms/sustain de prato (56), Harmonàig
+(77, condicionado a progressão de acorde ativa), polifonia de peneiras de
+Xenakis (78), Bloom (79).</p>
+<h3 id="c-acoplamento-cruzado-direto-a-saida-de-um-mecanismo-modula-o-parametroestado-de-outro">C. Acoplamento cruzado direto (a saída de um mecanismo modula o parâmetro/estado de outro)</h3>
+<p>O ponto mais "vivo" da arquitetura -- onde um mecanismo não é só um efeito
+isolado, mas genuinamente alimenta outro. Ver mapa completo na Parte 5.</p>
+<p>Exemplos: contaminação cruzada (60, pico de áudio -&gt; pulso extra no divisor
+de clock), asfixia por sidechain (74, bumbo -&gt; corte do filtro), Heisenberg
+(71, um balanço -&gt; ritmo E afinação em direções opostas), Vector Synthesis
+(76, dois mapas de caos -&gt; posição X/Y do crossfade), Agon (49, staleness da
+melodia -&gt; redistribuição de poder entre 4 vozes), pesos de jogo de Caillois
+(80, quatro pesos -&gt; viés de probabilidade de onze mecanismos), trajetória
+de álbum (83, dois pontos do simplex -&gt; ponto interpolado por faixa).</p>
+<h3 id="d-estado-persistente-entre-renders-sobrevive-ao-fim-da-peca">D. Estado persistente entre renders (sobrevive ao fim da peça)</h3>
+<p>Categoria rara -- a esmagadora maioria do motor é 100% determinística a
+partir da semente, sem memória entre execuções. Só duas exceções, ambas
+documentadas com honestidade explícita no JSON:</p>
+<ul>
+<li><strong>Elemento estranho, versão literal (50-51)</strong>: lê temperatura/carga real
+  da CPU no momento do render -- a mesma semente pode produzir peças
+  levemente diferentes.</li>
+<li><strong>Mercado de probabilidades (69)</strong>: oito mecanismos recentes (ver tabela
+  na Parte 5) trocam probabilidade fixa por um "preço" com random walk e
+  reversão à média, persistido em <code>.rasgo_market.txt</code>, bounded 0.03-0.97.</li>
+</ul>
+<p>Há ainda uma ruptura deliberadamente escolhida pelo usuário: o <strong>Modo
+Selvagem</strong>, ligado por padrão no Studio, re-semeia o gerador compartilhado
+com entropia real a cada fronteira de compasso. A seed continua sendo o
+ponto de partida e é registrada, mas o percurso pode divergir entre renders;
+<code>wildMode</code> e <code>wildReseedCount</code> tornam essa condição auditável. Desligar o modo
+selvagem restaura a reprodução determinística, respeitando também o mesmo
+andamento, configuração, versão do motor e estado externo documentado acima.</p>
+<h3 id="e-rede-de-garantia-ativacao-forcada-dispara-em-reacao-a-outros-mecanismos">E. Rede de garantia / ativação forçada (dispara em reação a outros mecanismos)</h3>
+<p>Dois mecanismos usam o mesmo idioma -- virar uma flag e configurar o objeto
+na hora -- mas por gatilhos opostos:</p>
+<ul>
+<li><strong>Garantia de limite (fase 40)</strong>: observa se apócrifo + entonação livre +
+  modulação tonal + self-feedback saíram todos "não" por acaso, e força um
+  deles ANTES do loop principal começar -- toda peça testa de verdade pelo
+  menos um mecanismo de risco.</li>
+<li><strong>Curto-Circuito (fase 84)</strong>: no MEIO da peça, um corte seco real dispara
+  e, no mesmo instante, dá uma segunda chance elevada (40% cada) a seis
+  mecanismos que já tinham sorteado "não" no início (apócrifo, entonação
+  livre, modulação tonal, self-feedback, rungler, elemento estranho) --
+  mesmo idioma de ativação forçada, mas reagindo a uma ruptura, não a uma
+  ausência total de risco.</li>
+</ul>
+<h2 id="parte-5-mapa-de-entrecruzamento-e-simbiose">Parte 5 -- mapa de entrecruzamento e simbiose</h2>
+<p>Grafo dos acoplamentos reais (categoria C acima) -- que mecanismo lê ou
+altera o estado de qual outro, distinto da Parte 2 (que é só o caminho do
+sinal de áudio amostra a amostra).</p>
+<pre><code class="language-mermaid">flowchart TB
+    subgraph MAPS[&quot;Mapas de caos compartilhados (9 no total)&quot;]
+        direction LR
+        CHAOS[&quot;Henon/Lato/Standard/Gbman/Cusp/\nQuad/Rossler/StandardMap dedicado&quot;]
+    end
+
+    CHAOS --&gt; FILTROCROSS[&quot;crossfade Moog&lt;-&gt;2ª cor (GbmanMap)&quot;]
+    CHAOS --&gt; VECTORPOS[&quot;posição X/Y do Vector Synthesis\n(2 mapas independentes, fase 76)&quot;]
+    CHAOS --&gt; STEPADDR[&quot;endereço de passo caótico da melodia\n(StandardMap dedicado, fase 64)&quot;]
+    CHAOS --&gt; GRANJIT[&quot;jitter de pitch do granular (QuadMap)&quot;]
+    CHAOS --&gt; ROSSCOLL[&quot;rossler collapse -- espiral que\nerupciona em chute de filtro (fase 46)&quot;]
+    CHAOS --&gt; BINAURAL[&quot;desvio de frequência L/R\n(batimento binaural, fase 73)&quot;]
+    CHAOS --&gt; SIEVECLOCK[&quot;clocks independentes das 4 peneiras\nde Xenakis (Lorenz, fase 78)&quot;]
+
+    subgraph GAMEWEIGHTS[&quot;Pesos de jogo de Caillois (fase 80)\n-- hub de viés cruzado&quot;]
+        direction TB
+        GW[&quot;Alea / Agon / Ilinx / Mimicry\n(4-simplex, stick-breaking)&quot;]
+    end
+
+    GW -.enviesa.-&gt; GWAGON[&quot;Agon, Harmonàig,\npolifonia de peneiras&quot;]
+    GW -.enviesa.-&gt; GWILINX[&quot;Rungler, Rossler, thermal fade,\nself-feedback, stochastic mute,\nLeibniz, Curto-Circuito (84)&quot;]
+    GW -.enviesa.-&gt; GWMIMICRY[&quot;apócrifo, self-epitaph,\nsinal estrangeiro, parênteses,\nelemento estranho&quot;]
+    GW -.trajetória por faixa.-&gt; GWALBUM[&quot;AlbumRenderer: ponto\ninterpolado no simplex\npor faixa (fase 83)&quot;]
+
+    KICK[&quot;hit real de bumbo (percussão)&quot;] -.dispara.-&gt; ASPHYXIA[&quot;asfixia: fecha o filtro,\nrecovery exponencial (fase 74)&quot;]
+    ASPHYXIA -.multiplica.-&gt; CUTOFF[&quot;cutoff do filtro principal&quot;]
+
+    PEAKFOLLOW[&quot;seguidor de pico rápido\n(áudio real, não a média lenta\ndo self-feedback)&quot;] -.excede limiar.-&gt; CONTAGION2[&quot;contaminação cruzada\n(fase 60)&quot;]
+    CONTAGION2 -.pulso extra.-&gt; CLOCKDIV[&quot;divisor de clock XOR\ncompartilhado (percussão)&quot;]
+
+    HEISBAL[&quot;balanço Heisenberg\n(único valor seed-derivado, fase 71)&quot;]
+    HEISBAL -.sobe.-&gt; HUMANIZE[&quot;humanizeMaxSamples\n(precisão RÍTMICA solta)&quot;]
+    HEISBAL -.sobe, efeito inverso.-&gt; INTONATION[&quot;freeIntonationDepth\n(precisão de AFINAÇÃO trava)&quot;]
+
+    MELSTALE[&quot;melodia detectada como estagnada&quot;] -.arma.-&gt; AGONTRIG[&quot;Agon: disputa de poder\n(fase 49)&quot;]
+    AGONTRIG -.redistribui proporcional.-&gt; VOICES[&quot;main/atari/gendyn/tuba\n(cada um cede à própria distância\nda vencedora)&quot;]
+
+    MARKETSTATE[(&quot;.rasgo_market.txt\n(random walk persistido)&quot;)]
+    MARKETSTATE -.preço usado nesta peça.-&gt; M1[&quot;generatedScale (12%)&quot;]
+    MARKETSTATE -.-&gt; M2[&quot;chaosStepAddress (15%)&quot;]
+    MARKETSTATE -.-&gt; M3[&quot;hocketCascade (35%)&quot;]
+    MARKETSTATE -.-&gt; M4[&quot;walshOscillator (30%)&quot;]
+    MARKETSTATE -.-&gt; M5[&quot;crossDomainContagion (25%)&quot;]
+    MARKETSTATE -.-&gt; M6[&quot;drumsEnabled (88%)&quot;]
+    MARKETSTATE -.-&gt; M7[&quot;drumArchetype (35%)&quot;]
+    MARKETSTATE -.-&gt; M8[&quot;accelerando (40%)&quot;]
+    M1 -.settle apos a peça.-&gt; MARKETSTATE
+    M8 -.settle apos a peca.-&gt; MARKETSTATE
+
+    GUARANTEE1[&quot;apócrifo + entonação livre +\nmodulação tonal + self-feedback&quot;] -.todos 'não'?.-&gt; GUARANTEE2[&quot;força 1 deles\n(fase 40)&quot;]
+
+    CURTOFIRE[&quot;Curto-Circuito dispara\n(fase 84)&quot;] -.corte seco real.-&gt; CURTOGATE[&quot;gate + faísca de ruído\n(~3ms rampa)&quot;]
+    CURTOFIRE -.re-sorteio 40% cada.-&gt; CURTOCRASH[&quot;apócrifo, entonação livre,\nmodulação tonal, self-feedback,\nrungler, elemento estranho&quot;]
+</code></pre>
+<h2 id="parte-6-percepcao-narrativa-por-secao-sem-atuacao-de-mix-na-fase-163">Parte 6 -- percepção narrativa por seção (sem atuação de mix na fase 163)</h2>
+<p>Esta pista roda nas fronteiras composicionais. Ela não transporta áudio e não
+faz trabalho variável no callback: todos os consumidores recebem a mesma
+fotografia fixa da seção encerrada antes que os acumuladores sejam reiniciados.</p>
+<pre><code class="language-mermaid">flowchart LR
+    STEMS[&quot;OrganismStemAuditor\nmedidas pós-espaço&quot;] --&gt; SNAP[&quot;OrganismSectionSnapshot\nimutável, tamanho fixo&quot;]
+    SNAP --&gt; MEMORY[&quot;OrchestralSectionMemory&quot;]
+    SNAP --&gt; AUDIBILITY[&quot;OrganismAudibility&quot;]
+    SNAP --&gt; CHAMBER[&quot;RelationalChamber\ndecisão e consequência&quot;]
+    SNAP --&gt; ATTENTION[&quot;NarrativeAttentionEngine\nfoco, valor e motivo&quot;]
+    ARC[&quot;ArcState\ndensidade/tensão/memória&quot;] --&gt; ATTENTION
+    PROFILES[&quot;OrchestralProfile\npapel de cada organismo&quot;] --&gt; ATTENTION
+    CHAMBER -.alvo de consequência.-&gt; ATTENTION
+    ATTENTION --&gt; META[&quot;JSON / PieceModuleInfo / partitura&quot;]
+    ATTENTION -.&quot;fase 163: nenhuma autoridade&quot;.-&gt; NOACT[&quot;sem ganho, EQ, pan, efeito\nou compressão automática&quot;]
+    SNAP --&gt; RESET[&quot;beginSection()\nsó depois dos consumidores&quot;]
+</code></pre>
+<p>O próximo incremento poderá inserir um <code>NarrativeMixDirective</code> entre atenção
+e controles existentes, mas essa seta ainda não existe. Ela só será adicionada
+ao fluxograma quando houver limite, suavização, contrafactual e A/B perceptivo.</p>
+<h2 id="nota-sobre-honestidade">Nota sobre honestidade</h2>
+<p>Todo mecanismo seed-gated acima aparece no JSON de metadados e na partitura
+<code>.txt</code> como <code>true</code>/<code>false</code> reais -- nunca "presente mas nunca testado". A
+disciplina deste projeto (ver <code>feedback_rasgo_quality_bar</code> e o histórico de
+bugs pegos por <em>verificação empírica</em>, não só compilação limpa) é: todo
+mecanismo novo é auditado numa amostra de peças renderizadas antes de ser
+considerado pronto, contando quantas vezes o campo aparece como <code>true</code> e
+comparando com a probabilidade esperada -- incluindo, na fase 76, um bug de
+<em>processo</em> pego dessa forma (binário desatualizado sem o código novo,
+denunciado por uma taxa de disparo impossível estatisticamente antes de
+qualquer ouvido humano precisar notar), e na fase 84, uma auditoria real em
+22 peças confirmando o Curto-Circuito disparando e listando por nome quais
+mecanismos entraram de penetra.</p>
+<p>O mercado de probabilidades (fase 69, Parte 5 acima) é a única categoria
+onde a probabilidade <em>em si</em> não é fixa -- mas o valor realmente usado em
+cada peça continua exposto no JSON (<code>marketPrices</code>), então a honestidade da
+auditoria não é comprometida por isso.</p></main></body></html>

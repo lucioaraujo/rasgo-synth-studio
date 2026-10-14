@@ -1,0 +1,67 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth app assets</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="../../index.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-app-assets">Rasgo Synth app assets</h1>
+<p>Runtime packages must keep this <code>assets/</code> directory beside the executable, or
+set <code>RASGO_SYNTH_ASSETS_DIR</code> to its installed location. A conventional Unix
+package may also install it as <code>share/rasgo-synth/assets</code> relative to the
+application prefix.</p>
+<h2 id="asset-inventory">Asset inventory</h2>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Origin and status</th>
+<th>License or notice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rasgo_logo_2026.svg</code></td>
+<td>Rasgo artwork vectorised by Lucio de Araujo</td>
+<td>© 2026 Lucio de Araujo; project artwork, not covered by the font licenses</td>
+</tr>
+<tr>
+<td><code>Screenshot from 2026-08-01 03-29-34_b.png</code></td>
+<td>Rasgo Synth development screenshot</td>
+<td>© 2026 Lucio de Araujo; documentation image</td>
+</tr>
+<tr>
+<td><code>fonts/BigShouldersDisplay.ttf</code></td>
+<td>Big Shoulders family, The Big Shoulders Project Authors</td>
+<td>SIL Open Font License 1.1; see <code>fonts/LICENSE-BigShoulders.txt</code></td>
+</tr>
+<tr>
+<td><code>fonts/IBMPlexMono-Regular.ttf</code></td>
+<td>IBM Plex Mono, IBM Corp.</td>
+<td>SIL Open Font License 1.1; see <code>fonts/LICENSE-IBMPlexMono.txt</code></td>
+</tr>
+<tr>
+<td><code>fonts/IBMPlexMono-Bold.ttf</code></td>
+<td>IBM Plex Mono, IBM Corp.</td>
+<td>SIL Open Font License 1.1; see <code>fonts/LICENSE-IBMPlexMono.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p>The authoritative family sources consulted for the notices are the official
+Google Fonts directories for
+<a href="https://github.com/google/fonts/tree/main/ofl/bigshoulders">Big Shoulders</a> and
+<a href="https://github.com/google/fonts/tree/main/ofl/ibmplexmono">IBM Plex Mono</a>.
+Current asset hashes:</p>
+<pre><code class="language-text">60e208dc276a1c35fc5b62e94f9fb959c40c11783a9eb7548175c14b1fbeb720  fonts/BigShouldersDisplay.ttf
+ac27abd6450a64dd94467580a02fe6235156d5b92f2926ebbc8e7489df64e0be  fonts/IBMPlexMono-Bold.ttf
+6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46  fonts/IBMPlexMono-Regular.ttf
+b600ed690d6475cd202984669c55c7451bfac7aa83b056da2a0391d3e0ab58a6  rasgo_logo_2026.svg
+</code></pre>
+<p>Upstream identity verified on2026-10-14 by downloading the three official
+binaries and comparing SHA256 with these local files (all three identical):</p>
+<ul>
+<li>BigShouldersDisplay.ttf is the unmodified variable
+  BigShouldersDisplay[wght].ttf from google/fonts commit
+  <code>7d86539c3e24d8ea2cae7b3ff04c64250dca99c5</code>, path
+  <code>ofl/bigshouldersdisplay/BigShouldersDisplay[wght].ttf</code>.</li>
+<li>Both IBM Plex Mono files match google/fonts commit
+  <code>633f3200539c52ee0aba2dfd7f46921417a81877</code>, under <code>ofl/ibmplexmono/</code>.</li>
+</ul>
+<p>These identify byte-equal published upstream copies, not the unknown original
+download date of the historical local files. Font binaries were not modified
+or replaced. Official immutable references:
+<a href="https://github.com/google/fonts/tree/7d86539c3e24d8ea2cae7b3ff04c64250dca99c5/ofl/bigshouldersdisplay">Big Shoulders</a>,
+<a href="https://github.com/google/fonts/tree/633f3200539c52ee0aba2dfd7f46921417a81877/ofl/ibmplexmono">IBM Plex Mono</a>.</p></main></body></html>

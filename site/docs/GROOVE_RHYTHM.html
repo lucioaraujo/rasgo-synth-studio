@@ -1,0 +1,174 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Groove, swing e malandragem rítmica — Studio</title><link rel="stylesheet" href="../assets/site.css"><link rel="stylesheet" href="../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="../index.html">Studio</a> · <a href="../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="groove-swing-e-malandragem-ritmica-studio">Groove, swing e malandragem rítmica — Studio</h1>
+<p>Atualizado: 2026-10-09. Direção autoral: Lucio de Araujo.</p>
+<p>Candidato técnico atual: <code>linux-20261009-diagnostics.6e1Xp8</code>, com piso de
+sample peak no detector e método/alvo/teto explícitos na metadata. Peça exportou
+e fechou normalmente;10 CTests/29 Python/integração de gravação passaram.
+Não é incremento musical de groove, nem aceitação por escuta. O comparativo
+de medidores confirmou a diferença de reconstrução e o teto público−1 dBTP
+na amostra;−1,8 é margem interna. Álbum/playback desta build ainda abertos.
+Evidências abaixo pertencem à coorte v2 precedente; detalhes em continuidade.</p>
+<p>Estado: v2 testada no core e compilada no candidato <code>linux-20261009-groove-v2-app</code>.
+Teste puro128 seeds/6 famílias, contraste/repetição/bypass, álbum/calibração
+e8 CTests focados passaram. O contraste isolado v2 inclui um disparo extra
+real na seed4/24 s; seeds1/3 sem extras conservaram PCM idêntico.
+Idle, duas peças após estabilização, álbum e reprodução silenciada fecharam
+normalmente;8 WAVs v2 decodificados. Uma tentativa de fechar imediatamente
+após render falhou, sem registro de chegada do pedido. Causa não isolada;
+não declarar correção pela repetição bem-sucedida. Confronto dos estimadores
+de true peak também pendente (seed4 interno−1,8/FFmpeg−1,6 dBTP).
+Os smokes completos e6 WAVs validados anteriormente pertencem ao app v1,
+não certificam v2. Evidências/hash e cobertura final em CONTINUIDADE.
+Não é aceitação por escuta.</p>
+<h2 id="respostas-subdivididas-v2-fonte-de-8-out-2026">Respostas subdivididas — v2, fonte de 8 out. 2026</h2>
+<p>Estudo do Antitotem confirmou groove, subdivisões e microeventos já ligados
+ao áudio. Consulta somente leitura: <code>src/core/SimpleSequencer.cpp</code>, commit
+<code>eabde9f5cbadf7b1ba3254354002cb5e723cba40</code>, arquivo limpo, SHA-256
+<code>dc3dc4fdfb097c22d3451062c33d909ee420d9c3599d961ba8950e3beaaefec5</code>.
+Autoria: Lucio de Araujo; fonte sob AGPL-3.0. Referência interna de ratchets
+2–4 com decrescendo, não port, cópia de código ou dependência de build.
+<code>GrooveRepeat.hpp</code> é implementação própria do Studio. Antitotem não alterado.</p>
+<p>Alguns últimos compassos de frases de quatro compassos recebem uma resposta
+no último passo: uma única voz, caixa OU chimbal, divide aquele passo em
+2/3/4 ataques conforme densidade (&gt;0,45 / &gt;0,60 / &gt;0,80). Mantém o primeiro
+ataque/ganho; os seguintes têm decrescendo relativo ao ataque inicial.
+O bumbo e o imprint do baixo não ganham repetições obrigatórias. Chimbal
+repetido é fechado. A mesma seed/contexto produz a mesma decisão, sem RNG
+novo compartilhado. Não é rolo contínuo, novo gênero ou polirritmia3:2:
+ter três ataques dentro de um passo não cria duas pulsações simultâneas.</p>
+<p>Dois estados fixos, no máximo quatro ataques por grupo, sem fila/alocação.
+Agendamento usa a janela que resta APÓS o atraso expressivo do ataque,
+na duração efetiva do passo Rasgar. Exige intervalo mínimo6 ms; reduz o número
+de ataques se não couberem, ou conserva apenas o primeiro. Posições absolutas
+arredondadas evitam acumular erro das divisões por três. Não altera BPM,
+relógio técnico ou duração do compasso. Nova cabeça substitui grupo anterior.</p>
+<p><code>PieceConfig/AlbumConfig::grooveSubdivisionsEnabled=false</code> isola as respostas
+sem desligar a primeira coorte de groove. Flag propagada a calibração/final
+e manifesto; ainda depende de Expressivo + Direção + grooveDialogue.
+Sem seletor manual novo nem alteração de layout. JSON/partitura versão2
+separam planos extras solicitados (antes dos limites) de disparos extras
+efetivamente realizados. Log4 idiomas mostra disparos, não audibilidade.
+Um plano pode não soar por espaço temporal, corte do render ou decisão de voz.
+Os microeventos não têm registros individuais no ledger expressivo nesta
+coorte; o ledger anterior descreve a cabeça do grupo, não todos os ataques.</p>
+<p>Testes puros ampliados: decisões128 seeds, bypass específico, contagem2/3/4,
+fim de frase, uma voz por resposta, espaçamento, ganho inicial, arredondamento,
+limites e substituição. Integrador opt-in ganhou modo <code>subdivisions</code> para
+repetição PCM/contrafactual, além da propagação de álbum. Executados em09/10:
+seed4 teve1 plano/1 extra, RMS de diferença0,00106032; seeds1/3 sem extras
+foram exatamente neutras. Exclusão caixa+chimbal e bypass também passaram.
+PieceInfo expõe planos além de disparos, sem mudança do DSP. Um probe de6
+seeds explicou a falta de cobertura no teste inicial de12 s; o teste aceito
+usa24 s, sem forçar ataques ou densidade. Não exige resposta em toda faixa.
+Álbum2 faixas confirmou flags e correspondência calibração/final; não prova
+audibilidade. Novo app compilado com JUCE9.0.0 fixado; runtime segue aberto.</p>
+<p>Próximo: resolver o fechamento pós-render, concluir smokes/decodificação do
+candidato e escuta em volume equivalente. Presença perceptiva do baixo
+continua uma investigação própria, não resolvida por subdivisões de bateria.
+Polirritmia sincronizada, intensidade manual e agrupamentos permanecem abertos.</p>
+<h2 id="diretriz-musical">Diretriz musical</h2>
+<p>Groove não se reduz a jitter ou a atrasar todos os instrumentos igualmente.
+O instrumento deve relacionar pulso, síncope, acento, duração, silêncio,
+antecipação, sustentação e resposta. Uma frase precisa conservar identidade
+para poder ser reconhecida, contrariada e retomada. A malandragem solicitada
+pelo autor orienta esse jogo entre expectativa e desvio, não uma caricatura
+cultural nem uma categoria de ruído aleatório.</p>
+<p>As culturas musicais, especialmente as afro-diaspóricas, não são redutíveis a
+uma tabela de passos. Jazz, samba, choro, funk e outras práticas devem ter
+pesquisa e crédito próprios quando houver estudo específico; nomes de gênero
+não certificam uma emulação, pertencimento ou competência de performance.</p>
+<h2 id="primeira-coorte-groovedialogue">Primeira coorte: GrooveDialogue</h2>
+<p>Código C++ original do Studio, seis estudos, sem samples, transcrição ou código
+externo incorporado. Não amplia o catálogo legado de sete DrumArchetypes:
+com a experiência ligada, substitui a fonte primária de bumbo/caixa/chimbal
+nos compassos de16 passos. Outros compassos seguem o caminho precedente.
+Outras cinco vozes de percussão e FM ainda não recebem esta nova gramática.</p>
+<table>
+<thead>
+<tr>
+<th>Estudo</th>
+<th>Organização nesta implementação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swing de semicolcheias</td>
+<td>células longo-curto de semicolcheias; deslocamento suavemente menor em BPM alto; não é swing de colcheias do jazz</td>
+</tr>
+<tr>
+<td>Backbeat relaxado</td>
+<td>caixa atrasada em relação ao bumbo, aproximação de caixa mais leve e baixo com outro posicionamento</td>
+</tr>
+<tr>
+<td>Síncope entrelaçada</td>
+<td>ataques em posições fracas, silêncio complementar e baixo com offsets assinados</td>
+</tr>
+<tr>
+<td>3–3–2</td>
+<td>âncora em agrupamento de colcheias3+3+2, acentos distribuídos; não é transcrição de clave</td>
+</tr>
+<tr>
+<td>Acentos deslocados</td>
+<td>posições da caixa deslocadas, contraposição com baixo e acentos distintos</td>
+</tr>
+<tr>
+<td>Resposta quebrada</td>
+<td>célula mais espaçada, resposta leve e condicionada no último compasso da frase</td>
+</tr>
+</tbody>
+</table>
+<p>Seed escolhe uma família inicial. Seções introduzem uma família diferente;
+compassos repetidos conservam essa identidade. A resposta final ocorre em
+parte dos grupos de quatro compassos e depende da densidade; não é fill
+obrigatório. Não há seletor manual de família nem memória entre faixas.</p>
+<p>Baixo recebe TemporalGrooveImprint com acento, duração, ataque e offsets
+próprios. O planner de frase continua decidindo quais notas/pausas existem;
+a experiência não força uma linha contínua. Antecipações reais do baixo usam
+o lookahead existente, com clamps no início/emendas registrados anteriormente.
+Bateria mantém atrasos causais positivos: seus pickups/síncopes são posições
+na grade, não antecipações sub-grade. Lookahead de percussão continua pendente.</p>
+<p>Swing legado não é somado ao novo swing. Para as três vozes primárias, o
+sorteio legado de humanização continua sendo consumido para preservar o fluxo
+RNG, mas seu jitter independente não é aplicado. Gestos de frase, Rasgar,
+relações, elegibilidade e mixagem permanecem ativos; não é isolamento de todas
+as causas do ritmo. Não tenta corrigir aqui a presença tímbrica do baixo.</p>
+<h2 id="uso-e-auditoria">Uso e auditoria</h2>
+<p>Na nova build que contiver esta fonte: ativar EXPRESSIVO e DIREÇÃO MUSICAL,
+selecionar Bateria/Bumbo/Caixa/Chimbal em Incluir e gerar de novo. Incluir é
+elegibilidade, não som contínuo. Com Acid/tuba excluídos, o baixo funcional usa
+core-sub nos planos não silenciosos. Áudios anteriores não são alterados.</p>
+<p><code>PieceConfig</code> e <code>AlbumConfig::grooveDialogueEnabled=false</code> fornecem o
+contrafactual específico. Desligar Direção ou Expressivo também desliga esta
+coorte, mas compara mais camadas. Calibração/final do álbum recebem a mesma
+opção. Ajuda/log são traduzidos nos quatro idiomas, sem controles menores ou
+mudança na geometria do painel.</p>
+<p>WAV/partitura registram versão, família final, compassos por família, mudanças,
+planos de ataques/ghosts e imprints do baixo, além de compassos não suportados.
+Log mostra compassos e planos. Contagens são de planejamento, não prova de
+ataque reproduzido, presença no mix ou groove percebido. Dados do archetype
+legado identificam a fonte selecionada anteriormente; a nova coorte pode
+substituí-la nos compassos suportados. Não deduzir fonte ouvida só desse nome.</p>
+<p>Aceitação: determinismo, limites e bypass; variedade real das seis células;
+contraste no PCM final; peças/álbum com bateria presente; calibração/final;
+escuta em volumes equivalentes para sentir pulso e diálogo. BPM, padrão,
+acento e timbre precisam ser considerados juntos. Ganho, presença do baixo,
+articulação das demais vozes, compasso variável e repertório cultural mais
+profundo continuam como próximas frentes, não tarefas concluídas.</p>
+<h2 id="referencias-e-limites-de-derivacao">Referências e limites de derivação</h2>
+<ul>
+<li>Friberg e Sundström, 2002: <a href="https://www.speech.kth.se/music/performance/Texts/ensemble_swing.htm">Ensemble Swing — KTH</a>.
+  Referência para relações diferentes de timing entre intérpretes; não foram
+  copiadas regressões, exemplos sonoros ou tabelas de execução.</li>
+<li>Naveda, Gouyon, Guedes e Leman, 2011: <a href="https://repositorio.inesctec.pt/server/api/core/bitstreams/06ca3366-5cfb-44a1-8b1d-32550456e1ac/content">Microtiming Patterns and Interactions
+  with Musical Properties in Samba Music — INESC</a>.
+  Fundamenta pesquisa futura multidimensional de timing, intensidade e
+  registro; a coorte atual não reproduz os microtimings medidos do samba.</li>
+<li>Witek et al., 2014: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094446">Syncopation, Body-Movement and Pleasure in Groove Music</a>.
+  Referência sobre síncope e experiência corporal; não garante prazer em uma
+  saída do Studio nem define um nível universal de complexidade desejável.</li>
+<li>Datseris et al., 2019: <a href="https://arxiv.org/abs/1904.03442">Does it Swing?</a>.
+  Motiva cautela com a ideia de que mais desvios necessariamente melhoram
+  swing. Os limites locais são escolhas autorais, não parâmetros validados
+  por esse estudo ou uma simulação da execução dos participantes.</li>
+</ul>
+<p>Pesquisa online de08/10/2026. PDFs/áudios externos não foram incorporados nem
+redistribuídos; nenhum motor de outro instrumento RASGO foi alterado.</p></main></body></html>

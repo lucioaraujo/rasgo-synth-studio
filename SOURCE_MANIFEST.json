@@ -1,0 +1,1893 @@
+{
+  "schema": 1,
+  "kind": "Studio-only public source export, not release approval",
+  "date": "2026-10-14",
+  "author": "Lucio de Araujo",
+  "history": "Private monorepository history intentionally not exported",
+  "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
+  "files": [
+    {
+      "path": ".github/workflows/package-linux.yml",
+      "source": ".github/workflows/package-linux.yml",
+      "sha256": "ad623cc18a86a4f12a5e3eed7aec431920b617426e09434475d4e2fd4d67776d"
+    },
+    {
+      "path": ".github/workflows/package-native.yml",
+      "source": ".github/workflows/package-native.yml",
+      "sha256": "79995c50c0408708d1ef63e468c7c0d708b01212ed2c8ec5eff1fd7b60ef7be3"
+    },
+    {
+      "path": ".gitignore",
+      "source": "packaging/public/gitignore",
+      "sha256": "b8cf33a8e02159e6bfef8ef9570307345b390a8db5713228e4c999d84fb690ff"
+    },
+    {
+      "path": "CREDITS.md",
+      "source": "CREDITS.md",
+      "sha256": "08c2772217d6a27630d3febcad492afa3124203d04f9d242c6fa25999bb9d1d0"
+    },
+    {
+      "path": "DEPENDENCIES.md",
+      "source": "packaging/public/DEPENDENCIES.md",
+      "sha256": "343a342da3721f1ca875389d4ee09cc8fdff33c27d12524800ffd723c7d16a63"
+    },
+    {
+      "path": "INSTALL.md",
+      "source": "INSTALL.md",
+      "sha256": "7561891c5daea48bb56ed32d653e2851b44d6b2c270644241ea33f5226c322d6"
+    },
+    {
+      "path": "LICENSE",
+      "source": "LICENSE",
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "README.md",
+      "source": "packaging/public/README.md",
+      "sha256": "2ab2e6fda33a07cf76b30f17e68e3a675551e418c8226f051adefda97b73229b"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "source": "THIRD_PARTY_NOTICES.md",
+      "sha256": "15f6415381bd4c04c52c32e024fee828a253a8eb15bda48886ff09239c8bdd3e"
+    },
+    {
+      "path": "docs/GROOVE_RHYTHM.md",
+      "source": "docs/GROOVE_RHYTHM.md",
+      "sha256": "965a8f263312379461be8b19746302eccb347f64b547f63d749427a40a49ef67"
+    },
+    {
+      "path": "docs/en/Arquitetura_Fluxograma.md",
+      "source": "docs/en/Arquitetura_Fluxograma.md",
+      "sha256": "78fc8c701c59ef85e0a7a852cc7e369c73254ee703e866e82d29d7a23ae7f2cb"
+    },
+    {
+      "path": "docs/en/Documento_de_Referencia.md",
+      "source": "docs/en/Documento_de_Referencia.md",
+      "sha256": "9b8b2101564e0e62fa09ddb85ffb94ef76bfe98a3043c1b04d7d880e25452878"
+    },
+    {
+      "path": "docs/en/Instrument_Overview.md",
+      "source": "docs/en/Instrument_Overview.md",
+      "sha256": "293f1309415ded34026d280aa5ccc048a7ed7b37435507fd95bf3d0096795193"
+    },
+    {
+      "path": "docs/en/Manifesto.md",
+      "source": "docs/en/Manifesto.md",
+      "sha256": "73aa0493fb2ac8126f9c1f5d39d0690ab13746c7652e8b3b0aca9af05ec6ff85"
+    },
+    {
+      "path": "docs/en/manual.md",
+      "source": "docs/en/manual.md",
+      "sha256": "2062ca08dfb064e7a320e44c658624c30cce40b8c0ba031e57b1a020acc061f6"
+    },
+    {
+      "path": "docs/es/Arquitetura_Fluxograma.md",
+      "source": "docs/es/Arquitetura_Fluxograma.md",
+      "sha256": "38a11c7bb77876f4c4d67709a8edc6d60d4a902bb90aca82de0dca84a775903f"
+    },
+    {
+      "path": "docs/es/Documento_de_Referencia.md",
+      "source": "docs/es/Documento_de_Referencia.md",
+      "sha256": "a9b04eef58dcce1c853839fab0a61500bb32a435b55c91c3b438bfcaca97acc2"
+    },
+    {
+      "path": "docs/es/Instrumento_Integral.md",
+      "source": "docs/es/Instrumento_Integral.md",
+      "sha256": "116383f8588d4611fd8ca91073dc47902dd938c8e1252b6c151ca931fd82fb68"
+    },
+    {
+      "path": "docs/es/Manifesto.md",
+      "source": "docs/es/Manifesto.md",
+      "sha256": "7ab7da47375438d269ec0bffdf8f6af155366bac62a41e142ae463e1ed9abb28"
+    },
+    {
+      "path": "docs/es/manual.md",
+      "source": "docs/es/manual.md",
+      "sha256": "237452918b734343ac73d31d62ceb773f4b7420601e8b14f1551fb98105d8ab7"
+    },
+    {
+      "path": "docs/fr/Arquitetura_Fluxograma.md",
+      "source": "docs/fr/Arquitetura_Fluxograma.md",
+      "sha256": "b6bed4897bcd3ef8da5e84a33955f9d2fb1b91b1b4eeb65da3ae7b8425d7aa7e"
+    },
+    {
+      "path": "docs/fr/Documento_de_Referencia.md",
+      "source": "docs/fr/Documento_de_Referencia.md",
+      "sha256": "72479479fa889fa63e894228e6c98ebfb4687d9ef381fe74a511ec6fa717f9ba"
+    },
+    {
+      "path": "docs/fr/Instrument_Integral.md",
+      "source": "docs/fr/Instrument_Integral.md",
+      "sha256": "0c23e17d1001488c2005195f3bdf87b254f49475fba5d01b3f9ebf27a22e6c56"
+    },
+    {
+      "path": "docs/fr/Manifesto.md",
+      "source": "docs/fr/Manifesto.md",
+      "sha256": "96ad0d16d0796200e58c77f6632daf14a89fbbff3d7da4a839d9634c0cf57941"
+    },
+    {
+      "path": "docs/fr/manual.md",
+      "source": "docs/fr/manual.md",
+      "sha256": "64671d0eea28d4f25f34d48856f29b009f779ac064e5916e17d793e24fdba963"
+    },
+    {
+      "path": "docs/pt/Arquitetura_Fluxograma.md",
+      "source": "docs/pt/Arquitetura_Fluxograma.md",
+      "sha256": "8fb7f2754d9daf42fcdfee5e8d59ab50c4d1d72761492e69558b92212e61a267"
+    },
+    {
+      "path": "docs/pt/Documento_de_Referencia.md",
+      "source": "docs/pt/Documento_de_Referencia.md",
+      "sha256": "33133407cbdd577ca94b655a04a48f061fabdd7bd7372a60c84c6f33fd75ddf3"
+    },
+    {
+      "path": "docs/pt/Instrumento_Integral.md",
+      "source": "docs/pt/Instrumento_Integral.md",
+      "sha256": "d915a75e0710c48f026e0d5de4c248e1d9d8fc1f169b84e6beaf4fbf9269f130"
+    },
+    {
+      "path": "docs/pt/Manifesto.md",
+      "source": "docs/pt/Manifesto.md",
+      "sha256": "00d46f0545128f5c11e4a66bba8c35571857bcaacdd8a49650e9795f65964eed"
+    },
+    {
+      "path": "docs/pt/_catalogo_mecanismos.md",
+      "source": "docs/pt/_catalogo_mecanismos.md",
+      "sha256": "0f283a06243221034e1ab17dcdf5c196432519fa6b5389ce0b31b1ac96240769"
+    },
+    {
+      "path": "docs/pt/manual.md",
+      "source": "docs/pt/manual.md",
+      "sha256": "5569880f11709d648018574bd1b999c83cb5caf92c99963af3797e51162750ee"
+    },
+    {
+      "path": "packaging/PORTABILIDADE.md",
+      "source": "packaging/PORTABILIDADE.md",
+      "sha256": "c5962773ca33ca1371b2e49bed7ae6ab367b4b8b8fb57b0b413aef3a84b5bbaf"
+    },
+    {
+      "path": "packaging/cmake/InstallStudio.cmake",
+      "source": "packaging/cmake/InstallStudio.cmake",
+      "sha256": "e2ff163b44dd676ef2443dff047869bb79b565d5e73daa6646b14ac50893ac83"
+    },
+    {
+      "path": "packaging/cmake/PackagePolicy.cmake",
+      "source": "packaging/cmake/PackagePolicy.cmake",
+      "sha256": "7a5100bd110e32e385b962725360931e519780655ec5609b27624ca03042e768"
+    },
+    {
+      "path": "packaging/linux/README.md",
+      "source": "packaging/linux/README.md",
+      "sha256": "b4789d1dceb71fc56deda6b93829dd32fef005f263f04a217bfc0cd9f708260c"
+    },
+    {
+      "path": "packaging/linux/empacotar.sh",
+      "source": "packaging/linux/empacotar.sh",
+      "sha256": "7806b99d7cf7d284b3d56e63f8bb04a20e87f31c2eac34c5a25180d509637d2d"
+    },
+    {
+      "path": "packaging/linux/install.sh",
+      "source": "packaging/linux/install.sh",
+      "sha256": "fbc22ade0376f0a3e114db1b9d93f8802fd0178bc9df16a8d1588f446ef2b8d9"
+    },
+    {
+      "path": "packaging/linux/install_studio.py",
+      "source": "packaging/linux/install_studio.py",
+      "sha256": "6dd7c6fdcd25be2d5620e3fe1bffc8ba86d961ae05ffa768e2dc9a705f11b7eb"
+    },
+    {
+      "path": "packaging/linux/no-ubuntu-isolado.sh",
+      "source": "packaging/linux/no-ubuntu-isolado.sh",
+      "sha256": "fa8bb73cfe4c07588dfe679c0bbcdb49cfc022f88e596b41450caeba9aec5aa7"
+    },
+    {
+      "path": "packaging/linux/preparar-build.sh",
+      "source": "packaging/linux/preparar-build.sh",
+      "sha256": "d57070178d306f864b5badfc882f33fd247ec65beec082da5be6a373ea5b217d"
+    },
+    {
+      "path": "packaging/linux/rasgo-synth-studio.desktop",
+      "source": "packaging/linux/rasgo-synth-studio.desktop",
+      "sha256": "57484ac74bb8237085e70b0c069759059ff7cfb4b39d0f44973338361e86ea1b"
+    },
+    {
+      "path": "packaging/linux/run",
+      "source": "packaging/linux/run",
+      "sha256": "e12fc2ce9de286c39eb3f32d319ae3d795574af729e9302789a31d0f6ddd5064"
+    },
+    {
+      "path": "packaging/public/DEPENDENCIES.md",
+      "source": "packaging/public/DEPENDENCIES.md",
+      "sha256": "343a342da3721f1ca875389d4ee09cc8fdff33c27d12524800ffd723c7d16a63"
+    },
+    {
+      "path": "packaging/public/README.md",
+      "source": "packaging/public/README.md",
+      "sha256": "2ab2e6fda33a07cf76b30f17e68e3a675551e418c8226f051adefda97b73229b"
+    },
+    {
+      "path": "packaging/public/gitignore",
+      "source": "packaging/public/gitignore",
+      "sha256": "b8cf33a8e02159e6bfef8ef9570307345b390a8db5713228e4c999d84fb690ff"
+    },
+    {
+      "path": "rasgo-synth-app/CMakeLists.txt",
+      "source": "rasgo-synth-app/CMakeLists.txt",
+      "sha256": "5ba04fb8b776f5ec12876a9a7c652f74198555a1490018aa35aaabd6e0013e90"
+    },
+    {
+      "path": "rasgo-synth-app/assets/README.md",
+      "source": "rasgo-synth-app/assets/README.md",
+      "sha256": "db34de9fc0296d8e9c5b330593e8c951a41a9fc8f4e3df277be61b8c578278e3"
+    },
+    {
+      "path": "rasgo-synth-app/assets/Screenshot from 2026-08-01 03-29-34_b.png",
+      "source": "rasgo-synth-app/assets/Screenshot from 2026-08-01 03-29-34_b.png",
+      "sha256": "bd8ef386311d7a2657073df57cc7e8b3b0fc88640d340e58828a2c230c740a97"
+    },
+    {
+      "path": "rasgo-synth-app/assets/fonts/BigShouldersDisplay.ttf",
+      "source": "rasgo-synth-app/assets/fonts/BigShouldersDisplay.ttf",
+      "sha256": "60e208dc276a1c35fc5b62e94f9fb959c40c11783a9eb7548175c14b1fbeb720"
+    },
+    {
+      "path": "rasgo-synth-app/assets/fonts/IBMPlexMono-Bold.ttf",
+      "source": "rasgo-synth-app/assets/fonts/IBMPlexMono-Bold.ttf",
+      "sha256": "ac27abd6450a64dd94467580a02fe6235156d5b92f2926ebbc8e7489df64e0be"
+    },
+    {
+      "path": "rasgo-synth-app/assets/fonts/IBMPlexMono-Regular.ttf",
+      "source": "rasgo-synth-app/assets/fonts/IBMPlexMono-Regular.ttf",
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+    },
+    {
+      "path": "rasgo-synth-app/assets/fonts/LICENSE-BigShoulders.txt",
+      "source": "rasgo-synth-app/assets/fonts/LICENSE-BigShoulders.txt",
+      "sha256": "82158452b52209e77b79e60bf3c4f8570db48cfe29a2abef8de2a7d8c3ded2d0"
+    },
+    {
+      "path": "rasgo-synth-app/assets/fonts/LICENSE-IBMPlexMono.txt",
+      "source": "rasgo-synth-app/assets/fonts/LICENSE-IBMPlexMono.txt",
+      "sha256": "89e95c1a000f9f39696bb714e9404f69672ac741841ee69a5a31a7a407b94e5d"
+    },
+    {
+      "path": "rasgo-synth-app/assets/rasgo_logo_2026.svg",
+      "source": "rasgo-synth-app/assets/rasgo_logo_2026.svg",
+      "sha256": "b600ed690d6475cd202984669c55c7451bfac7aa83b056da2a0391d3e0ab58a6"
+    },
+    {
+      "path": "rasgo-synth-app/build_app.sh",
+      "source": "rasgo-synth-app/build_app.sh",
+      "sha256": "b156c89fc10c7d2e29bb78ed76c494c788e9e62f14a9af1b5278325bc5a04937"
+    },
+    {
+      "path": "rasgo-synth-app/build_juce_minimal.sh",
+      "source": "rasgo-synth-app/build_juce_minimal.sh",
+      "sha256": "f8f56050494f7b53672a74d11c1f84a89e903210796954dba68c72a5fa8075d5"
+    },
+    {
+      "path": "rasgo-synth-app/src/AccentComposition.h",
+      "source": "rasgo-synth-app/src/AccentComposition.h",
+      "sha256": "f56ccb5a72d899b8085ae1452a6e374e8ead1d32ae18d93023db7ebbd38d9469"
+    },
+    {
+      "path": "rasgo-synth-app/src/AccentedTextEditor.h",
+      "source": "rasgo-synth-app/src/AccentedTextEditor.h",
+      "sha256": "023826f6013f45e57ede26537bb6604786b4e29ba92a522720ed4633713cb9a0"
+    },
+    {
+      "path": "rasgo-synth-app/src/ActionBarLayout.h",
+      "source": "rasgo-synth-app/src/ActionBarLayout.h",
+      "sha256": "6920ece22e7616fde6c92850d7b4bcb104a9c65c0676f9697502d9a0b9208cee"
+    },
+    {
+      "path": "rasgo-synth-app/src/AlbumSettingsPanel.h",
+      "source": "rasgo-synth-app/src/AlbumSettingsPanel.h",
+      "sha256": "9c7c052f1d4343f6a6ca8b8f638a2c74e0e196f72ceb8fc95be074e71a2bf57a"
+    },
+    {
+      "path": "rasgo-synth-app/src/AppVersion.h",
+      "source": "rasgo-synth-app/src/AppVersion.h",
+      "sha256": "c9f14483f28453ff4edefd8bb28c14b7610752627fcfc231196ea8f1e3f35250"
+    },
+    {
+      "path": "rasgo-synth-app/src/ArcTimelineView.h",
+      "source": "rasgo-synth-app/src/ArcTimelineView.h",
+      "sha256": "bfe918732db9948292f7aef77f7a8f549b3c060bb1be718401533337c170ce3c"
+    },
+    {
+      "path": "rasgo-synth-app/src/BitGridView.h",
+      "source": "rasgo-synth-app/src/BitGridView.h",
+      "sha256": "8a96a0108273b111c3b55cdd6bf55ee5ad93a026e1dba9dec2cbda8e7a2d2a5e"
+    },
+    {
+      "path": "rasgo-synth-app/src/BufferPlaybackSource.h",
+      "source": "rasgo-synth-app/src/BufferPlaybackSource.h",
+      "sha256": "6e6cdef07452e790937df465f5863f37a022166c67dd624227fd4a3d042197c6"
+    },
+    {
+      "path": "rasgo-synth-app/src/ConsoleRedirect.h",
+      "source": "rasgo-synth-app/src/ConsoleRedirect.h",
+      "sha256": "091fd98215ee4d668aa1743214da5969e0f48f3177f36d0836e4f9ae4bb34045"
+    },
+    {
+      "path": "rasgo-synth-app/src/GameWeightsView.h",
+      "source": "rasgo-synth-app/src/GameWeightsView.h",
+      "sha256": "d99b505b24b21390cb60f9913449d659335bdb6760dd6f6a5a4ae02b6aa14919"
+    },
+    {
+      "path": "rasgo-synth-app/src/GenealogyView.h",
+      "source": "rasgo-synth-app/src/GenealogyView.h",
+      "sha256": "e7c163066a4ce8a5af08ce1a5c465007ac9cb447f315fddb33c4e80fd2f0c562"
+    },
+    {
+      "path": "rasgo-synth-app/src/GoniometerView.h",
+      "source": "rasgo-synth-app/src/GoniometerView.h",
+      "sha256": "a877326b5c27682170c3a18cbbbb7b865feda54248908414a032110185480b04"
+    },
+    {
+      "path": "rasgo-synth-app/src/GranulationView.h",
+      "source": "rasgo-synth-app/src/GranulationView.h",
+      "sha256": "19718eb39e1658e35bb1b8a097f320d1091d02883c40cbbdcd2a305b638c6ead"
+    },
+    {
+      "path": "rasgo-synth-app/src/LevelMetersView.h",
+      "source": "rasgo-synth-app/src/LevelMetersView.h",
+      "sha256": "8fcd5e2406e41767fb4dde11495e8cc4cb973f2993988495b64f169b32c32237"
+    },
+    {
+      "path": "rasgo-synth-app/src/LinuxKeyboardSymbols.cpp",
+      "source": "rasgo-synth-app/src/LinuxKeyboardSymbols.cpp",
+      "sha256": "20ca28afeb534a4edc97351eab9a6627fe19d6daf896b61dfa1ed83dd2d4752e"
+    },
+    {
+      "path": "rasgo-synth-app/src/LinuxKeyboardSymbols.h",
+      "source": "rasgo-synth-app/src/LinuxKeyboardSymbols.h",
+      "sha256": "a0d5c96ea151d6394459543cefafcecad4b9f3820d2aecf47a07b15c01df3db0"
+    },
+    {
+      "path": "rasgo-synth-app/src/Main.cpp",
+      "source": "rasgo-synth-app/src/Main.cpp",
+      "sha256": "15b4894c0e6b2651ac3615bbcfd8ead0ba154344a134be27dfa47d2d329009ac"
+    },
+    {
+      "path": "rasgo-synth-app/src/MainComponent.h",
+      "source": "rasgo-synth-app/src/MainComponent.h",
+      "sha256": "aedfa2a3b87370db8e9052c0b5fc9a37bae8ab3c71977597fe25eacd65fcde94"
+    },
+    {
+      "path": "rasgo-synth-app/src/ModulePanelView.h",
+      "source": "rasgo-synth-app/src/ModulePanelView.h",
+      "sha256": "70ff9b4e27b5804afa2e4e33593b04c93332a516ef541f805645a72e1df45337"
+    },
+    {
+      "path": "rasgo-synth-app/src/ModuleSelectionPanel.h",
+      "source": "rasgo-synth-app/src/ModuleSelectionPanel.h",
+      "sha256": "7f33beec475a2e5f9344c3c77e529314444065a642e85fd90acc4c8c435c6000"
+    },
+    {
+      "path": "rasgo-synth-app/src/OscilloscopeView.h",
+      "source": "rasgo-synth-app/src/OscilloscopeView.h",
+      "sha256": "eaea6719268b8f7c2a837db6fce1d2b6cb3e77e58fff004992f494ec61669a60"
+    },
+    {
+      "path": "rasgo-synth-app/src/PhasePortraitView.h",
+      "source": "rasgo-synth-app/src/PhasePortraitView.h",
+      "sha256": "3ad6ee1b03119ed8567d06256beb7437187cc244998f4b6d6fc6348260c075a4"
+    },
+    {
+      "path": "rasgo-synth-app/src/RasgoLookAndFeel.h",
+      "source": "rasgo-synth-app/src/RasgoLookAndFeel.h",
+      "sha256": "a63298288ed0425660ff4b148d8eda6b04518a926433d409fc4cfdc78c28184d"
+    },
+    {
+      "path": "rasgo-synth-app/src/RasgoPaths.h",
+      "source": "rasgo-synth-app/src/RasgoPaths.h",
+      "sha256": "9ddd747f22000689db614901c4b275eb878e0298301ab6fdf13bc70dd8f3456b"
+    },
+    {
+      "path": "rasgo-synth-app/src/RenderActivity.h",
+      "source": "rasgo-synth-app/src/RenderActivity.h",
+      "sha256": "953ed3f4a5b9e27ec506681a3b5aa19a628daec663788546b85cd545e8dd6a26"
+    },
+    {
+      "path": "rasgo-synth-app/src/RenderSession.h",
+      "source": "rasgo-synth-app/src/RenderSession.h",
+      "sha256": "f2b838c94c62014c43561a3ade9f3603e6cf87721a655d9c71c2cd45301c9609"
+    },
+    {
+      "path": "rasgo-synth-app/src/RenderTask.h",
+      "source": "rasgo-synth-app/src/RenderTask.h",
+      "sha256": "a99ed47578ca65b7d5cca15c2c682b2ddcdcd7077fac4398d8e267e8ee48ffe9"
+    },
+    {
+      "path": "rasgo-synth-app/src/SpectrogramView.h",
+      "source": "rasgo-synth-app/src/SpectrogramView.h",
+      "sha256": "c20a1b88de67d6fabeb9111f67baa02ddf1fa697fc8c9b25937b835087af48b3"
+    },
+    {
+      "path": "rasgo-synth-app/src/SpectrumView.h",
+      "source": "rasgo-synth-app/src/SpectrumView.h",
+      "sha256": "c699518c86d859978e20fd05eea37978d3a192ec10461c94d7a30b55a6e46c9c"
+    },
+    {
+      "path": "rasgo-synth-app/src/StudioLayoutBudget.h",
+      "source": "rasgo-synth-app/src/StudioLayoutBudget.h",
+      "sha256": "4c1a20628e037d82d8835228d04cbb9b0316464af8a2b243f559285f7e804e5d"
+    },
+    {
+      "path": "rasgo-synth-app/src/UiLanguage.h",
+      "source": "rasgo-synth-app/src/UiLanguage.h",
+      "sha256": "cdb192d9fd9d1193f6ce71521b8454891924d07efc9af4755b256ee9b3e4c393"
+    },
+    {
+      "path": "rasgo-synth-app/src/ViewportLayout.h",
+      "source": "rasgo-synth-app/src/ViewportLayout.h",
+      "sha256": "6aec867a2ced8dc3af3a00b6ece684206b50d072f792395b604248e5275b5ab7"
+    },
+    {
+      "path": "rasgo-synth-app/src/WaveformView.h",
+      "source": "rasgo-synth-app/src/WaveformView.h",
+      "sha256": "a01e3eb1b89580d214f5f7f8f370c6d15b24a045a46e57b838948173c017c6f4"
+    },
+    {
+      "path": "rasgo-synth-app/src/test_accent_composition.cpp",
+      "source": "rasgo-synth-app/src/test_accent_composition.cpp",
+      "sha256": "af4fa84f994dc4d4e7b87f97d8f4ed7e04c3aa3005da91eaafa24e972d279c57"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_action_bar_layout.cpp",
+      "source": "rasgo-synth-app/tests/test_action_bar_layout.cpp",
+      "sha256": "05eb1d8b2cf7ed7551b4ceb97f3fd9b31325c72f69c30a7df8edd82ad14a62eb"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_console_redirect.cpp",
+      "source": "rasgo-synth-app/tests/test_console_redirect.cpp",
+      "sha256": "1f1f902d36fcf977a7ea9276b89b359affe137c8b629d33e9ba6c1915752fc68"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_image_codecs.c",
+      "source": "rasgo-synth-app/tests/test_image_codecs.c",
+      "sha256": "93c29feb6bf5a51cfb6ab9728cbdca5690111500813eb3021f47325c4e8dbd82"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_render_activity.cpp",
+      "source": "rasgo-synth-app/tests/test_render_activity.cpp",
+      "sha256": "8c55a50d977cb1729bed6f8ab4f9ecad27e8f505c2b3f1c80c446ea19da4e735"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_render_session.cpp",
+      "source": "rasgo-synth-app/tests/test_render_session.cpp",
+      "sha256": "6b48bfad87d6df0d1682da8281299cc7325642bb61676dd1ff2698e88bdc372a"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_render_task.cpp",
+      "source": "rasgo-synth-app/tests/test_render_task.cpp",
+      "sha256": "b2869361f1ac4c552da4477165046f1d3a983f5d79e29b8e381d7adc3931410a"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_studio_layout_budget.cpp",
+      "source": "rasgo-synth-app/tests/test_studio_layout_budget.cpp",
+      "sha256": "173bec2c0d4e7705bb6b1b68c590449d509958302c8b49de04bbecc3e8026ff4"
+    },
+    {
+      "path": "rasgo-synth-app/tests/test_viewport_layout.cpp",
+      "source": "rasgo-synth-app/tests/test_viewport_layout.cpp",
+      "sha256": "d141fb81e5d4531bb0c287767397595dc2eaf3cbf9f2c2595c550c1a50ef8512"
+    },
+    {
+      "path": "rasgo-synth-core/CMakeLists.txt",
+      "source": "rasgo-synth-core/CMakeLists.txt",
+      "sha256": "a2d33015a62122fb3df4958c6c95627995fa0020d9660c076415290c610b9250"
+    },
+    {
+      "path": "rasgo-synth-core/LICENSE",
+      "source": "rasgo-synth-core/LICENSE",
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/album_demo.cpp",
+      "source": "rasgo-synth-core/src/demo/album_demo.cpp",
+      "sha256": "2f2d6a7d56b3a1da6d7ccdd727e032829ba3073ea1442fffefe0b7695c205b12"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/circuits_demo.cpp",
+      "source": "rasgo-synth-core/src/demo/circuits_demo.cpp",
+      "sha256": "75a3391aaeecba7f60bc64f9b57b90247848577658b904e32b8fc82d410ca5d8"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/integrated_piece_demo.cpp",
+      "source": "rasgo-synth-core/src/demo/integrated_piece_demo.cpp",
+      "sha256": "58bd8048eddc8575ab6e5bfdff7c4d73ae967726bf6e25409342e0f714dd1dec"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/main.cpp",
+      "source": "rasgo-synth-core/src/demo/main.cpp",
+      "sha256": "9ee46fdcc24b5159e6c911dc83359e5304b79ced65e914f2f91f804919e2f5f1"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/mashup_demo.cpp",
+      "source": "rasgo-synth-core/src/demo/mashup_demo.cpp",
+      "sha256": "ad1a6b282e35e9616a3b6b5c49ba35fdc29080234971a9e6b808629b4bfa5f54"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/sequencer_main.cpp",
+      "source": "rasgo-synth-core/src/demo/sequencer_main.cpp",
+      "sha256": "ddd9b290da9fc683a84b89da24f304c6f5113db1062d864eadc2249cf091e1f3"
+    },
+    {
+      "path": "rasgo-synth-core/src/demo/waveshaping_demo.cpp",
+      "source": "rasgo-synth-core/src/demo/waveshaping_demo.cpp",
+      "sha256": "099ba91dbbea8c1648a35160def9e8085295358b5428cca0078e8d26d91c80e6"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/AY8910Chip.hpp",
+      "source": "rasgo-synth-core/src/dsp/AY8910Chip.hpp",
+      "sha256": "b03986bcb23240a78cf1996f7e340bde5da254f008a8f5b7bf7708b02ef564ca"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/AcidBasslineVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/AcidBasslineVoice.hpp",
+      "sha256": "a608924a1b4cfb0dd724e5dabbe968a1b4c7346a3ccc95959986dd4f59eb9229"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ApocryphalTear.hpp",
+      "source": "rasgo-synth-core/src/dsp/ApocryphalTear.hpp",
+      "sha256": "3de87dc9356ae45fd9fc7d06c49f55d597f939942cc32756ce9446fa5de4a76a"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/AtariPunkConsole.hpp",
+      "source": "rasgo-synth-core/src/dsp/AtariPunkConsole.hpp",
+      "sha256": "fa54ea364e64a425e45409267bf3f6638e1d29738aebf71129972c9d80cc7d48"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/AtropeloEnsemble.hpp",
+      "source": "rasgo-synth-core/src/dsp/AtropeloEnsemble.hpp",
+      "sha256": "dc959ec486745d5256a2c4970552bffcc8b6985cc8fdc9813dc11104b2ccb7b2"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/AtropeloPhrasePool.hpp",
+      "source": "rasgo-synth-core/src/dsp/AtropeloPhrasePool.hpp",
+      "sha256": "b6aa834bd8accbdbe0d14446c5461053d70fb41a4e10f7212849919f4f770ceb"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/AtropeloVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/AtropeloVoice.hpp",
+      "sha256": "5de4ba9e7b8b89179eecee2e555150790839387fad6177ba2247dc4e9c4d1fc0"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/BassPhraseTimbre.hpp",
+      "source": "rasgo-synth-core/src/dsp/BassPhraseTimbre.hpp",
+      "sha256": "0f055acfb9305518e48471b7c40d24741d5b291450e801bddf582d24539d6d2d"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/BernoulliGate.hpp",
+      "source": "rasgo-synth-core/src/dsp/BernoulliGate.hpp",
+      "sha256": "a9f1c62869fc64e6126e56be3170b4352a610ed0acce85ec21116e6951fc9974"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/BreathExciter.hpp",
+      "source": "rasgo-synth-core/src/dsp/BreathExciter.hpp",
+      "sha256": "794e9eaf88e4a8848ac0c1b176c2593fc60b488b8f99da6d2d36cc4320dedf48"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/BuchlaRandomSource.hpp",
+      "source": "rasgo-synth-core/src/dsp/BuchlaRandomSource.hpp",
+      "sha256": "065f4e761c8e8788edc79a0027d87e0fbe73c1a5052008e33866266a57d05d0f"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ChaosMaps.hpp",
+      "source": "rasgo-synth-core/src/dsp/ChaosMaps.hpp",
+      "sha256": "08b295906ea87374e2273fbfd5e3029021716a4b9383424a49d7a4b7b85d2f93"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ChoirEnsemble.hpp",
+      "source": "rasgo-synth-core/src/dsp/ChoirEnsemble.hpp",
+      "sha256": "e6a99c8ecb8fc5bf2b57851a0e77eb764b4a7957ae6a4e24d9e451dad581dba3"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ColoredNoise.hpp",
+      "source": "rasgo-synth-core/src/dsp/ColoredNoise.hpp",
+      "sha256": "c0a9e5335fa5aaa15b2b9caf37cd6d57c34e36bf5adbeed91737487668d5cd00"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/DcBlocker.hpp",
+      "source": "rasgo-synth-core/src/dsp/DcBlocker.hpp",
+      "sha256": "74a1b7a5d20265f7bab21ad3cd7ed2c7b33f867cc76bfbbf71cafd0f272318a2"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/DejaVuVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/DejaVuVoice.hpp",
+      "sha256": "e37fca4fe259674806e95aa064a1a8baefe9382a7b0f1a5ac71df5e93ebe5a60"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/DeliveryPeakGuard.hpp",
+      "source": "rasgo-synth-core/src/dsp/DeliveryPeakGuard.hpp",
+      "sha256": "db4b217b5f0104c873215b90fc72993c32087237726669a4bfbb4d4dafad4ce5"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/DiodeShaper.hpp",
+      "source": "rasgo-synth-core/src/dsp/DiodeShaper.hpp",
+      "sha256": "bfec33124e55ed2bb184bf045bfc001f7d1c5a402b03fbb5db6f17cd80761aa9"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/DissonanceTreatment.hpp",
+      "source": "rasgo-synth-core/src/dsp/DissonanceTreatment.hpp",
+      "sha256": "802907e0c3eb8e2c3367b557796dc1e4d17dfbed4229dd7f00005d828afdb372"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/DrumVoices.hpp",
+      "source": "rasgo-synth-core/src/dsp/DrumVoices.hpp",
+      "sha256": "8d663ca3cdce6ce2e09c9cca2eba83850e14ac812e79bfda86b5bf1f7090271f"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/Effects.hpp",
+      "source": "rasgo-synth-core/src/dsp/Effects.hpp",
+      "sha256": "cd377b7ad2bddd3395201fc9ef6d4d2795cc8d974a9ead3a513d3c36edceec5f"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/Envelope.hpp",
+      "source": "rasgo-synth-core/src/dsp/Envelope.hpp",
+      "sha256": "ca1c9300ae0bd8727ee5c18c3a0054d67072cdfa82333513c33b7ea810693014"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/EnvelopeLoopPulse.hpp",
+      "source": "rasgo-synth-core/src/dsp/EnvelopeLoopPulse.hpp",
+      "sha256": "39dc847273ed1afcb1a7b7de8804b0209c3e4fc5bc1bd403640b73a4e48fa9b9"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/EnvelopeOscillator.hpp",
+      "source": "rasgo-synth-core/src/dsp/EnvelopeOscillator.hpp",
+      "sha256": "5c6db0ad907806d76c51f3b05fb7f55296bf47983fb03ad8e5253922e0944467"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/FixedPointOverflow.hpp",
+      "source": "rasgo-synth-core/src/dsp/FixedPointOverflow.hpp",
+      "sha256": "88fdf2b8fa16e0fb93f9f8d1856593190c2573f6ffacebb7c4a6a9257125cf6f"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/FmFluteVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/FmFluteVoice.hpp",
+      "sha256": "9f8247fc5db3b6535fb57cee5c04664d065e21338526da0c24224fdf7123386c"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/FootnotePluck.hpp",
+      "source": "rasgo-synth-core/src/dsp/FootnotePluck.hpp",
+      "sha256": "c5f61313f5a122a437a4560a5e793ed4904f108dd5b3c572d14efc455976148b"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/FractureFolder.hpp",
+      "source": "rasgo-synth-core/src/dsp/FractureFolder.hpp",
+      "sha256": "9be678f968f3d49a9dfe1a35d0eb65fc23eec2f10b30bdd124f031ddb255a9e0"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/GaloVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/GaloVoice.hpp",
+      "sha256": "84aea1857c227b0022c2a53d3f0a607e7071bc95b41b53f79e273f7e770c414a"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/GendynOscillator.hpp",
+      "source": "rasgo-synth-core/src/dsp/GendynOscillator.hpp",
+      "sha256": "228c3de2e707fd40f5a75e93753fb4630e8a099a69fd77db144a39f7c46f1b06"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/GrainyNoise.hpp",
+      "source": "rasgo-synth-core/src/dsp/GrainyNoise.hpp",
+      "sha256": "37c467f026029fee0386040db5ba740ec617fcdb804d5dc2ad0fc9079bae76d3"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/GranularCloud.hpp",
+      "source": "rasgo-synth-core/src/dsp/GranularCloud.hpp",
+      "sha256": "4da04cf05916dc75666f2f0db6eb06efeef3307423e3a5d95264d10d0e20d8a8"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/HardSyncVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/HardSyncVoice.hpp",
+      "sha256": "4e2b6e7b5a0b5f0d6c297a9800618093e2e444f1fbad214d34c216f43e6dddba"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/KSRandomizerCore.hpp",
+      "source": "rasgo-synth-core/src/dsp/KSRandomizerCore.hpp",
+      "sha256": "a17e8dbcc719a3554a863b8f888e04335a209062746340a56191fe026f68f291"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/LagProcessor.hpp",
+      "source": "rasgo-synth-core/src/dsp/LagProcessor.hpp",
+      "sha256": "ad50feaf9dd8cefb57029f085459b1a221bc74be9202fcca85369da96c9615e3"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/LeibnizRectifier.hpp",
+      "source": "rasgo-synth-core/src/dsp/LeibnizRectifier.hpp",
+      "sha256": "7fe68363bc44e4af65b0d21d4fcc29aafbd1274d26501f6b519687416923eb8e"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/LfoBank.hpp",
+      "source": "rasgo-synth-core/src/dsp/LfoBank.hpp",
+      "sha256": "324b737587c71f1bc9892cf9b92b4db5d1a7bed043b413809ac7ecde456ca5d6"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/LinkedOverloadProtector.hpp",
+      "source": "rasgo-synth-core/src/dsp/LinkedOverloadProtector.hpp",
+      "sha256": "59b0879a864a25e2d58a97cf1c011d32e205c63442637bc24048a8da9f2510bf"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/LookaheadLimiter.hpp",
+      "source": "rasgo-synth-core/src/dsp/LookaheadLimiter.hpp",
+      "sha256": "d170d54959f613ad71ed3eedc852ceb8d2b5c115ca60c6c48d8e3ba188c70006"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/MelodyVoicingBank.hpp",
+      "source": "rasgo-synth-core/src/dsp/MelodyVoicingBank.hpp",
+      "sha256": "2028fdb7604342d09ff5167854266909a14535e60921c8cbe308951420386be1"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ModalResonator.hpp",
+      "source": "rasgo-synth-core/src/dsp/ModalResonator.hpp",
+      "sha256": "5e87d761f3f9b07ee337234b4e402fb6571e2dba44ce09df4f1593649628b996"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ModulationBus.hpp",
+      "source": "rasgo-synth-core/src/dsp/ModulationBus.hpp",
+      "sha256": "0bd90a047eac0307e9fd6585492c9baf855436601bf7526dd662fb62e406fa96"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/MontageEditCut.hpp",
+      "source": "rasgo-synth-core/src/dsp/MontageEditCut.hpp",
+      "sha256": "e7a3b030a8262df70e19d93e78e820676aab944a428cced2ca7a06ea1cfdd5ff"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/MoogFilter.hpp",
+      "source": "rasgo-synth-core/src/dsp/MoogFilter.hpp",
+      "sha256": "c470cba056d14e2922b6ccec5c17b60dd5f099b22a684f8cd83602fd9d599f18"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/MorphOscillator.hpp",
+      "source": "rasgo-synth-core/src/dsp/MorphOscillator.hpp",
+      "sha256": "0538d60b93098752ba25c99a24d5601bd630cb5aa4f769ddf2d79eb70fc2b3d3"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/MultibandFilter.hpp",
+      "source": "rasgo-synth-core/src/dsp/MultibandFilter.hpp",
+      "sha256": "af1fd0f7c1cc308a3fc603d8e079b91e5eb3171dbc3b79c55f32a511e6eaff76"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/NoiseGateGenerator.hpp",
+      "source": "rasgo-synth-core/src/dsp/NoiseGateGenerator.hpp",
+      "sha256": "1ed47c53e7f83b02bf8ca03e8d81cd73e8c2bf6557d5cd1d2454cffa6ee79dce"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/OchdBank.hpp",
+      "source": "rasgo-synth-core/src/dsp/OchdBank.hpp",
+      "sha256": "8a7cbc2e2fa5d4a0251169821bdfeeec536c355c06ba35d72fb2d4075f29673b"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/Oscillator.hpp",
+      "source": "rasgo-synth-core/src/dsp/Oscillator.hpp",
+      "sha256": "28348a5341620fb2c5d54e3dd29cff7c67919437349cdc427a153606bd7b0885"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ParenthesisGlitch.hpp",
+      "source": "rasgo-synth-core/src/dsp/ParenthesisGlitch.hpp",
+      "sha256": "9b20652b7a23883afde48b3a00de71267b2979735c71cc8b5263c7adc78e150e"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/PolivoksFilter.hpp",
+      "source": "rasgo-synth-core/src/dsp/PolivoksFilter.hpp",
+      "sha256": "5b7731b44101fb711e54dc845e4eed3fcc65e30815d921e4cb494e6d50dba523"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/PolivoksVCA.hpp",
+      "source": "rasgo-synth-core/src/dsp/PolivoksVCA.hpp",
+      "sha256": "d04fce2d1c8528ce8033ab6174602758c7f6fd4c2c7a7392ca3188d9b122aeed"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/PolyrhythmDivider.hpp",
+      "source": "rasgo-synth-core/src/dsp/PolyrhythmDivider.hpp",
+      "sha256": "e7b7f9adaaa83fc3e58960361a3a6c1737f4dfb328bb440d4f9391928431adff"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/RasgoFracture.hpp",
+      "source": "rasgo-synth-core/src/dsp/RasgoFracture.hpp",
+      "sha256": "83c92aefe7cccdb302ea498a3db26a6bd63768ab286970b2f0c739b0c92a0a0c"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/RingModulator.hpp",
+      "source": "rasgo-synth-core/src/dsp/RingModulator.hpp",
+      "sha256": "6450c8927835dc3970e179108e93cb8a32e40fcfaddce83e7d56426e1a3fb261"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/RosslerMap.hpp",
+      "source": "rasgo-synth-core/src/dsp/RosslerMap.hpp",
+      "sha256": "673a861a6fcd940e64ba2bcecf180e29bfc1023ac4c89ca3498f8108671524a6"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/Rungler.hpp",
+      "source": "rasgo-synth-core/src/dsp/Rungler.hpp",
+      "sha256": "2ab0d6f79e6ea24ff70e32364be52d686637894d87f1e185bd59817c814f4dac"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/SallenKeyFilter.hpp",
+      "source": "rasgo-synth-core/src/dsp/SallenKeyFilter.hpp",
+      "sha256": "a5da0138067c47520f3ba6f35113abf501020556e6f926d5c1baa9119a1cd955"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/SampleHoldGlitch.hpp",
+      "source": "rasgo-synth-core/src/dsp/SampleHoldGlitch.hpp",
+      "sha256": "07b2412b2d56309d4abd96143d16fd933843732b073bc3264b7d75fc3766d81c"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ScatVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/ScatVoice.hpp",
+      "sha256": "e8921369409cdb46a7690e9adf239d3ed5d3298c3815f45a5b9e55ce2bd0cf36"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/SignalLeveler.hpp",
+      "source": "rasgo-synth-core/src/dsp/SignalLeveler.hpp",
+      "sha256": "80a5c56d6967adb5eac12fa01f2c162b51c66384279f31faca1d71151ea874f0"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/SpectralGhost.hpp",
+      "source": "rasgo-synth-core/src/dsp/SpectralGhost.hpp",
+      "sha256": "deff69346d68fa951432b280f900d4cfb66ad6fe1b22f8435baa936fc6ddcd8e"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/SpectralObject.hpp",
+      "source": "rasgo-synth-core/src/dsp/SpectralObject.hpp",
+      "sha256": "29b0f542cdbc232d4b942d87a47aaea254cabebaa4c20c5a418eb373eccfd233"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/TapeSaturator.hpp",
+      "source": "rasgo-synth-core/src/dsp/TapeSaturator.hpp",
+      "sha256": "5dbd6c394c68a5c5272415890c1e50138bd338e93240847da7b4e9c4d3454504"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/ThereminVoice.hpp",
+      "source": "rasgo-synth-core/src/dsp/ThereminVoice.hpp",
+      "sha256": "ca5b5a97d855bc758111db38f625bd836d901e7992145766ba6c4185c998f7fd"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/TruePeakDetector.hpp",
+      "source": "rasgo-synth-core/src/dsp/TruePeakDetector.hpp",
+      "sha256": "d97608ecf81fc35fadeaf72649e1c75fea837fc7848b2fccb17dd7f0c06052c7"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/TubeSaturator.hpp",
+      "source": "rasgo-synth-core/src/dsp/TubeSaturator.hpp",
+      "sha256": "27f43f1c6f2fa85e846bb0d1833a6b9115c7590432a354bde668cde929da1d9f"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/VosimOscillator.hpp",
+      "source": "rasgo-synth-core/src/dsp/VosimOscillator.hpp",
+      "sha256": "16fcd7e0de8402db33e82d588cddb2deb83ad2ecb5800429b0c9870be7735407"
+    },
+    {
+      "path": "rasgo-synth-core/src/dsp/WalshOscillator.hpp",
+      "source": "rasgo-synth-core/src/dsp/WalshOscillator.hpp",
+      "sha256": "3161082f18ca18373e7d6cff5f12938035c0552caa2fac9e2c6a9e34948263f6"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/AlbumPlan.hpp",
+      "source": "rasgo-synth-core/src/engine/AlbumPlan.hpp",
+      "sha256": "1f67c0e9d64bf3a7ca77f0a513cf7051584c746357bf1bbe24b6e88d72a01758"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/AlbumRenderer.hpp",
+      "source": "rasgo-synth-core/src/engine/AlbumRenderer.hpp",
+      "sha256": "c628710afa6d6b0beac5cd1ad7686b3c07e937960b48d6628af1f3fec0585cdd"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/BassBodyAdapters.hpp",
+      "source": "rasgo-synth-core/src/engine/BassBodyAdapters.hpp",
+      "sha256": "ed516210936e31bdc40fa48a8536e940ff84f5c6bd1213f3cc64791353f7b135"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/BassExecutionFeedback.hpp",
+      "source": "rasgo-synth-core/src/engine/BassExecutionFeedback.hpp",
+      "sha256": "9bc69720efb7942e0b608b6cc372f2ddacf66bc7b1ea7a36fbe9150f259efd6a"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/BassFunctionPlan.hpp",
+      "source": "rasgo-synth-core/src/engine/BassFunctionPlan.hpp",
+      "sha256": "2a8691dc5e150daf8fc4c79d6e677a635c5de5cd66069438b2b4ad1a8ed36169"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/BassKickInteraction.hpp",
+      "source": "rasgo-synth-core/src/engine/BassKickInteraction.hpp",
+      "sha256": "301aaf366a90f05d96dfec415666559d38a922ab42f8b3e9af1f2def64623dd7"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/BassPerformancePlan.hpp",
+      "source": "rasgo-synth-core/src/engine/BassPerformancePlan.hpp",
+      "sha256": "c03f7ca8d0abac32bbcbdaa6cd1c9c619cdbbd88232c24fc0d49ede274d1bdc6"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/BassPhrasePlan.hpp",
+      "source": "rasgo-synth-core/src/engine/BassPhrasePlan.hpp",
+      "sha256": "9f43c31e83c61e4179a935c161ee221f14379b5b18815c87cf2e7e8df83485b9"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ChamberABReport.hpp",
+      "source": "rasgo-synth-core/src/engine/ChamberABReport.hpp",
+      "sha256": "83879320b3ad07a22b9ea44e66de07c081f66f8b68669d1fc3851e68100f58c6"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ChamberResponse.hpp",
+      "source": "rasgo-synth-core/src/engine/ChamberResponse.hpp",
+      "sha256": "0bb29b2a464752cbb73ac423bc3525ae6f1d66ffd513aea26e06ca0e07f64765"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/CompositionIdentity.hpp",
+      "source": "rasgo-synth-core/src/engine/CompositionIdentity.hpp",
+      "sha256": "4d1b5cbb695ff443fa164ba5d6d980ff35a9bbe738286b6a3dc8d96571446b63"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/CompositionalTopology.hpp",
+      "source": "rasgo-synth-core/src/engine/CompositionalTopology.hpp",
+      "sha256": "545439d6b5ce835f9c46b3f9e6c45f63824b75dcc160f1e11a98a09360d663c2"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/DrumArchetypes.hpp",
+      "source": "rasgo-synth-core/src/engine/DrumArchetypes.hpp",
+      "sha256": "b7eb5ae52b4d79d13c307581367c4e91ac5a6efd24c5e4b53ab3ead901d0c057"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/DurationTarget.hpp",
+      "source": "rasgo-synth-core/src/engine/DurationTarget.hpp",
+      "sha256": "417e6a6bef7b1c0c77f5658e82f6f1476c6f48c390c94e0b238b84afd4438535"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ExpressiveABReport.hpp",
+      "source": "rasgo-synth-core/src/engine/ExpressiveABReport.hpp",
+      "sha256": "ff4d78c750a70e463e7b3d11d7c2efbaf9f9786d5f56d8b317373d055144ce62"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ExpressiveEventLedger.hpp",
+      "source": "rasgo-synth-core/src/engine/ExpressiveEventLedger.hpp",
+      "sha256": "99d973397f6adbc1f139dcbb254bbce3bc9678ec69060110d4b5b3ffc8263c24"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ExpressiveInterpretation.hpp",
+      "source": "rasgo-synth-core/src/engine/ExpressiveInterpretation.hpp",
+      "sha256": "eba2630f3d977c868d3c5c7f1fb491b2e498aa8c23cba31ce09550f97354b01f"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ForeignSignal.hpp",
+      "source": "rasgo-synth-core/src/engine/ForeignSignal.hpp",
+      "sha256": "ded6819eb3f83aa990e03b6df2390d28fdae08a7fd529b25ae0348337b195396"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/GamePlan.hpp",
+      "source": "rasgo-synth-core/src/engine/GamePlan.hpp",
+      "sha256": "ae413cb879af9134f164f3e1afd6893a1666e23bf0931f02a04adf55cb8bab0d"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/GrooveDialogue.hpp",
+      "source": "rasgo-synth-core/src/engine/GrooveDialogue.hpp",
+      "sha256": "b20dd94a5baea71cb81a245d0ae11ba8318d64aa14467759fdb466ec884b1610"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/GrooveRepeat.hpp",
+      "source": "rasgo-synth-core/src/engine/GrooveRepeat.hpp",
+      "sha256": "0cddb41658721d232bc54d887990351d55a05b86e4a73a77e438800ab33be623"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/IntermodularOrchestra.hpp",
+      "source": "rasgo-synth-core/src/engine/IntermodularOrchestra.hpp",
+      "sha256": "0dc00e7e8995380704ccf8c95b5abadbccaee03b331973eea33b4b17a14ed602"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/KitInterpretation.hpp",
+      "source": "rasgo-synth-core/src/engine/KitInterpretation.hpp",
+      "sha256": "41864be3904614d144c46d2e940b158f34313c94fa6db475cc5f014799098861"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/MaterialAgency.hpp",
+      "source": "rasgo-synth-core/src/engine/MaterialAgency.hpp",
+      "sha256": "058adf666b83e03b59bd26c00f3641645049a4c62c65847142e03eca81807944"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/MaterialExpressionField.hpp",
+      "source": "rasgo-synth-core/src/engine/MaterialExpressionField.hpp",
+      "sha256": "0b583d7fdb000a1a7dfc6e5d1b1eb135719255c8588617f95b1f98bc9d3df045"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/MelodicCharacterIntent.hpp",
+      "source": "rasgo-synth-core/src/engine/MelodicCharacterIntent.hpp",
+      "sha256": "f9872bb308f7a20be4e8f958a34d136f531276a73b62df80d6730a4e4e33f6da"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/MelodicInterpreter.hpp",
+      "source": "rasgo-synth-core/src/engine/MelodicInterpreter.hpp",
+      "sha256": "9d524d8579098a5d142fc566c739866b07fbbd5c7b803816511c704d1abca626"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ModuleLifeState.hpp",
+      "source": "rasgo-synth-core/src/engine/ModuleLifeState.hpp",
+      "sha256": "2b0750547aebea83b3b4d9cbed06a3dcf126f8d3c8682e5003afcb0f0ad5d048"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ModuleSelection.hpp",
+      "source": "rasgo-synth-core/src/engine/ModuleSelection.hpp",
+      "sha256": "054c90f686bddcb9cc1cbf4e734808cbe888869c20afde8874f625534a29b098"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/MusicalDirection.hpp",
+      "source": "rasgo-synth-core/src/engine/MusicalDirection.hpp",
+      "sha256": "cb621eeb9a484095531e1341a154ceb1c736ce7930d2b805b8d98414fb1886e7"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/MusicalRelations.hpp",
+      "source": "rasgo-synth-core/src/engine/MusicalRelations.hpp",
+      "sha256": "b5b82e64983d5456dc1e0537af3181f80020ab2850002e7b00f39aecf261c12e"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/NarrativeAttentionEngine.hpp",
+      "source": "rasgo-synth-core/src/engine/NarrativeAttentionEngine.hpp",
+      "sha256": "1a4d25199b697aa57eea4661660dffeb1dbacff4144a85947acc7575202007f4"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/NarrativeMixDirective.hpp",
+      "source": "rasgo-synth-core/src/engine/NarrativeMixDirective.hpp",
+      "sha256": "24fd01d0762b3de020f7e93f3116843ee8362a4f4d903aa9864423d61eff1f1f"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/NoteMorphology.hpp",
+      "source": "rasgo-synth-core/src/engine/NoteMorphology.hpp",
+      "sha256": "efb8011f8f6ae84a835116c4e15fd0edac444276d6587b5c3e42f2c5ed48488c"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/OpenModuleArchive.hpp",
+      "source": "rasgo-synth-core/src/engine/OpenModuleArchive.hpp",
+      "sha256": "352909080411af57a00725ceb71484edf8d4cb286f02140e40a3ea67f24f0d19"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/OrchestralRole.hpp",
+      "source": "rasgo-synth-core/src/engine/OrchestralRole.hpp",
+      "sha256": "061d2ca378d0ca852bd365898f7ade6969ccaa7a50ac5bb7a57a9ddfbe3e8f0b"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/OrchestralSectionMemory.hpp",
+      "source": "rasgo-synth-core/src/engine/OrchestralSectionMemory.hpp",
+      "sha256": "dee8cbb3cb28abc6852df117872b413af3abcff67bf1383aceae309dba56da01"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/OrganismAudibility.hpp",
+      "source": "rasgo-synth-core/src/engine/OrganismAudibility.hpp",
+      "sha256": "795baab29e6ccd96105365132bd54f79840625288f27c0fd88cd87c5b521428c"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/OrganismStemAuditor.hpp",
+      "source": "rasgo-synth-core/src/engine/OrganismStemAuditor.hpp",
+      "sha256": "c5f8c01fa1398448c660f68cb518e24a8455d84c665bdf5afeed6df461895ed3"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/PerformanceActorRegistry.hpp",
+      "source": "rasgo-synth-core/src/engine/PerformanceActorRegistry.hpp",
+      "sha256": "27c3453681f2906c56ca879daed6c6fd798a35a28bca6e9d11bf3a456470b5bf"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/PerformanceGesturePlans.hpp",
+      "source": "rasgo-synth-core/src/engine/PerformanceGesturePlans.hpp",
+      "sha256": "4012773d219f852ae840cd68bb864db5d25c8c818cdb751621e5cfb6611769b9"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/PerformerState.hpp",
+      "source": "rasgo-synth-core/src/engine/PerformerState.hpp",
+      "sha256": "bf5e8796dfd159c063537b6c8b30a1bd36b9b43240007f2b0fa7d9c6c3d3f208"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
+      "source": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
+      "sha256": "27acab1f313990778c64813523af6c779636caf21cfea7cfaaff93119c6b833e"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/ProbabilityMarket.hpp",
+      "source": "rasgo-synth-core/src/engine/ProbabilityMarket.hpp",
+      "sha256": "4bc7dd3adfbb61da82165ff948d4559ef090eb6b2e51dff7908f5b8a46522926"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RasgarAccentField.hpp",
+      "source": "rasgo-synth-core/src/engine/RasgarAccentField.hpp",
+      "sha256": "432eee77550de8b1e1c717d5c13ca54d09e7c837f0a7ac7e50c1d2c38008ba95"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RasgarGateWindow.hpp",
+      "source": "rasgo-synth-core/src/engine/RasgarGateWindow.hpp",
+      "sha256": "9b9c8a88984ad4d277139134d6c6865906ac9ccb4c9bd67cd087c91badd8465b"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RasgarGesture.hpp",
+      "source": "rasgo-synth-core/src/engine/RasgarGesture.hpp",
+      "sha256": "27a1961fb566daaa4bf7da9e33c697cb75f02cbde7fb33c2a1fee7cbcc7a1dd8"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RasgarPercussionArticulation.hpp",
+      "source": "rasgo-synth-core/src/engine/RasgarPercussionArticulation.hpp",
+      "sha256": "197f307a4d6504c152872d39f901ea2b3e050727018578813eedd7c2a58b4fbc"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RasgarTimingMemory.hpp",
+      "source": "rasgo-synth-core/src/engine/RasgarTimingMemory.hpp",
+      "sha256": "a62934c6061bced9136fd1317df7248be3d0124a1e81901ff80a8752ffbab59f"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RasgoTerritoryManifest.hpp",
+      "source": "rasgo-synth-core/src/engine/RasgoTerritoryManifest.hpp",
+      "sha256": "22fb6816e949cfd92c664d6e9eb0e095529a0fb6121dd5e16d2e3ea9dc265a13"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RelationalChamber.hpp",
+      "source": "rasgo-synth-core/src/engine/RelationalChamber.hpp",
+      "sha256": "2b59c358ec979738f35e4679f072e2886f459be799cf1bce740aa338adda1cee"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RenderProgress.hpp",
+      "source": "rasgo-synth-core/src/engine/RenderProgress.hpp",
+      "sha256": "5f76e0342eb56cea6e1a727ceb6b989bcec9e1fb81d384f67b57d67b579994c5"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RhythmGenerator.hpp",
+      "source": "rasgo-synth-core/src/engine/RhythmGenerator.hpp",
+      "sha256": "f7da95a72433166ae0a71c2f528b8b1bec5ab444d54494b025518eaff9d6ec46"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/RhythmSieve.hpp",
+      "source": "rasgo-synth-core/src/engine/RhythmSieve.hpp",
+      "sha256": "c460929b6d5ec7581296b18acce2e1ce6a4fc7b74e6a3250b0e80ec4d5ecc342"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/SeedLineage.hpp",
+      "source": "rasgo-synth-core/src/engine/SeedLineage.hpp",
+      "sha256": "499816065d613464d2f4b60f348854c57e3e4a4a9fad3ee37abc0633b2674429"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/SpatialExpressionField.hpp",
+      "source": "rasgo-synth-core/src/engine/SpatialExpressionField.hpp",
+      "sha256": "8c0fca82cdc361a797d1136edf12ff1e53ddf6ade179ce48f156178dc22511bd"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/StructuralTransformation.hpp",
+      "source": "rasgo-synth-core/src/engine/StructuralTransformation.hpp",
+      "sha256": "fb0f35a11e93255d9148f97694982f6b50eb203a59d92686da10c3fc295bb9f9"
+    },
+    {
+      "path": "rasgo-synth-core/src/engine/TemporalGrooveImprint.hpp",
+      "source": "rasgo-synth-core/src/engine/TemporalGrooveImprint.hpp",
+      "sha256": "794ee1fe45a7232f236323ba0da334f63ad9df1c88ab0745f8a4b7d614a80dda"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/PublishedIndex.hpp",
+      "source": "rasgo-synth-core/src/io/PublishedIndex.hpp",
+      "sha256": "ed1bf3393675033b43b97e6183992fb0c80edb932043b95257b9c937e37e6d50"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/PublishedScore.hpp",
+      "source": "rasgo-synth-core/src/io/PublishedScore.hpp",
+      "sha256": "fbf34f46d0e175914866771bd5a9646463b2a959aa967428bdc96e714bca00b0"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/PublishedText.hpp",
+      "source": "rasgo-synth-core/src/io/PublishedText.hpp",
+      "sha256": "01e833d41d988a35ecbd4dd5daf37e55aa6e31c183df007f046bd6080be643d0"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/Recorder.hpp",
+      "source": "rasgo-synth-core/src/io/Recorder.hpp",
+      "sha256": "d15bfc59581e980b381222a8a96989fdb5003700e74c3808102c8aef63551f6d"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/RecordingPublication.hpp",
+      "source": "rasgo-synth-core/src/io/RecordingPublication.hpp",
+      "sha256": "f75e26478617b5804b1114de776b9475cc680c0ee3596af8fad695732ab92f17"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/Utf8PathComponent.hpp",
+      "source": "rasgo-synth-core/src/io/Utf8PathComponent.hpp",
+      "sha256": "beefcef8b25eee59fad97b35206948d859b7e6aefb3bdb255a91a192044144b0"
+    },
+    {
+      "path": "rasgo-synth-core/src/io/WavWriter.hpp",
+      "source": "rasgo-synth-core/src/io/WavWriter.hpp",
+      "sha256": "b1372246604816d34e0b5d63ddb64461f61563f9b78a76fdf79adbf1b2564384"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/ArcGenerator.hpp",
+      "source": "rasgo-synth-core/src/sequencer/ArcGenerator.hpp",
+      "sha256": "073ef0166c94b804c7ca1ff1f6d43ba0dfc23b3794319d4b85a8a43117d82f6e"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/ArcTemplates.hpp",
+      "source": "rasgo-synth-core/src/sequencer/ArcTemplates.hpp",
+      "sha256": "7511b0380aa31a8f358bb01c83f350c99d6fdb348dddeb4f71f519d1bcc3e86d"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/BluffSignal.hpp",
+      "source": "rasgo-synth-core/src/sequencer/BluffSignal.hpp",
+      "sha256": "892832f4743a87f96bc7df990805b7e4daae99f4599adbc0316640b087682d9a"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/CoherenceCollapse.hpp",
+      "source": "rasgo-synth-core/src/sequencer/CoherenceCollapse.hpp",
+      "sha256": "6a76f0cc7f504efd134450130222d6ef5756dc3e9850180ed3494088f4919003"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/Euclidean.hpp",
+      "source": "rasgo-synth-core/src/sequencer/Euclidean.hpp",
+      "sha256": "3a5efc2b34aa61be9b3a1063789bda0b21dfe25504ed4f36a77066f3fb554ced"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/GenerativeArc.hpp",
+      "source": "rasgo-synth-core/src/sequencer/GenerativeArc.hpp",
+      "sha256": "3fac78fe4e946a88aad4f7a1e7a5fe3e04c75474022ba6a3e66ad19258d72d4f"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/HarmonicWanderer.hpp",
+      "source": "rasgo-synth-core/src/sequencer/HarmonicWanderer.hpp",
+      "sha256": "cd7c3432d945ad5a3f156d93b99b09da082ae7dbcf0ff4aaacde8dd5a3e12090"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/MelodicContourMemory.hpp",
+      "source": "rasgo-synth-core/src/sequencer/MelodicContourMemory.hpp",
+      "sha256": "7cd7bdb426de2728b3da52306f0ea0d49cd9a2287bf4b62cd667fba5835a5c18"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/MicrotonalTuning.hpp",
+      "source": "rasgo-synth-core/src/sequencer/MicrotonalTuning.hpp",
+      "sha256": "71c60744b79f45d5d4f1eb24493715107fe7fd0705704533fcc7bfcdc5fb09af"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/NarrativeArc.hpp",
+      "source": "rasgo-synth-core/src/sequencer/NarrativeArc.hpp",
+      "sha256": "be2c61a5cce9cc56ec660c19de034c33b5c7f98a49486a90d769ac19a8425c87"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/NeoRiemannian.hpp",
+      "source": "rasgo-synth-core/src/sequencer/NeoRiemannian.hpp",
+      "sha256": "b6fc47be2cd0cba9150ba7dcee83542f88faacef6a01b10d1a73e08f88ca899d"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/PolymeterEnsemble.hpp",
+      "source": "rasgo-synth-core/src/sequencer/PolymeterEnsemble.hpp",
+      "sha256": "1f326533c26e2dfaab61f544e7f3efbc7deaaf6da253baf0670e04e2bdb4de70"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/Scales.hpp",
+      "source": "rasgo-synth-core/src/sequencer/Scales.hpp",
+      "sha256": "d4d7e3c05b52544a146bd182d2bd66c48837adeb8834b05f940d420a28af2fd8"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/SieveScale.hpp",
+      "source": "rasgo-synth-core/src/sequencer/SieveScale.hpp",
+      "sha256": "a3502f87b9d74e5f82cf1e06a546208448f3363fd1828bd1afaf5c9c4d7562c3"
+    },
+    {
+      "path": "rasgo-synth-core/src/sequencer/StepSequencer.hpp",
+      "source": "rasgo-synth-core/src/sequencer/StepSequencer.hpp",
+      "sha256": "c6d7117bec26ca228e67b5f39886ed010f22e2523b0253c798d4464e72e01e0e"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/check_direction_evidence.py",
+      "source": "rasgo-synth-core/src/tests/check_direction_evidence.py",
+      "sha256": "c705724b4dbf3a8f4e1485571a2e314d2e1951612b87fa21176bdb921a8ca4d2"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/check_relations_evidence.py",
+      "source": "rasgo-synth-core/src/tests/check_relations_evidence.py",
+      "sha256": "aa045dc44621c10355c774c4a9efffc6fbcf9e13aa24bd7a9b3124bb711aad7c"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/check_selection_evidence.py",
+      "source": "rasgo-synth-core/src/tests/check_selection_evidence.py",
+      "sha256": "4c944dbcc8fad8668c735ce92bcec710d13398fc00bd4798fd30d9f865cb4a17"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_album_plan.cpp",
+      "source": "rasgo-synth-core/src/tests/test_album_plan.cpp",
+      "sha256": "32ca228a3d6d3e54c3de63ef989b651a24466f261842f0fc5e234fe02d3a051b"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_body_adapters.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_body_adapters.cpp",
+      "sha256": "53669da3c6b63ea33028c911571a145098e7019d725ebd57d1dbc54cff7a9fc9"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_execution_feedback.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_execution_feedback.cpp",
+      "sha256": "a49084dee5e899f9aa88ff8e27649a08ecc51406c5f018fcf3d1b0c619c49563"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_function_plan.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_function_plan.cpp",
+      "sha256": "6fb88001ecbafb8cdbb81eedad363724cd66af19bf94ae2711be0e3ec19c457f"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_kick_interaction.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_kick_interaction.cpp",
+      "sha256": "0f035f03d8d206f5e18e2ee2037f23a60b734b609ca4455ce3bef505f5af6840"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_performance_plan.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_performance_plan.cpp",
+      "sha256": "88b0a409c6abc631e05cffbb81ecc62db7c51b107a7c85cd1834c1fb19ea6ab2"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_phrase_plan.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_phrase_plan.cpp",
+      "sha256": "1aa61917c15f9323475204ad0de337a776fccb6501f05f57760f46a23909709a"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bass_phrase_timbre.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bass_phrase_timbre.cpp",
+      "sha256": "c2481179acf81d77872fe4405d55821e99780befec35be659485cceb71175275"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_bluff_signal.cpp",
+      "source": "rasgo-synth-core/src/tests/test_bluff_signal.cpp",
+      "sha256": "871547c2fcab8eab1a916637e91dcdd03bca5e274644e069ca3527ad3dddf6f0"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_coherence_collapse.cpp",
+      "source": "rasgo-synth-core/src/tests/test_coherence_collapse.cpp",
+      "sha256": "ace2a5fa3579fc6d0026f32d1e2563330bd834eac941bc9f9e5ef07b452b104b"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_composition_identity.cpp",
+      "source": "rasgo-synth-core/src/tests/test_composition_identity.cpp",
+      "sha256": "5a2a3d0df46f8f5475e2a3f8a17b9d5c30627a4867a65fd2ee5346bc7c36807e"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_compositional_topology.cpp",
+      "source": "rasgo-synth-core/src/tests/test_compositional_topology.cpp",
+      "sha256": "e77f9417ffef39096ffe416f3f1dc890442395ac7a3a87ef30e8cc638f1068cc"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_delivery_peak_guard.cpp",
+      "source": "rasgo-synth-core/src/tests/test_delivery_peak_guard.cpp",
+      "sha256": "e55b09b55e58bc7e8545104e1b0e3d762764bef777b840911ae115f06a0f4d25"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_drum_rhythm_contract.cpp",
+      "source": "rasgo-synth-core/src/tests/test_drum_rhythm_contract.cpp",
+      "sha256": "30cb199856c33993f8690ffb12fae8c0cb4a70366a7e12c60ff9be13fb6b5015"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_drum_voices.cpp",
+      "source": "rasgo-synth-core/src/tests/test_drum_voices.cpp",
+      "sha256": "cacca959496548db0dc6a5cba9eaefa77de43a282bc6216bf582a62b8b88a821"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_expressive_ab_report.cpp",
+      "source": "rasgo-synth-core/src/tests/test_expressive_ab_report.cpp",
+      "sha256": "137f6d80e628a70e71c4292821a37095a26ddfabe48e7473a07a2f4d5ffd68ef"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_expressive_event_ledger.cpp",
+      "source": "rasgo-synth-core/src/tests/test_expressive_event_ledger.cpp",
+      "sha256": "11ed4b2aa0ca968299935d4d1298cb6aa89e8b4eee9b574b8c74d10e559a512e"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_expressive_interpretation.cpp",
+      "source": "rasgo-synth-core/src/tests/test_expressive_interpretation.cpp",
+      "sha256": "59a870c0eb80805a40e57a5671fa7f85fa671df2b8705c56b3fb1cedad092973"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_game_plan.cpp",
+      "source": "rasgo-synth-core/src/tests/test_game_plan.cpp",
+      "sha256": "2e2de5f3f5b728a6d476f108358826a6a0e32fef21d86eecaed8b729e00b4ad5"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_groove_dialogue.cpp",
+      "source": "rasgo-synth-core/src/tests/test_groove_dialogue.cpp",
+      "sha256": "f1c4813fb8a653a1ff63a673a5d0d568b494dd094dc98539cfcb367010f4073d"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_index_publication.cpp",
+      "source": "rasgo-synth-core/src/tests/test_index_publication.cpp",
+      "sha256": "50ba6b188db0b7068619b32bac65aee6a888c2219de81ce3fab85e906b93e126"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_intermodular_orchestra.cpp",
+      "source": "rasgo-synth-core/src/tests/test_intermodular_orchestra.cpp",
+      "sha256": "35b8b1e3617bcb5a1d723743bcd4009d20a76803c31dcbd537dcd9efe46fd981"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_market_publication.cpp",
+      "source": "rasgo-synth-core/src/tests/test_market_publication.cpp",
+      "sha256": "6ede238842545757e5313a670a36ff96f3251d2eddee543eadf1249470e8579d"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_material_agency.cpp",
+      "source": "rasgo-synth-core/src/tests/test_material_agency.cpp",
+      "sha256": "d65cac13e37fb9ac99452d77fdbd554c0c22489daf1c89945b99a883a72e2b1a"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_material_expression_field.cpp",
+      "source": "rasgo-synth-core/src/tests/test_material_expression_field.cpp",
+      "sha256": "9e8be614f37cebeb37600619674c94863fc0c816a999a8edf19ba26ab9af2262"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_melodic_character_intent.cpp",
+      "source": "rasgo-synth-core/src/tests/test_melodic_character_intent.cpp",
+      "sha256": "f732e185cd7358eecc05e1571cb22e507a4e7a651b23437d13ead781935e0da2"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_melodic_contour.cpp",
+      "source": "rasgo-synth-core/src/tests/test_melodic_contour.cpp",
+      "sha256": "6a6ef22cac3a169bddef8c3f1eda87021d1f8dca71a60cc1617b84c53215dbc6"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_melodic_interpreter.cpp",
+      "source": "rasgo-synth-core/src/tests/test_melodic_interpreter.cpp",
+      "sha256": "70b8eeb0e1aca79ebb06ffdccf278dc2c96ba840359ed569d48beca1edf4282d"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_microtonal_tuning.cpp",
+      "source": "rasgo-synth-core/src/tests/test_microtonal_tuning.cpp",
+      "sha256": "de3cb3be88280f4a00aeaeac8339ba236c88ffae97b29bf97e761ed033e882e8"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_modulation_bus.cpp",
+      "source": "rasgo-synth-core/src/tests/test_modulation_bus.cpp",
+      "sha256": "7ff691fbcb327ab59c040e99c7379657278d35e27bbca8224ef5e9499b4d9536"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_module_life_state.cpp",
+      "source": "rasgo-synth-core/src/tests/test_module_life_state.cpp",
+      "sha256": "025cb14d27ce1529d681ceadb601a719c09b3f26f2e7016482d4e8af4af1e0f6"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_module_selection.cpp",
+      "source": "rasgo-synth-core/src/tests/test_module_selection.cpp",
+      "sha256": "fa4565be02f25f4603a3df9979d3a85a26a36e14a21971ab05cdbb593439b1ff"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_musical_direction.cpp",
+      "source": "rasgo-synth-core/src/tests/test_musical_direction.cpp",
+      "sha256": "a50d317155342313b050edf89348b46517fb5a6ce3aed162c44b870da4d68801"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_musical_relations.cpp",
+      "source": "rasgo-synth-core/src/tests/test_musical_relations.cpp",
+      "sha256": "a479b8bb4d129173c722a952118b4d8e448f40cd4a7e76399e2fa80620cdfdf4"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_narrative_attention.cpp",
+      "source": "rasgo-synth-core/src/tests/test_narrative_attention.cpp",
+      "sha256": "9a509d2d76e584ea167e0a1c4c4819ce7123da300f4d1375eb4a86d2fd59b8e8"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_narrative_mix_directive.cpp",
+      "source": "rasgo-synth-core/src/tests/test_narrative_mix_directive.cpp",
+      "sha256": "517d00d402fe93d8b8ae67ab0bfc753ee80235ff9bc4d31d2e3c2caddb1a8544"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_note_morphology.cpp",
+      "source": "rasgo-synth-core/src/tests/test_note_morphology.cpp",
+      "sha256": "34c127646cd5d5e60bd5d3fab4e99f41b0c0ad9ed10d9ea245c700463717b1f1"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_orchestral_role.cpp",
+      "source": "rasgo-synth-core/src/tests/test_orchestral_role.cpp",
+      "sha256": "9d2c39616ba62112d300a4b8402f06b3694c9b1402ac45c902afe1da3595247e"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_orchestral_section_memory.cpp",
+      "source": "rasgo-synth-core/src/tests/test_orchestral_section_memory.cpp",
+      "sha256": "16cf268e03f7c62021edc55debae47223828e635784ddb80b23c75e15df68ad1"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_organism_audibility.cpp",
+      "source": "rasgo-synth-core/src/tests/test_organism_audibility.cpp",
+      "sha256": "52bcf9b67971b2b5fa81b1418d9a4731456603e16a8e5a410e6cf66e819b6da6"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_organism_stem_auditor.cpp",
+      "source": "rasgo-synth-core/src/tests/test_organism_stem_auditor.cpp",
+      "sha256": "7399ed936d6ce6374a07f5bb06f134d61dc3d051a0bd611dd989912bf832c364"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_output_quality.cpp",
+      "source": "rasgo-synth-core/src/tests/test_output_quality.cpp",
+      "sha256": "4f7b14b76c5cc1fb20e3f8e2cc2350a9abc036ae8b282eeb04d2c3500c3ba0b3"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_parenthesis_glitch.cpp",
+      "source": "rasgo-synth-core/src/tests/test_parenthesis_glitch.cpp",
+      "sha256": "38e5150a9bb99cefb7af9daa5d2f50a4abfa41bbf8fd818165d85003d1779ce8"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_performance_actor_registry.cpp",
+      "source": "rasgo-synth-core/src/tests/test_performance_actor_registry.cpp",
+      "sha256": "25cf3322bd14ba65ac00cfe88701f0468d869c194066e168184dc58b12860d94"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_performance_gesture_plans.cpp",
+      "source": "rasgo-synth-core/src/tests/test_performance_gesture_plans.cpp",
+      "sha256": "6d8abe64591697d1d7ec9ca39f952082b04a4a0dafffa1baa19865d5835a1c04"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_performer_state.cpp",
+      "source": "rasgo-synth-core/src/tests/test_performer_state.cpp",
+      "sha256": "9065b509f07c7ab2475ffa48796767bae5e1e5a5fef6d3c30fa6ce5c9283f4c6"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_polymeter_ensemble.cpp",
+      "source": "rasgo-synth-core/src/tests/test_polymeter_ensemble.cpp",
+      "sha256": "5dfc5aaa2cfb382b26de502a254e3bcd9bc53d48e1117c32d81e9f891f4d945c"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgar_accent_field.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgar_accent_field.cpp",
+      "sha256": "aa735d622729fa3ab77a399fe413bd4c6f8243ec199337a484d79ac9f75d605d"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgar_gate_window.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgar_gate_window.cpp",
+      "sha256": "66fef88cc1282232edadc9b980716ae1e98fc579e40301ce5fca9994c4a2600c"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgar_gesture.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgar_gesture.cpp",
+      "sha256": "7174e0fe07e45da9b7169717670cb185016c9c686c00b5a333b8a0fd8ef2d5db"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgar_percussion_articulation.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgar_percussion_articulation.cpp",
+      "sha256": "f8d5fb00711e4db36a3a7b49602a6b951e4d2b4ad4739a327c06eb3430b3f451"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgar_timing_memory.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgar_timing_memory.cpp",
+      "sha256": "2ba4f1e04a9fc4e2fbb8df9df4fcad0a6129c23cbf51c4ac0065d59201970465"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgo_fracture.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgo_fracture.cpp",
+      "sha256": "a9644419395a025a620b276ef5c2e0e8b5f60fa57379551c1268e2940814c6c4"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_rasgo_territory_manifest.cpp",
+      "source": "rasgo-synth-core/src/tests/test_rasgo_territory_manifest.cpp",
+      "sha256": "08ad700ff2b27c4e3c47d1e334153f260a44e75277037c209287644f76dc4282"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_recording_publication.cpp",
+      "source": "rasgo-synth-core/src/tests/test_recording_publication.cpp",
+      "sha256": "aacab5b8a1cc0185999aeae9878db5be556254e40f26d0fcc25abe21e95e56cd"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_relational_chamber.cpp",
+      "source": "rasgo-synth-core/src/tests/test_relational_chamber.cpp",
+      "sha256": "fc51f1726fbc702c91495b561cc9b044244a5fb3115842cc0c1704f07142b5d8"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_render_progress.cpp",
+      "source": "rasgo-synth-core/src/tests/test_render_progress.cpp",
+      "sha256": "f4ec54af8349063f03278edb4311bc860476d25de48dcc2c0b0e6847bda2ec7a"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_scale_catalog.cpp",
+      "source": "rasgo-synth-core/src/tests/test_scale_catalog.cpp",
+      "sha256": "6508c3f6602bbbc186e0cdbc8dcea372feb91592382781675233962aeb2655f6"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_score_publication.cpp",
+      "source": "rasgo-synth-core/src/tests/test_score_publication.cpp",
+      "sha256": "647fe023e3a698dc005a52c5fcae5deabb2c68f9d2db1dfb50f658c4e7e38410"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_seed_lineage.cpp",
+      "source": "rasgo-synth-core/src/tests/test_seed_lineage.cpp",
+      "sha256": "02d649673144c418af6b793220e2a40e2783fdb03147c8f098eb151564f40d16"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_spatial_expression_field.cpp",
+      "source": "rasgo-synth-core/src/tests/test_spatial_expression_field.cpp",
+      "sha256": "17061d71f18cf6ce0d042a079cf5d1a7e9adf26f7bd47aa22296d2f0f422546d"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_spectral_object.cpp",
+      "source": "rasgo-synth-core/src/tests/test_spectral_object.cpp",
+      "sha256": "634bffec7c58d65fcd6f89be560155bd9633c16f897d0d9857e45733710c0837"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_structural_transformation.cpp",
+      "source": "rasgo-synth-core/src/tests/test_structural_transformation.cpp",
+      "sha256": "e8c9995f610953dab63706345db98bab8a7d91013f8bc8d4742267ea33a35b15"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_text_publication.cpp",
+      "source": "rasgo-synth-core/src/tests/test_text_publication.cpp",
+      "sha256": "457b18d9fa92b308618aa8aba12167bb462f24cfaabcd90a3eb86ed736ae25bb"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_true_peak_detector.cpp",
+      "source": "rasgo-synth-core/src/tests/test_true_peak_detector.cpp",
+      "sha256": "89ddaa6dafdd45137684bba2e639a0709687eda4048cf27b7fca88aaed238104"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_utf8_path_component.cpp",
+      "source": "rasgo-synth-core/src/tests/test_utf8_path_component.cpp",
+      "sha256": "789d28e70499225bec95fc5899a2ba82b612a9b5749eee9abf08083c6c5b2c67"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_wav_write_failure.cpp",
+      "source": "rasgo-synth-core/src/tests/test_wav_write_failure.cpp",
+      "sha256": "dd53a53850c8eb8ba81fb3d62b65c0a9424761d9ebf25156af1f2ac70842e5aa"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_album_manifest.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_album_manifest.cpp",
+      "sha256": "712b26085be392cc8d564fc45808dffce8026ff9fb28a187e74b5d2bc4c067cc"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_album_render.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_album_render.cpp",
+      "sha256": "3ad5e029d1de9bdfae4ab3a456852d363c38b8831923c4abd9905e4bf8fc38f5"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_bass_execution_feedback.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_bass_execution_feedback.cpp",
+      "sha256": "1b15c18d3df903be5ce7093f1d5f5bd8124ad4768e416ab892cab4d2e41745b5"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_bass_fallback_agency.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_bass_fallback_agency.cpp",
+      "sha256": "c95c49c6cff04228d280fd7ff644fa8533be7e52aec68a4b9b3d911fbb587f05"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_bass_kick_interaction.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_bass_kick_interaction.cpp",
+      "sha256": "264f33bb91972eee30c69bf5b39b186048ba78ebdfef82db94c3b77e6186be38"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_bass_phrase_timbre.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_bass_phrase_timbre.cpp",
+      "sha256": "0725e1640bb67b43f3d82eeb00674275f2928179e97958d9c404afc78136daf4"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_delivery_guard_stream.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_delivery_guard_stream.cpp",
+      "sha256": "1835daa107af81ce5a1c238388dbb4f3762953ce53ab41f328205f25f36c91e4"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_groove_dialogue.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_groove_dialogue.cpp",
+      "sha256": "3f26a1c3e4de2bf4792ba2f8ed9a5bad4f3cdba20ea7ce0c2a71fd949ccb9655"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_module_selection.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_module_selection.cpp",
+      "sha256": "70c7540bc0e373b0c9bceaa3f1e31173e273ed2437d5e09d89b257dbcc11c930"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_musical_direction.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_musical_direction.cpp",
+      "sha256": "d40e0a15f5abca9b7ed3231d11eb145bf54f7206492f6943ecb8b3c3255079fa"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_musical_relations.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_musical_relations.cpp",
+      "sha256": "e8882949e7903c080ca810fd2ef1fa3eb59997bbbf0b223bdfd245a3d58b37f1"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_recording_calibration.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_recording_calibration.cpp",
+      "sha256": "d1fe6c46a366a6dcaed5d20684aaaeba487696b25c1502747815ef692e71d846"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/validate_true_peak_stream.cpp",
+      "source": "rasgo-synth-core/src/tests/validate_true_peak_stream.cpp",
+      "sha256": "3b95dcd60ba756093d9eb955b18b2b737511a3c3b1b30654f04dc8153f0e3be4"
+    },
+    {
+      "path": "tools/build_studio_tutorial.py",
+      "source": "tools/build_studio_tutorial.py",
+      "sha256": "bbd8c3fd52082814cb3807d1f2ec0c7002957a1793f668e627373e869ad77f83"
+    },
+    {
+      "path": "tools/build_studio_website.py",
+      "source": "tools/build_studio_website.py",
+      "sha256": "1aafcbdc9d7b6f206dd3d78a0d7a755a9bb9078b72399ee3365260110479aa2f"
+    },
+    {
+      "path": "tools/export_studio_source.py",
+      "source": "tools/export_studio_source.py",
+      "sha256": "26c7755fd88efc4c4b02c35ef94b85a83c11baefb82edfad7c53a96acd606a48"
+    },
+    {
+      "path": "tools/package_studio_linux.py",
+      "source": "tools/package_studio_linux.py",
+      "sha256": "43cf71e3f7f0b3437cdef8b7910d8d2ce7db49a96b3c3bb45a66929b94651195"
+    },
+    {
+      "path": "tools/smoke_studio_lifecycle.py",
+      "source": "tools/smoke_studio_lifecycle.py",
+      "sha256": "3782f8f5da2da9290b8dcbb4cb1cb032c5189bccf8e90935863c7aaf50f264f0"
+    },
+    {
+      "path": "tools/smoke_studio_window.py",
+      "source": "tools/smoke_studio_window.py",
+      "sha256": "f8d9ce215df8f2e3e2ccfeb76ca7e746dd9aa4c64dc26dcd1e977509886e294f"
+    },
+    {
+      "path": "tools/studio_x11_click.py",
+      "source": "tools/studio_x11_click.py",
+      "sha256": "f4434674bc2ae6229497ae4355fbd784407558d2d537d9dd801f925a744175e7"
+    },
+    {
+      "path": "tools/studio_x11_close.py",
+      "source": "tools/studio_x11_close.py",
+      "sha256": "5217e53fcca24ec577909a444aaeb7fed324ffa25f1692d1c9e0e5b465d2a7a6"
+    },
+    {
+      "path": "tools/test_export_studio_source.py",
+      "source": "tools/test_export_studio_source.py",
+      "sha256": "77dc6936fa7ef6dfa99792457fa86bcb7b08c0942e25108ed1202443e15e1b91"
+    },
+    {
+      "path": "tools/test_install_studio_linux.py",
+      "source": "tools/test_install_studio_linux.py",
+      "sha256": "df13521c4ab58af6b31b9e4802b11c85d790f5d3101536bd3e6e840c95dc75a3"
+    },
+    {
+      "path": "tools/test_package_studio_linux.py",
+      "source": "tools/test_package_studio_linux.py",
+      "sha256": "a40ab3bbcd47d54a02bdccb53c757019917a13272be92d7aa9ec30c1e10e58db"
+    },
+    {
+      "path": "tools/test_smoke_studio_lifecycle.py",
+      "source": "tools/test_smoke_studio_lifecycle.py",
+      "sha256": "556d26e7d2754fbaf0ebb360f34a0ed3c870fb2fbdcef049f45cb1ca9cdc3076"
+    },
+    {
+      "path": "tools/test_smoke_studio_window.py",
+      "source": "tools/test_smoke_studio_window.py",
+      "sha256": "699d9a63e47de8ba39ea107ec4d47c9e12aa41f84132abd8e36a19fe14265295"
+    },
+    {
+      "path": "tools/test_studio_package_policy.py",
+      "source": "tools/test_studio_package_policy.py",
+      "sha256": "6e959c31754098f3b099fcff95ceb63fe4fc70f74e4c7b1013501730c1615547"
+    },
+    {
+      "path": "tools/test_studio_workflows.py",
+      "source": "tools/test_studio_workflows.py",
+      "sha256": "59cc2b390b2609e6cd0d8c131c8b89fec816abbfcabefb645a40d92f35facdef"
+    },
+    {
+      "path": "tools/validate_portable_install.py",
+      "source": "tools/validate_portable_install.py",
+      "sha256": "d286ebc556e1bbb457f84d6256aa1965be5afc951f3a0e701fab3854b313caa3"
+    },
+    {
+      "path": "website/assets/app_screenshot.png",
+      "source": "website/assets/app_screenshot.png",
+      "sha256": "39b627a093baf43098d1e858241bc380236dab4682dba3a42d075e9aa03d93ab"
+    },
+    {
+      "path": "website/assets/architecture.svg",
+      "source": "website/assets/architecture.svg",
+      "sha256": "5e6aab4a33afa27b68637bf5cd50f86e3b102d49b01aa932966227a5b8c44d2f"
+    },
+    {
+      "path": "website/assets/fonts/BigShouldersDisplay.ttf",
+      "source": "website/assets/fonts/BigShouldersDisplay.ttf",
+      "sha256": "60e208dc276a1c35fc5b62e94f9fb959c40c11783a9eb7548175c14b1fbeb720"
+    },
+    {
+      "path": "website/assets/fonts/IBMPlexMono-Bold.ttf",
+      "source": "website/assets/fonts/IBMPlexMono-Bold.ttf",
+      "sha256": "ac27abd6450a64dd94467580a02fe6235156d5b92f2926ebbc8e7489df64e0be"
+    },
+    {
+      "path": "website/assets/fonts/IBMPlexMono-Regular.ttf",
+      "source": "website/assets/fonts/IBMPlexMono-Regular.ttf",
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+    },
+    {
+      "path": "website/assets/fonts/LICENSE-BigShoulders.txt",
+      "source": "website/assets/fonts/LICENSE-BigShoulders.txt",
+      "sha256": "82158452b52209e77b79e60bf3c4f8570db48cfe29a2abef8de2a7d8c3ded2d0"
+    },
+    {
+      "path": "website/assets/fonts/LICENSE-IBMPlexMono.txt",
+      "source": "website/assets/fonts/LICENSE-IBMPlexMono.txt",
+      "sha256": "89e95c1a000f9f39696bb714e9404f69672ac741841ee69a5a31a7a407b94e5d"
+    },
+    {
+      "path": "website/assets/genealogy.svg",
+      "source": "website/assets/genealogy.svg",
+      "sha256": "7aaa6c6cdbea80ad8e2a505ef06234d13e3a9e42da695d3af19fb6ff0cdf056c"
+    },
+    {
+      "path": "website/assets/mechanisms.pt.json",
+      "source": "website/assets/mechanisms.pt.json",
+      "sha256": "14e928ff9bce7bbdd6221b1dcce7d0fa1012708d3b377232e610a015efd8ab57"
+    },
+    {
+      "path": "website/assets/quickstart.js",
+      "source": "website/assets/quickstart.js",
+      "sha256": "898078fb4c1c49c7b563c449b62dcff85cced0779a7285905132858c29413934"
+    },
+    {
+      "path": "website/assets/rasgo_logo.svg",
+      "source": "website/assets/rasgo_logo.svg",
+      "sha256": "46dec819c7e83138601ddfdb59c8ee936de969a1b9f8ea73e37b962ff6687819"
+    },
+    {
+      "path": "website/assets/site.css",
+      "source": "website/assets/site.css",
+      "sha256": "aef367afcc1cce50caef30f460f892cd80baf2ab8c812c1b684efcf7fcd4a666"
+    },
+    {
+      "path": "website/assets/site.js",
+      "source": "website/assets/site.js",
+      "sha256": "44c5a369567a52f552f14fa8842e475a2c41ca71c304085332b0437bda1d8fb0"
+    },
+    {
+      "path": "website/assets/studio.css",
+      "source": "website/assets/studio.css",
+      "sha256": "a079185f482136cd58b9d3e4c23305851804ce52be14e581c3603984ed06afbd"
+    },
+    {
+      "path": "website/catalogo.html",
+      "source": "website/catalogo.html",
+      "sha256": "0211d4f3788f6b6202345db80f3a03f46eab6396c904268555bd59159ea0d222"
+    },
+    {
+      "path": "website/en.html",
+      "source": "website/en.html",
+      "sha256": "beb4ebb2e4a311696c5bbc61cadcb777601522d43b72e9802343fd178098aae7"
+    },
+    {
+      "path": "website/es.html",
+      "source": "website/es.html",
+      "sha256": "a696c62added7b5db202ee739bbfc189c1b4f58a7628edab16288417cc704756"
+    },
+    {
+      "path": "website/fr.html",
+      "source": "website/fr.html",
+      "sha256": "b1d84eeb5c4a8865c88d0a2dac275e62a932625e63c94b8ae098c6ead74d9602"
+    },
+    {
+      "path": "website/index.html",
+      "source": "website/index.html",
+      "sha256": "08120662eb123e532b0483588023e1548908fea1409b7b651f71a7df447dc8a7"
+    },
+    {
+      "path": "website/quickstart.html",
+      "source": "website/quickstart.html",
+      "sha256": "6d8b808baff8167346fabe580150dd22bc24e695412b2a5b88f1a0053de1791c"
+    }
+  ],
+  "site": "site/public-manifest.json",
+  "excluded": [
+    "private diaries",
+    "generated audio",
+    "builds",
+    "sibling instruments",
+    "Git history"
+  ]
+}

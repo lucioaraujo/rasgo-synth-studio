@@ -1,0 +1,91 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth — dependency lock</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="index.html">Studio</a> · <a href="publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-dependency-lock">Rasgo Synth — dependency lock</h1>
+<p>This file records reproducible external build inputs that are intentionally not
+vendored in the repository.</p>
+<h2 id="juce">JUCE</h2>
+<p>Release audit, 2026-10-03: this is the intended lock, not a freshly verified
+candidate build. The workspace <code>RASGO/third_party/JUCE</code> currently contains
+9.0.1 at <code>7aae7d8e8deb8413bb01633d2795ef9974a181c5</code>, which does not match
+this lock. The extracted local <code>JUCE-master</code> reports 9.0.0 but has no Git
+metadata to establish its revision. Select and verify the locked checkout
+explicitly before the clean build; do not silently substitute the workspace
+dependency or update the pin. See <a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">Studio tasks</a>, S04.</p>
+<p>Follow-up on the same date: the upstream <code>refs/tags/9.0.0</code> was checked using
+<code>git ls-remote</code> and resolves to the recorded <code>f8f886...</code> commit. The lock
+itself is confirmed; the isolated checkout is still pending. Its preparation
+was deferred by the resource preflight because another build/render process
+was active on the host. Neither existing JUCE directory was changed.</p>
+<p>Verified build, 2026-10-04: a separate checkout was prepared under
+<code>.local-build/studio-publication/juce-9.0.0</code>, at the exact locked revision
+with a clean worktree. The Studio Linux app compiled successfully using it.
+The shared JUCE9.0.1 and extracted archive remain unchanged. See
+<a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">Studio tasks</a> for binary hash and current acceptance gates.</p>
+<ul>
+<li>upstream: <a href="https://github.com/juce-framework/JUCE">https://github.com/juce-framework/JUCE</a></li>
+<li>release tag: <code>9.0.0</code></li>
+<li>commit: <code>f8f8864172464b9adf9eba6101e1f784838d1597</code></li>
+<li>local expected directory: <code>JUCE-master/</code> (ignored by Git)</li>
+<li>locally verified target: GNU/Linux standalone application</li>
+</ul>
+<p>Prepare the dependency with:</p>
+<pre><code class="language-bash">git clone https://github.com/juce-framework/JUCE.git JUCE-master
+git -C JUCE-master checkout f8f8864172464b9adf9eba6101e1f784838d1597
+</code></pre>
+<p>Then build the application from <code>rasgo-synth-app/</code>:</p>
+<pre><code class="language-bash">JUCE_ROOT=../JUCE-master ./build_app.sh
+</code></pre>
+<p>License decision,2026-10-12: Studio authorial code is AGPL-3.0-or-later and
+the selected JUCE option for its free distribution is AGPLv3. No commercial
+JUCE license is claimed. Preserve the locked framework's own license and
+third-party notices in each binary release. Earlier candidates/archives are
+preserved, not relabeled or rebuilt by this source/documentation update. See
+<a href="THIRD_PARTY_NOTICES.html"><code>THIRD_PARTY_NOTICES.md</code></a>.</p>
+<p>The direct-compiler script remains a verified GNU/Linux distribution recipe.
+Follow-up13Oct: <code>rasgo-synth-app/CMakeLists.txt</code> now supplies a native JUCE
+app target using the same clean dependency lock, without implicit downloads.
+Full CMake build and window/render checks passed on Mint22; Windows/macOS
+builds and packages remain unverified release work. Startup-log adaptation
+uses the native Windows CRT only in its Windows branch; no Windows runtime
+claim. Recipe, primary API references and remaining gates:
+<a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed"><code>packaging/PORTABILIDADE.md</code></a>.</p>
+<h2 id="optional-local-verification-tools-2026-10-09">Optional local verification tools — 2026-10-09</h2>
+<p>Linux packaging12/10: current Mint22 binary requires GLIBC2.38,
+GLIBCXX3.4.32 and ALSA1.2.10; .deb dependency calculation records actual host
+package names, including t64. Three local formats were produced and their
+extracted trees launched; this is not distro-matrix or installed-package testing.
+Next direct build defaults to four bundled JPEG/PNG C units from locked JUCE,
+with IJG/libpng notices and no direct jpeg8 link. A standalone codec linkage
+test passed, not a rebuilt host. Ubuntu22.04/manual CI and source/notices
+release gates remain pending. Packaging tools/runtime pins, full scope and
+primary references: <code>packaging/linux/README.md</code> in the Studio source tree.
+PyYAML6.0.1 is used only for local workflow syntax tests; not a runtime
+dependency or a new DSP/host dependency.</p>
+<p>Source correction10/10: the application's local <code>LinuxKeyboardSymbols.cpp</code>
+uses XKB lookup from already-linked libX11 and installed <code>X11/XKBlib.h</code>.
+No libxkbcommon, input daemon, Compose database or JUCE patch introduced.
+The direct compiler recipe includes this object for Main.cpp. The10/10
+<code>linux-20261010-text-release.y7N6eD</code> candidate compiled and linked it with
+the locked JUCE checkout. Keyboard acceptance remains pending.
+<code>RASGO_BUILD_PROFILE</code> defaults to <code>release</code> (<code>-O2 -g0 -ffp-contract=off</code>);
+<code>debug</code> uses <code>-O0</code>, with assertions retained in both. No fast-math or
+host-only instruction flags. See continuity for bounded timing evidence.</p>
+<p>These are test dependencies, not additions to the DSP/core build or public
+application package. Python3 standard library, X11 desktop and <code>wmctrl</code> are
+used by the Linux lifecycle harness; <code>--close-method direct</code> additionally
+loads the installed libX11 through ctypes. It verifies the spawned child's
+PID/protocol before requesting a cooperative close. The default WM path is
+unchanged. No Xlib implementation is vendored.</p>
+<p>FFmpeg6.1.1 on this host is used only as an independent decoder/meter. The
+opt-in <code>validate_true_peak_stream.cpp</code> accepts bounded stereo float32 on
+stdin; compile it locally and run its five fixtures with
+<code>RASGO_PEAK_DIAGNOSTIC=/absolute/path/to/validate_true_peak_stream</code> when running
+<code>tools/test_true_peak_stream.py</code>. Without that variable, those five fixtures
+are explicitly skipped, not counted as executed. Diagnostics and generated
+WAVs remain local. Methods/primary references: <a href="CREDITS.html">credits</a>.</p>
+<p>Offline delivery guard10/10: original C++17 sinc/Hann bank, no dependency
+added to the app/core. <code>validate_delivery_guard_stream.cpp</code> is an opt-in
+bounded float32 test driver (30s max,48k stereo). Set
+<code>RASGO_DELIVERY_DIAGNOSTIC=/absolute/path/to/driver</code> to execute its five Python
+fixtures, including independent FFmpeg reconstruction when installed. Without
+the variable the fixtures are explicitly skipped. NumPy is used only by local
+album probes, not by the shipped instrument. Primary references in credits;
+guard estimate is separate from the normative FIR and is not certification.</p></main></body></html>

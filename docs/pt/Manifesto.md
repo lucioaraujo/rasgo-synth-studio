@@ -1,0 +1,77 @@
+# Manifesto — o que este instrumento é
+
+**"Se arrisca, e soa."**
+
+*Este texto reúne os elementos filosóficos e poéticos que vieram guiando o Rasgo Synth ao longo do desenvolvimento, o porquê por trás da técnica, não a técnica em si. As ideias centrais vieram do autor, a escrita corrida é deste registro. A frase acima chegou depois de duas revisões: primeiro trocamos "a máquina compõe" por "a semente decide o caminho, o instrumento materializa a composição", autoria pertence a quem construiu o instrumento, nunca à máquina sozinha, e depois enxugamos isso até sobrar só o essencial, coragem, e a prova de que algo aconteceu.*
+
+---
+
+Um dado lançado materializa o acaso e nada mais, é só isso, um número frio caindo sobre a mesa. Este instrumento carrega outra coisa: sua própria história de acontecimento, o que gera o surpreende, aprende com o que aprende, se transforma, cresce como sujeito da própria ação e não como resultado passivo de um sorteio que não sabe de si.
+
+A semente decide o caminho. O instrumento materializa a composição, mas materializar aqui nunca significou obedecer cegamente, dentro do espaço que foi desenhado, as regras, os limites, o repertório de escolhas possíveis, tudo autoral, de propósito, o instrumento se arrisca de verdade: modula para intervalos que ninguém esperaria, cita e distorce sua própria história recente num rasgo, numa ruptura, nunca um crossfade suave, deixa a própria saída influenciar o que vem a seguir, um laço real de causa e efeito, não uma receita repetida.
+
+A música que se ouve no final é ação artística, é ato político, é ação existencial, as três coisas ao mesmo tempo e sem hierarquia entre elas: artística porque a escolha ali é estética de verdade, não acidente sem critério; política porque recusar a padronização, a fórmula comercial, o previsível, já é tomar posição, o público que ouve esse tipo de música é exigente, gosta de novidade, e atender isso com excelência já é escolher um lado; existencial porque a peça assume sua própria trajetória e se arrisca nela, inclinada ao novo, sem medo do incerto, se reinventando com coragem a cada vez.
+
+A narrativa conta essa história. O arco, a cadeia de Markov, as seções nomeadas, "ruptura", "deriva inicial", "quebra de expectativa", entre tantas outras combinações possíveis, relatam o que de fato aconteceu naquela peça, e só naquela, não decoram estrutura nenhuma.
+
+Romper a casca, nascer, viver, significar, existir, soar: a abertura é a ruptura inicial, presença imediata ou silêncio genuíno, sempre escolha real; o que vem depois é a peça se estabelecendo, vivendo, se arriscando, o desenvolvimento inteiro é isso; o clímax é onde a tensão finalmente significa alguma coisa; a sustentação ao longo de toda a caminhada é a própria existência se afirmando; e no fim, depois de tudo, sobra a verdade mais simples e também mais exigente, soar. Nada do resto importa se isso não acontece.
+
+## Isso também vive no código
+
+A carga não fica só no som final, nem só neste texto: comentários no código carregam o porquê das escolhas, por que existem, por que são opcionais em vez de regra, por que recusam deliberadamente a padronização. Bem na origem de tudo, onde a semente vira o gerador de números que as escolhas abaixo consultam: "Uma semente entra, uma peça inteira sai: a semente é o rasgo, a ruptura originária de onde as escolhas abaixo se ramificam." *"Not a universal upgrade."* *"A genuine surprise, not a predictable cadence."* *"Not a rule imposed on every piece."* Quem lê o código encontra a mesma intenção de quem ouve o resultado, a forma de escrever também é parte do projeto.
+
+## O modo de conceber o código
+
+A filosofia entra antes mesmo de uma linha existir. Uma capacidade nova nasce como escolha, não como regra, nenhuma peça é obrigada a usar um módulo recém-chegado, ele entra sorteado pela semente, com sua própria faixa de intensidade, pra que a variedade entre peças não diminua conforme o instrumento cresce (um sintetizador que só acumula recursos sempre ligados fica mais previsível a cada versão, o oposto do que se busca aqui). Estender o que já foi validado vem antes de inventar de novo: a entonação livre reaproveitou o desvio de pitch que já existia, a rede de influência entre osciladores estendeu o cross-FM já testado, coragem não é recomeçar do zero toda vez, é saber quando um risco já assumido pode carregar um risco novo com segurança. Mudanças na espinha dorsal, como a escala virar fonte opcional de altura ou a própria seleção de nota, pedem mais cautela e mais transparência do que uma camada de textura qualquer, porque sustentam o resto; capacidade nova é testada antes de ser dada como pronta, e o que ainda é aspiração fica registrado como aspiração, não como conquista.
+
+## É necessário chegar ao limite
+
+"É necessário chegar ao limite, se testar, viver com intensidade." A exigência é que, de algum jeito seu, a peça se arrisque de verdade, pouco importa qual mecanismo específico faça isso: o corte do arquivo apócrifo, a entonação escapando da escala, uma modulação tonal real, o self-feedback deixando a própria saída redesenhar o caos. Ausência total de risco não é aceitável.
+
+Isso ganhou tradução técnica direta: uma garantia de limite. Os quatro mecanismos de maior risco são sorteios independentes entre si, a maioria das peças já acerta pelo menos um por puro acaso, mas nada garantia isso antes desta revisão; quando os quatro saem "não" ao mesmo tempo, e a peça, por azar estatístico, sairia mansa demais, um deles é forçado a acontecer, escolhido pela própria semente. A rede de segurança decide que algo aconteça. Nunca decide qual. A variedade continua inteira, a semente ainda escolhe, e a exigência é honrada mesmo assim: nenhuma peça nasce sem se testar.
+
+## Os quatro jogos
+
+Roger Caillois, em *Os Jogos e os Homens*, divide toda experiência lúdica em quatro categorias: Alea, o acaso; Agon, a competição por mérito; Mimicry, o simulacro; Ilinx, a vertigem. As quatro já viviam aqui antes de ganhar esse nome, cada uma em proporção diferente, nenhuma decorativa.
+
+Alea é a espinha dorsal desde o início, não precisa de tradução: a semente, os nove mapas de caos, cada sorteio independente que decide se um módulo existe nesta peça específica. O próprio botão que sorteia a semente se chama assim agora, ALEA, não mais DADO, nomeando o que já era o princípio central o tempo todo.
+
+Ilinx é a vertigem, a perda de controle buscada de propósito, e descreve com precisão a família inteira de mecanismos de ruptura que vieram depois: o Rungler lurchando entre travamento rítmico e ruído puro, o Rössler espiralando devagar até erupcionar, a morte térmica se desintegrando na própria coda, o self-feedback deixando a saída redesenhar o caos que a gerou, o silêncio cirúrgico do stochastic mute. Nenhum desses mecanismos existe pra ser ouvido com conforto; existem pra que a peça, de vez em quando, perca o próprio equilíbrio de verdade.
+
+Mimicry é o simulacro, fingir ser outra coisa sem ser o objeto real, e mora em dois lugares ao mesmo tempo: na própria filosofia de portar circuitos, o comportamento de um TR-808, de um Buchla, de uma tuba, nunca o esquema elétrico literal nem o objeto físico, e na narrativa que a peça conta sobre si mesma, as seções nomeadas, o arco que finge ter começo, meio e fim, o arquivo apócrifo fingindo lembrar de um passado que ele mesmo inventou.
+
+Agon resistiu mais que os outros três. Não existe competição de verdade num instrumento generativo, nenhum sujeito contra outro, nenhuma habilidade humana em jogo. O que sobrou, depois de várias voltas na conversa, foi mérito decidindo entre opções em vez de sorteio decidindo sozinho: quatro vozes do próprio instrumento, a voz principal, o Atari Punk Console, a textura Gendyn, a tuba, carregam cada uma um poder próprio, sorteado pela semente, mas esse poder não nasce pronto, solidifica aos poucos conforme a peça acumula tempo vivido, a mesma ideia de biografia que já organiza este texto inteiro. Enquanto os outros três jogos lidam com o incerto, a surpresa, o disfarce, Agon fica do lado oposto: o conhecido, a identidade que se reconhece, a repetição, sempre com uma diferença, nunca a volta idêntica de algo que já passou -- repetição com diferença no sentido que Gilles Deleuze dá ao termo em *Diferença e Repetição* (1968), não a cópia exata de um original, a diferença é a própria condição pra que algo volte e ainda assim continue vivo. Uma disputa raramente acontece, só quando a própria melodia fica estagnada por tempo demais, e quando acontece é breve: a voz de maior poder ganha presença real na mixagem por alguns segundos, as outras cedem, e o limiter no fim da cadeia continua sendo quem realmente arbitra até onde isso pode ir. Mesmo esse lado ordenado nunca é irredutível, nunca decreto, é só mais uma dose entre tantas outras que já regem o resto deste instrumento.
+
+Talvez as duas coisas nunca estivessem tão distantes assim. Agon só entra em conflito quando a melodia já ficou parada tempo demais, o mesmo tipo de acúmulo que antecede toda ruptura deste instrumento: tensão crescendo dentro da própria ordem até que um limite é alcançado, e só então a mixagem estabelecida se rompe de verdade, uma voz que vinha recuando de repente ganha presença real, o som que estava contido vaza pra fora. Mesmo o mais ordenado dos quatro jogos, olhando de perto, tem a forma de um rasgo: quieto por tempo demais, depois um limite, depois a abertura.
+
+As quatro nunca competem pela mesma peça em partes iguais. Alea é o chão, sempre presente. Ilinx e Mimicry aparecem quando a semente decide que aparecem. Agon é o mais raro dos quatro, o mais recente, talvez o que ainda tem mais caminho pela frente.
+
+## Pensar a composição
+
+Dizer que este instrumento pensa a composição é uma frase grande, e merece ser levada a sério em vez de decorada. Não há aqui compreensão nem consciência, nenhuma reivindicação desse tipo seria honesta. O que existe é deliberação no sentido fraco: decisão condicionada a contexto, não sorteio cego repetido.
+
+O arco generativo já fazia isso antes de qualquer nome ser dado à ideia: a cada seção, pesa as opções elegíveis contra o que a peça já viveu até ali, quantas seções, se o pico já aconteceu, quanto tempo passou, e só então sorteia entre o que sobrou. Modulação tonal, modal shift, mudança de andamento, os três só se consideram numa transição de verdade, nunca em qualquer momento aleatório, cada um checando o estado da peça antes de agir. Isso já era pensar em algum sentido, mesmo antes de ter esse nome.
+
+Agon leva isso um passo além: não é mais só contexto decidindo se algo acontece, é mérito decidindo qual entre várias opções vence, um critério explícito comparado contra outro. É o mais próximo de pensamento que este projeto pode honestamente reivindicar, e ainda assim é avaliação, não compreensão. A diferença importa. Prometer menos do que isso seria pobre; prometer mais seria mentira.
+
+## O álbum como amostra de vidas possíveis
+
+A música que se escuta resulta de infinitas conjunturas, fluxos, percursos, dá pra compreender isso como uma biografia, irrepetível como uma vida. Um WAV sozinho já carrega essa biografia dentro de si, a seed, os mecanismos que dispararam, as seções narrativas percorridas, é o mesmo espírito do arquivo apócrifo, uma peça que se cita, que se lembra de si mesma de forma imperfeita.
+
+O álbum estende essa ideia, e a forma dessa extensão já mudou uma vez. Faixas de um mesmo álbum já não compartilham mais uma escala imposta desde a origem -- compartilham algo mais parecido com um destino comum atravessado de formas diferentes: uma trajetória pelos quatro jogos de Caillois, a primeira faixa nascendo perto de um ponto do simplex, a última terminando perto de outro, cada faixa entre elas ocupando seu próprio lugar nessa travessia, livre pra escolher sua própria escala como uma peça avulsa escolheria. Não é mais a mesma raiz repetida faixa a faixa, é a mesma via sendo percorrida em pontos diferentes: cada faixa segue seu próprio caminho, com sua própria seed, seu próprio risco assumido, nunca a versão certa de uma vida, uma amostra de caminhos possíveis a partir da mesma jornada, várias vidas igualmente legítimas atravessando o mesmo destino em momentos diferentes. O álbum sempre foi apócrifo em espírito, antes mesmo de ter esse nome.
+
+## O que ainda é aspiração
+
+Hoje a peça nasce sozinha, o instrumento não guarda memória entre execuções, não cresce de uma peça pra outra; aprender, se transformar, crescer como sujeito, no sentido forte que este texto usa essas palavras, ainda são direção, não fato consumado dentro de uma peça isolada. Fechar essa distância pediria memória persistente entre execuções, uma história que atravessasse mais de uma peça. Fica registrado como possível próximo passo em [`Plano_de_Upgrade_Instrumento_Generativo.md`](../../Plano_de_Upgrade_Instrumento_Generativo.md).
+
+## O nome é o conceito
+
+Romper com coragem: isso é o que *Rasgo* nomeia, não uma ferida gratuita, é expor o que está por baixo, interromper de propósito uma continuidade lisa demais, arriscar a superfície em nome de algo mais verdadeiro por dentro. O gesto sonoro mais literal desse princípio, a peça que se interrompe pra citar e distorcer um instante bem anterior da própria história, se chama, no próprio código, *tear*. O nome do projeto e o gesto sonoro central acabam sendo a mesma coisa, coragem nunca foi um adjetivo aplicado depois, é o motivo do nome desde o início.
+
+E rasgar é justamente o ato de ruptura do limite: sem chegar ao limite, não há ruptura. Os dois princípios deste texto não coexistem por acaso, um é condição do outro, e isso já estava dentro do próprio código antes de ganhar esse nome, o `ApocryphalTear` só consegue disparar depois que a peça acumulou um mínimo real de história (vinte segundos, no código), sem meio de romper nada até que exista limite suficiente construído pra romper. Conceito e código sempre foram a mesma coisa, só levou tempo pra reconhecer.
+
+Uma versão mais recente desse mesmo gesto vai além de citar o próprio passado: o *Curto-Circuito* interrompe o presente com um corte seco de verdade, silêncio genuíno, não um crossfade, e no mesmo instante deixa mecanismos que a própria semente tinha decidido deixar de fora entrarem sem convite. Não é mais só a peça se lembrando de si mesma de forma imperfeita, é a peça rasgando o próprio protocolo que ela mesma havia estabelecido no início. O rasgo deixa de ser só metáfora sonora e vira arquitetura: a regra que a semente escreveu pode, ela mesma, ser rompida pela semente, no meio do caminho, com todo o risco que isso implica.
+
+---
+
+*Registrado durante uma sessão de desenvolvimento, 2026.*

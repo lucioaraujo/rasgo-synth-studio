@@ -1,0 +1,92 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth Studio — Manual</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO — familia de instrumentos e investigación sonora</a></div><main class="quickstart"><nav><a href="../../es.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-studio-manual">Rasgo Synth Studio — Manual</h1>
+<p>Versión experimental 0.1.0 — 2026</p>
+<p>Revisado el 2026-10-12 según los controles y contratos actuales. <a href="../../quickstart.html#es">Tutorial paso a paso</a>.</p>
+<h2 id="1-concepto">1. Concepto</h2>
+<p>Rasgo Synth Studio es un instrumento musical generativo: eliges condiciones de composición y él sintetiza una pieza completa. La seed es un punto de partida; tempo, selección de módulos, expresión, dirección musical y estado pertinente también importan. No es un teclado tocado nota a nota ni un rack con cables manuales.</p>
+<p>Los sonidos se sintetizan, no se montan desde una biblioteca externa de muestras grabadas. Escalas, ritmos, voces, texturas y forma narrativa comparten un espacio de posibilidades de autor. Una pieza puede repetir, transformar, interrumpir o dejar material en silencio; variar no garantiza un sonido nuevo en cada evento.</p>
+<p>MODO SALVAJE está activado por defecto y añade entropía durante el render. Para comparar de forma controlada, desactívalo y conserva seed, tempo, elecciones, versión y estado externo pertinente. La seed sola no garantiza audio idéntico.</p>
+<p>La duración de una pieza individual emerge de la narrativa. En el álbum puedes conservarla o activar planificación de duración. Studio compone/renderiza primero y reproduce después; los controles de escucha no reescriben el WAV guardado en tiempo real. Studio y Performance son instrumentos separados, con publicaciones independientes.</p>
+<h2 id="2-historia">2. Historia</h2>
+<p>Rasgo Synth es una obra dentro de Rasgo, el proyecto paraguas de Lucio de Araujo para sus instrumentos y programas musicales de autoría. Antitotem precede a Rasgo y luego fue incorporado como su precursor y patrono. Los módulos físicos de Rasgo ya estaban concebidos con vistas al estándar Eurorack, desde 2013; hoy el nombre abarca un proyecto de instrumentos musicales más amplio.</p>
+<p>Kosmische es un instrumento Android GPLv3 independiente, de Nicolas Steven Miller. Fue una de las referencias conceptuales estudiadas al inicio de Rasgo Synth. No forma parte de Rasgo, y Rasgo Synth no es ni un fork ni su continuación de autoría.</p>
+<p>La implementación específica del proyecto fue reescrita desde cero en C++17 y JUCE, bajo la dirección de Lucio de Araujo, con Anthropic Claude usado como herramienta de desarrollo. No se copió ningún código fuente de Kosmische ni de Antitotem. El instrumento recibió posteriormente muchos sistemas, voces y mecanismos composicionales más allá de esas referencias iniciales -- según el último recuento, más de ochenta fases de desarrollo documentadas.</p>
+<h2 id="3-investigacion-y-procedencia">3. Investigación y procedencia</h2>
+<p>Los nueve mapas caóticos son implementaciones independientes de recurrencias matemáticas publicadas. Kosmische y los Chaos UGens de SuperCollider, creados por Lance Putnam, fueron examinados como contexto técnico; <em>The Chaos Cookbook</em> es el libro de Joe Pritchard publicado en 1992. Estas referencias no convierten las implementaciones de Rasgo en portes de código fuente.</p>
+<p>Los instrumentos de hardware y software citados por Rasgo son referencias de diseño, no reivindicaciones de autoría o emulación exacta. El resonador modal, la textura granular, las fuentes aleatorias, los filtros y los módulos inspirados en circuitos son interpretaciones comportamentales originales basadas en conceptos públicos, literatura, documentación y esquemas. Los creadores y colaboradores históricos están nombrados en <a href="../../CREDITS.html">CREDITS.md</a>.</p>
+<p>Las ocho voces de percusión son estilizaciones digitales originales, inspiradas en parte en el comportamiento documentado de la Roland TR-808. No usan muestras, no copian firmware y no son réplicas de circuitos a nivel de transistor. Cada pieza elige entre ocho arquetipos rítmicos posibles: Soul, Jazz, Metal, Marcha, Samba, dos arquetipos aksak balcánicos reales (documentados por Constantin Brăiloiu y Stoyan Dzhudzhev), y un crivo rítmico generado algorítmicamente mediante la teoría de crivos de Xenakis.</p>
+<p>Para la lista autoritativa de procedencia, véase <a href="../../CREDITS.html">CREDITS.md</a>. Las bibliotecas incorporadas y sus términos de licencia se listan por separado en <a href="../../THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
+<h2 id="4-referencias-seleccionadas">4. Referencias seleccionadas</h2>
+<ul>
+<li>Lucio de Araujo: Rasgo y Antitotem.</li>
+<li>Nicolas Steven Miller: Kosmische (GPLv3), referencia conceptual externa.</li>
+<li>Joe Pritchard: <em>The Chaos Cookbook</em> (1992).</li>
+<li>Lance Putnam: Chaos UGens de SuperCollider (2004).</li>
+<li>Forrest M. Mims III: el Stepped-Tone Generator, popularizado como Atari Punk Console.</li>
+<li>Iannis Xenakis: síntesis estocástica dinámica y teoría de crivos (<em>Formalized Music</em>, cap. XI).</li>
+<li>Instruō, Ben "DivKid" Wilson (ochd) y Jason Lim (Harmonàig).</li>
+<li>Qu-Bit Electronix, Andrew Ikenberry: Bloom.</li>
+<li>Émilie Gillet / Mutable Instruments: conceptos de DSP Eurorack publicados.</li>
+<li>Roland Corporation: documentación de la TR-808 y referencia de diseño sonoro.</li>
+<li>Roger Caillois: <em>Los Juegos y los Hombres</em> (1958), las cuatro categorías de juego (Alea/Agon/Ilinx/Mimicry).</li>
+<li>Constantin Brăiloiu, Stoyan Dzhudzhev: teoría del ritmo aditivo/aksak balcánico.</li>
+<li>Los demás creadores listados en <a href="../../CREDITS.html">CREDITS.md</a>.</li>
+</ul>
+<h2 id="5-licencia">5. Licencia</h2>
+<p>El código propio de Rasgo Synth Studio se distribuye bajo la GNU Affero General Public License versión 3 o posterior (AGPL-3.0-or-later); véase <code>LICENSE</code>. La licencia GPLv3 de Kosmische se aplica a Kosmische y no establece autoría compartida ni código copiado.</p>
+<p>La aplicación de escritorio usa JUCE. El código local de JUCE 9 ofrece AGPLv3 o una licencia comercial de JUCE; por lo tanto, quien distribuya una compilación combinada debe cumplir los términos de JUCE aplicables además de la propia licencia de Rasgo Synth. Otros componentes incorporados o enlazados mantienen sus respectivas licencias; véase <a href="../../THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
+<h2 id="6-tutorial">6. Tutorial</h2>
+<h3 id="antes-de-empezar">Antes de empezar</h3>
+<p>Esta guía describe Studio 0.1.0 experimental, no Rasgo Modular ni Performance. Mantén bajo el volumen, elige una carpeta con permiso de escritura y trabaja con una pieza a la vez. El icono de corchea ♪ inicia la composición; PLAY reproduce audio ya generado. Los nombres siguientes corresponden a la interfaz española.</p>
+<h3 id="tu-primera-pieza-seis-pasos">Tu primera pieza — seis pasos</h3>
+<ol>
+<li>Comprueba la salida de audio, baja MASTER y elige la carpeta de salida. Puedes introducir título y artista; los archivos se guardarán allí.</li>
+<li>Define SEED y TEMPO. Desactiva MODO SALVAJE para este ejercicio. Deja DIRECCIÓN MUSICAL y EXPRESIVO desactivados y módulos en Automático como referencia inicial.</li>
+<li>Pulsa COMPONER (♪). Espera el render y la confirmación de guardado; PLAY no inicia la composición.</li>
+<li>Pulsa PLAY. Escucha primero sin cambiar nada: identifica entradas, salidas, pausas, registro grave, percusión y texturas.</li>
+<li>Arrastra en la forma de onda para seleccionar una región y utiliza REPRODUCIR REGIÓN. SEED DE LA REGIÓN deriva otro origen, sin exportar una muestra. Compón de nuevo para escucharlo.</li>
+<li>Conserva el WAV y los archivos acompañantes. Usa ALEA para otra seed o sigue los ejercicios cambiando una elección cada vez.</li>
+</ol>
+<h3 id="seed-y-tempo">Seed y tempo</h3>
+<p>Qué es: SEED elige un punto de partida; TEMPO define el tempo inicial de la pieza.</p>
+<p>Cómo entenderlo: la seed es una condición de composición, no un nombre de preset que explica todo. El motor puede transformar el tempo durante la pieza. El motor elige la escala; este panel no tiene selector manual de escala.</p>
+<p>Controles: SEED, ALEA, TEMPO y MODO SALVAJE. En modo álbum, el tema proporciona el BPM-base; el slider de la pieza está desactivado.</p>
+<p>Prueba: anota seed y tempo, genera con MODO SALVAJE desactivado y escucha. Conserva seed, cambia solamente TEMPO y genera otra vez. Compara duración de gestos, espaciado y energía percibida; no es solo cambiar la velocidad del mismo WAV.</p>
+<h3 id="elegir-quien-puede-tocar">Elegir quién puede tocar</h3>
+<p>Qué es: ELEGIR MÓDULOS abre 34 participantes entre fuentes, texturas y batería.</p>
+<p>Cómo entenderlo: eliges elegibilidad, no un solo o mute del audio actual. Incluir permite participación; notas, entradas, pausas y dependencias siguen determinando la ejecución. Otros mecanismos y efectos continúan automáticos. La cuadrícula de actividad no es esta lista de controles.</p>
+<p>Controles: Automático conserva la elección generativa; Incluir permite la fuente designada; Excluir la bloquea. Confirma con APLICAR AL PRÓXIMO RENDER. Cerrar sin aplicar descarta ediciones; TODOS AUTOMÁTICOS reinicia el borrador antes de confirmar. Reiniciar la aplicación restablece las elecciones.</p>
+<p>Prueba: conserva seed, tempo y modos. Incluye Capa de ruido coloreado, aplica y genera. Después excluye esa misma capa y genera otra vez. Compara textura y espacio ocupado por ruido. Otros generadores aún pueden producir ruido: Excluir no silencia toda una familia sonora.</p>
+<h3 id="bateria-y-groove">Batería y groove</h3>
+<p>Qué es: bombo, caja, charles, cencerro, palmas, toms, plato y maracas están sintetizados, no muestreados.</p>
+<p>Cómo entenderlo: los participantes tienen funciones rítmicas, pero Studio no ofrece knobs individuales de afinación o volumen. Excluir Batería bloquea sus elementos aunque Bombo esté en Incluir. Incluir no fuerza golpes constantes.</p>
+<p>Controles: ELEGIR MÓDULOS; activa DIRECCIÓN MUSICAL y EXPRESIVO antes de componer para explorar los estudios adicionales de groove e interpretación. Seed y secciones eligen familias y respuestas; no hay selector manual de género o polirritmia 3:2.</p>
+<p>Prueba: incluye Batería, Bombo, Caja y Charles y genera. Sin cambiar lo demás, excluye Cencerro y Maracas y genera otra vez. Escucha si el pulso se vuelve más legible. No subas MASTER para compensar un elemento: el desequilibrio de mezcla es una limitación conocida, no un error tuyo.</p>
+<h3 id="registro-grave-y-linea-de-bajo">Registro grave y línea de bajo</h3>
+<p>Qué es: Bajo acid y Tuba son fuentes seleccionables; el bajo interno core-sub es una función distinta de Voz principal.</p>
+<p>Cómo entenderlo: frecuencia grave, línea de bajo musical y volumen son distintos. Una línea requiere eventos, registro y articulación; el nombre del módulo no garantiza presencia clara en la mezcla. El fallback core-sub no tiene una entrada propia en el selector.</p>
+<p>Controles: selección de Bajo acid/Tuba y DIRECCIÓN MUSICAL + EXPRESIVO. No hay fader individual de bajo ni botón solo.</p>
+<p>Prueba: con ambos modos activos, incluye Bajo acid y excluye Tuba; aplica y genera. Luego invierte esa elección. Escucha ataque, sostenimiento, pausas y relación con el bombo. Excluir ambos puede dejar disponible el fallback según el plan musical; no garantiza un bajo reconocible. Informa seed y elecciones si el grave queda enmascarado.</p>
+<h3 id="melodia-timbre-y-relaciones">Melodía, timbre y relaciones</h3>
+<p>Qué es: voces como Flauta FM, Theremin y Coro, y texturas como Granular, ofrecen diferentes materiales sonoros.</p>
+<p>Cómo entenderlo: seleccionar no es girar knobs de un rack. Las trayectorias se calculan durante el render. Coro, Scat y Harmonaig dependen de la progresión de acordes generada; una dependencia ausente puede bloquear su participación, registrada como <code>blockedBy</code> en los metadatos.</p>
+<p>Controles: ELEGIR MÓDULOS, DIRECCIÓN MUSICAL y EXPRESIVO. Dirección organiza entradas, retiradas y relaciones; Expresivo añade interpretación experimental. Son opciones distintas, desactivadas por defecto, y necesitan nuevo render.</p>
+<p>Prueba: genera una referencia con ambos modos desactivados. Activa solamente Dirección y genera; después activa también Expresivo y genera otra vez. Mantén seed, tempo, módulos y Auditoría de stems. Compara pausas, respuestas, ataques y timbre, no solo volumen. El contraste puede ser discreto; no se garantiza mayor emoción ni diálogo audible en cada pieza.</p>
+<h3 id="escucha-y-visualizaciones">Escucha y visualizaciones</h3>
+<p>Qué es: forma de onda, espectro, espectrograma y otras vistas ayudan a observar audio.</p>
+<p>Cómo entenderlo: un indicador muestra actividad, no prueba de audibilidad o calidad musical. Las animaciones del website son ilustraciones, no el audio de tu aplicación.</p>
+<p>Controles: PLAY, posición en la forma de onda, REPRODUCIR REGIÓN, MASTER y brillo de escucha. No reescriben el WAV guardado. En ventanas pequeñas, desplázate verticalmente para llegar al registro y las vistas.</p>
+<p>Prueba: escucha una región y relaciona un ataque con la forma de onda; después busca una textura sostenida en el espectro. Una amplitud pequeña dibujada no demuestra por sí sola un mal mastering. Si no identificas una voz, informa del caso en vez de aumentar volumen sin límite.</p>
+<h3 id="tu-primer-album">Tu primer álbum</h3>
+<p>Qué es: MODO ÁLBUM crea una colección desde seed, tema y planificación.</p>
+<p>Cómo entenderlo: el tema proporciona BPM-base; las elecciones afectan los próximos renders, no las pistas ya guardadas. Aún no hay memoria composicional que reaprenda temas entre pistas.</p>
+<p>Controles: tema, PISTAS (1–40; defecto 8), VARIAR BPM (desactivado; amplitud 0–35%, defecto 15%), trayectoria equilibrada/contrastante/creciente/arco. PLANIFICAR DURACIÓN también comienza desactivado. Al activarlo, permite un objetivo total de 1–45 minutos y distribución equilibrada/contrastante/libre. El plan limita pistas a 15 segundos–8 minutos y total a 45 minutos; la vista previa distingue total solicitado y previsto si una petición no cabe.</p>
+<p>Prueba: elige 2 pistas, activa PLANIFICAR DURACIÓN y solicita 2 minutos totales. Lee la vista previa; activa VARIAR BPM para comparar tempos iniciales. Compón y escucha con el selector ESCUCHAR. PLAY restaura las vistas; CONFIGURAR ÁLBUM vuelve a las opciones. La duración musical prevista no es tiempo de procesamiento ni un corte posterior del WAV.</p>
+<p>Las calibraciones preceden los renders finales. <code>album_plan.json</code> registra el plan y archivos efectivos; los álbumes interrumpidos no están terminados. Selección y modos expresivos se aplican a las pistas siguientes. Auditoría de stems hereda la opción definida en modo pieza aunque su control esté desactivado en modo álbum: configúrala antes de entrar. Su antigua descripción emergente no explica correctamente esa herencia.</p>
+<h3 id="progreso-archivos-y-problemas">Progreso, archivos y problemas</h3>
+<p>Qué es: el porcentaje sigue frames musicales de la pasada actual, no tiempo real transcurrido.</p>
+<p>Cómo entenderlo: 100% de composición puede ir seguido de procesamiento final y guardado. En el álbum, porcentaje y calibración no constituyen una estimación única del tiempo restante. Auditoría de stems añade análisis y procesamiento y puede cambiar el resultado, no solamente el tiempo de render.</p>
+<p>Controles: registro, COPIAR, carpeta de salida, ACERCA DE y TUTORIAL. ACERCA DE muestra versión y fecha/hora de compilación. Cerrar durante un render solicita cancelación y espera un checkpoint; una escritura activa puede necesitar terminar. No garantiza recuperación después de crash o corte eléctrico.</p>
+<p>Prueba: tras la primera pieza, encuentra el WAV y sus acompañantes. Si algo falla, copia el registro e indica versión, sistema, dispositivo, seed, modos, selección y acción anterior al fallo. No publiques grabaciones personales automáticamente. Evita renders/builds simultáneos con presión de memoria.</p>
+<h3 id="limitaciones-de-esta-version">Limitaciones de esta versión</h3>
+<p>Una publicación experimental no es una mezcla aprobada: bajo discreto, percusión dominante y timbres repetidos siguen siendo posibles. Mezcla generativa y diversidad interpretativa continuarán después de publicar. Ruido, silencio y ruptura son posibilidades, no estética obligatoria. Revisar instrucciones no sustituye validación de escucha, accesibilidad o de todos los teclados/idiomas.</p>
+<p><a href="Instrumento_Integral.html">Guía integral</a> · <a href="../../CREDITS.html">Créditos</a> · <a href="../GROOVE_RHYTHM.html">Método rítmico y referencias</a></p></main></body></html>

@@ -1,0 +1,376 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth Studio — instalação / installation</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="index.html">Studio</a> · <a href="publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-studio-instalacao-installation">Rasgo Synth Studio — instalação / installation</h1>
+<p>Revisão: 2026-10-14 · versão 0.1.0 experimental.</p>
+<h2 id="portugues">Português</h2>
+<h3 id="configuracao-e-compatibilidade">Configuração e compatibilidade</h3>
+<p>O candidato x86_64 foi compilado em Ubuntu 22.04 e testado nessa base isolada
+e no Linux Mint 22. Ainda não é um
+download público. Os formatos de distribuição são <code>.deb</code>, AppImage e
+<code>.tar.gz</code>; produzir o arquivo não equivale a testar todas as distribuições.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Requisito / referência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processador</td>
+<td>x86_64, com SSE2; este pacote não atende ARM ou sistemas de 32 bits</td>
+</tr>
+<tr>
+<td>Sistema</td>
+<td>Linux com glibc; o candidato atual exige glibc 2.35+, GLIBCXX_3.4.30 e libasound.so.2 (símbolo ALSA_0.9.0rc4)</td>
+</tr>
+<tr>
+<td>Interface gráfica</td>
+<td>Sessão X11 ou XWayland com acesso ao display; Wayland nativo não foi validado</td>
+</tr>
+<tr>
+<td>Tela</td>
+<td>1366 × 768 é a referência de uso; 900 × 600 permite acesso por rolagem, já verificado localmente</td>
+</tr>
+<tr>
+<td>Áudio</td>
+<td>Saída estéreo via ALSA; PipeWire/PulseAudio podem oferecer essa saída; render interno em 48 kHz</td>
+</tr>
+<tr>
+<td>Memória</td>
+<td>Referência provisória: 8 GiB de RAM, com pelo menos 4 GiB disponíveis; não é um mínimo certificado</td>
+</tr>
+<tr>
+<td>Armazenamento</td>
+<td>Reserve 500 MiB para aplicação e margem de trabalho, além do espaço dos áudios</td>
+</tr>
+</tbody>
+</table>
+<p>Recomendamos 16 GiB de RAM para trabalhar com álbuns e outros programas
+abertos. Não há benchmark suficiente para prometer uma duração de render nem
+um modelo mínimo de processador. O teste local utilizou um Intel i5-6500 e
+24 GiB de RAM; não prova que 24 GiB sejam necessários. Compilar requer mais
+recursos que executar o aplicativo pronto.</p>
+<p>Um WAV estéreo PCM24 em 48 kHz ocupa aproximadamente 17,3 MB por minuto.
+Reserve cerca de 1,1 GB por hora de áudio, mais os arquivos acompanhantes.
+O render também mantém áudio na RAM; duração e opções podem aumentar o uso.</p>
+<p>O piso das bibliotecas é medido no executável, não deduzido do nome do Linux.
+O candidato atual foi testado em Ubuntu 22.04 isolado e Mint 22; isso não
+comprova Mint 21, Debian 12 ou todas as outras distribuições. AppImage
+não resolve por si só uma glibc mais antiga. Linux musl/Alpine, ARM, Windows
+e macOS não foram validados para esta distribuição.</p>
+<h3 id="abrir-o-arquivo-targz">Abrir o arquivo .tar.gz</h3>
+<p>Extraia a pasta inteira, não somente o executável. Abra um terminal nela:</p>
+<pre><code class="language-bash">chmod +x run
+./run
+</code></pre>
+<p>O launcher verifica as bibliotecas antes de abrir. Se aparecer <code>not found</code>,
+<code>GLIBC_... not found</code> ou <code>GLIBCXX_... not found</code>, o pacote não está atendido
+pelo sistema. Não copie bibliotecas aleatórias para <code>/usr/lib</code> e não tente
+substituir a glibc. Informe a distribuição, versão e mensagem completa.</p>
+<p>Nos novos pacotes que incluem <code>install.sh</code>, você também pode instalar no
+menu de aplicativos sem root:</p>
+<pre><code class="language-bash">./install.sh
+</code></pre>
+<p>O instalador opcional precisa de Python3.8+, mas o instrumento não precisa
+de Python para abrir por <code>./run</code>. Não use sudo nesse script. Ele instala em
+<code>~/.local</code>, incluindo fontes, imagens e licenças, e cria um atalho com caminho
+absoluto. Para atualizar, feche o Studio e execute o script do pacote novo;
+o destino permanece o mesmo. Não instale simultaneamente as variantes local
+e <code>.deb</code> sem necessidade, para evitar entradas de menu que confundam versões.</p>
+<p>Para remover os arquivos registrados: <code>./install.sh --remove</code>. Composições,
+preferências, arquivos desconhecidos e arquivos instalados que você modificou
+são preservados. O script pode deixar uma pasta que contenha arquivos seus.
+Uma atualização recusa substituir arquivos desconhecidos/modificados; informe
+a mensagem em vez de apagar diretórios inteiros. Mudanças são atômicas por
+arquivo, não uma transação completa de todos os arquivos.</p>
+<p>Destino alternativo: <code>PREFIX="/caminho/privado" ./install.sh</code>; use o mesmo
+PREFIX na remoção. Destinos com symlinks ou caracteres especiais não suportados
+são recusados. Os pacotes anteriores que não contêm <code>install.sh</code> continuam
+portáteis: não recebem essa função retroativamente.</p>
+<h3 id="pacote-deb">Pacote .deb</h3>
+<p>Para um candidato compatível com seu sistema, abra o terminal na pasta do
+arquivo e use o nome exato que baixou:</p>
+<pre><code class="language-bash">sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb
+</code></pre>
+<p>Depois abra Rasgo Synth Studio no menu de aplicativos ou execute
+<code>rasgo-synth-studio</code>. A instalação usa o gerenciador do sistema; para remover:
+<code>sudo apt remove rasgo-synth-studio</code>. Não remove suas composições.</p>
+<h3 id="appimage">AppImage</h3>
+<p>Marque o arquivo como executável nas propriedades ou pelo terminal:</p>
+<pre><code class="language-bash">chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage
+./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage
+</code></pre>
+<p>Se o sistema não oferece FUSE, tente a extração temporária:</p>
+<pre><code class="language-bash">APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage
+</code></pre>
+<p>Não requer instalação permanente. Confira o hash com <code>sha256sum -c SHA256SUMS</code>
+na pasta que contém os pacotes. Só execute arquivos da publicação do autor.</p>
+<h3 id="primeira-escuta-e-seus-arquivos">Primeira escuta e seus arquivos</h3>
+<p>Escolha uma pasta gravável para as composições. Comece com volume baixo,
+uma peça curta e o modo álbum desligado. O tutorial explica a composição e a
+escuta passo a passo; não há necessidade de MIDI, GPU dedicada ou internet
+para compor. A interface USB AudioBox não é obrigatória.</p>
+<p>Sem override, gravações vão para a pasta Music/Rasgo Synth do usuário e as
+preferências para o diretório de dados indicado pelo JUCE. Esses dados não
+ficam dentro do pacote. Para testes isolados, use <code>RASGO_SYNTH_DATA_DIR</code> e
+<code>RASGO_SYNTH_RECORDINGS_DIR</code>; não sobrescreva sua configuração habitual.</p>
+<h2 id="english">English</h2>
+<h3 id="requirements-and-compatibility">Requirements and compatibility</h3>
+<p>The x86_64 candidate was built on Ubuntu 22.04 and tested in that isolated
+environment and on Linux Mint 22. It is not a public
+download yet. Distribution formats are <code>.deb</code>, AppImage and <code>.tar.gz</code>;
+building a package does not establish support for every distribution.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Requirement / reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>x86_64 with SSE2; not ARM or 32-bit</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>glibc-based Linux; current candidate requires glibc 2.35+, GLIBCXX_3.4.30 and libasound.so.2 (ALSA_0.9.0rc4 symbol)</td>
+</tr>
+<tr>
+<td>Display server</td>
+<td>X11 or XWayland with display access; native Wayland not validated</td>
+</tr>
+<tr>
+<td>Screen</td>
+<td>1366 × 768 reference; 900 × 600 with scrolling verified locally</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Stereo ALSA output, including an ALSA endpoint provided by PipeWire/PulseAudio; internal render at 48 kHz</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Provisional starting reference: 8 GiB total, at least 4 GiB available; not a certified minimum</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Allow 500 MiB for application/workspace plus generated audio</td>
+</tr>
+</tbody>
+</table>
+<p>16 GiB RAM is recommended for albums alongside other applications, not a
+measured minimum. Local testing used an i5-6500 with 24 GiB RAM. Render time
+depends on the piece and settings; no minimum CPU model is certified.
+PCM24 stereo at 48 kHz uses about 17.3 MB/minute (1.1 GB/hour). Rendered audio
+also occupies RAM; longer pieces/settings may need more. Compilation needs
+more resources than running the finished application.</p>
+<p>The current candidate was tested in isolated Ubuntu 22.04 and on Mint 22;
+Mint 21, Debian 12 and other distributions are not yet validated.
+AppImage does not remove the glibc floor. musl/Alpine, ARM, Windows and macOS
+are not validated. MIDI, a dedicated GPU and internet are not required to
+compose; a USB AudioBox is optional.</p>
+<h3 id="install-and-start">Install and start</h3>
+<p><code>.tar.gz</code>: extract the whole folder, open a terminal there, run <code>chmod +x run</code>
+then <code>./run</code>. The launcher checks libraries. Do not replace glibc or copy
+random libraries when a <code>not found</code> message occurs; report your OS/version
+and the complete error.</p>
+<p>New packages containing <code>install.sh</code> also support <code>./install.sh</code> to add the
+application to the menu under <code>~/.local</code>, without sudo. Python3.8+ is needed
+only for this optional installer, not to run the instrument. Fonts, images
+and licenses are included. Close Studio before updating with the new package's
+script; the destination stays the same. Remove registered files with
+<code>./install.sh --remove</code>. Compositions, preferences, unknown files and edited
+installed files are preserved; updates refuse unknown/modified targets.
+Operations are atomic per file, not a complete transaction. For a custom
+destination use <code>PREFIX="/private/path" ./install.sh</code> and the same PREFIX
+for removal. Symlinks and unsupported special path characters are refused.
+Prefer one installation method rather than duplicate local and <code>.deb</code>
+installations. Older archives without the script remain portable only.</p>
+<p><code>.deb</code>: from the downloaded file's folder run
+<code>sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb</code>, then open
+Rasgo Synth Studio from the application menu or run <code>rasgo-synth-studio</code>.
+Removal: <code>sudo apt remove rasgo-synth-studio</code>; compositions are preserved.</p>
+<p>AppImage: <code>chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>, then
+<code>./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>. Without FUSE, try
+<code>APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>.
+Check downloads with <code>sha256sum -c SHA256SUMS</code>. Only run the author's release
+files. No permanent installation is required for AppImage or <code>.tar.gz</code>.</p>
+<p>Choose a writable output directory, start with low volume and a short piece,
+and follow the tutorial. By default, compositions use the user's Music/Rasgo
+Synth folder; preferences use JUCE's user data directory. Both stay outside
+the package. Isolated tests may override <code>RASGO_SYNTH_DATA_DIR</code> and
+<code>RASGO_SYNTH_RECORDINGS_DIR</code> without replacing existing settings.</p>
+<h2 id="francais">Français</h2>
+<h3 id="configuration-et-compatibilite">Configuration et compatibilité</h3>
+<p>Le candidat x86_64 a été compilé sous Ubuntu 22.04 et testé dans cet
+environnement isolé et sous Linux Mint 22. Il ne s'agit pas
+encore d'un téléchargement public. Formats : <code>.deb</code>, AppImage et <code>.tar.gz</code>.
+Produire un paquet ne valide pas toutes les distributions.</p>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Exigence / référence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processeur</td>
+<td>x86_64 avec SSE2 ; ni ARM ni système 32 bits</td>
+</tr>
+<tr>
+<td>Système</td>
+<td>Linux avec glibc ; candidat actuel : glibc 2.35+, GLIBCXX_3.4.30 et libasound.so.2 (symbole ALSA_0.9.0rc4)</td>
+</tr>
+<tr>
+<td>Affichage</td>
+<td>X11 ou XWayland accessible ; Wayland natif non validé</td>
+</tr>
+<tr>
+<td>Écran</td>
+<td>Référence 1366 × 768 ; accès par défilement vérifié à 900 × 600</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Sortie stéréo ALSA, éventuellement fournie par PipeWire/PulseAudio ; rendu interne à 48 kHz</td>
+</tr>
+<tr>
+<td>Mémoire</td>
+<td>Repère provisoire : 8 Gio au total, au moins 4 Gio disponibles ; pas un minimum certifié</td>
+</tr>
+<tr>
+<td>Stockage</td>
+<td>Prévoir 500 Mio pour application/marge de travail, plus les fichiers audio</td>
+</tr>
+</tbody>
+</table>
+<p>16 Gio sont conseillés pour les albums avec d'autres applications ouvertes.
+Test local : i5-6500 et 24 Gio ; cela ne prouve pas que 24 Gio soient
+nécessaires. Aucun processeur minimal ni temps de rendu garanti. Le PCM24
+stéréo à 48 kHz occupe environ 17,3 Mo/minute, soit 1,1 Go/heure. Le rendu
+utilise aussi la RAM ; durée et réglages peuvent augmenter la consommation.
+Compiler demande plus de ressources que lancer l'application.</p>
+<p>Ce candidat a été testé dans Ubuntu 22.04 isolé et sous Mint 22, pas sous
+Mint 21, Debian 12 ou toutes les distributions. AppImage ne supprime pas
+l'exigence glibc. musl/Alpine, ARM,
+Windows et macOS non validés. MIDI, carte graphique dédiée et connexion
+internet ne sont pas nécessaires pour composer ; l'AudioBox USB est facultative.</p>
+<h3 id="installer-et-lancer">Installer et lancer</h3>
+<p><code>.tar.gz</code> : extraire le dossier entier. Dans son terminal : <code>chmod +x run</code>,
+puis <code>./run</code>. Le lanceur vérifie les bibliothèques. En cas de <code>not found</code>,
+ne remplacez pas glibc et ne copiez pas de bibliothèques au hasard ; indiquez
+votre système, sa version et le message complet.</p>
+<p>Les nouveaux paquets contenant <code>install.sh</code> permettent aussi <code>./install.sh</code>
+pour ajouter le programme au menu dans <code>~/.local</code>, sans sudo. Python3.8+ est
+nécessaire uniquement pour cet installateur facultatif, pas pour lancer
+l'instrument. Polices, images et licences sont incluses. Fermer le Studio
+avant de mettre à jour avec le script du nouveau paquet ; le chemin reste
+identique. Retirer les fichiers enregistrés : <code>./install.sh --remove</code>.
+Compositions, préférences, fichiers inconnus ou modifiés sont conservés ;
+la mise à jour refuse d'écraser des fichiers inconnus/modifiés. Opérations
+atomiques par fichier, pas une transaction globale. Autre destination :
+<code>PREFIX="/chemin/privé" ./install.sh</code>, avec le même PREFIX pour retirer.
+Liens symboliques et caractères spéciaux non pris en charge sont refusés.
+Éviter de cumuler installation locale et <code>.deb</code>. Les anciens paquets sans
+ce script restent utilisables en mode portable.</p>
+<p><code>.deb</code> : <code>sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb</code> dans
+le dossier du fichier ; lancer Rasgo Synth Studio depuis le menu ou avec
+<code>rasgo-synth-studio</code>. Désinstaller : <code>sudo apt remove rasgo-synth-studio</code>.
+Vos compositions sont conservées.</p>
+<p>AppImage : <code>chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>, puis
+<code>./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>. Sans FUSE, essayer
+<code>APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>.
+Vérifier les fichiers par <code>sha256sum -c SHA256SUMS</code>. N'exécuter que les
+fichiers publiés par l'auteur. AppImage et <code>.tar.gz</code> n'exigent pas
+d'installation permanente.</p>
+<p>Choisir un dossier accessible en écriture, commencer à faible volume avec
+une courte pièce et suivre le tutoriel. Par défaut : Music/Rasgo Synth pour
+les compositions et le répertoire utilisateur JUCE pour les préférences,
+hors du paquet. Tests isolés : <code>RASGO_SYNTH_DATA_DIR</code> et
+<code>RASGO_SYNTH_RECORDINGS_DIR</code>, sans remplacer les réglages habituels.</p>
+<h2 id="espanol">Español</h2>
+<h3 id="configuracion-y-compatibilidad">Configuración y compatibilidad</h3>
+<p>El candidato x86_64 se compiló en Ubuntu 22.04 y se probó en ese entorno
+aislado y en Linux Mint 22. Todavía no es una
+descarga pública. Formatos: <code>.deb</code>, AppImage y <code>.tar.gz</code>. Generar un paquete
+no demuestra compatibilidad con todas las distribuciones.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Requisito / referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Procesador</td>
+<td>x86_64 con SSE2; no ARM ni sistemas de 32 bits</td>
+</tr>
+<tr>
+<td>Sistema</td>
+<td>Linux con glibc; candidato actual: glibc 2.35+, GLIBCXX_3.4.30 y libasound.so.2 (símbolo ALSA_0.9.0rc4)</td>
+</tr>
+<tr>
+<td>Entorno gráfico</td>
+<td>X11 o XWayland accesible; Wayland nativo no validado</td>
+</tr>
+<tr>
+<td>Pantalla</td>
+<td>Referencia 1366 × 768; acceso con desplazamiento verificado a 900 × 600</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Salida estéreo ALSA, también mediante PipeWire/PulseAudio; render interno a 48 kHz</td>
+</tr>
+<tr>
+<td>Memoria</td>
+<td>Referencia provisional: 8 GiB totales, al menos 4 GiB disponibles; no es un mínimo certificado</td>
+</tr>
+<tr>
+<td>Disco</td>
+<td>Reservar 500 MiB para aplicación/margen de trabajo, más el audio generado</td>
+</tr>
+</tbody>
+</table>
+<p>Se recomiendan 16 GiB para álbumes con otras aplicaciones abiertas. Prueba
+local: i5-6500 con 24 GiB; no demuestra que 24 GiB sean necesarios. No se
+certifica un procesador mínimo ni un tiempo de render. PCM24 estéreo a
+48 kHz: unos 17,3 MB/minuto, 1,1 GB/hora. El render también ocupa RAM y
+puede requerir más según duración y opciones. Compilar necesita más recursos
+que ejecutar la aplicación.</p>
+<p>El candidato actual se probó en Ubuntu 22.04 aislado y Mint 22, no en
+Mint 21, Debian 12 ni en todas las demás distribuciones.
+AppImage no elimina el requisito de glibc. musl/Alpine, ARM, Windows y macOS
+no están validados. No se requiere MIDI, GPU dedicada ni internet para
+componer; la AudioBox USB es opcional.</p>
+<h3 id="instalar-y-abrir">Instalar y abrir</h3>
+<p><code>.tar.gz</code>: extraer la carpeta completa; desde su terminal ejecutar
+<code>chmod +x run</code>, después <code>./run</code>. El lanzador comprueba las bibliotecas. Si
+aparece <code>not found</code>, no sustituya glibc ni copie bibliotecas al azar; informe
+del sistema, versión y error completo.</p>
+<p>Los paquetes nuevos que incluyen <code>install.sh</code> permiten también <code>./install.sh</code>
+para añadir el programa al menú en <code>~/.local</code>, sin sudo. Python3.8+ solo es
+necesario para este instalador opcional, no para ejecutar el instrumento.
+Incluye fuentes, imágenes y licencias. Cierre Studio antes de actualizar con
+el script del paquete nuevo; se conserva el mismo destino. Para retirar los
+archivos registrados: <code>./install.sh --remove</code>. Se conservan composiciones,
+preferencias, archivos desconocidos y archivos instalados modificados.
+La actualización rechaza sobrescribir archivos desconocidos/modificados.
+Cambios atómicos por archivo, no una transacción completa. Otro destino:
+<code>PREFIX="/ruta/privada" ./install.sh</code>; use el mismo PREFIX para retirar.
+Se rechazan enlaces simbólicos y caracteres especiales no admitidos.
+Evite duplicar instalaciones locales y <code>.deb</code>. Los paquetes anteriores sin
+el script siguen siendo portátiles.</p>
+<p><code>.deb</code>: <code>sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb</code> desde
+la carpeta del archivo. Abrir Rasgo Synth Studio en el menú o ejecutar
+<code>rasgo-synth-studio</code>. Desinstalar: <code>sudo apt remove rasgo-synth-studio</code>;
+se conservan las composiciones.</p>
+<p>AppImage: <code>chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>, después
+<code>./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>. Sin FUSE, intentar
+<code>APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage</code>.
+Verificar con <code>sha256sum -c SHA256SUMS</code>. Ejecute solo archivos de la
+publicación del autor. AppImage y <code>.tar.gz</code> no requieren instalación permanente.</p>
+<p>Elegir una carpeta con permiso de escritura, empezar a volumen bajo con una
+pieza corta y seguir el tutorial. Por defecto: Music/Rasgo Synth para audio
+y el directorio de datos del usuario JUCE para preferencias, fuera del
+paquete. Pruebas aisladas: <code>RASGO_SYNTH_DATA_DIR</code> y
+<code>RASGO_SYNTH_RECORDINGS_DIR</code>, sin reemplazar la configuración habitual.</p></main></body></html>

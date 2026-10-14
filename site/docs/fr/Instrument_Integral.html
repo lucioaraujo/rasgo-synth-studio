@@ -1,0 +1,79 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth — vue d’ensemble de l’instrument</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO — famille d’instruments et recherche sonore</a></div><main class="quickstart"><nav><a href="../../fr.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-vue-densemble-de-linstrument">Rasgo Synth — vue d’ensemble de l’instrument</h1>
+<p>Ce guide explique l’instrument entier : ce qui entre dans le système, comment
+une pièce est construite, comment lire le Studio et comment le catalogue des
+modules se rapporte à la musique.</p>
+<h2 id="studio-et-performance">Studio et Performance</h2>
+<p>Rasgo Synth Studio est l’instrument de bureau existant pour composer, rendre,
+écouter et faire de la recherche. Rasgo Synth Performance est un instrument
+frère de DSP live, avec contrats, moteur, hôte standalone et une première
+surface locale de quatre scènes et cinq gestes. Il n’est pas encore publié : les
+validations graphique, de périphérique, musicale et de build portable restent à
+faire. Les contrôles live du Studio ne constituent pas une release Performance.</p>
+<h2 id="de-la-seed-a-la-piece">De la seed à la pièce</h2>
+<p>Rasgo Synth est un instrument logiciel génératif, pas une boucle fixe, un
+lecteur de samples ni un clavier joué note par note. Une seed choisit une
+trajectoire dans un espace d’identité, d’échelles, de rythmes, de voix, de
+probabilités, de formes narratives et de matières sonores. Le moteur rend
+ensuite une pièce complète.</p>
+<p>Le parcours comprend neuf couches : identité; jeu (Alea, Agon, Ilinx, Mimicry);
+temps; matière; forme; relations; expression; attention et mixage; puis
+enregistrement. Le temps comprend grille, pulsation, subdivision, swing,
+microtiming, humanisation, gate, probabilité, phase, polymétrie, dérive et
+mémoire. La forme suit une marche de Markov à travers ouverture,
+développement, climax, rupture, décantation et clôture.</p>
+<p>Tous les modules ne sont pas actifs dans chaque seed. <code>Disponible</code>,
+<code>manifesté</code>, <code>audible</code> et <code>influent</code> sont des états différents. La présence de
+la flûte, de la tuba ou d’un corps de basse ne résume jamais l’instrument.</p>
+<h2 id="basse-melodie-et-percussion">Basse, mélodie et percussion</h2>
+<p>La basse est séparée en fonction, phrase et corps. La fonction peut être une
+fondamentale, une pédale, un chemin, une tension, un contrepoint ou un espace.
+La phrase règle registre, direction, répétition, relation avec le kick et
+densité. Le corps peut être une tuba synthétique, une voix acid ou un
+<code>core-sub</code> de secours. Le corps ne décide pas seul de la ligne.</p>
+<p>La mélodie utilise échelles, conduite de voix, contour, voicing, dissonance,
+intonation expressive et mémoire. La percussion possède des voix indépendantes,
+des archétypes rythmiques, des structures euclidiennes et aksak, de l’articulation,
+des variations timbrales et de l’interlocking. <code>TemporalGrooveImprint</code> alimente
+la basse expressive et la percussion d’archétype avec une influence bornée.</p>
+<h2 id="lire-le-studio">Lire le Studio</h2>
+<ul>
+<li><strong>SEED / ALEA</strong> : choisir ou dériver le point de départ.</li>
+<li><strong>TEMPO</strong> : définir l’allure initiale; l’arc peut dériver ensuite.</li>
+<li><strong>MASTER</strong> : régler le niveau final, pas l’énergie compositionnelle.</li>
+<li><strong>MODE SAUVAGE</strong> : autoriser des trajectoires entropiques supplémentaires.</li>
+<li><strong>AUDIT DES STEMS</strong> : mesurer survie post-espace et attention narrative.</li>
+<li><strong>A/B EXPRESSIF</strong> : activer les comportements temporels et gestuels expérimentaux.</li>
+<li><strong>COMPOSER</strong> : rendre la pièce en arrière-plan.</li>
+<li><strong>LANG</strong> : passer entre anglais, portugais, français et espagnol.</li>
+</ul>
+<p>Les panneaux lisent un même résultat : forme d’onde, oscilloscope, spectre,
+spectrogramme, goniomètre, portrait de phase, granulation, généalogie de l’arc,
+poids du jeu, grille des modules et log. Le fichier <code>.txt</code> compagnon est un
+récit lisible des sections, décisions, voix et mécanismes; ce n’est pas une
+partition traditionnelle.</p>
+<p>L’audit des stems est une lentille de mesure, pas une condition d’écoute.
+<code>COPIER</code> copie le log et <code>EFFACER</code> en efface l’affichage sans supprimer un
+audio. Une région de la forme d’onde peut être écoutée ou servir à dériver une
+nouvelle seed. <code>VARIER LA SEED</code> part d’un instant de lecture pour composer une
+nouvelle pièce.</p>
+<h2 id="mode-album">Mode Album</h2>
+<p>Le Mode Album crée plusieurs pistes liées à partir d’une seed d’album.
+<code>AlbumRenderer</code> dérive les seeds des pistes, conserve une continuité tonale
+large et laisse à chaque piste sa propre narration et ses propres modules. Ce
+n’est pas un long fichier découpé : c’est une famille de pièces.</p>
+<h2 id="flux-et-catalogue">Flux et catalogue</h2>
+<p>Le flux d’architecture montre la causalité : la seed alimente identité,
+séquençage, arc et DSP; l’arc alimente densité, registre et énergie; jeu,
+relations et mix observent ou influencent dans des limites. Les flèches pleines
+sont les flux principaux; les flèches pointillées indiquent une observation ou
+une influence bornée.</p>
+<p>Le catalogue web contient 142 mécanismes avec catégorie, description et
+référence. Il décrit des possibilités, pas une promesse d’audibilité dans
+chaque pièce. Voir le <a href="../pt/Instrumento_Integral.html">guide portugais intégral</a>
+et le <a href="../../assets/mechanisms.pt.json">catalogue</a>.</p>
+<h2 id="limites-et-suite">Limites et suite</h2>
+<p>Certains contrats de performance, de mémoire, d’attention et de mixage restent
+locaux ou observationnels. L’acceptation musicale demande donc télémétrie et
+écoute humaine. La suite vise une basse plus lisible sans imposer un corps, un
+contrepoint plus indépendant lorsque la forme le permet et une morphologie de
+note étendue à d’autres familles de voix.</p></main></body></html>

@@ -1,0 +1,210 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Third-Party Notices</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="index.html">Studio</a> · <a href="publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="third-party-notices">Third-Party Notices</h1>
+<p>Revisão: 14 de outubro de 2026.</p>
+<p>Este arquivo identifica software de terceiros usado para construir ou executar
+o Rasgo Synth. Ele complementa, mas não substitui, os textos integrais das
+licenças aplicáveis. Créditos históricos e influências conceituais estão em
+<a href="CREDITS.html"><code>CREDITS.md</code></a>.</p>
+<h2 id="1-codigo-proprio-do-rasgo-synth">1. Código próprio do Rasgo Synth</h2>
+<p>O código específico do Rasgo Synth é copyright © 2026 Lucio de Araujo e é
+distribuído sob a GNU Affero General Public License, versão 3 ou posterior
+(SPDX: AGPL-3.0-or-later), conforme
+<a href="LICENSE.txt"><code>LICENSE</code></a>.</p>
+<p>Alinhamento autorizado pelo titular em12/10/2026, somente nas fontes atuais
+do Studio (core, host e ferramentas próprias). Cópias de versões anteriores
+e direitos concedidos sob GPLv3 não são revogados. Performance e código
+preservado/copiado em outros instrumentos mantêm seus avisos de origem.
+Históricos de trabalho conservam a licença vigente na data registrada.</p>
+<p>O motor em <code>rasgo-synth-core/</code> usa apenas a biblioteca padrão de C++ e APIs
+básicas do sistema operacional. A auditoria do código atual não encontrou
+firmware, código-fonte, amostras de áudio, imagens ou outros ativos copiados de
+Kosmische, SuperCollider, Mutable Instruments ou dos circuitos e instrumentos
+citados em <code>CREDITS.md</code>.</p>
+<p>Equações matemáticas, comportamentos musicais, topologias descritas
+publicamente e referências conceituais não são aqui classificados como
+componentes de software incorporados. As implementações correspondentes foram
+escritas para o Rasgo Synth.</p>
+<h2 id="2-juce-aplicativo-grafico">2. JUCE — aplicativo gráfico</h2>
+<p>O aplicativo em <code>rasgo-synth-app/</code> é construído com o
+<strong><a href="https://github.com/juce-framework/JUCE">JUCE</a></strong>. Os arquivos locais
+examinados declaram <strong>JUCE 9.0.0</strong>; <code>JUCE-master/</code> é ignorado pelo Git e não faz
+parte do código publicado neste repositório. A referência reproduzível adotada
+para novos checkouts é a tag <code>9.0.0</code>, commit
+<code>f8f8864172464b9adf9eba6101e1f784838d1597</code>, registrada em
+<a href="DEPENDENCIES.html"><code>DEPENDENCIES.md</code></a>.</p>
+<p>O script <code>rasgo-synth-app/build_juce_minimal.sh</code> compila os seguintes módulos:</p>
+<ul>
+<li><code>juce_core</code>;</li>
+<li><code>juce_events</code>;</li>
+<li><code>juce_data_structures</code>;</li>
+<li><code>juce_graphics</code>;</li>
+<li><code>juce_gui_basics</code>;</li>
+<li><code>juce_audio_basics</code>;</li>
+<li><code>juce_audio_devices</code>.</li>
+</ul>
+<p>Os módulos JUCE 9 são oferecidos sob licença dupla:</p>
+<ul>
+<li><strong>GNU Affero General Public License v3 (AGPLv3)</strong>; ou</li>
+<li>uma <strong>licença comercial do JUCE</strong>.</li>
+</ul>
+<p>Para a distribuição livre do Studio, a opção escolhida pelo autor é AGPLv3,
+não a opção comercial. Consulte o <a href="https://github.com/juce-framework/JUCE/blob/master/LICENSE.md">aviso oficial do
+JUCE</a>. Quando o JUCE é utilizado sob
+a opção AGPLv3, a distribuição e o uso do aplicativo combinado precisam
+observar as obrigações aplicáveis da AGPLv3. Uma licença comercial do JUCE segue
+os termos comerciais correspondentes. A licença do motor Rasgo Synth, por si
+só, não altera a licença do JUCE.</p>
+<p>O nome local <code>JUCE-master</code> não fixa uma revisão por si só. Builds de release
+devem partir do commit registrado em <code>DEPENDENCIES.md</code> e conferir novamente o
+arquivo <code>LICENSE.md</code> daquela revisão.</p>
+<h2 id="3-componentes-compilados-atraves-do-juce">3. Componentes compilados através do JUCE</h2>
+<p>O procedimento de build atual também compila componentes mantidos dentro da
+árvore do JUCE. As cópias dos textos integrais abaixo se encontram no checkout
+do JUCE indicado em cada linha e devem acompanhar qualquer pacote binário na
+forma exigida pelas respectivas licenças.</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Titular/autoria indicada no código examinado</th>
+<th>Licença</th>
+<th>Texto no checkout do JUCE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://harfbuzz.github.io/">HarfBuzz</a></td>
+<td>Vários contribuidores e organizações; relação completa no arquivo de licença</td>
+<td>Old MIT</td>
+<td><code>modules/juce_graphics/fonts/harfbuzz/COPYING</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Tehreer/SheenBidi">SheenBidi</a> 2.9.0</td>
+<td>Copyright © 2014–2025 Muhammad Tayyab Akram</td>
+<td>Apache License 2.0</td>
+<td><code>modules/juce_graphics/unicode/sheenbidi/LICENSE</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sammycage/lunasvg">LunaSVG</a></td>
+<td>Copyright © 2020–2025 Samuel Ugochukwu</td>
+<td>MIT</td>
+<td><code>modules/juce_graphics/drawables/lunasvg/LICENSE</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sammycage/plutovg">PlutoVG</a></td>
+<td>Copyright © 2020–2025 Samuel Ugochukwu</td>
+<td>MIT</td>
+<td><code>modules/juce_graphics/drawables/lunasvg/plutovg/LICENSE</code></td>
+</tr>
+<tr>
+<td>zlib incorporada pela receita CMake</td>
+<td>Copyright © 1995–2026 Jean-loup Gailly e Mark Adler, na cópia fixada</td>
+<td>zlib</td>
+<td><code>modules/juce_core/zip/zlib/LICENSE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Esses componentes não são contribuições de Lucio de Araujo e não são
+relicenciados pela licença do Rasgo Synth. Devem ser preservados seus avisos de
+copyright, permissões, condições e exclusões de garantia.</p>
+<p>O próprio arquivo de licença da revisão escolhida do JUCE é a fonte de verdade
+para outros componentes que possam passar a ser compilados por uma atualização
+do framework ou do script de build.</p>
+<h2 id="4-bibliotecas-fornecidas-pelo-sistema">4. Bibliotecas fornecidas pelo sistema</h2>
+<p>Preparação Linux,12/10: a próxima receita compila os codecs JPEG/PNG que
+acompanham o JUCE fixado, em vez de vincular explicitamente jpeg8 do host.
+Avisos integrais: <code>modules/juce_graphics/image_formats/jpglib/README</code>
+(Independent JPEG Group) e <code>modules/juce_graphics/image_formats/pnglib/LICENSE</code>
+(libpng). Eles devem acompanhar a próxima build. O candidato AGPL atual foi
+compilado antes desta mudança e ainda usa os codecs do sistema; não confundir
+os dois. Nenhum DSP/módulo musical foi alterado por essa preparação.</p>
+<p>Seguimento13–14/10: a build Ubuntu22.04 e a build CMake do Mint já incorporam
+os codecs JPEG/PNG fixados, com seus avisos. O trecho anterior descreve a
+preparação de12/10, não todas as builds atuais. A receita CMake também compila
+a zlib da revisão JUCE; seu <code>LICENSE</code> integral entra na árvore nativa e nos
+novos pacotes. O empacotador exige esse aviso quando não há dependência direta
+libz. A receita direta anterior pode usar a zlib do sistema; não relabelar
+candidatos antigos. Esses avisos selecionados não constituem uma auditoria
+completa de todo o binário ou fechamento das fontes correspondentes.</p>
+<p>Os candidatos AppImage usam linuxdeploy com revisão/hash fixados e runtime
+AppImage <code>8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa</code>, cujo aviso MIT e relação
+de dependências embarcadas acompanham o pacote. As bibliotecas copiadas do
+host recebem inventário de hashes, pacote/versão e textos de copyright da
+distribuição. Isso não substitui a revisão de fontes correspondentes nem
+certifica todas as obrigações de redistribuição; essas verificações continuam
+portões de publicação. Pins e referências em <code>packaging/linux/README.md</code>.</p>
+<p>No GNU/Linux, o script de build referencia bibliotecas fornecidas pelo sistema,
+incluindo:</p>
+<ul>
+<li>FreeType e Fontconfig;</li>
+<li>X11, Xext e Xrender;</li>
+<li>libpng, libjpeg e zlib;</li>
+<li>ALSA (<code>libasound</code>);</li>
+<li>bibliotecas de execução do compilador e do sistema, como <code>libstdc++</code>,
+  <code>libgcc</code>, <code>libm</code>, <code>libdl</code>, <code>pthread</code> e a biblioteca C.</li>
+</ul>
+<p>Essas bibliotecas não são armazenadas neste repositório. Elas são resolvidas no
+sistema de build e de execução, e mantêm seus próprios titulares e licenças. A
+lista efetiva pode variar por plataforma, distribuição, configuração do linker
+e versão do JUCE. O responsável por um pacote binário deve gerar novamente a
+lista de dependências do artefato final e incluir os avisos exigidos pelas
+versões realmente distribuídas.</p>
+<h2 id="41-fontes-distribuidas-com-o-aplicativo">4.1 Fontes distribuídas com o aplicativo</h2>
+<table>
+<thead>
+<tr>
+<th>Família</th>
+<th>Titular indicado no aviso oficial</th>
+<th>Licença</th>
+<th>Arquivos e texto integral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Big Shoulders</td>
+<td>The Big Shoulders Project Authors</td>
+<td>SIL Open Font License 1.1</td>
+<td><code>rasgo-synth-app/assets/fonts/BigShouldersDisplay.ttf</code> e <code>LICENSE-BigShoulders.txt</code></td>
+</tr>
+<tr>
+<td>IBM Plex Mono</td>
+<td>Copyright © 2017 IBM Corp.; nome reservado “Plex”</td>
+<td>SIL Open Font License 1.1</td>
+<td><code>rasgo-synth-app/assets/fonts/IBMPlexMono-Regular.ttf</code>, <code>IBMPlexMono-Bold.ttf</code> e <code>LICENSE-IBMPlexMono.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p>O inventário e a proveniência dos demais assets do aplicativo estão em
+<code>rasgo-synth-app/assets/README.md</code>. A revisão e os hashes exatos dos binários de
+fonte foram verificados em14/10/2026 por igualdade SHA256 com cópias oficiais:
+Big Shoulders em google/fonts <code>7d86539c3e24d8ea2cae7b3ff04c64250dca99c5</code>;
+IBM Plex Mono Regular/Bold em <code>633f3200539c52ee0aba2dfd7f46921417a81877</code>.
+Isso identifica as cópias idênticas publicadas, não a data original de download.</p>
+<h2 id="5-projetos-citados-mas-nao-incorporados">5. Projetos citados, mas não incorporados</h2>
+<p>Os itens seguintes são referências conceituais ou históricas, não dependências
+embarcadas no código atual:</p>
+<ul>
+<li>Kosmische, de Nicolas Steven Miller — GNU GPL v3;</li>
+<li>Chaos UGens do SuperCollider, de Lance Putnam — GPL v2 ou posterior na fonte
+  examinada;</li>
+<li>firmware Eurorack da Mutable Instruments, de Émilie Gillet — licenças que
+  variam por módulo e revisão;</li>
+<li>esquemas, módulos e instrumentos identificados em <code>CREDITS.md</code>.</li>
+</ul>
+<p>A licença de uma referência não deve ser descrita como “herdada” pelo Rasgo
+Synth quando nenhum código daquela referência foi incorporado. Do mesmo modo,
+a compatibilidade entre licenças não transforma uma influência conceitual em
+dependência ou coautoria.</p>
+<h2 id="6-checklist-para-distribuicao">6. Checklist para distribuição</h2>
+<p>Antes de publicar código ou binários do aplicativo:</p>
+<ol>
+<li>conferir o checkout contra o commit do JUCE fixado em <code>DEPENDENCIES.md</code>;</li>
+<li>registrar a opção AGPLv3 do JUCE e conferir os avisos da revisão usada no build;</li>
+<li>incluir <code>LICENSE</code>, este arquivo e os textos integrais das licenças de todos
+   os componentes compilados ou redistribuídos;</li>
+<li>conferir as dependências do binário final na plataforma de lançamento;</li>
+<li>preservar os avisos de copyright de terceiros;</li>
+<li>atualizar este inventário sempre que módulos, bibliotecas, fontes, imagens,
+   amostras ou outros ativos externos forem adicionados.</li>
+</ol>
+<p>Este inventário descreve o estado do repositório e do procedimento de build na
+data indicada no início do arquivo; não é aconselhamento jurídico.</p></main></body></html>

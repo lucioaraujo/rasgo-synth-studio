@@ -1,0 +1,77 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Empacotamento Linux do Studio</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="../../index.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="empacotamento-linux-do-studio">Empacotamento Linux do Studio</h1>
+<p>Atualização: 2026-10-14.</p>
+<p>Padrão RASGO: <code>.deb</code>, AppImage e <code>.tar.gz</code>, assets, menu desktop, licenças,
+instruções e checksums. Não requer outro instrumento no build.</p>
+<p>Referência consultada somente em leitura: Rasgo Modular, commit
+<code>92d36face6d55c0d2305ccd6d47b2117c6cc26a9</code>, <code>packaging/linux/empacotar.sh</code>
+SHA256 <code>83464127d1afa6f200faa21d6be76e85f197ab13bf8cf9781a560700e338e7a7</code>.
+Implementação do Studio escrita para sua receita direta de build, assets e
+dados próprios. Não se copiou o instalador destrutivo nem se alterou <code>$HOME</code>.
+Código próprio sob AGPL-3.0-or-later; referências preservam sua autoria.</p>
+<pre><code class="language-bash">bash packaging/linux/empacotar.sh --binary /caminho/rasgo_synth_app \
+  --output .local-build/pacote-novo --deb
+</code></pre>
+<p>A saída deve ser nova, dentro de <code>.local-build/</code>. Só o executável indicado e
+uma lista explícita de assets, avisos e instruções entram no pacote, nunca
+áudios, preferências, diários ou aliases para outros instrumentos. O script
+gera inventário ELF, manifesto de seleção, checksums e arquivos <code>.tar.gz</code> e,
+com <code>--deb</code>, <code>.deb</code> usando dependências calculadas por <code>dpkg-shlibdeps</code>.
+Não instala nada no sistema. Os formatos partem da mesma árvore <code>usr/</code>.</p>
+<p>Novo tar inclui <code>install.sh</code> e <code>install_studio.py</code>: <code>./install.sh</code> instala
+em <code>~/.local</code> sem root; <code>./install.sh --remove</code> retira somente arquivos
+registrados e não modificados. Python3.8+ é requisito apenas desse instalador
+opcional; <code>./run</code> continua abrindo o instrumento sem Python. O payload,
+incluindo assets e avisos, fica em <code>PREFIX/lib/rasgo-synth-studio</code>, com launcher,
+menu e ícone nos destinos pessoais usuais. PREFIX pode selecionar um destino
+privado alternativo para testes ou uso. O atalho usa caminho absoluto.</p>
+<p>Implementação própria, tomando o procedimento do Modular como referência,
+sem dependência ou mudança daquele instrumento. Recibo com hashes, lock de
+instalação, validação dos checksums do pacote, limites64 MiB/256 entradas e
+recusa de symlinks, travessia de diretórios e colisões desconhecidas.
+Atualizações usam o mesmo destino e não criam pasta por versão; fechar o
+aplicativo antes de atualizar. Arquivos modificados são preservados na remoção
+e impedem sobrescrita na atualização. Remoção nunca é recursiva; pastas vazias
+próprias podem ser retiradas. Não é uma transação global nem garante durabilidade
+contra queda de energia. Usar somente pacotes obtidos do autor: checksums
+detectam alteração, mas não autenticam a origem de um pacote malicioso.</p>
+<p>Os scripts ficam na raiz do tar; não entram no <code>usr/</code> do <code>.deb</code> ou AppImage.
+Arquivos antigos não foram sobrescritos nem relabelados como novos.</p>
+<p>AppImage exige <code>--linuxdeploy /caminho/linuxdeploy-x86_64.AppImage</code>.
+A ferramenta é verificada ANTES de executar: versão <code>1-alpha-20251107-1</code>,
+SHA256 <code>c20cd71e3a4e3b80c3483cef793cda3f4e990aca14014d23c544ca3ce1270b4d</code>,
+o mesmo pin consultado no Modular. Não há download implícito. Fonte primária:
+<a href="https://github.com/linuxdeploy/linuxdeploy/releases/tag/1-alpha-20251107-1">release oficial</a>.
+Também exige <code>--runtime /caminho/runtime-x86_64</code> e
+<code>--runtime-license /caminho/AppImage-runtime-LICENSE</code>. Runtime fixado pela
+release oficial (metadados de28/09/2026): commit
+<code>8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa</code>, asset596078161,
+SHA256 <code>156f4bdbde9c52d01814600013e0a273f0118dc2de98975f3c8c63427ec79074</code>;
+aviso SHA256 <code>aa154fc9070614bbe7921f89db11efd1dba7a1f3a41685958110e2230f9c0ca1</code>.
+A URL <code>continuous</code> não é tratada como pin: mudança de bytes faz o script
+recusar a execução. Fonte: <a href="https://github.com/AppImage/type2-runtime">runtime oficial</a>
+e <a href="https://github.com/AppImage/type2-runtime/blob/8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa/LICENSE">aviso da revisão</a>.
+Bibliotecas copiadas pelo linuxdeploy precisam de revisão dos seus avisos e
+fontes correspondentes antes da publicação; AppImage não elimina exigências
+de glibc/CPU nem comprova compatibilidade entre distribuições.</p>
+<p>Base para o candidato amplo: Ubuntu22.04.5. Build completa e três formatos
+gerados13/10 em raiz isolada; piso GLIBC2.35/GLIBCXX3.4.30. Instalação .deb,
+arranque/fechamento dos três formatos e render passaram na base Ubuntu.
+AppImage ensaiado pela árvore extraída, não montagem FUSE. Candidatos anteriores
+do Mint22 têm outro piso ABI e permanecem preservados. Ensaios do candidato
+novo no Mint/Debian/Fedora/Arch e aprovação de release ainda pendentes.
+Não ativar Actions nem publicar só por concluir o empacotamento.</p>
+<p>Receita serial <code>preparar-build.sh</code> e workflow <code>package-linux.yml</code> preparados.
+Workflow manual, sem push/tag/release automático, com limite de duração e
+matriz de arranque. Ainda não executado; na posição atual do monorepo é
+inerte. Orçamento estimado30–60 minutos Linux por acionamento, a revisar antes
+de executar. Não repetir os builds a cada edição.</p>
+<p>O candidato Ubuntu compila quatro unidades C JPEG/PNG do JUCE fixado, com
+avisos IJG/libpng e sem link direto jpeg8. Bibliotecas transitivas de FreeType
+podem incluir libpng. AppImage exigiu instalar <code>file</code> apenas no ambiente
+isolado; o workflow preparado inclui agora essa dependência. Os pacotes
+validados precedem a adaptação posterior de logs/CMake: não contêm essa nova
+mudança de fonte e não são substituídos automaticamente por ela.</p>
+<p>Receita CMake e pendências Windows/macOS: <a href="../../publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed"><code>PORTABILIDADE.md</code></a>.</p>
+<p>Próximos portões: seleção limpa de fontes correspondentes Studio/JUCE,
+base Linux antiga, arranque isolado de cada formato/distribuição,
+revisão dos avisos de bibliotecas embarcadas e aprovação do autor.</p></main></body></html>

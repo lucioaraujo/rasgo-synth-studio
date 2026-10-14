@@ -1,0 +1,77 @@
+# Manifesto — what this instrument is
+
+**"It takes a risk, and it sounds."**
+
+*This text gathers the philosophical and poetic elements that have guided Rasgo Synth throughout development, the why behind the technique, not the technique itself. The central ideas came from the author, the running prose is this record's own. The phrase above arrived after two revisions: first we swapped "the machine composes" for "the seed decides the path, the instrument materializes the composition," authorship belongs to whoever built the instrument, never to the machine alone, and then we trimmed that down until only the essential remained: courage, and the proof that something happened.*
+
+---
+
+A rolled die materializes chance and nothing else, that's all it is, a cold number falling onto the table. This instrument carries something else: its own history of happening, what it generates surprises it, it learns from what it learns, it transforms, it grows as the subject of its own action rather than the passive result of a roll that knows nothing of itself.
+
+The seed decides the path. The instrument materializes the composition, but materializing here never meant blindly obeying — within the space that was designed, the rules, the limits, the repertoire of possible choices, all of it authorial, on purpose, the instrument genuinely takes risks: it modulates to intervals no one would expect, it quotes and distorts its own recent history in a tear, a rupture, never a smooth crossfade, it lets its own output influence what comes next, a real loop of cause and effect, not a repeated recipe.
+
+The music that's heard at the end is artistic action, political act, existential action, all three at once and without hierarchy among them: artistic because the choice there is genuinely aesthetic, not an accident without criteria; political because refusing standardization, the commercial formula, the predictable, is already taking a stance — the audience that listens to this kind of music is demanding, likes novelty, and meeting that with excellence is already choosing a side; existential because the piece takes on its own trajectory and risks itself in it, inclined toward the new, unafraid of the uncertain, reinventing itself with courage every time.
+
+The narrative tells that story. The arc, the Markov chain, the named sections — "ruptura" (rupture), "deriva inicial" (initial drift), "quebra de expectativa" (break of expectation), among so many other possible combinations — report what actually happened in that piece, and only in that one, they don't decorate any structure.
+
+Break the shell, be born, live, mean something, exist, sound: the opening is the initial rupture, immediate presence or genuine silence, always a real choice; what comes after is the piece establishing itself, living, taking risks, the whole development is that; the climax is where the tension finally means something; the sustaining through the entire walk is existence itself affirming itself; and at the end, after everything, what remains is the simplest truth and also the most demanding one: to sound. Nothing else matters if that doesn't happen.
+
+## This also lives in the code
+
+The weight doesn't rest only in the final sound, nor only in this text: comments in the code carry the why behind the choices, why they exist, why they're optional rather than a rule, why they deliberately refuse standardization. Right at the very origin of everything, where the seed becomes the number generator the choices below consult: "One seed goes in, one whole piece comes out: the seed is the rasgo, the originary rupture the choices below branch from." *"Not a universal upgrade."* *"A genuine surprise, not a predictable cadence."* *"Not a rule imposed on every piece."* Whoever reads the code finds the same intention as whoever listens to the result — the way it's written is also part of the project.
+
+## The way of conceiving the code
+
+The philosophy enters before a single line even exists. A new capability is born as a choice, not as a rule; no piece is required to use a newly arrived module, it enters drawn by the seed, with its own intensity range, so that variety between pieces doesn't shrink as the instrument grows (a synthesizer that only ever accumulates features permanently on gets more predictable with every version, the opposite of what's sought here). Extending what's already been validated comes before inventing anew: free intonation reused the pitch drift that already existed, the cross-influence network between oscillators extended the already-tested cross-FM — courage isn't starting from zero every time, it's knowing when an already-taken risk can safely carry a new one. Changes to the backbone, like the scale becoming an optional source of pitch or note selection itself, ask for more caution and more transparency than any texture layer, because they sustain the rest; a new capability is tested before being called finished, and what's still an aspiration stays registered as an aspiration, not as an accomplishment.
+
+## It is necessary to reach the limit
+
+"It is necessary to reach the limit, to test oneself, to live with intensity." The requirement is that, in whatever way of its own, the piece genuinely takes a risk, no matter which specific mechanism does it: the apocryphal tear's cut, intonation escaping the scale, a real tonal modulation, self-feedback letting the output itself redesign the chaos. Total absence of risk is not acceptable.
+
+This gained a direct technical translation: an intensity guarantee. The four highest-risk mechanisms are independent rolls of each other; most pieces already land at least one by pure chance, but nothing guaranteed that before this revision; when all four come up "no" at once, and the piece, by statistical bad luck, would come out too tame, one of them is forced to happen, chosen by the seed itself. The safety net decides that something happens. It never decides which. Variety remains whole, the seed still chooses, and the requirement is honored regardless: no piece is born without testing itself.
+
+## The four games
+
+Roger Caillois, in *Man, Play and Games*, divides all playful experience into four categories: Alea, chance; Agon, competition by merit; Mimicry, simulacrum; Ilinx, vertigo. All four already lived here before earning that name, each in a different proportion, none decorative.
+
+Alea has been the backbone from the start, needs no translation: the seed, the nine chaos maps, every independent roll that decides whether a module exists in this specific piece. The very button that rolls the seed is now named exactly that, ALEA, no longer DADO ("dice"), naming what had already been the central principle the whole time.
+
+Ilinx is vertigo, the deliberate loss of control, and precisely describes the whole family of rupture mechanisms that came later: the Rungler lurching between rhythmic lock and pure noise, the Rössler spiraling slowly until it erupts, thermal death disintegrating in its own coda, self-feedback letting the output redesign the chaos that generated it, the surgical silence of stochastic mute. None of these mechanisms exist to be heard comfortably; they exist so that, every once in a while, the piece genuinely loses its own balance.
+
+Mimicry is the simulacrum, pretending to be something else without being the real object, and it lives in two places at once: in the very philosophy of porting circuits — the behavior of a TR-808, a Buchla, a tuba, never the literal electrical schematic nor the physical object — and in the narrative the piece tells about itself, the named sections, the arc that pretends to have a beginning, middle and end, the apocryphal tear pretending to remember a past it invented itself.
+
+Agon resisted longer than the other three. There's no real competition in a generative instrument, no subject against another, no human skill at stake. What remained, after several turns in the conversation, was merit deciding between options instead of a roll deciding alone: four voices of the instrument itself — the main voice, the Atari Punk Console, the Gendyn texture, the tuba — each carry their own power, drawn by the seed, but that power isn't born finished, it solidifies gradually as the piece accumulates lived time, the same idea of biography that already organizes this whole text. While the other three games deal with the uncertain, the surprise, the disguise, Agon stands on the opposite side: the known, identity that recognizes itself, repetition, always with a difference, never the identical return of something already past — repetition with difference in the sense Gilles Deleuze gives the term in *Difference and Repetition* (1968), not the exact copy of an original, difference is the very condition for something to return and still remain alive. A dispute rarely happens, only when the melody itself has stayed stagnant for too long, and when it happens it's brief: the highest-power voice gains real presence in the mix for a few seconds, the others cede, and the limiter at the end of the chain remains the one who really arbitrates how far that can go. Even this ordered side is never irreducible, never a decree, it's just one more dose among the many that already govern the rest of this instrument.
+
+Maybe the two things were never that far apart. Agon only enters conflict when the melody has already stood still for too long, the same kind of accumulation that precedes every rupture in this instrument: tension growing within order itself until a limit is reached, and only then does the established mix genuinely break — a voice that had been receding suddenly gains real presence, the sound that had been contained leaks out. Even the most ordered of the four games, looked at closely, has the shape of a tear: quiet for too long, then a limit, then the opening.
+
+The four never compete for the same piece in equal parts. Alea is the ground, always present. Ilinx and Mimicry appear when the seed decides they appear. Agon is the rarest of the four, the most recent, perhaps the one with the most road still ahead of it.
+
+## Thinking the composition
+
+Saying this instrument thinks the composition is a big claim, and it deserves to be taken seriously rather than recited. There is no understanding here, no consciousness, no claim of that kind would be honest. What exists is deliberation in the weak sense: decision conditioned by context, not a blind roll repeated.
+
+The generative arc was already doing this before any name was given to the idea: at each section, it weighs the eligible options against what the piece has already lived through up to that point — how many sections, whether the peak has already happened, how much time has passed — and only then rolls among what's left. Tonal modulation, modal shift, tempo change — the three only consider themselves at a genuine transition, never at any random moment, each one checking the piece's state before acting. This was already thinking in some sense, even before it had that name.
+
+Agon takes this one step further: it's no longer just context deciding whether something happens, it's merit deciding which among several options wins, one explicit criterion compared against another. It's the closest to thought this project can honestly claim, and it's still evaluation, not understanding. The difference matters. Promising less than that would be poor; promising more would be a lie.
+
+## The album as a sample of possible lives
+
+The music that's heard results from infinite conjunctures, flows, paths — it can be understood as a biography, unrepeatable as a life. A single WAV already carries that biography within it: the seed, the mechanisms that fired, the narrative sections traveled — it's the same spirit as the apocryphal tear, a piece that quotes itself, that remembers itself imperfectly.
+
+The album extends that idea, and the shape of that extension has already changed once. Tracks on the same album no longer share a tonal center imposed from the origin — they share something closer to a common destination traveled in different ways: a trajectory across the four Caillois games, the first track born near one point of the simplex, the last one ending near another, every track in between occupying its own place along that crossing, free to pick its own scale the way a standalone piece would. It's no longer the same root repeated track after track, it's the same path being traveled at different points: each track still follows its own way, with its own seed, its own risk taken, never the "right" version of a life, a sample of possible paths from the same journey, several equally legitimate lives crossing the same destination at different moments. The album was always apocryphal in spirit, even before it had that name.
+
+## What is still aspiration
+
+Today the piece is born alone, the instrument keeps no memory between runs, it doesn't grow from one piece to the next; learning, transforming, growing as a subject, in the strong sense this text uses those words, are still a direction, not an accomplished fact within a single isolated piece. Closing that gap would require persistent memory between runs, a history that spanned more than one piece. Registered as a possible next step in [`Plano_de_Upgrade_Instrumento_Generativo.md`](../../Plano_de_Upgrade_Instrumento_Generativo.md) (Portuguese only).
+
+## The name is the concept
+
+Breaking with courage: that's what *Rasgo* names, not a gratuitous wound, it's exposing what's underneath, deliberately interrupting a continuity too smooth, risking the surface in the name of something truer underneath. The most literal sonic gesture of that principle — the piece that interrupts itself to quote and distort a much earlier instant of its own history — is called, in the code itself, *tear*. The project's name and its central sonic gesture end up being the same thing; courage was never an adjective applied afterward, it's the reason for the name from the start.
+
+And tearing is precisely the act of rupturing the limit: without reaching the limit, there is no rupture. The two principles of this text don't coexist by accident, one is the other's condition, and this was already inside the code itself before it earned that name — `ApocryphalTear` only manages to fire after the piece has accumulated a real minimum of history (twenty seconds, in the code), with no way to break anything until enough limit has been built to break. Concept and code were always the same thing, it just took time to recognize it.
+
+A more recent version of that same gesture goes beyond quoting its own past: *Curto-Circuito* ("Short-Circuit") interrupts the present with a real hard cut, genuine silence, not a crossfade, and at the same instant lets mechanisms the seed itself had decided to leave out come in uninvited. It's no longer just the piece remembering itself imperfectly, it's the piece tearing the very protocol it had established at the start. The tear stops being only a sonic metaphor and becomes architecture: the rule the seed wrote can itself be broken by the seed, midway through, with all the risk that implies.
+
+---
+
+*Recorded during a development session, 2026.*

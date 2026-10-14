@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+studio_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+studio_binary="$studio_dir/bin/rasgo-synth-studio"
+if [[ "$(uname -m)" != x86_64 ]]; then
+  echo 'Rasgo Synth Studio: this package requires Linux x86_64.' >&2
+  exit 1
+fi
+# ldd is used only on our packaged binary, never arbitrary downloaded input.
+studio_deps="$(LC_ALL=C ldd "$studio_binary" 2>&1)" || {
+  printf '%s\n' "$studio_deps" >&2
+  echo 'See INSTALL.md for system requirements.' >&2
+  exit 1
+}
+if [[ "$studio_deps" == *'not found'* ]]; then
+  printf '%s\n' "$studio_deps" >&2
+  echo 'Missing/incompatible libraries. See INSTALL.md; do not copy random .so files.' >&2
+  exit 1
+fi
+exec "$studio_binary" "$@"

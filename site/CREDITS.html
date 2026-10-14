@@ -1,0 +1,491 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Créditos e linhagens — Rasgo / Rasgo Synth</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><main class="quickstart"><nav><a href="index.html">Studio</a> · <a href="publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="creditos-e-linhagens-rasgo-rasgo-synth">Créditos e linhagens — Rasgo / Rasgo Synth</h1>
+<p>Revisão: 12 de outubro de 2026.</p>
+<h2 id="licenca-atual-do-studio-12102026">Licença atual do Studio — 12/10/2026</h2>
+<p>Por decisão expressa de Lucio de Araujo, o código autoral atual do Studio,
+incluindo core, host e ferramentas próprias, passa a GNU AGPL-3.0-or-later.
+Texto integral em <a href="LICENSE.txt">LICENSE</a> e rasgo-synth-core/LICENSE. JUCE é
+usado na opção AGPLv3 nesta distribuição; seus titulares e os das demais
+bibliotecas/fontes continuam identificados nos avisos próprios.
+Registros datados abaixo conservam GPLv3 como licença vigente naquelas
+etapas; não são o aviso da fonte atual. Cópias anteriores e direitos já
+concedidos permanecem preservados. Licenças de referências não foram trocadas.</p>
+<p>Este documento registra autoria, influências conceituais e referências
+históricas do Rasgo e, especificamente, do software Rasgo Synth. Ele não
+transfere autoria de terceiros para o projeto e não afirma que o código de uma
+obra citada tenha sido incorporado. Dependências de software e suas licenças
+estão separadas em <a href="THIRD_PARTY_NOTICES.html"><code>THIRD_PARTY_NOTICES.md</code></a>.</p>
+<p>Entrada de texto Linux —10/10/2026: fallback latino autoral de teclas mortas,
+consulta XKB da disposição ativa e preservação UTF-8 em pastas. Pesquisa
+da API <a href="https://www.x.org/releases/current/doc/libX11/libX11/libX11.html">X.Org/Xlib</a>
+e headers instalados <code>XKBlib.h</code>/<code>XKB.h</code>; inspeção do backend JUCE9.0.0
+fixado, sem copiar/modificar sua implementação. libX11 já vinculada;
+nenhuma tabela Compose de terceiros incorporada. Não constitui IME completo
+nem mudança global de locale/disposição. Build/testes e smokes gráficos10/10
+passaram; digitação real PT/FR/AltGr e export acentuado pela GUI ainda pendentes.</p>
+<h2 id="o-que-e-rasgo">O que é Rasgo</h2>
+<p>Estado persistido seguro —11/10/2026: correção original Studio GPLv3 no
+<code>ProbabilityMarket.hpp</code>, reutilizando os contratos locais de lease/snapshot/
+staging. Sem nova dependência, referência externa ou importação de irmão.
+Save completo e erro explícito preservam o estado precedente; não mescla
+renders concorrentes nem promete durabilidade/recuperação automática.</p>
+<p>Índice seguro —11/10/2026: <code>PublishedIndex.hpp</code> e testes são código original
+Studio, GPLv3 existente, sem código externo/irmão ou dependência nova.
+Referência de contrato da API: <a href="https://eel.is/c++draft/fs.op.rename">C++ draft, filesystem rename</a>.
+Não implica fsync, transação, recuperação automática ou segurança contra
+escritores não cooperantes. Uso offline, limites e evidência na continuidade.</p>
+<p>Publicação de manifesto —11/10/2026: <code>PublishedText.hpp</code> é código original
+Studio sob a licença GPLv3 existente; adapta o contrato local
+<code>RecordingPublication.hpp</code>, sem código externo ou de instrumento irmão
+importado. Publicação offline sem substituição não implica fsync/transação
+de múltiplos arquivos. Validações e limites na <a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">continuidade</a>.</p>
+<p>Diagnóstico de recuperação —11/10/2026: adaptação autoral Studio do
+<code>RenderSession.h</code>, GPLv3 existente. Buffer fixo8 KiB e indicação explícita
+de truncamento UTF-8, sem biblioteca/código externo ou dependência nova.
+Reproduziu perda de pasta de recuperação no limite anterior192 bytes;
+testes/integrador nativo e limitações na continuidade. Não altera o DSP.</p>
+<p>Partitura segura —11/10/2026: <code>PublishedScore.hpp</code> e seu teste são código
+original Studio, GPLv3 existente; reutilizam somente o primitivo local
+<code>PublishedText.hpp</code>. Não há código de terceiro, instrumento irmão, samples
+ou dependência nova. Publicação sem substituição, não transação WAV/índice/
+market nem recuperação automática. Fonte/core validados; app pendente,
+evidências e limites na <a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">continuidade</a>.</p>
+<p>Interação bumbo/baixo —10/10/2026: <code>BassKickInteraction.hpp</code> é código
+original Studio, GPLv3, motivado pela escuta do autor e pela inspeção da
+atenuação constante no core-sub. Envelope temporal por disparo aceito,
+com limites próprios; sem samples, código ou modelo externo incorporados.
+Não reivindica interpretação humana ou estilo cultural. Método e estado no
+<a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">laboratório intermodular</a>.</p>
+<p>Retorno observado do baixo —10/10/2026: <code>BassExecutionFeedback.hpp</code> é código
+original do Studio sob sua licença existente GPLv3. Reutiliza os contratos
+locais <code>PerformerState</code>/<code>BassPerformancePlan</code> e os três adaptadores de corpo;
+nenhum código externo ou de instrumento irmão foi importado. Finitude do sinal
+não é medida de qualidade interpretativa humana. Método e limites em
+<a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">laboratório intermodular</a>.</p>
+<p><strong>Rasgo</strong> é o projeto geral criado e dirigido por <strong>Lucio de Araujo</strong> para
+reunir todos os seus instrumentos e softwares musicais autorais. Cada obra pode
+conservar nome e identidade próprios dentro desse conjunto. <strong>Rasgo Synth</strong> é
+um desses softwares, não o nome do projeto inteiro.</p>
+<p>Essa dimensão de guarda-chuva é a forma atual e ampliada do projeto. Em sua
+linhagem física, Rasgo já compreendia módulos concebidos visando ao padrão
+Eurorack. Hoje, porém, Rasgo não se limita a essa realização em hardware: passou
+a acolher o conjunto mais amplo da produção autoral de instrumentos e softwares
+musicais de Lucio.</p>
+<p>O hardware continua pertencendo ao horizonte de Rasgo. Lucio pretende retomar,
+em outro momento, o desenvolvimento de <strong>consoles embarcados, pedais e módulos</strong>.
+Esses caminhos são planos futuros do projeto-guarda-chuva e não devem ser
+apresentados como produtos concluídos nem como parte da fase atual do Rasgo
+Synth.</p>
+<p>Entre as possibilidades previstas para uma etapa posterior está uma <strong>versão
+console embarcada do Rasgo Synth</strong>. Ela permanece como direção de pesquisa e
+desenvolvimento futuro, sem implementação ou prazo anunciados no estado atual
+do projeto.</p>
+<p>Essa definição não mistura Rasgo com as outras áreas de criação de Lucio e não
+incorpora automaticamente obras de terceiros. Um trabalho de upgrade ou
+manutenção também não passa a integrar Rasgo apenas por ter sido realizado por
+Lucio quando sua autoria original pertence a outra pessoa.</p>
+<h2 id="autoria-do-rasgo-synth">Autoria do Rasgo Synth</h2>
+<p>Verificação técnica —09/10/2026: o helper original <code>tools/studio_x11_close.py</code>
+usa a API da libX11 instalada; consulta do <a href="https://www.x.org/releases/current/doc/libX11/libX11/libX11.html">manual primário X.Org</a>,
+seções ClientMessage, XSendEvent e propriedades. Autores e licença permissiva
+do manual na própria fonte; nenhuma implementação Xlib/texto foi incorporado.
+Somente diagnóstico de filho isolado, não dependência nova do core.</p>
+<p>O detector local de pico e seus coeficientes preexistentes são confrontados
+com <a href="https://raw.githubusercontent.com/FFmpeg/FFmpeg/n6.1.1/libavfilter/f_ebur128.c">FFmpeg6.1.1, f_ebur128.c</a>,
+Clément Bœsch/FFmpeg, LGPL-2.1-or-later: resampling libswresample a192 kHz.
+Consulta de algoritmo/metodologia, sem copiar código ou vincular FFmpeg ao
+instrumento. Diagnóstico por stdin e piso de sample peak são código próprio;
+a diferença de interpoladores não certifica qualquer um como verdade exata.</p>
+<p>Proteção offline —10/10/2026: <code>DeliveryPeakGuard</code> é implementação autoral
+sinc/janela Hann,8 fases/64 taps, banco gerado por fórmula e normalizado DC.
+Consulta da <a href="https://www.itu.int/rec/R-REC-BS.1770-5-202311-I/en">ITU-R BS.1770-5, Anexo2 e seu attachment</a>
+sobre erro de sobreamostragem e da <a href="https://www.ffmpeg.org/ffmpeg-resampler.html">documentação primária do resampler FFmpeg</a>
+sobre tamanho de filtro/formato/oversampling. Também consultado
+<a href="https://www.ffmpeg.org/doxygen/6.1/resample_8c_source.html">resample.c do FFmpeg6.1</a>,
+Michael Niedermayer/FFmpeg, LGPL-2.1-or-later, para entender a reflexão nas
+bordas: início em torno da primeira amostra, final repetindo a última.
+O modelo finito de bordas do guard foi escrito localmente para medição,
+nunca inserido no áudio entregue. Sem copiar código, bancos ou
+texto de terceiros; FFmpeg não é vinculado ao app. O FIR normativo preexistente
+permanece medidor separado; o guard adicional não é certificação BS.1770.
+Três reconstruções independentes (32/64/128 taps,4x/4x/8x) confrontam o
+mesmo PCM. Método/projeção/ganho explícitos na metadata; não normaliza LUFS.
+Estado dos testes/build e limites em <a href="publication-notes.html#internal-reference" data-internal-reference="true" title="Internal reference — not distributed">continuidade</a>.</p>
+<p>Pesquisa rítmica —08/10/2026: <code>GrooveDialogue</code> implementa seis estudos autorais
+de pulso, síncope, acento e relação bateria/baixo. Referências consultadas:
+Friberg/Sundström (<a href="https://www.speech.kth.se/music/performance/Texts/ensemble_swing.htm">KTH</a>),
+Naveda/Gouyon/Guedes/Leman (<a href="https://repositorio.inesctec.pt/server/api/core/bitstreams/06ca3366-5cfb-44a1-8b1d-32550456e1ac/content">INESC, samba</a>),
+Witek et al. (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094446">PLOS, síncope/groove</a>)
+e Datseris et al. (<a href="https://arxiv.org/abs/1904.03442">microtiming/swing</a>).
+Não foram copiados código, transcrições, samples, tabelas empíricas ou áudio.
+São estudos originais, não emulações de tradições inteiras. Métodos, usos
+concretos e limites: <a href="docs/GROOVE_RHYTHM.html">groove e malandragem rítmica</a>.</p>
+<p><strong>Rasgo Synth</strong> foi concebido e é mantido por <strong>Lucio de Araujo</strong>, dentro do
+projeto Rasgo.</p>
+<p>Copyright © 2026 Lucio de Araujo.</p>
+<p>O código específico do Rasgo Synth, sua arquitetura, integração, sistema de
+composição por seed, motor de renderização, interface e implementações DSP
+atuais foram escritos para este projeto. Os créditos abaixo reconhecem ideias,
+obras, instrumentos, circuitos, algoritmos e tradições que ajudaram a formar o
+vocabulário do instrumento; eles não indicam cópia literal de código, firmware,
+esquemas, amostras ou recursos gráficos.</p>
+<h2 id="antitotem-precursor-e-patrono">Antitotem — precursor e patrono</h2>
+<p>Consulta rítmica de8 out. 2026: ratchets2–4 e groove de
+<code>ANTITOTEM/src/core/SimpleSequencer.cpp</code>, commit
+<code>eabde9f5cbadf7b1ba3254354002cb5e723cba40</code> (AGPL-3.0), arquivo limpo,
+SHA-256 <code>dc3dc4fdfb097c22d3451062c33d909ee420d9c3599d961ba8950e3beaaefec5</code>.
+Referência interna para respostas curtas/decrescendo do Studio; não houve
+cópia/port desse código, inclusão de headers irmãos ou alteração do Antitotem.
+<code>GrooveRepeat.hpp</code> foi escrito para a temporização e as vozes do Studio.
+Método/limites e estado de validação: <a href="docs/GROOVE_RHYTHM.html">Groove v2</a>.</p>
+<p><strong>Antitotem</strong> é obra de <strong>Lucio de Araujo</strong>. Ele antecede a formalização do
+Rasgo e é seu precursor histórico, mas não permaneceu fora do projeto: foi
+posteriormente incorporado ao próprio Rasgo.</p>
+<p>Dentro dessa linhagem, Antitotem ocupa uma posição semelhante à de um
+<strong>patrono</strong>: é a obra fundadora que precede, inspira e simbolicamente ampara o
+desenvolvimento posterior do projeto. Portanto, deve ser apresentado ao mesmo
+tempo como precursor de Rasgo e como parte integrante de Rasgo — nunca como
+obra de terceiro ou mera referência externa.</p>
+<p>Neste documento, <strong>Rasgo em hardware</strong> designa o conjunto de módulos físicos
+autorais daquela fase, que já eram concebidos visando ao padrão Eurorack. A
+expressão não designa um único aparelho chamado “Rasgo Synth de hardware” e não
+descreve apenas uma intenção futura.</p>
+<h3 id="assistencia-de-desenvolvimento">Assistência de desenvolvimento</h3>
+<p>A reescrita integral do código e numerosas implementações foram realizadas com
+o <strong>Anthropic Claude</strong> como ferramenta de desenvolvimento, sob direção de Lucio
+de Araujo. A ferramenta é registrada como assistência, não como autora dos
+projetos, circuitos ou algoritmos citados abaixo e não como biblioteca
+incorporada ao executável.</p>
+<p>Incrementos posteriores também utilizam Codex como ferramenta assistiva,
+sob direção de Lucio de Araujo, incluindo a experiência do baixo por frase de
+8 out. 2026. Assistência não equivale a autoria dos referenciais ou biblioteca
+incluída no instrumento.</p>
+<h2 id="origem-conceitual-do-rasgo-synth">Origem conceitual do Rasgo Synth</h2>
+<p>O desenvolvimento inicial do Rasgo Synth, como uma obra dentro de Rasgo,
+reuniu duas referências principais de naturezas diferentes:</p>
+<ul>
+<li><strong>Antitotem e os módulos físicos do Rasgo</strong>, de Lucio de Araujo: o primeiro é
+  precursor, patrono e parte incorporada à própria linhagem; os módulos já eram
+  concebidos visando ao padrão Eurorack e constituem sua origem material,
+  estética e autoral;</li>
+<li><strong><a href="https://github.com/zrnsm/kosmische">Kosmische</a></strong>, de <strong>Nicolas Steven
+  Miller</strong> (<code>zrnsm</code>), distribuído sob GNU GPL v3: projeto externo usado como
+  referência conceitual para o instrumento generativo portátil, os mapas
+  caóticos e caminhos de síntese que motivaram a investigação inicial.</li>
+</ul>
+<p>Kosmische é um projeto independente, de outro autor. O Rasgo Synth não é uma
+continuação autoral de Kosmische, e Kosmische não integra Rasgo. O código do
+Rasgo Synth foi reescrito e depois ampliado com numerosas implementações sem
+precedente naquele projeto.</p>
+<h2 id="instrumentos-circuitos-e-modulos-de-referencia">Instrumentos, circuitos e módulos de referência</h2>
+<p>Pesquisa local — 8 out. 2026: distribuição-fonte DISTRHO Cardinal26.02,
+consultada localmente, com85 manifestos e1.422 entradas
+declaradas (não número certificado de módulos disponíveis no runtime).
+Catálogos Surge XT/Bogaudio/Audible/Valley e demais coleções foram referências
+para possibilidades tímbricas; também foi consultado pontualmente
+<code>BogaudioModules/src/FMOp.cpp</code>, sem port/adaptação desse código. A experiência
+<code>BassPhraseTimbre</code> usa implementação original de espectros finitos e identidades
+trigonométricas, não o algoritmo FMOp. Nenhum código, painel ou dependência do
+Cardinal foi incorporado nesta etapa; futuras cópias exigem auditoria própria
+de licença/autoria/dependências. Fonte desta pesquisa: README, Makefile,
+manifestos e <code>docs/LICENSES.md</code> da cópia local. Primeiro experimento testado no
+Studio; escuta pendente. Isso não audita todos os módulos dessas coleções.</p>
+<p>As implementações do Rasgo Synth reproduzem ou reinterpretam comportamentos
+musicais por código original. Salvo indicação expressa em
+<code>THIRD_PARTY_NOTICES.md</code>, nenhum firmware ou código dos projetos desta tabela é
+incluído no repositório.</p>
+<table>
+<thead>
+<tr>
+<th>Área ou módulo do Rasgo Synth</th>
+<th>Crédito e referência</th>
+<th>Natureza da relação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AtariPunkConsole</code></td>
+<td><strong>Forrest M. Mims III</strong> — <em>Stepped Tone Generator</em>, posteriormente popularizado como Atari Punk Console</td>
+<td>Reimplementação comportamental original do oscilador astável/monoestável</td>
+</tr>
+<tr>
+<td>Circuitos CMOS/Lunetta</td>
+<td><strong>Stanley Lunetta</strong> e a comunidade DIY de instrumentos CMOS</td>
+<td>Linhagem técnica e estética</td>
+</tr>
+<tr>
+<td>Percussão eletrônica</td>
+<td><strong>Roland Corporation</strong>, esquemas de serviço da TR-808; análises públicas de <strong>Eric Archer</strong></td>
+<td>Vozes sintetizadas originalmente e inspiradas em comportamentos da TR-808; não são amostras nem réplicas completas dos circuitos</td>
+</tr>
+<tr>
+<td><code>BuchlaRandomSource</code></td>
+<td><strong>Don Buchla</strong> — Music Easel/Model 208 Random Voltage Source; redesenho de referência de <strong>Scott Stites</strong></td>
+<td>Reimplementação conceitual original</td>
+</tr>
+<tr>
+<td><code>SignalLeveler</code> e <code>LagProcessor</code></td>
+<td><strong>Buchla Associates / Don Buchla</strong>, documentos de Dual Signal Leveler e Dual Control Voltage Integrator</td>
+<td>Interpretação funcional original de documentos de circuito</td>
+</tr>
+<tr>
+<td><code>KSRandomizerCore</code></td>
+<td><strong>Scott Stites / KS Synthesis</strong> — 4006 Randomizer Core</td>
+<td>Reimplementação conceitual original</td>
+</tr>
+<tr>
+<td><code>Rungler</code></td>
+<td><strong>Rob Hordijk</strong> — Rungler/Benjolin</td>
+<td>Reimplementação conceitual original</td>
+</tr>
+<tr>
+<td>Sequenciamento com repetição probabilística</td>
+<td><strong>Tom Whitwell / Music Thing Modular</strong> — <a href="https://github.com/TomWhitwell/TuringMachine">Turing Machine</a></td>
+<td>Lógica original inspirada no equilíbrio entre sequência travada e mutação</td>
+</tr>
+<tr>
+<td><code>PolyrhythmDivider</code></td>
+<td><strong>Ken Stone / Cat Girl Synth (CGS)</strong> — CGS22 Master Divider</td>
+<td>Reimplementação conceitual original</td>
+</tr>
+<tr>
+<td><code>NoiseGateGenerator</code> e <code>GrainyNoise</code></td>
+<td><strong>Ray Wilson / Music From Outer Space</strong> — Noise Cornucopia</td>
+<td>Reimplementações conceituais originais</td>
+</tr>
+<tr>
+<td><code>BernoulliGate</code></td>
+<td><strong>Émilie Gillet / Mutable Instruments</strong> — Branches</td>
+<td>Reimplementação comportamental original</td>
+</tr>
+<tr>
+<td><code>ModalResonator</code></td>
+<td><strong>Émilie Gillet / Mutable Instruments</strong> — Rings</td>
+<td>Banco ressonante original inspirado no conceito publicado</td>
+</tr>
+<tr>
+<td><code>GranularCloud</code></td>
+<td><strong>Émilie Gillet / Mutable Instruments</strong> — Clouds</td>
+<td>Motor granular original inspirado no conceito publicado</td>
+</tr>
+<tr>
+<td><code>BreathExciter</code></td>
+<td><strong>Émilie Gillet / Mutable Instruments</strong> — Elements</td>
+<td>Excitador original inspirado na distinção entre sopro e impacto</td>
+</tr>
+<tr>
+<td>Saltos melódicos probabilísticos</td>
+<td><strong>Émilie Gillet / Mutable Instruments</strong> — Marbles</td>
+<td>Referência comparativa para distribuição de alturas; implementação original</td>
+</tr>
+<tr>
+<td><code>OchdBank</code></td>
+<td><strong>Instruō</strong>, em colaboração com <strong>Ben “DivKid” Wilson</strong> — <a href="https://www.instruomodular.com/product/ochd/">øchd</a></td>
+<td>Banco original de LFOs relacionado ao conceito de velocidades organicamente acopladas; øchd não é um produto da Mutable Instruments</td>
+</tr>
+<tr>
+<td><code>ColoredNoise</code></td>
+<td><strong>Frap Tools</strong> — <a href="https://frap.tools/products/sapel/">Sapèl</a>; aproximação de ruído rosa de <strong>Paul Kellet</strong></td>
+<td>Banco original de ruídos branco, rosa, vermelho e azul</td>
+</tr>
+<tr>
+<td><code>MoogFilter</code></td>
+<td><strong>Robert Moog</strong>, filtro ladder; <strong>Tim Stilson</strong> e <strong>Julius O. Smith</strong>, aproximação digital Stilson/Smith</td>
+<td>Implementação independente da técnica digital documentada</td>
+</tr>
+<tr>
+<td><code>SallenKeyFilter</code> e núcleo de <code>PolivoksFilter</code></td>
+<td><strong>Hal Chamberlin</strong> — filtro de estado variável, descrito em <em>Musical Applications of Microprocessors</em></td>
+<td>O algoritmo implementado é Chamberlin; não deve ser apresentado como implementação da topologia eletrônica Sallen–Key</td>
+</tr>
+<tr>
+<td>Nome histórico Sallen–Key</td>
+<td><strong>R. P. Sallen</strong> e <strong>E. L. Key</strong></td>
+<td>Referência à topologia eletrônica histórica, distinta do algoritmo usado atualmente</td>
+</tr>
+<tr>
+<td><code>PolivoksFilter</code></td>
+<td><strong>Vladimir Kuzmin</strong>, projetista do sintetizador Polivoks</td>
+<td>Filtro digital original inspirado no caráter instável do Polivoks; não é modelo do circuito original</td>
+</tr>
+<tr>
+<td><code>FractureFolder</code></td>
+<td><strong>Don Buchla</strong>, Buchla 259; <strong>Serge Tcherepnin</strong>, Serge Wave Multiplier; <strong>Émilie Gillet / Mutable Instruments</strong>, Plaits e Tides</td>
+<td>Linhagem de wavefolding; implementação e extensão “fracture” originais</td>
+</tr>
+<tr>
+<td><code>LeibnizRectifier</code></td>
+<td><strong>Xaoc Devices</strong> — <a href="https://xaocdevices.com/main/drezno/">Leibniz Binary Subsystem</a>, especialmente Drezno/Lipsk</td>
+<td>Corrupção digital de bits reinterpretada em código original</td>
+</tr>
+<tr>
+<td>Referência de retificação dinâmica</td>
+<td><strong>Nonlinearcircuits / Andrew Fitch</strong> — <a href="https://www.nonlinearcircuits.com/blog/2013/01/difference-rectifier-neuron.html">Difference Rectifier / Neuron</a></td>
+<td>Referência contextual; o nome correto não é “Dynamic Rectifier” e o módulo Rasgo não deve ser descrito como port desse circuito</td>
+</tr>
+<tr>
+<td><code>EnvelopeOscillator</code></td>
+<td><strong>CBS Musical Instruments</strong>, documento <em>Dual Attack Generator No. 180</em>; tradição Buchla/Serge de envelopes em frequência de áudio</td>
+<td>Reimplementação conceitual original</td>
+</tr>
+<tr>
+<td><code>RingModulator</code></td>
+<td><strong>CBS Musical Instruments</strong>, documento <em>Dual Ring Modulator No. 111</em></td>
+<td>Referência documental; implementação DSP original</td>
+</tr>
+<tr>
+<td><code>MorphOscillator</code> e <code>DiodeShaper</code></td>
+<td>Documentação DIY de <strong>fluxmonkey</strong> e <strong>Beavis Audio Research</strong></td>
+<td>Referências de forma e mistura por diodos; implementação DSP original</td>
+</tr>
+<tr>
+<td><code>Effects</code> em modo lo-fi</td>
+<td><strong>Princeton Technology Corporation</strong>, circuito integrado PT2399; <strong>Pantala Labs</strong>, Echo 2399</td>
+<td>Emulação comportamental original, sem código ou modelo de silício incorporado</td>
+</tr>
+<tr>
+<td><code>TapeSaturator</code> e <code>TubeSaturator</code></td>
+<td>Instrumentos e módulos da <strong>Pantala Labs</strong> como referências comparativas</td>
+<td>Curvas DSP genéricas e originais; não são emulações oficiais dos produtos</td>
+</tr>
+<tr>
+<td><code>AY8910Chip</code></td>
+<td><strong>General Instrument</strong> — AY-3-8910; família compatível Yamaha YM2149</td>
+<td>Modelo simplificado e original da arquitetura publicamente documentada</td>
+</tr>
+<tr>
+<td>Autorrealimentação em frequência de áudio</td>
+<td><strong>Make Noise</strong> — Maths; tradição de módulos Serge</td>
+<td>Referência de patch e comportamento; implementação original</td>
+</tr>
+<tr>
+<td>Modulação cruzada bidirecional</td>
+<td><strong>Vlad Kreimer / SOMA Laboratory</strong> — Lyra-8</td>
+<td>Referência de comportamento; implementação original</td>
+</tr>
+<tr>
+<td>Cascata polifônica/hocketing</td>
+<td><strong>Intellijel Designs</strong> — Shifty</td>
+<td>Referência de registrador de deslocamento melódico; implementação original</td>
+</tr>
+<tr>
+<td>Leitura endereçável de passos</td>
+<td><strong>Bastl Instruments</strong> — Popcorn</td>
+<td>Referência de sequenciamento endereçável; implementação original</td>
+</tr>
+<tr>
+<td>Síntese vetorial</td>
+<td><strong>Chris Meyer</strong> e a equipe da <strong>Sequential Circuits</strong> — Prophet VS; o nome “Vector Synthesis” foi proposto pelo gerente do projeto <strong>Josh Jeffe</strong>, segundo o <a href="https://learningmodular.com/the-story-of-the-prophet-vs/">relato de Meyer</a></td>
+<td>Crossfade bidimensional original entre quatro fontes já existentes no Rasgo Synth</td>
+</tr>
+<tr>
+<td>Pad de acorde de 4 vozes</td>
+<td><strong>Jason Lim</strong>, fundador da <strong>Instruō</strong> (Glasgow, Escócia) — <a href="https://www.instruomodular.com/product/harmonaig/">harmonàig</a>, quantizador de tensão de 4 vozes com saída raiz/3ª/5ª/7ª</td>
+<td>Banco original de 4 osciladores/envelopes dedicado, soando o acorde real da peça como pad sustentado; não é modelagem do circuito nem porte de firmware</td>
+</tr>
+</tbody>
+</table>
+<p>Marcas e nomes de produtos são usados apenas para identificar referências
+históricas ou comparativas. Rasgo Synth não é afiliado, patrocinado nem
+endossado por essas pessoas ou organizações.</p>
+<h2 id="sintese-dsp-matematica-e-teoria-musical">Síntese, DSP, matemática e teoria musical</h2>
+<table>
+<thead>
+<tr>
+<th>Técnica usada ou estudada</th>
+<th>Crédito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chaos UGens do SuperCollider</td>
+<td><strong>Lance Putnam</strong> (2004). Serviram como referência histórica junto à análise de Kosmische; não há código desses UGens incorporado às implementações atuais</td>
+</tr>
+<tr>
+<td><em>The Chaos Cookbook</em></td>
+<td><strong>Joe Pritchard</strong> (1992). O livro não é de Lance Putnam</td>
+</tr>
+<tr>
+<td>Mapa de Hénon</td>
+<td><strong>Michel Hénon</strong></td>
+</tr>
+<tr>
+<td>Atrator de Lorenz</td>
+<td><strong>Edward N. Lorenz</strong></td>
+</tr>
+<tr>
+<td>Mapas Latoocarfian/Clifford</td>
+<td><strong>Clifford A. Pickover</strong></td>
+</tr>
+<tr>
+<td>Standard map/Chirikov map</td>
+<td><strong>Boris Chirikov</strong></td>
+</tr>
+<tr>
+<td>Atrator de Rössler</td>
+<td><strong>Otto E. Rössler</strong></td>
+</tr>
+<tr>
+<td>GENDYN e teoria de crivos (<em>sieves</em>)</td>
+<td><strong>Iannis Xenakis</strong></td>
+</tr>
+<tr>
+<td>VOSIM</td>
+<td>Trabalho desenvolvido no Instituto de Sonologia de Utrecht, associado a <strong>Werner Kaegi</strong>; análise espectral por <strong>Stan Tempelaars</strong>. A atribuição deve separar essas contribuições em vez de tratá-las como uma coautoria genérica “Kaegi &amp; Tempelaars, 1978”</td>
+</tr>
+<tr>
+<td>PolyBLEP/antialiasing de osciladores</td>
+<td><strong>Vesa Välimäki</strong> e <strong>Antti Huovilainen</strong>, <a href="https://doi.org/10.1109/MSP.2007.323276">“Antialiasing Oscillators in Subtractive Synthesis”</a></td>
+</tr>
+<tr>
+<td>Funções de Walsh</td>
+<td><strong>Joseph L. Walsh</strong></td>
+</tr>
+<tr>
+<td>Matrizes de Hadamard</td>
+<td><strong>Jacques Hadamard</strong></td>
+</tr>
+<tr>
+<td>Código Gray</td>
+<td><strong>Frank Gray</strong></td>
+</tr>
+<tr>
+<td>Reverberação por combs/allpasses</td>
+<td><strong>Manfred R. Schroeder</strong>. A implementação atual é do tipo Schroeder e não deve ser chamada de Freeverb</td>
+</tr>
+<tr>
+<td>Ritmos euclidianos</td>
+<td><strong>E. Bjorklund</strong>, algoritmo; <strong>Godfried Toussaint</strong>, aplicação e análise musical</td>
+</tr>
+<tr>
+<td>Transformações neo-riemannianas P/L/R</td>
+<td><strong>Hugo Riemann</strong>, <strong>David Lewin</strong> e <strong>Richard Cohn</strong></td>
+</tr>
+<tr>
+<td>Cadeias de Markov</td>
+<td><strong>Andrey Markov</strong></td>
+</tr>
+<tr>
+<td>Arco dramático/pirâmide</td>
+<td><strong>Gustav Freytag</strong></td>
+</tr>
+<tr>
+<td>Kishōtenketsu</td>
+<td>Estrutura narrativa de origem chinesa, desenvolvida em tradições do Leste Asiático; não é atribuída a um único autor</td>
+</tr>
+<tr>
+<td>As quatro categorias de jogo (Alea/Agon/Ilinx/Mimicry)</td>
+<td><strong>Roger Caillois</strong>, <em>Les Jeux et les Hommes</em> (1958)</td>
+</tr>
+<tr>
+<td>Ritmo aditivo/aksak balcânico</td>
+<td><strong>Constantin Brăiloiu</strong>, pesquisa etnomusicológica sobre ritmo aksak; <strong>Stoyan Dzhudzhev</strong>, teoria e nomenclatura do ritmo aksak búlgaro</td>
+</tr>
+</tbody>
+</table>
+<h2 id="agradecimento-as-comunidades">Agradecimento às comunidades</h2>
+<p>O projeto reconhece a contribuição duradoura das comunidades de síntese DIY,
+Lunetta/CMOS, música eletroacústica, software livre e modular Eurorack, cujos
+documentos, discussões e experimentos mantêm essas técnicas acessíveis para
+estudo e novas criações.</p>
+<p>Correções documentais de nomes, autoria ou proveniência são bem-vindas quando
+acompanhadas de uma fonte primária ou bibliográfica verificável.</p></main></body></html>

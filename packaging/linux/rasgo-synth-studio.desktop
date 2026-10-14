@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Rasgo Synth Studio
+GenericName=Generative Musical Instrument
+Comment=Compose pieces and albums with RASGO
+Comment[pt]=Componha peças e álbuns com o RASGO
+Comment[fr]=Composez des pièces et des albums avec RASGO
+Comment[es]=Componga piezas y álbumes con RASGO
+Exec=rasgo-synth-studio
+Icon=rasgo-synth-studio
+Terminal=false
+Categories=AudioVideo;Audio;Music;

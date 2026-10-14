@@ -1,0 +1,78 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rasgo Synth — visión integral del instrumento</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO — familia de instrumentos e investigación sonora</a></div><main class="quickstart"><nav><a href="../../es.html">Studio</a> · <a href="../../publication-notes.html">PT / EN / FR / ES — editorial notes</a></nav><h1 id="rasgo-synth-vision-integral-del-instrumento">Rasgo Synth — visión integral del instrumento</h1>
+<p>Este documento explica el instrumento completo: qué recibe, cómo construye una
+pieza, cómo leer el Studio y cómo se relaciona el catálogo de módulos con la
+música.</p>
+<h2 id="studio-y-performance">Studio y Performance</h2>
+<p>Rasgo Synth Studio es el instrumento de escritorio existente para componer,
+renderizar, escuchar e investigar. Rasgo Synth Performance es un instrumento
+hermano de DSP en vivo, con contratos, motor, host standalone y una primera
+superficie local de cuatro escenas y cinco gestos. Aún no está publicado: faltan
+las validaciones gráfica, de dispositivo, musical y de build portátil. Los
+controles en vivo del Studio no constituyen una release de Performance.</p>
+<h2 id="de-la-seed-a-la-pieza">De la seed a la pieza</h2>
+<p>Rasgo Synth es un instrumento de software generativo, no un loop fijo, un
+reproductor de samples ni un teclado nota por nota. Una seed elige una
+trayectoria dentro de un espacio autoral de identidad, escalas, ritmos, voces,
+probabilidades, forma narrativa y materia sonora. Después el motor renderiza
+una pieza completa.</p>
+<p>El recorrido tiene nueve capas: identidad; juego (Alea, Agon, Ilinx, Mimicry);
+tiempo; materia; forma; relaciones; expresión; atención y mezcla; y registro.
+El tiempo incluye rejilla, pulso, subdivisión, swing, microtiming,
+humanización, gate, probabilidad, fase, polimetría, deriva y memoria. La forma
+sigue una caminata de Markov por apertura, desarrollo, clímax, ruptura,
+asentamiento y cierre.</p>
+<p>No todos los módulos están activos en cada seed. <code>Disponible</code>, <code>manifestado</code>,
+<code>audible</code> e <code>influyente</code> son estados distintos. La presencia de flauta, tuba o
+un cuerpo de bajo nunca resume el instrumento entero.</p>
+<h2 id="bajo-melodia-y-percusion">Bajo, melodía y percusión</h2>
+<p>El bajo se separa en función, frase y cuerpo. La función puede ser fundamental,
+pedal, camino, tensión, contrapunto o espacio. La frase controla registro,
+dirección, repetición, relación con el kick y densidad. El cuerpo puede ser una
+tuba sintética, una voz acid o un <code>core-sub</code> de respaldo. El cuerpo no decide
+por sí solo la línea.</p>
+<p>La melodía utiliza escalas, conducción de voces, contorno, voicing, tratamiento
+de disonancia, afinación expresiva y memoria. La percusión tiene voces
+independientes, arquetipos rítmicos, estructuras euclidianas y aksak,
+articulación, variación tímbrica e interlocking. <code>TemporalGrooveImprint</code>
+alimenta el bajo expresivo y la percusión de arquetipo con influencia limitada.</p>
+<h2 id="leer-el-studio">Leer el Studio</h2>
+<ul>
+<li><strong>SEED / ALEA</strong>: elegir o derivar el punto de partida.</li>
+<li><strong>TEMPO</strong>: fijar el pulso inicial; el arco puede derivar después.</li>
+<li><strong>MASTER</strong>: fijar el nivel final, no la energía compositiva.</li>
+<li><strong>MODO SALVAJE</strong>: permitir trayectorias entrópicas adicionales.</li>
+<li><strong>AUDITORÍA DE STEMS</strong>: medir supervivencia posespacio y atención narrativa.</li>
+<li><strong>A/B EXPRESIVO</strong>: activar comportamiento temporal y gestual experimental.</li>
+<li><strong>COMPONER</strong>: renderizar la pieza en segundo plano.</li>
+<li><strong>LANG</strong>: cambiar entre inglés, portugués, francés y español.</li>
+</ul>
+<p>Los paneles leen un mismo resultado: forma de onda, osciloscopio, espectro,
+espectrograma, goniómetro, retrato de fase, granulación, genealogía del arco,
+pesos del juego, cuadrícula de módulos y log. El archivo <code>.txt</code> acompañante es
+un relato legible de secciones, decisiones, voces y mecanismos; no es una
+partitura tradicional.</p>
+<p>La auditoría de stems es una lente de medición, no un requisito para escuchar.
+<code>COPIAR</code> copia el log y <code>LIMPIAR</code> limpia su presentación sin borrar audio. Una
+región de la forma de onda puede reproducirse o utilizarse para derivar una
+nueva seed. <code>VARIAR SEED</code> parte de un instante de reproducción para componer
+otra pieza.</p>
+<h2 id="modo-album">Modo Álbum</h2>
+<p>El Modo Álbum crea varias pistas relacionadas desde una seed de álbum.
+<code>AlbumRenderer</code> deriva seeds de pista, conserva continuidad tonal amplia y deja
+que cada pista tenga su propia narrativa y selección de módulos. No es un
+archivo largo cortado en partes: es una familia de piezas.</p>
+<h2 id="flujo-y-catalogo">Flujo y catálogo</h2>
+<p>El flujo arquitectónico muestra causalidad: la seed alimenta identidad,
+secuenciación, arco y DSP; el arco alimenta densidad, registro y energía; juego,
+relaciones y mezcla observan o influyen dentro de límites. Las flechas sólidas
+son flujos principales; las punteadas son observación o influencia limitada.</p>
+<p>El catálogo web contiene 142 mecanismos con categoría, descripción y referencia.
+Describe posibilidades, no promete que todos se escuchen en cada pieza. Consulta
+la <a href="../pt/Instrumento_Integral.html">guía integral portuguesa</a> y el
+<a href="../../assets/mechanisms.pt.json">catálogo</a>.</p>
+<h2 id="limites-y-continuacion">Límites y continuación</h2>
+<p>Algunos contratos de performance, memoria, atención y mezcla todavía tienen
+consumidores locales u observacionales. La aceptación musical requiere tanto
+telemetría como escucha humana. El siguiente trabajo busca un bajo más legible
+sin imponer un cuerpo, más contrapunto cuando la forma lo permita y morfología
+de nota en más familias de voces.</p></main></body></html>

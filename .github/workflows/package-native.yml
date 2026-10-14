@@ -1,0 +1,131 @@
+name: Studio — native release candidates (manual)
+
+# Prepared only. This nested workflow is inert in the RASGO monorepo.
+# A public Studio-only source selection and budget decision precede invocation.
+# Native ceiling: Windows25 + Intel35 + ARM35 =95 runner minutes, serial.
+# Optional Linux adds its separate25+4*15 ceiling. No automatic release/site.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_budget:
+        description: Source selection and execution budget approved
+        required: true
+        type: boolean
+        default: false
+      build_linux:
+        description: Rebuild Linux and run distro matrix too
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: studio-native-candidates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    if: ${{ inputs.confirm_budget && inputs.build_linux }}
+    uses: ./.github/workflows/package-linux.yml
+
+  native:
+    if: ${{ inputs.confirm_budget }}
+    timeout-minutes: ${{ matrix.timeout }}
+    env:
+      CMAKE_BUILD_PARALLEL_LEVEL: "1"
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - runner: windows-2022
+            platform: windows-x64
+            architecture: x64
+            timeout: 25
+          - runner: macos-15-intel
+            platform: macos-x86_64
+            architecture: x86_64
+            timeout: 35
+          - runner: macos-15
+            platform: macos-arm64
+            architecture: arm64
+            timeout: 35
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: juce-framework/JUCE
+          ref: f8f8864172464b9adf9eba6101e1f784838d1597
+          path: .dependencies/JUCE
+      - name: Configure Windows x64
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $nsis = "${env:ProgramFiles(x86)}\NSIS"
+          if (!(Test-Path "$nsis\makensis.exe")) { throw "NSIS is required; no implicit installation" }
+          $nsis | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          cmake -S rasgo-synth-app -B .local-build/native -G "Visual Studio 17 2022" -A x64 "-DRASGO_JUCE_ROOT=$pwd/.dependencies/JUCE"
+          if ($LASTEXITCODE -ne 0) { throw "CMake configure failed" }
+      - name: Configure macOS architecture and deployment target
+        if: runner.os == 'macOS'
+        shell: bash
+        env:
+          STUDIO_ARCHITECTURE: ${{ matrix.architecture }}
+        run: |
+          set -euo pipefail
+          cmake -S rasgo-synth-app -B .local-build/native \
+            -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+            "-DCMAKE_OSX_ARCHITECTURES=$STUDIO_ARCHITECTURE" \
+            "-DRASGO_JUCE_ROOT=$PWD/.dependencies/JUCE"
+      - name: Serial native build, install tree and packages
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          cmake --build .local-build/native --config Release --parallel 1
+          if ($LASTEXITCODE -ne 0) { throw "Native build failed" }
+          cmake --install .local-build/native --config Release --prefix .local-build/native-stage
+          if ($LASTEXITCODE -ne 0) { throw "Install tree failed" }
+          cpack --config .local-build/native/CPackConfig.cmake -C Release -B .local-build/native-packages
+          if ($LASTEXITCODE -ne 0) { throw "Native packaging failed" }
+      - name: Inspect macOS binary architecture and linked libraries
+        if: runner.os == 'macOS'
+        shell: bash
+        env:
+          STUDIO_ARCHITECTURE: ${{ matrix.architecture }}
+        run: |
+          set -euo pipefail
+          studio_binary=".local-build/native-stage/Rasgo Synth Studio.app/Contents/MacOS/Rasgo Synth Studio"
+          lipo -verify_arch "$STUDIO_ARCHITECTURE" "$studio_binary"
+          otool -L "$studio_binary"
+      - name: Retain native checksums (not runtime or signing acceptance)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $packages = @(Get-ChildItem .local-build/native-packages -File | Where-Object { $_.Extension -in ".exe", ".zip", ".dmg" })
+          if ($packages.Count -eq 0) { throw "Missing native packages" }
+          $lines = foreach ($file in $packages) {
+            $hash = (Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $($file.Name)"
+          }
+          [System.IO.File]::WriteAllLines("$pwd/.local-build/native-packages/SHA256SUMS", $lines, [System.Text.UTF8Encoding]::new($false))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-${{ matrix.platform }}-candidates
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            .local-build/native-packages/*.exe
+            .local-build/native-packages/*.zip
+            .local-build/native-packages/*.dmg
+            .local-build/native-packages/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: studio-${{ matrix.platform }}-build-diagnostics
+          retention-days: 7
+          path: |
+            .local-build/native/CMakeCache.txt
+            .local-build/native/CMakeFiles/CMakeConfigureLog.yaml
+            .local-build/native/_CPack_Packages/**/NSISOutput.log
