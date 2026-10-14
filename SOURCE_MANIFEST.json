@@ -19,7 +19,7 @@
     {
       "path": ".github/workflows/smoke-native.yml",
       "source": ".github/workflows/smoke-native.yml",
-      "sha256": "091911e9dfb8fb8d3577d6b8a9116f2c3d4fa81dcc353e76d2c3c0c0c17f6158"
+      "sha256": "0a5e79b691cd2940d917a838693b8827a08059bee19ae207bb50b7f907d8d4a3"
     },
     {
       "path": ".gitignore",
@@ -39,7 +39,7 @@
     {
       "path": "INSTALL.md",
       "source": "INSTALL.md",
-      "sha256": "7561891c5daea48bb56ed32d653e2851b44d6b2c270644241ea33f5226c322d6"
+      "sha256": "fe2388fd2a20b9594522b61719ba07937f5bddd151e1723cacf3423ff635a8bd"
     },
     {
       "path": "LICENSE",
@@ -49,7 +49,7 @@
     {
       "path": "README.md",
       "source": "packaging/public/README.md",
-      "sha256": "2ab2e6fda33a07cf76b30f17e68e3a675551e418c8226f051adefda97b73229b"
+      "sha256": "14884b3401e1884db0e1a753b1507b8065e9c80cef72eca8e07820f350c2af15"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -229,7 +229,7 @@
     {
       "path": "packaging/public/README.md",
       "source": "packaging/public/README.md",
-      "sha256": "2ab2e6fda33a07cf76b30f17e68e3a675551e418c8226f051adefda97b73229b"
+      "sha256": "14884b3401e1884db0e1a753b1507b8065e9c80cef72eca8e07820f350c2af15"
     },
     {
       "path": "packaging/public/gitignore",
@@ -1709,12 +1709,12 @@
     {
       "path": "tools/build_studio_tutorial.py",
       "source": "tools/build_studio_tutorial.py",
-      "sha256": "bbd8c3fd52082814cb3807d1f2ec0c7002957a1793f668e627373e869ad77f83"
+      "sha256": "83d82c3f25be11e311fd0fe46f2736b7d7782e96b4ba69ee76539813226ae793"
     },
     {
       "path": "tools/build_studio_website.py",
       "source": "tools/build_studio_website.py",
-      "sha256": "1aafcbdc9d7b6f206dd3d78a0d7a755a9bb9078b72399ee3365260110479aa2f"
+      "sha256": "628b53da4d69ecaf344ad13360b8822877d57fbc6f3eceaf8d4bb0303bc6bb26"
     },
     {
       "path": "tools/export_studio_source.py",
@@ -1754,7 +1754,7 @@
     {
       "path": "tools/test_export_studio_source.py",
       "source": "tools/test_export_studio_source.py",
-      "sha256": "77dc6936fa7ef6dfa99792457fa86bcb7b08c0942e25108ed1202443e15e1b91"
+      "sha256": "9a05c759f09aa274f796defb10178ea2d6bbe471dcfb237593275b257c80396e"
     },
     {
       "path": "tools/test_install_studio_linux.py",
@@ -1849,7 +1849,7 @@
     {
       "path": "website/assets/quickstart.js",
       "source": "website/assets/quickstart.js",
-      "sha256": "898078fb4c1c49c7b563c449b62dcff85cced0779a7285905132858c29413934"
+      "sha256": "86ba304a281f41712604edcc0975b475ba68973295b11e0d7adabadc526a56ae"
     },
     {
       "path": "website/assets/rasgo_logo.svg",
@@ -1869,37 +1869,37 @@
     {
       "path": "website/assets/studio.css",
       "source": "website/assets/studio.css",
-      "sha256": "a079185f482136cd58b9d3e4c23305851804ce52be14e581c3603984ed06afbd"
+      "sha256": "d2cbeebac2659a2771693c7c45ebf5edcd88d25b45e6bbf349e01821ced2f69f"
     },
     {
       "path": "website/catalogo.html",
       "source": "website/catalogo.html",
-      "sha256": "0211d4f3788f6b6202345db80f3a03f46eab6396c904268555bd59159ea0d222"
+      "sha256": "5a416261b9692e576801de28d6c67951015fde5ad0c76efd0670469962c4c60a"
     },
     {
       "path": "website/en.html",
       "source": "website/en.html",
-      "sha256": "beb4ebb2e4a311696c5bbc61cadcb777601522d43b72e9802343fd178098aae7"
+      "sha256": "f945c8850a914605e72350258fcea6eaa4ef17bc0715164e05552b3229ce0e3e"
     },
     {
       "path": "website/es.html",
       "source": "website/es.html",
-      "sha256": "a696c62added7b5db202ee739bbfc189c1b4f58a7628edab16288417cc704756"
+      "sha256": "7c7f56b7f6897b54c439984ad82b8b1f6f8d953132f65490283b38c79f408d65"
     },
     {
       "path": "website/fr.html",
       "source": "website/fr.html",
-      "sha256": "b1d84eeb5c4a8865c88d0a2dac275e62a932625e63c94b8ae098c6ead74d9602"
+      "sha256": "5e92ae12775d879d43bb7f73b0b08c11f4118fff152b95f0fa7d13305e848972"
     },
     {
       "path": "website/index.html",
       "source": "website/index.html",
-      "sha256": "08120662eb123e532b0483588023e1548908fea1409b7b651f71a7df447dc8a7"
+      "sha256": "0e8c9bb00d1914ca7cc6b6ddf23489a4acbdc71640ca0e45cd8ef7b8488787df"
     },
     {
       "path": "website/quickstart.html",
       "source": "website/quickstart.html",
-      "sha256": "6d8b808baff8167346fabe580150dd22bc24e695412b2a5b88f1a0053de1791c"
+      "sha256": "5b3ce8abceae38c61ef9121de14084139791a1800c52fb77fa9d66b0e2442e77"
     }
   ],
   "site": "site/public-manifest.json",

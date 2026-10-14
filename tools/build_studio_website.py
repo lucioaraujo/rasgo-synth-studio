@@ -16,7 +16,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 import markdown
-from build_studio_tutorial import ROOT, FAMILY, PAGES, STRIPS, generate
+from build_studio_tutorial import ROOT, FAMILY, PAGES, STRIPS, generate, navigation
 
 MAX_FILE = 2 * 1024 * 1024
 MAX_TOTAL = 8 * 1024 * 1024
@@ -124,16 +124,19 @@ def prepare(root=ROOT):
             body = markdown.markdown(raw.decode(), extensions=["tables", "fenced_code", "toc"])
             stylesheet = posixpath.relpath("assets/site.css", posixpath.dirname(target) or ".")
             style = posixpath.relpath("assets/studio.css", posixpath.dirname(target) or ".")
-            home = posixpath.relpath(PAGES[code], posixpath.dirname(target) or ".")
-            notes = posixpath.relpath("publication-notes.html", posixpath.dirname(target) or ".")
+            prefix = posixpath.relpath(".", posixpath.dirname(target) or ".")
+            prefix = "" if prefix == "." else prefix + "/"
+            context = "installation" if source == "INSTALL.md" else "manual"
+            script = (f'<script src="{prefix}assets/quickstart.js" defer></script>'
+                      if context == "installation" else "")
             text = ('<!doctype html><html lang="' + ("pt-BR" if code == "pt" else code)
                     + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
                     + '<title>' + html.escape(raw.decode().splitlines()[0].lstrip("# ")) + '</title>'
                     + f'<link rel="stylesheet" href="{stylesheet}"><link rel="stylesheet" href="{style}">'
-                    + '</head><body class="studio-public"><div class="rasgo-strip">'
+                    + script + '</head><body class="studio-public"><div class="rasgo-strip">'
                     + f'<a href="{FAMILY}{"" if code == "pt" else PAGES[code]}">{STRIPS[code]}</a></div>'
-                    + f'<main class="quickstart"><nav><a href="{home}">Studio</a> · '
-                    + f'<a href="{notes}">PT / EN / FR / ES — editorial notes</a></nav>'
+                    + navigation(code, prefix, public=True, context=context)
+                    + '<main class="quickstart">'
                     + body + '</main></body></html>')
         elif source.endswith(".html"):
             text = raw.decode()
@@ -163,9 +166,8 @@ def prepare(root=ROOT):
             # Generated navigation/styles above already use public paths.
             if source.endswith(".md"):
                 public_nav, content = text.split("<main class=\"quickstart\">", 1)
-                nav, rest = content.split("</nav>", 1)
-                text = public_nav + '<main class="quickstart">' + nav + "</nav>" + re.sub(
-                    r'(href|src)=(["\x27])(.*?)\2', rewrite, rest)
+                text = public_nav + '<main class="quickstart">' + re.sub(
+                    r'(href|src)=(["\x27])(.*?)\2', rewrite, content)
             else:
                 text = re.sub(r'(href|src)=(["\x27])(.*?)\2', rewrite, text)
             raw_out = text.encode()
@@ -185,24 +187,25 @@ def prepare(root=ROOT):
     files["publication-notes.html"] = (
         '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
         '<title>Studio — notas editoriais</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/studio.css">'
-        '</head><body class="studio-public"><main class="quickstart"><h1 id="internal-reference">PT / EN / FR / ES</h1>'
-        '<p lang="pt-BR">Este é um pacote local de preparação, não uma publicação. Manuais são derivados HTML de fontes Markdown. '
+        '</head><body class="studio-public">' + navigation("pt", public=True)
+        + '<main class="quickstart"><h1 id="internal-reference">PT / EN / FR / ES</h1>'
+        '<p lang="pt-BR">Manuais são derivados HTML de fontes Markdown. '
         'Links marcados como referência interna apontam a esta nota: diários de trabalho não são distribuídos. '
         'Os nomes/citações permanecem por transparência; esta nota não substitui seu conteúdo.</p>'
-        '<p lang="en">Local preparation package, not a release. Manuals are HTML derivatives of Markdown sources. '
+        '<p lang="en">Manuals are HTML derivatives of Markdown sources. '
         'Links marked as internal references lead here because working logs are not distributed. This notice does not replace those documents.</p>'
-        '<p lang="fr">Paquet local de préparation, pas une publication. Manuels dérivés HTML de sources Markdown. '
+        '<p lang="fr">Manuels dérivés HTML de sources Markdown. '
         'Les références internes signalées mènent ici ; les journaux de travail ne sont pas distribués. Cette note ne les remplace pas.</p>'
-        '<p lang="es">Paquete local de preparación, no publicación. Manuales derivados HTML de fuentes Markdown. '
+        '<p lang="es">Manuales derivados HTML de fuentes Markdown. '
         'Las referencias internas señaladas llevan aquí; no se distribuyen diarios de trabajo. Esta nota no los sustituye.</p>'
-        '<p>0.1.0 experimental · Linux · download / URL: pending</p>'
+        '<p>Rasgo Synth Studio · 0.1.0 experimental</p>'
         '<p><a href="index.html">PT</a> · <a href="en.html">EN</a> · <a href="fr.html">FR</a> · <a href="es.html">ES</a></p>'
         '<p><a href="CREDITS.html">Créditos</a> · <a href="THIRD_PARTY_NOTICES.html">Notices</a> · <a href="LICENSE.txt">AGPL-3.0-or-later</a></p>'
         '</main></body></html>\n').encode()
     validate(files)
     if len(files) > 64 or sum(map(len, files.values())) > MAX_TOTAL:
         raise ValueError("output exceeds budget")
-    manifest = {"kind": "local website preparation, not release approval", "date": "2026-10-12",
+    manifest = {"kind": "reviewed website export, not binary release approval", "date": "2026-10-15",
                 "builder": "tools/build_studio_website.py", "markdown_version": markdown.__version__,
                 "files": provenance, "marked_internal_references": marked,
                 "source_selection": "explicit allowlist; no audio, logs, other instruments or app code"}

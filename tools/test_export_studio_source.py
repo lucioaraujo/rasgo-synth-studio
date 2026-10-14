@@ -23,6 +23,12 @@ class SourceExportTests(unittest.TestCase):
         self.assertIn(".github/workflows/package-native.yml", files)
         self.assertIn("site/public-manifest.json", files)
         self.assertEqual(mapping["README.md"], "packaging/public/README.md")
+        readme = files["README.md"].decode("utf-8")
+        headings = [readme.index("## " + heading) for heading in
+                    ("English", "Português", "Français", "Español")]
+        self.assertEqual(headings, sorted(headings))
+        for anchor in ("english", "portugues", "francais", "espanol"):
+            self.assertIn("INSTALL.md#" + anchor, readme)
         manifest = json.loads(files["SOURCE_MANIFEST.json"])
         for record in manifest["files"]:
             self.assertEqual(record["sha256"], hashlib.sha256(files[record["path"]]).hexdigest())

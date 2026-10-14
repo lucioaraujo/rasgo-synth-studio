@@ -10,25 +10,14 @@
 <link rel="alternate" hreflang="fr" href="fr.html">
 <link rel="alternate" hreflang="es" href="es.html">
 <link rel="stylesheet" href="assets/site.css?v=6">
-<link rel="stylesheet" href="assets/studio.css?v=2">
+<link rel="stylesheet" href="assets/studio.css?v=3">
 <script src="assets/site.js?v=6" defer></script>
 </head>
 <body class="studio-public">
 <div class="rasgo-strip" aria-label="RASGO"><a href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO — famille d’instruments et recherche sonore</a></div>
 <header class="studio-header topbar">
-<a class="studio-mark mark" href="#top"><img class="mark-logo" src="assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
-<nav aria-label="Instrument">
-<a href="#instrument">Instrument</a>
-<a href="#first-piece">Première pièce</a>
-<a href="#documentation">Documentation</a>
-<a href="#release">Version et crédits</a>
-</nav>
-<nav class="studio-languages" aria-label="Language / Idioma / Langue">
-<a href="en.html" lang="en" hreflang="en">English</a>
-<a href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
-<a href="fr.html" lang="fr" hreflang="fr" aria-current="page">Français</a>
-<a href="es.html" lang="es" hreflang="es">Español</a>
-</nav>
+<a class="studio-mark mark" href="fr.html"><img class="mark-logo" src="assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
+<nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links"><a href="fr.html#instrument">Instrument</a><a href="fr.html#album">Album</a><a href="quickstart.html#fr">Tutoriel</a><a href="../INSTALL.md#francais">Installation</a><a href="fr.html#documentation">Documentation</a><a href="fr.html#release">Crédits</a></span><span class="studio-languages"><a href="en.html" lang="en" hreflang="en">English</a><a href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a><a href="fr.html" lang="fr" hreflang="fr" aria-current="page">Français</a><a href="es.html" lang="es" hreflang="es">Español</a></span></nav>
 </header>
 <main id="top" class="studio-main">
 <section class="studio-hero hero">
@@ -37,7 +26,7 @@
 <h1 class="hero-title">Rasgo<br>Synth<span class="studio">Version Studio</span></h1>
 <p class="hero-tag">Prenez des risques, puis faites sonner.</p>
 <p class="studio-intro">Rasgo Synth Studio construit des compositions à partir d'une seed, de décisions musicales et de processus sonores en relation. Il appartient à RASGO : une famille d'instruments originaux de Lucio de Araujo, dédiée à l'expérimentation, à la composition et à l'apprentissage.</p>
-<p class="studio-status">Version expérimentale 0.1.0 · Linux</p>
+<p class="studio-status">Version expérimentale 0.1.0 · paquets en préparation</p>
 <div class="studio-actions">
 <a class="studio-primary" href="quickstart.html#fr">Créez votre première pièce</a>
 <a href="../docs/fr/manual.md">Lire le manuel</a>
@@ -101,12 +90,12 @@
 </section>
 <section id="release" class="studio-section studio-reading">
 <h2 id="requirements">Installation et configuration</h2>
-<p>Linux x86_64 avec SSE2, X11 ou XWayland et sortie audio ALSA. Écran de référence : 1366 × 768 ; défilement disponible à 900 × 600. MIDI, carte graphique dédiée et internet ne sont pas nécessaires pour composer.</p>
+<p>Des paquets distincts sont préparés pour Linux x86_64, Windows x64 et macOS Intel/Apple Silicon. Choisissez le format et l'architecture dans le guide d'installation. Écran de référence : 1366 × 768, avec défilement dans les petites fenêtres. MIDI, carte graphique dédiée et internet ne sont pas nécessaires pour composer.</p>
 <p>Repère provisoire : 8 Gio de RAM, avec 4 Gio disponibles ; 16 Gio conseillés pour les albums. Ce n'est pas un minimum certifié. Prévoir 500 Mio pour application/marge de travail, plus environ 1,1 Go par heure d'audio.</p>
-<p>Candidat Linux x86_64 compilé sous Ubuntu 22.04, testé dans cet environnement isolé et sous Mint 22. Exige glibc 2.35+ et GLIBCXX_3.4.30. Autres distributions non encore validées.</p>
-<p><a href="../INSTALL.md#francais">Lancer et installer : .deb, AppImage et .tar.gz →</a></p>
+<p>Linux exige glibc 2.35+ et GLIBCXX_3.4.30. Démarrage et fermeture passent aussi sous Debian 12, Ubuntu 24.04, Fedora et Arch avec écran virtuel. Tests d'exécution Windows/macOS et révision AppImage en cours. Les installateurs ne sont pas encore disponibles au téléchargement.</p>
+<p><a href="../INSTALL.md#francais">Choisir, ouvrir et installer selon son système →</a></p>
 <h2>Un instrument expérimental, développé ouvertement</h2>
-<p>Cette documentation présente Studio 0.1.0, une version expérimentale testée sous Linux.</p>
+<p>Cette documentation présente Studio 0.1.0 expérimental. Le <a href="https://github.com/lucioaraujo/rasgo-synth-studio">code source est public sur GitHub</a> ; les téléchargements seront activés à la publication des paquets.</p>
 <h3>Limites musicales connues</h3>
 <p>Certaines voix peuvent rester discrètes dans le mixage, tandis que des percussions ressortent. Des timbres peuvent aussi revenir d'une pièce à l'autre. Écoutez à un volume confortable et comparez les choix de modules. Bruit, silence et rupture font partie des possibilités musicales de l'instrument.</p>
 <h3>Auteur, références et méthode</h3>
@@ -116,10 +105,6 @@
 <footer class="studio-footer">
 <p>Par Lucio de Araujo · famille d'instruments RASGO</p>
 <a href="catalogo.html">Recherche et documentation technique</a>
-<nav aria-label="Language / Idioma / Langue"><a href="en.html" lang="en" hreflang="en">English</a>
-<a href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
-<a href="fr.html" lang="fr" hreflang="fr" aria-current="page">Français</a>
-<a href="es.html" lang="es" hreflang="es">Español</a></nav>
 </footer>
 </body>
 </html>

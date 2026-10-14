@@ -65,11 +65,18 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           $installer = Join-Path "$pwd/.local-build/candidates" $env:STUDIO_PACKAGE
-          $target = "$pwd/.local-build/installed-studio"
+          $target = [System.IO.Path]::GetFullPath((Join-Path $pwd '.local-build\installed-studio'))
           # NSIS requires /D last. Only the disposable runner registry is used.
           $process = Start-Process -FilePath $installer -ArgumentList @('/S', "/D=$target") -PassThru
           if (!$process.WaitForExit(60000)) { $process.Kill(); throw "NSIS timeout" }
           if ($process.ExitCode -ne 0) { throw "NSIS installation failed" }
+          $binary = Join-Path $target 'Rasgo Synth Studio.exe'
+          $deadline = [DateTime]::UtcNow.AddSeconds(20)
+          while (!(Test-Path $binary) -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 200 }
+          if (!(Test-Path $binary)) {
+            if (Test-Path $target) { Get-ChildItem $target -Recurse -File | Select-Object -First 60 FullName }
+            throw "NSIS completed without the expected executable in its explicit native destination"
+          }
           python -B tools/smoke_studio_native.py --binary "$target/Rasgo Synth Studio.exe" --output "$pwd/.local-build/native-smoke"
           if ($LASTEXITCODE -ne 0) { throw "Windows runtime smoke failed" }
       - name: Mount DMG read-only, copy bundle, render and close
@@ -79,7 +86,10 @@ jobs:
           set -euo pipefail
           mountpoint="$PWD/.local-build/dmg-mount"
           mkdir "$mountpoint"
-          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" ".local-build/candidates/$STUDIO_PACKAGE"
+          # CPack adds the author's AGPL notice as a DMG license prompt.
+          # Explicitly acknowledge it in this disposable test, not by changing
+          # the license, image, Gatekeeper or host security policy.
+          printf 'Y\n' | hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" ".local-build/candidates/$STUDIO_PACKAGE"
           trap 'hdiutil detach "$mountpoint"' EXIT
           ditto "$mountpoint/Rasgo Synth Studio.app" "$PWD/.local-build/installed-studio.app"
           bundle="$PWD/.local-build/installed-studio.app"

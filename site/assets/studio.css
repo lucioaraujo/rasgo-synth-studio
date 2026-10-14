@@ -16,6 +16,7 @@
 .quickstart p { margin: .75rem 0; }
 .quickstart code { overflow-wrap: anywhere; }
 .quickstart table { display: block; overflow-x: auto; font-size: .9rem; }
+.quickstart th:first-child, .quickstart td:first-child { min-width: 7rem; overflow-wrap: normal; word-break: normal; vertical-align: top; }
 .quickstart pre { overflow-x: auto; }
 .quickstart h2 { scroll-margin-top: 8rem; }
 .quickstart [data-internal-reference]::after { content: " [internal]"; font-size: .8em; }
@@ -33,6 +34,12 @@
 .studio-header nav, .studio-footer nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
 .studio-header a, .studio-footer a { padding: .3rem 0; }
 .studio-languages { margin-left: auto; font-size: .78rem; font-family: var(--font-mono); }
+.studio-navigation { flex: 1; align-items: center; }
+.studio-menu-links, .studio-languages { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.studio-menu-links[hidden] { display: none; }
+.studio-menu-links[data-navigation-language]:not([data-active="true"]):not([data-navigation-language="en"]) { display: none; }
+.quickstart { padding: 0 1.25rem; overflow-wrap: anywhere; }
+.studio-public [id] { scroll-margin-top: 10rem; }
 .studio-public [aria-current="page"] { color: var(--text-bright); text-decoration-thickness: 3px; text-underline-offset: .3em; }
 .studio-main { max-width: 1180px; padding: 0 1.75rem; margin: auto; }
 .studio-hero { padding: 5rem 0 3rem; }

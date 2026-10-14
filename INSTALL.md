@@ -1,8 +1,55 @@
 # Rasgo Synth Studio — instalação / installation
 
-Revisão: 2026-10-14 · versão 0.1.0 experimental.
+Revisão: 2026-10-15 · versão 0.1.0 experimental.
+
+PT · [Português](#portugues) / EN · [English](#english) /
+FR · [Français](#francais) / ES · [Español](#espanol)
 
 ## Português
+
+### Escolher o arquivo
+
+| Seu sistema | Arquivo |
+| --- | --- |
+| Ubuntu, Mint, Debian x86_64 | `.deb` ou `.tar.gz` |
+| Fedora, Arch e outros Linux glibc x86_64 | `.tar.gz` ou AppImage, respeitando as bibliotecas mínimas abaixo |
+| Windows x64 | Instalador `.exe` ou pasta portátil `.zip` |
+| Mac com processador Intel | `.dmg` com `macos-x86_64` no nome |
+| Mac com Apple Silicon (M1 ou posterior) | `.dmg` com `macos-arm64` no nome |
+
+Os instaladores ainda estão em preparação, sem download público. O
+[código-fonte já está disponível](https://github.com/lucioaraujo/rasgo-synth-studio).
+Use somente os arquivos da publicação oficial do Studio quando forem liberados.
+Este guia explica os formatos; não certifica todos os sistemas.
+
+### Windows x64
+
+1. Baixe o `.exe` e abra o instalador; escolha o destino e siga os passos.
+2. Abra Rasgo Synth Studio pelo atalho criado. Para a opção portátil, extraia
+   o ZIP inteiro e abra `Rasgo Synth Studio.exe` dentro da pasta extraída.
+3. Preserve `assets`, fontes e licenças junto do executável. Não execute de
+   dentro do ZIP nem mova apenas o `.exe` da versão portátil.
+4. Se o SmartScreen mostrar um aviso, confira origem, nome e SHA256 do arquivo
+   antes de decidir abrir. Não desative a proteção do Windows globalmente.
+
+Alvo: Windows 10/11 de 64 bits; a instalação e a execução ainda estão em
+validação. Não existe pacote Windows ARM ou32 bits. Não é preciso instalar
+Python, JUCE ou compilador para usar o pacote pronto. Para remover a versão
+instalada, use Aplicativos do Windows; preserve suas gravações e preferências.
+
+### macOS — Intel ou Apple Silicon
+
+1. Em Sobre Este Mac, confira se o processador é Intel ou Apple Silicon.
+2. Abra o DMG correspondente e copie `Rasgo Synth Studio.app` para Aplicativos.
+3. Ejete a imagem e abra a cópia em Aplicativos, não a aplicação dentro do DMG.
+4. Se o macOS bloquear a abertura, confira a origem e siga a opção de abertura
+   específica em Ajustes do Sistema → Privacidade e Segurança. Não desative o
+   Gatekeeper nem remova proteções globalmente.
+
+Alvo de compilação: macOS12 ou posterior, não um mínimo comprovado por testes.
+Há DMGs separados, não um bundle universal. Não alegamos assinatura com
+identidade de distribuição nem notarização. Abrir, renderizar e fechar ainda
+está em validação; não há aceitação de áudio físico nesses sistemas.
 
 ### Configuração e compatibilidade
 
@@ -32,8 +79,10 @@ Reserve cerca de 1,1 GB por hora de áudio, mais os arquivos acompanhantes.
 O render também mantém áudio na RAM; duração e opções podem aumentar o uso.
 
 O piso das bibliotecas é medido no executável, não deduzido do nome do Linux.
-O candidato atual foi testado em Ubuntu 22.04 isolado e Mint 22; isso não
-comprova Mint 21, Debian 12 ou todas as outras distribuições. AppImage
+O candidato foi testado localmente em Ubuntu22.04 isolado e Mint22.
+Os pacotes da CI também passaram abertura, layout e fechamento em Debian12,
+Ubuntu24.04, Fedora e Arch com tela virtual; isso não é escuta em hardware.
+Mint21 e todas as versões dessas distribuições não foram certificados. AppImage
 não resolve por si só uma glibc mais antiga. Linux musl/Alpine, ARM, Windows
 e macOS não foram validados para esta distribuição.
 
@@ -122,6 +171,51 @@ ficam dentro do pacote. Para testes isolados, use `RASGO_SYNTH_DATA_DIR` e
 
 ## English
 
+### Choose your package
+
+| Your system | Package |
+| --- | --- |
+| Ubuntu, Mint, Debian x86_64 | `.deb` or `.tar.gz` |
+| Fedora, Arch and other glibc-based Linux x86_64 | `.tar.gz` or AppImage, subject to the library floor below |
+| Windows x64 | `.exe` installer or portable `.zip` |
+| Intel Mac | DMG named `macos-x86_64` |
+| Apple Silicon Mac (M1 or later) | DMG named `macos-arm64` |
+
+Installers are still being prepared, not publicly downloadable yet.
+[Source code is available](https://github.com/lucioaraujo/rasgo-synth-studio).
+Only use files from the official Studio release once available. These
+instructions explain the formats; they do not certify every operating system.
+
+### Windows x64
+
+1. Download and open the `.exe` installer, select its destination and follow
+   the prompts. Start Rasgo Synth Studio using the installed shortcut.
+2. For the portable option, extract the entire ZIP, then open
+   `Rasgo Synth Studio.exe` from the extracted folder.
+3. Keep `assets`, fonts and licenses beside the executable. Do not run inside
+   the ZIP or move just the portable executable.
+4. If SmartScreen warns, verify the source, filename and SHA256 before
+   deciding to open. Do not disable Windows protection globally.
+
+Target: 64-bit Windows10/11; installation/runtime validation is still open.
+No Windows ARM/32-bit package. Python, JUCE and a compiler are not required
+to use the finished package. Remove the installed version through Windows
+Apps; keep recordings and preferences separate.
+
+### macOS — Intel or Apple Silicon
+
+1. Check your processor in About This Mac and choose the matching DMG.
+2. Open it and copy `Rasgo Synth Studio.app` into Applications.
+3. Eject the image and open the copy in Applications, not the mounted DMG.
+4. If macOS blocks it, verify its origin and use the application-specific
+   opening option in System Settings → Privacy & Security. Never disable
+   Gatekeeper or remove security protections globally.
+
+Build target: macOS12 or later, not a tested minimum. Separate architecture
+DMGs, not a universal bundle. No distribution-identity signing or notarization
+is claimed. Startup/render/close are being validated; physical audio acceptance
+has not been performed on these systems.
+
 ### Requirements and compatibility
 
 The x86_64 candidate was built on Ubuntu 22.04 and tested in that isolated
@@ -146,8 +240,10 @@ PCM24 stereo at 48 kHz uses about 17.3 MB/minute (1.1 GB/hour). Rendered audio
 also occupies RAM; longer pieces/settings may need more. Compilation needs
 more resources than running the finished application.
 
-The current candidate was tested in isolated Ubuntu 22.04 and on Mint 22;
-Mint 21, Debian 12 and other distributions are not yet validated.
+Local checks covered isolated Ubuntu22.04 and Mint22. CI packages also passed
+startup, layout and cooperative close on Debian12, Ubuntu24.04, Fedora and
+Arch using a virtual display, not hardware listening. Mint21 and every
+version of these distributions have not been certified.
 AppImage does not remove the glibc floor. musl/Alpine, ARM, Windows and macOS
 are not validated. MIDI, a dedicated GPU and internet are not required to
 compose; a USB AudioBox is optional.
@@ -191,6 +287,51 @@ the package. Isolated tests may override `RASGO_SYNTH_DATA_DIR` and
 
 ## Français
 
+### Choisir le fichier
+
+| Votre système | Fichier |
+| --- | --- |
+| Ubuntu, Mint, Debian x86_64 | `.deb` ou `.tar.gz` |
+| Fedora, Arch et autres Linux glibc x86_64 | `.tar.gz` ou AppImage, selon les bibliothèques minimales ci-dessous |
+| Windows x64 | Installateur `.exe` ou archive portable `.zip` |
+| Mac Intel | DMG portant `macos-x86_64` |
+| Mac Apple Silicon (M1 ou suivant) | DMG portant `macos-arm64` |
+
+Les installateurs sont en préparation, pas encore disponibles au téléchargement.
+Le [code source est disponible](https://github.com/lucioaraujo/rasgo-synth-studio).
+Utiliser uniquement les fichiers de la publication officielle lorsqu'ils seront
+disponibles. Ces instructions ne certifient pas tous les systèmes.
+
+### Windows x64
+
+1. Ouvrir l'installateur `.exe`, choisir la destination et suivre les étapes.
+   Lancer Rasgo Synth Studio par le raccourci créé.
+2. Pour la version portable, extraire tout le ZIP, puis ouvrir
+   `Rasgo Synth Studio.exe` dans le dossier extrait.
+3. Conserver `assets`, polices et licences avec l'exécutable. Ne pas lancer
+   depuis le ZIP ni déplacer uniquement l'exécutable portable.
+4. En cas d'avertissement SmartScreen, vérifier provenance, nom et SHA256 avant
+   de décider d'ouvrir. Ne pas désactiver globalement la protection Windows.
+
+Cible : Windows10/11 en64 bits ; installation et exécution restent en
+validation. Pas de paquet Windows ARM/32 bits. Python, JUCE et compilateur
+ne sont pas nécessaires. Désinstaller par les Applications Windows, sans
+effacer ses enregistrements et préférences.
+
+### macOS — Intel ou Apple Silicon
+
+1. Vérifier le processeur dans À propos de ce Mac et choisir le bon DMG.
+2. L'ouvrir et copier `Rasgo Synth Studio.app` dans Applications.
+3. Éjecter l'image puis ouvrir la copie, pas l'application dans le DMG.
+4. Si macOS bloque l'ouverture, vérifier la provenance et utiliser l'option
+   spécifique à l'application dans Réglages Système → Confidentialité et
+   sécurité. Ne pas désactiver globalement Gatekeeper ou les protections.
+
+Cible de compilation : macOS12 ou suivant, pas un minimum vérifié. DMGs
+séparés, pas de bundle universel. Aucune signature avec identité de distribution
+ni notarisation revendiquée. Démarrage/rendu/fermeture en validation ; pas de
+validation audio sur matériel réel sur ces systèmes.
+
 ### Configuration et compatibilité
 
 Le candidat x86_64 a été compilé sous Ubuntu 22.04 et testé dans cet
@@ -215,8 +356,11 @@ stéréo à 48 kHz occupe environ 17,3 Mo/minute, soit 1,1 Go/heure. Le rendu
 utilise aussi la RAM ; durée et réglages peuvent augmenter la consommation.
 Compiler demande plus de ressources que lancer l'application.
 
-Ce candidat a été testé dans Ubuntu 22.04 isolé et sous Mint 22, pas sous
-Mint 21, Debian 12 ou toutes les distributions. AppImage ne supprime pas
+Tests locaux : Ubuntu22.04 isolé et Mint22. Les paquets CI passent aussi
+démarrage, disposition et fermeture sous Debian12, Ubuntu24.04, Fedora et
+Arch avec écran virtuel ; ce n'est pas une écoute sur matériel réel.
+Mint21 et toutes les versions de ces distributions ne sont pas certifiés.
+AppImage ne supprime pas
 l'exigence glibc. musl/Alpine, ARM,
 Windows et macOS non validés. MIDI, carte graphique dédiée et connexion
 internet ne sont pas nécessaires pour composer ; l'AudioBox USB est facultative.
@@ -262,6 +406,51 @@ hors du paquet. Tests isolés : `RASGO_SYNTH_DATA_DIR` et
 
 ## Español
 
+### Elegir el archivo
+
+| Su sistema | Archivo |
+| --- | --- |
+| Ubuntu, Mint, Debian x86_64 | `.deb` o `.tar.gz` |
+| Fedora, Arch y otros Linux glibc x86_64 | `.tar.gz` o AppImage, según las bibliotecas mínimas indicadas abajo |
+| Windows x64 | Instalador `.exe` o archivo portátil `.zip` |
+| Mac Intel | DMG con `macos-x86_64` en el nombre |
+| Mac Apple Silicon (M1 o posterior) | DMG con `macos-arm64` en el nombre |
+
+Los instaladores están en preparación, todavía sin descarga pública.
+El [código fuente está disponible](https://github.com/lucioaraujo/rasgo-synth-studio).
+Utilice solo archivos de la publicación oficial cuando estén disponibles.
+Estas instrucciones no certifican todos los sistemas.
+
+### Windows x64
+
+1. Abra el instalador `.exe`, elija el destino y siga los pasos. Abra
+   Rasgo Synth Studio mediante el acceso directo creado.
+2. Para la versión portátil, extraiga todo el ZIP y abra
+   `Rasgo Synth Studio.exe` desde la carpeta extraída.
+3. Mantenga `assets`, fuentes y licencias junto al ejecutable. No lo abra
+   dentro del ZIP ni mueva solo el ejecutable portátil.
+4. Si SmartScreen advierte, compruebe origen, nombre y SHA256 antes de decidir
+   abrir. No desactive globalmente la protección de Windows.
+
+Objetivo: Windows10/11 de64 bits; instalación y ejecución siguen en
+validación. Sin paquete Windows ARM/32 bits. No requiere Python, JUCE o
+compilador para usarlo. Desinstale mediante Aplicaciones de Windows,
+conservando grabaciones y preferencias.
+
+### macOS — Intel o Apple Silicon
+
+1. Compruebe el procesador en Acerca de este Mac y elija el DMG adecuado.
+2. Ábralo y copie `Rasgo Synth Studio.app` a Aplicaciones.
+3. Expulse la imagen y abra la copia, no la aplicación dentro del DMG.
+4. Si macOS bloquea la apertura, compruebe el origen y use la opción
+   específica en Ajustes del Sistema → Privacidad y seguridad. No desactive
+   Gatekeeper ni las protecciones globalmente.
+
+Objetivo de compilación: macOS12 o posterior, no un mínimo comprobado.
+DMG separados, no un bundle universal. No se declara firma con identidad de
+distribución ni notarización. Inicio/render/cierre en validación; sin
+aceptación de audio en hardware real en estos sistemas.
+
 ### Configuración y compatibilidad
 
 El candidato x86_64 se compiló en Ubuntu 22.04 y se probó en ese entorno
@@ -286,8 +475,10 @@ certifica un procesador mínimo ni un tiempo de render. PCM24 estéreo a
 puede requerir más según duración y opciones. Compilar necesita más recursos
 que ejecutar la aplicación.
 
-El candidato actual se probó en Ubuntu 22.04 aislado y Mint 22, no en
-Mint 21, Debian 12 ni en todas las demás distribuciones.
+Pruebas locales: Ubuntu22.04 aislado y Mint22. Los paquetes CI también pasaron
+inicio, disposición y cierre en Debian12, Ubuntu24.04, Fedora y Arch con
+pantalla virtual, no escucha en hardware. Mint21 y todas las versiones de
+esas distribuciones no están certificadas.
 AppImage no elimina el requisito de glibc. musl/Alpine, ARM, Windows y macOS
 no están validados. No se requiere MIDI, GPU dedicada ni internet para
 componer; la AudioBox USB es opcional.

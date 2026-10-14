@@ -4,6 +4,7 @@
   var languages = ["en", "pt", "fr", "es"];
   function showLanguage() {
     var language = window.location.hash.slice(1).split("--")[0];
+    language = ({portugues:"pt", english:"en", francais:"fr", espanol:"es"})[language] || language;
     if (languages.indexOf(language) === -1) language = "en";
     document.documentElement.lang = language === "pt" ? "pt-BR" : language;
     document.querySelectorAll("[data-tutorial-language]").forEach(function (article) {
@@ -15,6 +16,10 @@
     });
     document.querySelectorAll("[data-family-language]").forEach(function (link) {
       link.hidden = link.getAttribute("data-family-language") !== language;
+    });
+    document.querySelectorAll("[data-navigation-language]").forEach(function (links) {
+      links.hidden = links.getAttribute("data-navigation-language") !== language;
+      links.setAttribute("data-active", links.hidden ? "false" : "true");
     });
   }
   function resetLanguageStart() {
