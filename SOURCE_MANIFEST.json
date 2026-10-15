@@ -1744,7 +1744,7 @@
     {
       "path": "tools/debug_studio_macos.py",
       "source": "tools/debug_studio_macos.py",
-      "sha256": "1fd32115e2965b6efd8af90f353c85335a0974de751cc0f062ff7ae5b3064c96"
+      "sha256": "d613ad89afae1f4dd5758eae2e29d4bbd7a2b2b51edcac2fe0dfd064799e15f5"
     },
     {
       "path": "tools/export_studio_source.py",
@@ -1794,7 +1794,7 @@
     {
       "path": "tools/test_debug_studio_macos.py",
       "source": "tools/test_debug_studio_macos.py",
-      "sha256": "c48d8fa41bc2cdcfdaa7eed05e10990758cdb0ee9988d907c295ef64101ce08a"
+      "sha256": "aa80a5875ade3d88e4c8494e3cf6864d43151ab76f6047988ce6171da11bba2d"
     },
     {
       "path": "tools/test_export_studio_source.py",

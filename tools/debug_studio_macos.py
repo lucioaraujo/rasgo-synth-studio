@@ -13,10 +13,35 @@ import time
 from smoke_studio_native import history, close_macos
 
 
+# macOS reports a debug-only JUCE int3 as EXC_BREAKPOINT even if LLDB ignores
+# POSIX SIGTRAP. Resume only the known String constructor assertion (at most
+# four times) so an older DMG can reach the separate SIGBUS. Never resume
+# arbitrary bad-access stops or treat an assertion-bearing run as acceptance.
+CRASH_SCRIPT = """
+import lldb
+process = lldb.debugger.GetSelectedTarget().GetProcess()
+lldb.debugger.SetAsync(False)
+for index in range(4):
+    if process.GetState() != lldb.eStateStopped:
+        break
+    thread = process.GetSelectedThread()
+    reason = thread.GetStopDescription(256) or ''
+    function = thread.GetFrameAtIndex(0).GetFunctionName() or ''
+    print('DIAGNOSTIC STOP:', index, reason, function)
+    if 'EXC_BREAKPOINT' not in reason or 'juce::String::String' not in function:
+        break
+    print('Resuming known old String assertion for diagnosis only')
+    process.Continue()
+lldb.debugger.HandleCommand('process status')
+lldb.debugger.HandleCommand('thread backtrace all -c 24')
+lldb.debugger.HandleCommand('register read')
+"""
+
+
 def command(binary):
     return ["lldb", "--batch", "-o", "settings set target.disable-aslr false",
             "-o", "process handle SIGTRAP -s false -n false -p false",
-            "-o", "run", "-k", "thread backtrace all -c 24", "-k", "register read",
+            "-o", "run", "-k", "script exec(" + repr(CRASH_SCRIPT) + ")",
             "--", str(binary)]
 
 

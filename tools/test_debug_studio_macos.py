@@ -11,9 +11,15 @@ class MacDiagnosticTests(unittest.TestCase):
         args = debug.command(Path("/private/Rasgo Synth Studio"))
         self.assertEqual(args[-2:], ["--", "/private/Rasgo Synth Studio"])
         self.assertIn("--batch", args)
-        self.assertIn("thread backtrace all -c 24", args)
+        self.assertIn("thread backtrace all -c 24", " ".join(args))
         self.assertNotIn("sudo", args)
         self.assertNotIn("attach", args)
+
+    def test_only_bounded_known_string_assertions_are_resumed(self):
+        self.assertIn("range(4)", debug.CRASH_SCRIPT)
+        self.assertIn("'EXC_BREAKPOINT' not in reason", debug.CRASH_SCRIPT)
+        self.assertIn("'juce::String::String' not in function", debug.CRASH_SCRIPT)
+        self.assertNotIn("EXC_BAD_ACCESS' in", debug.CRASH_SCRIPT)
 
     def test_workflow_has_one_bounded_manual_job_no_build_or_audio_upload(self):
         root = Path(__file__).resolve().parents[1]
