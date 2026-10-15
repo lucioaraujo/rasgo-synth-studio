@@ -92,10 +92,18 @@
 <h2 id="requirements">Installation et configuration</h2>
 <p>Des paquets distincts sont préparés pour Linux x86_64, Windows x64 et macOS Intel/Apple Silicon. Choisissez le format et l'architecture dans le guide d'installation. Écran de référence : 1366 × 768, avec défilement dans les petites fenêtres. MIDI, carte graphique dédiée et internet ne sont pas nécessaires pour composer.</p>
 <p>Repère provisoire : 8 Gio de RAM, avec 4 Gio disponibles ; 16 Gio conseillés pour les albums. Ce n'est pas un minimum certifié. Prévoir 500 Mio pour application/marge de travail, plus environ 1,1 Go par heure d'audio.</p>
-<p>Linux exige glibc 2.35+ et GLIBCXX_3.4.30. Démarrage et fermeture passent aussi sous Debian 12, Ubuntu 24.04, Fedora et Arch avec écran virtuel. Tests d'exécution Windows/macOS et révision AppImage en cours. Les installateurs ne sont pas encore disponibles au téléchargement.</p>
+<p>Linux exige glibc 2.35+ et GLIBCXX_3.4.30. Démarrage et fermeture passent sous Debian 12, Ubuntu 24.04, Fedora et Arch avec écran virtuel. Windows et le même DMG universel Mac passent les tests automatisés de rendu, chemins accentués et fermeture. Cela ne remplace pas installation manuelle et écoute. AppImage a été testé extrait, pas monté via FUSE.</p>
 <p><a href="../INSTALL.md#francais">Choisir, ouvrir et installer selon son système →</a></p>
 <h2>Un instrument expérimental, développé ouvertement</h2>
-<p>Cette documentation présente Studio 0.1.0 expérimental. Le <a href="https://github.com/lucioaraujo/rasgo-synth-studio">code source est public sur GitHub</a> ; les téléchargements seront activés à la publication des paquets.</p>
+<p>Studio 0.1.0 est disponible comme <a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0">version expérimentale</a>, avec paquets, sources et sommes de contrôle. Un seul DMG Universal 2 convient aux Mac Intel et Apple Silicon, sans Rosetta. Le <a href="https://github.com/lucioaraujo/rasgo-synth-studio">code source est public</a>.</p>
+<ul class="studio-doc-links">
+<li><a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/rasgo-synth-studio-0.1.0-linux-x86_64.AppImage">AppImage</a></li>
+<li><a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/rasgo-synth-studio-0.1.0-linux-x86_64.deb">Paquet .deb</a></li>
+<li><a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/rasgo-synth-studio-0.1.0-linux-x86_64.tar.gz">.tar.gz portable</a></li>
+<li><a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/rasgo-synth-studio-0.1.0-windows-x64.exe">Installateur Windows</a></li>
+<li><a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/rasgo-synth-studio-0.1.0-windows-x64.zip">ZIP portable Windows</a></li>
+<li><a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/rasgo-synth-studio-0.1.0-macos-universal.dmg">Mac — DMG Universal 2</a></li>
+</ul>
 <h3>Limites musicales connues</h3>
 <p>Certaines voix peuvent rester discrètes dans le mixage, tandis que des percussions ressortent. Des timbres peuvent aussi revenir d'une pièce à l'autre. Écoutez à un volume confortable et comparez les choix de modules. Bruit, silence et rupture font partie des possibilités musicales de l'instrument.</p>
 <h3>Auteur, références et méthode</h3>

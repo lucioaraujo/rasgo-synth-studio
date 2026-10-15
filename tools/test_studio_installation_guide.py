@@ -46,6 +46,15 @@ class InstallationGuideTests(unittest.TestCase):
             self.assertIn(heading, page)
         self.assertEqual(page.count("VCRUNTIME140.dll"), 4)
 
+    def test_published_release_and_one_universal_package_in_every_language(self):
+        for section in self.sections():
+            self.assertIn("https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0", section)
+            self.assertIn("macos-universal", section)
+            self.assertIn("Rosetta", section)
+            self.assertIn("FUSE", section)
+            self.assertNotIn("macos-arm64", section)
+            self.assertNotIn("macos-x86_64", section)
+
 
 if __name__ == "__main__":
     unittest.main()

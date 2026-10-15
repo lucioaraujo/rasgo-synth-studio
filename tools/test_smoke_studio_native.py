@@ -49,8 +49,10 @@ class NativeSmokeTests(unittest.TestCase):
         job = document["jobs"]["smoke"]
         self.assertEqual(job["timeout-minutes"], "8")
         self.assertEqual(len(job["strategy"]["matrix"]["include"]), 3)
-        download = next(step for step in job["steps"] if step.get("uses") == "actions/download-artifact@v4")
-        self.assertEqual(download["with"]["run-id"], "38642240658")
+        download = next(step for step in job["steps"] if "gh release download" in step.get("run", ""))
+        self.assertIn("gh release download v0.1.0", download["run"])
+        self.assertIn('--pattern "$STUDIO_PACKAGE"', download["run"])
+        self.assertNotIn("run-id", download)
         for row in job["strategy"]["matrix"]["include"]:
             self.assertRegex(row["sha256"], r"^[0-9a-f]{64}$")
         upload = job["steps"][-1]["with"]["path"]
@@ -59,7 +61,8 @@ class NativeSmokeTests(unittest.TestCase):
         self.assertNotIn("grava", upload)
         scripts = "\n".join(step.get("run", "") for step in job["steps"])
         self.assertNotIn("cmake --build", scripts)
-        self.assertNotIn("gh release", scripts)
+        self.assertNotIn("gh release edit", scripts)
+        self.assertNotIn("gh release upload", scripts)
 
 
 if __name__ == "__main__":

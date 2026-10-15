@@ -28,15 +28,15 @@ jobs:
           - runner: windows-2022
             platform: windows-x64
             package: rasgo-synth-studio-0.1.0-windows-x64.exe
-            sha256: 5f014015414766ee49c3072800f650ee116bb0caa159ae52a025ceb323266c0a
+            sha256: 36bf2f7a7ca499c73bf659ac46411fcaf6f350576ed50ab40d4728aaac55340c
           - runner: macos-15-intel
             platform: macos-x86_64
-            package: rasgo-synth-studio-0.1.0-macos-x86_64.dmg
-            sha256: 2c19ad1d99a5dbcb2d7b7dd12626c60f34833f5e3aad87f939ecd0864d093faf
+            package: rasgo-synth-studio-0.1.0-macos-universal.dmg
+            sha256: d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35
           - runner: macos-15
             platform: macos-arm64
-            package: rasgo-synth-studio-0.1.0-macos-arm64.dmg
-            sha256: 87b5dd908678b01be74d31e1acd0a031fbf5a6e5c4902c026b19c3360df2fcb9
+            package: rasgo-synth-studio-0.1.0-macos-universal.dmg
+            sha256: d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35
     runs-on: ${{ matrix.runner }}
     env:
       STUDIO_PACKAGE: ${{ matrix.package }}
@@ -46,12 +46,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - uses: actions/download-artifact@v4
-        with:
-          name: studio-${{ matrix.platform }}-candidates
-          path: .local-build/candidates
-          run-id: 38642240658
-          github-token: ${{ github.token }}
+      - name: Download the fixed public release, not expired candidate artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release download v0.1.0 --repo "$GITHUB_REPOSITORY" \
+            --pattern "$STUDIO_PACKAGE" --dir .local-build/candidates
       - name: Verify exact existing package before execution
         shell: pwsh
         run: |

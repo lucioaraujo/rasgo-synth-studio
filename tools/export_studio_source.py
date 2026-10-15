@@ -57,7 +57,8 @@ def selection(root=ROOT):
                      "rasgo-synth-core/LICENSE", ".github/workflows/package-native.yml",
                      ".github/workflows/package-linux.yml", ".github/workflows/smoke-native.yml",
                      ".github/workflows/diagnose-macos-intel.yml",
-                     ".github/workflows/package-macos-universal.yml"))
+                     ".github/workflows/package-macos-universal.yml",
+                     ".github/workflows/publish-site.yml"))
     for directory in ("rasgo-synth-app/src", "rasgo-synth-app/tests", "rasgo-synth-core/src",
                       "packaging"):
         for path in (root / directory).rglob("*"):
@@ -98,7 +99,7 @@ def prepare(root=ROOT):
         raise ValueError("combined source/site budget exceeded")
     files["SOURCE_MANIFEST.json"] = (json.dumps({
         "schema": 1, "kind": "Studio-only public source export, not release approval",
-        "date": "2026-10-15", "author": "Lucio de Araujo",
+        "date": "2026-10-16", "author": "Lucio de Araujo",
         "history": "Private monorepository history intentionally not exported",
         "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
         "files": records, "site": "site/public-manifest.json",

@@ -2,7 +2,7 @@
 <a class="studio-mark mark" href="index.html"><img class="mark-logo" src="assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
 <nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links" data-navigation-language="en"><a href="en.html#instrument">Instrument</a><a href="en.html#album">Album</a><a href="quickstart.html#en">Tutorial</a><a href="INSTALL.html#english">Installation</a><a href="en.html#documentation">Documentation</a><a href="en.html#release">Credits</a></span><span class="studio-menu-links" data-navigation-language="pt"><a href="index.html#instrument">Instrumento</a><a href="index.html#album">Álbum</a><a href="quickstart.html#pt">Tutorial</a><a href="INSTALL.html#portugues">Instalação</a><a href="index.html#documentation">Documentação</a><a href="index.html#release">Créditos</a></span><span class="studio-menu-links" data-navigation-language="fr"><a href="fr.html#instrument">Instrument</a><a href="fr.html#album">Album</a><a href="quickstart.html#fr">Tutoriel</a><a href="INSTALL.html#francais">Installation</a><a href="fr.html#documentation">Documentation</a><a href="fr.html#release">Crédits</a></span><span class="studio-menu-links" data-navigation-language="es"><a href="es.html#instrument">Instrumento</a><a href="es.html#album">Álbum</a><a href="quickstart.html#es">Tutorial</a><a href="INSTALL.html#espanol">Instalación</a><a href="es.html#documentation">Documentación</a><a href="es.html#release">Créditos</a></span><span class="studio-languages"><a href="#english" lang="en" hreflang="en" data-language="en">English</a><a href="#portugues" lang="pt-BR" hreflang="pt-BR" data-language="pt">Português</a><a href="#francais" lang="fr" hreflang="fr" data-language="fr">Français</a><a href="#espanol" lang="es" hreflang="es" data-language="es">Español</a></span></nav>
 </header><main class="quickstart"><h1 id="rasgo-synth-studio-instalacao-installation">Rasgo Synth Studio — instalação / installation</h1>
-<p>Revisão: 2026-10-15 · versão 0.1.0 experimental.</p>
+<p>Revisão: 2026-10-16 · versão 0.1.0 experimental.</p>
 <p>PT · <a href="#portugues">Português</a> / EN · <a href="#english">English</a> /
 FR · <a href="#francais">Français</a> / ES · <a href="#espanol">Español</a></p>
 <h2 id="portugues">Português</h2>
@@ -28,18 +28,14 @@ FR · <a href="#francais">Français</a> / ES · <a href="#espanol">Español</a><
 <td>Instalador <code>.exe</code> ou pasta portátil <code>.zip</code></td>
 </tr>
 <tr>
-<td>Mac com processador Intel</td>
-<td><code>.dmg</code> com <code>macos-x86_64</code> no nome</td>
-</tr>
-<tr>
-<td>Mac com Apple Silicon (M1 ou posterior)</td>
-<td><code>.dmg</code> com <code>macos-arm64</code> no nome</td>
+<td>Mac Intel ou Apple Silicon (M1 ou posterior)</td>
+<td>Um único <code>.dmg</code> com <code>macos-universal</code> no nome</td>
 </tr>
 </tbody>
 </table>
-<p>Os instaladores ainda estão em preparação, sem download público. O
-<a href="https://github.com/lucioaraujo/rasgo-synth-studio">código-fonte já está disponível</a>.
-Use somente os arquivos da publicação oficial do Studio quando forem liberados.
+<p>Os pacotes estão na <a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0">publicação experimental 0.1.0</a>.
+O <a href="https://github.com/lucioaraujo/rasgo-synth-studio">código-fonte é público</a>.
+Use somente os arquivos dessa publicação oficial do Studio.
 Este guia explica os formatos; não certifica todos os sistemas.</p>
 <h3 id="windows-x64">Windows x64</h3>
 <ol>
@@ -51,24 +47,24 @@ Este guia explica os formatos; não certifica todos os sistemas.</p>
 <li>Se o SmartScreen mostrar um aviso, confira origem, nome e SHA256 do arquivo
    antes de decidir abrir. Não desative a proteção do Windows globalmente.</li>
 </ol>
-<p>Alvo: Windows 10/11 de 64 bits; a instalação e a execução ainda estão em
-validação. Não existe pacote Windows ARM ou32 bits. Não é preciso instalar
+<p>Alvo: Windows 10/11 de 64 bits. Render, caminhos acentuados e fechamento
+passaram em teste automatizado da árvore instalada; a instalação manual
+e a escuta física ainda precisam de testes. Não existe pacote Windows ARM ou32 bits. Não é preciso instalar
 Python, JUCE ou compilador para usar o pacote pronto. Para remover a versão
 instalada, use Aplicativos do Windows; preserve suas gravações e preferências.</p>
 <h3 id="macos-intel-ou-apple-silicon">macOS — Intel ou Apple Silicon</h3>
 <ol>
-<li>Em Sobre Este Mac, confira se o processador é Intel ou Apple Silicon.</li>
-<li>Abra o DMG correspondente e copie <code>Rasgo Synth Studio.app</code> para Aplicativos.</li>
+<li>Use o DMG Universal 2, compatível com Intel e Apple Silicon, sem Rosetta.</li>
+<li>Abra o DMG e copie <code>Rasgo Synth Studio.app</code> para Aplicativos.</li>
 <li>Ejete a imagem e abra a cópia em Aplicativos, não a aplicação dentro do DMG.</li>
 <li>Se o macOS bloquear a abertura, confira a origem e siga a opção de abertura
    específica em Ajustes do Sistema → Privacidade e Segurança. Não desative o
    Gatekeeper nem remova proteções globalmente.</li>
 </ol>
 <p>Alvo de compilação: macOS12 ou posterior, não um mínimo comprovado por testes.
-Há DMGs separados, não um bundle universal. Não alegamos assinatura com
-identidade de distribuição nem notarização. Os candidatos separados passaram
-nos testes automatizados de abertura, render e fechamento em Intel e Apple
-Silicon. Um DMG Universal 2 está em preparação, ainda sem validação final.
+O mesmo DMG Universal 2 passou nos testes automatizados de abertura, render
+e fechamento em Intel e Apple Silicon. O aplicativo inteiro tem assinatura
+ad-hoc de integridade; não alegamos Developer ID nem notarização.
 Isso não substitui instalação manual ou escuta em hardware real.</p>
 <h3 id="se-nao-instalar-ou-nao-abrir">Se não instalar ou não abrir</h3>
 <table>
@@ -136,9 +132,8 @@ ou <a href="mailto:rasgo.instruments@gmail.com">email</a>. Não envie áudios se
 compartilhá-los. Orientações oficiais: <a href="https://support.apple.com/en-us/102445">Apple</a>
 e <a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="configuracao-e-compatibilidade">Configuração e compatibilidade</h3>
-<p>O candidato x86_64 foi compilado em Ubuntu 22.04 e testado nessa base isolada
-e no Linux Mint 22. Ainda não é um
-download público. Os formatos de distribuição são <code>.deb</code>, AppImage e
+<p>O pacote Linux x86_64 foi compilado em Ubuntu 22.04 e testado nessa base isolada
+e no Linux Mint 22. Os formatos de distribuição são <code>.deb</code>, AppImage e
 <code>.tar.gz</code>; produzir o arquivo não equivale a testar todas as distribuições.</p>
 <table>
 <thead>
@@ -191,8 +186,9 @@ O candidato foi testado localmente em Ubuntu22.04 isolado e Mint22.
 Os pacotes da CI também passaram abertura, layout e fechamento em Debian12,
 Ubuntu24.04, Fedora e Arch com tela virtual; isso não é escuta em hardware.
 Mint21 e todas as versões dessas distribuições não foram certificados. AppImage
-não resolve por si só uma glibc mais antiga. Linux musl/Alpine, ARM, Windows
-e macOS não foram validados para esta distribuição.</p>
+não resolve por si só uma glibc mais antiga. Linux musl/Alpine e Linux ARM
+não são atendidos por este pacote. Windows e macOS usam os pacotes próprios
+descritos acima. O AppImage foi testado extraído, não montado por FUSE.</p>
 <h3 id="abrir-o-arquivo-targz">Abrir o arquivo .tar.gz</h3>
 <p>Extraia a pasta inteira, não somente o executável. Abra um terminal nela:</p>
 <pre><code class="language-bash">chmod +x run
@@ -272,18 +268,14 @@ ficam dentro do pacote. Para testes isolados, use <code>RASGO_SYNTH_DATA_DIR</co
 <td><code>.exe</code> installer or portable <code>.zip</code></td>
 </tr>
 <tr>
-<td>Intel Mac</td>
-<td>DMG named <code>macos-x86_64</code></td>
-</tr>
-<tr>
-<td>Apple Silicon Mac (M1 or later)</td>
-<td>DMG named <code>macos-arm64</code></td>
+<td>Intel or Apple Silicon Mac (M1 or later)</td>
+<td>One DMG named <code>macos-universal</code></td>
 </tr>
 </tbody>
 </table>
-<p>Installers are still being prepared, not publicly downloadable yet.
-<a href="https://github.com/lucioaraujo/rasgo-synth-studio">Source code is available</a>.
-Only use files from the official Studio release once available. These
+<p>Packages are available in the <a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0">experimental 0.1.0 release</a>.
+<a href="https://github.com/lucioaraujo/rasgo-synth-studio">Source code is public</a>.
+Only use files from this official Studio release. These
 instructions explain the formats; they do not certify every operating system.</p>
 <h3 id="windows-x64_1">Windows x64</h3>
 <ol>
@@ -296,24 +288,24 @@ instructions explain the formats; they do not certify every operating system.</p
 <li>If SmartScreen warns, verify the source, filename and SHA256 before
    deciding to open. Do not disable Windows protection globally.</li>
 </ol>
-<p>Target: 64-bit Windows10/11; installation/runtime validation is still open.
+<p>Target: 64-bit Windows10/11. Automated installed-tree render, Unicode paths
+and close passed; manual installation and physical listening remain untested.
 No Windows ARM/32-bit package. Python, JUCE and a compiler are not required
 to use the finished package. Remove the installed version through Windows
 Apps; keep recordings and preferences separate.</p>
 <h3 id="macos-intel-or-apple-silicon">macOS — Intel or Apple Silicon</h3>
 <ol>
-<li>Check your processor in About This Mac and choose the matching DMG.</li>
+<li>Use the Universal 2 DMG for Intel and Apple Silicon; Rosetta is not needed.</li>
 <li>Open it and copy <code>Rasgo Synth Studio.app</code> into Applications.</li>
 <li>Eject the image and open the copy in Applications, not the mounted DMG.</li>
 <li>If macOS blocks it, verify its origin and use the application-specific
    opening option in System Settings → Privacy &amp; Security. Never disable
    Gatekeeper or remove security protections globally.</li>
 </ol>
-<p>Build target: macOS12 or later, not a tested minimum. Separate architecture
-DMGs, not a universal bundle. No distribution-identity signing or notarization
-is claimed. The separate candidates passed automated startup/render/close
-tests on Intel and Apple Silicon. A Universal 2 DMG is being prepared and has
-not passed final validation yet. This does not replace manual installation
+<p>Build target: macOS12 or later, not a tested minimum. The same Universal 2
+DMG passed automated startup/render/close tests on Intel and Apple Silicon.
+The whole app has an ad-hoc integrity seal, not Developer ID or notarization.
+This does not replace manual installation
 or listening on real hardware.</p>
 <h3 id="if-installation-or-startup-fails">If installation or startup fails</h3>
 <table>
@@ -379,9 +371,8 @@ or <a href="mailto:rasgo.instruments@gmail.com">email</a>; audio sharing is opti
 Official guidance: <a href="https://support.apple.com/en-us/102445">Apple</a> and
 <a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="requirements-and-compatibility">Requirements and compatibility</h3>
-<p>The x86_64 candidate was built on Ubuntu 22.04 and tested in that isolated
-environment and on Linux Mint 22. It is not a public
-download yet. Distribution formats are <code>.deb</code>, AppImage and <code>.tar.gz</code>;
+<p>The Linux x86_64 package was built on Ubuntu 22.04 and tested in that isolated
+environment and on Linux Mint 22. Distribution formats are <code>.deb</code>, AppImage and <code>.tar.gz</code>;
 building a package does not establish support for every distribution.</p>
 <table>
 <thead>
@@ -431,8 +422,10 @@ more resources than running the finished application.</p>
 startup, layout and cooperative close on Debian12, Ubuntu24.04, Fedora and
 Arch using a virtual display, not hardware listening. Mint21 and every
 version of these distributions have not been certified.
-AppImage does not remove the glibc floor. musl/Alpine, ARM, Windows and macOS
-are not validated. MIDI, a dedicated GPU and internet are not required to
+AppImage does not remove the glibc floor. Linux musl/Alpine and Linux ARM
+are not supported by this package. Windows/macOS use their own packages above.
+AppImage was tested extracted, not mounted through FUSE.
+MIDI, a dedicated GPU and internet are not required to
 compose; a USB AudioBox is optional.</p>
 <h3 id="install-and-start">Install and start</h3>
 <p><code>.tar.gz</code>: extract the whole folder, open a terminal there, run <code>chmod +x run</code>
@@ -488,19 +481,14 @@ the package. Isolated tests may override <code>RASGO_SYNTH_DATA_DIR</code> and
 <td>Installateur <code>.exe</code> ou archive portable <code>.zip</code></td>
 </tr>
 <tr>
-<td>Mac Intel</td>
-<td>DMG portant <code>macos-x86_64</code></td>
-</tr>
-<tr>
-<td>Mac Apple Silicon (M1 ou suivant)</td>
-<td>DMG portant <code>macos-arm64</code></td>
+<td>Mac Intel ou Apple Silicon (M1 ou suivant)</td>
+<td>Un seul DMG portant <code>macos-universal</code></td>
 </tr>
 </tbody>
 </table>
-<p>Les installateurs sont en préparation, pas encore disponibles au téléchargement.
-Le <a href="https://github.com/lucioaraujo/rasgo-synth-studio">code source est disponible</a>.
-Utiliser uniquement les fichiers de la publication officielle lorsqu'ils seront
-disponibles. Ces instructions ne certifient pas tous les systèmes.</p>
+<p>Les paquets sont disponibles dans la <a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0">publication expérimentale 0.1.0</a>.
+Le <a href="https://github.com/lucioaraujo/rasgo-synth-studio">code source est public</a>.
+Utiliser uniquement ces fichiers officiels. Ces instructions ne certifient pas tous les systèmes.</p>
 <h3 id="windows-x64_2">Windows x64</h3>
 <ol>
 <li>Ouvrir l'installateur <code>.exe</code>, choisir la destination et suivre les étapes.
@@ -512,24 +500,24 @@ disponibles. Ces instructions ne certifient pas tous les systèmes.</p>
 <li>En cas d'avertissement SmartScreen, vérifier provenance, nom et SHA256 avant
    de décider d'ouvrir. Ne pas désactiver globalement la protection Windows.</li>
 </ol>
-<p>Cible : Windows10/11 en64 bits ; installation et exécution restent en
-validation. Pas de paquet Windows ARM/32 bits. Python, JUCE et compilateur
+<p>Cible : Windows10/11 en64 bits. Rendu, chemins accentués et fermeture passent
+en test automatisé de l'arbre installé ; installation manuelle et écoute
+restent à tester. Pas de paquet Windows ARM/32 bits. Python, JUCE et compilateur
 ne sont pas nécessaires. Désinstaller par les Applications Windows, sans
 effacer ses enregistrements et préférences.</p>
 <h3 id="macos-intel-ou-apple-silicon_1">macOS — Intel ou Apple Silicon</h3>
 <ol>
-<li>Vérifier le processeur dans À propos de ce Mac et choisir le bon DMG.</li>
+<li>Utiliser le DMG Universal 2 pour Intel et Apple Silicon, sans Rosetta.</li>
 <li>L'ouvrir et copier <code>Rasgo Synth Studio.app</code> dans Applications.</li>
 <li>Éjecter l'image puis ouvrir la copie, pas l'application dans le DMG.</li>
 <li>Si macOS bloque l'ouverture, vérifier la provenance et utiliser l'option
    spécifique à l'application dans Réglages Système → Confidentialité et
    sécurité. Ne pas désactiver globalement Gatekeeper ou les protections.</li>
 </ol>
-<p>Cible de compilation : macOS12 ou suivant, pas un minimum vérifié. DMGs
-séparés, pas de bundle universel. Aucune signature avec identité de distribution
-ni notarisation revendiquée. Les candidats séparés ont passé les tests
-automatisés de démarrage/rendu/fermeture sur Intel et Apple Silicon.
-Un DMG Universal 2 est en préparation, sans validation finale pour le moment.
+<p>Cible de compilation : macOS12 ou suivant, pas un minimum vérifié.
+Le même DMG Universal 2 a passé les tests automatisés de démarrage/rendu/
+fermeture sur Intel et Apple Silicon. L'application entière porte une
+signature ad-hoc d'intégrité, sans Developer ID ni notarisation.
 Cela ne remplace ni installation manuelle ni écoute sur matériel réel.</p>
 <h3 id="en-cas-de-probleme-dinstallation-ou-de-demarrage">En cas de problème d'installation ou de démarrage</h3>
 <table>
@@ -596,9 +584,8 @@ ou <a href="mailto:rasgo.instruments@gmail.com">email</a> ; partager l'audio est
 Références officielles : <a href="https://support.apple.com/en-us/102445">Apple</a> et
 <a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="configuration-et-compatibilite">Configuration et compatibilité</h3>
-<p>Le candidat x86_64 a été compilé sous Ubuntu 22.04 et testé dans cet
-environnement isolé et sous Linux Mint 22. Il ne s'agit pas
-encore d'un téléchargement public. Formats : <code>.deb</code>, AppImage et <code>.tar.gz</code>.
+<p>Le paquet Linux x86_64 a été compilé sous Ubuntu 22.04 et testé dans cet
+environnement isolé et sous Linux Mint 22. Formats : <code>.deb</code>, AppImage et <code>.tar.gz</code>.
 Produire un paquet ne valide pas toutes les distributions.</p>
 <table>
 <thead>
@@ -648,9 +635,9 @@ Compiler demande plus de ressources que lancer l'application.</p>
 démarrage, disposition et fermeture sous Debian12, Ubuntu24.04, Fedora et
 Arch avec écran virtuel ; ce n'est pas une écoute sur matériel réel.
 Mint21 et toutes les versions de ces distributions ne sont pas certifiés.
-AppImage ne supprime pas
-l'exigence glibc. musl/Alpine, ARM,
-Windows et macOS non validés. MIDI, carte graphique dédiée et connexion
+AppImage ne supprime pas l'exigence glibc. Ce paquet ne couvre pas Linux
+musl/Alpine ou Linux ARM. Windows/macOS ont leurs propres paquets ci-dessus.
+AppImage a été testé extrait, pas monté via FUSE. MIDI, carte graphique dédiée et connexion
 internet ne sont pas nécessaires pour composer ; l'AudioBox USB est facultative.</p>
 <h3 id="installer-et-lancer">Installer et lancer</h3>
 <p><code>.tar.gz</code> : extraire le dossier entier. Dans son terminal : <code>chmod +x run</code>,
@@ -708,18 +695,14 @@ hors du paquet. Tests isolés : <code>RASGO_SYNTH_DATA_DIR</code> et
 <td>Instalador <code>.exe</code> o archivo portátil <code>.zip</code></td>
 </tr>
 <tr>
-<td>Mac Intel</td>
-<td>DMG con <code>macos-x86_64</code> en el nombre</td>
-</tr>
-<tr>
-<td>Mac Apple Silicon (M1 o posterior)</td>
-<td>DMG con <code>macos-arm64</code> en el nombre</td>
+<td>Mac Intel o Apple Silicon (M1 o posterior)</td>
+<td>Un único DMG con <code>macos-universal</code> en el nombre</td>
 </tr>
 </tbody>
 </table>
-<p>Los instaladores están en preparación, todavía sin descarga pública.
-El <a href="https://github.com/lucioaraujo/rasgo-synth-studio">código fuente está disponible</a>.
-Utilice solo archivos de la publicación oficial cuando estén disponibles.
+<p>Los paquetes están en la <a href="https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0">publicación experimental 0.1.0</a>.
+El <a href="https://github.com/lucioaraujo/rasgo-synth-studio">código fuente es público</a>.
+Utilice solo archivos de esa publicación oficial.
 Estas instrucciones no certifican todos los sistemas.</p>
 <h3 id="windows-x64_3">Windows x64</h3>
 <ol>
@@ -732,13 +715,14 @@ Estas instrucciones no certifican todos los sistemas.</p>
 <li>Si SmartScreen advierte, compruebe origen, nombre y SHA256 antes de decidir
    abrir. No desactive globalmente la protección de Windows.</li>
 </ol>
-<p>Objetivo: Windows10/11 de64 bits; instalación y ejecución siguen en
-validación. Sin paquete Windows ARM/32 bits. No requiere Python, JUCE o
+<p>Objetivo: Windows10/11 de64 bits. Render, rutas acentuadas y cierre pasaron
+la prueba automatizada del árbol instalado; faltan instalación manual y
+escucha física. Sin paquete Windows ARM/32 bits. No requiere Python, JUCE o
 compilador para usarlo. Desinstale mediante Aplicaciones de Windows,
 conservando grabaciones y preferencias.</p>
 <h3 id="macos-intel-o-apple-silicon">macOS — Intel o Apple Silicon</h3>
 <ol>
-<li>Compruebe el procesador en Acerca de este Mac y elija el DMG adecuado.</li>
+<li>Use el DMG Universal 2 para Intel y Apple Silicon; no requiere Rosetta.</li>
 <li>Ábralo y copie <code>Rasgo Synth Studio.app</code> a Aplicaciones.</li>
 <li>Expulse la imagen y abra la copia, no la aplicación dentro del DMG.</li>
 <li>Si macOS bloquea la apertura, compruebe el origen y use la opción
@@ -746,10 +730,9 @@ conservando grabaciones y preferencias.</p>
    Gatekeeper ni las protecciones globalmente.</li>
 </ol>
 <p>Objetivo de compilación: macOS12 o posterior, no un mínimo comprobado.
-DMG separados, no un bundle universal. No se declara firma con identidad de
-distribución ni notarización. Los candidatos separados pasaron las pruebas
-automatizadas de inicio/render/cierre en Intel y Apple Silicon.
-Un DMG Universal 2 está en preparación, todavía sin validación final.
+El mismo DMG Universal 2 pasó las pruebas automatizadas de inicio/render/
+cierre en Intel y Apple Silicon. La app completa tiene firma ad-hoc de
+integridad, sin Developer ID ni notarización.
 Esto no sustituye la instalación manual ni la escucha en hardware real.</p>
 <h3 id="si-falla-la-instalacion-o-el-inicio">Si falla la instalación o el inicio</h3>
 <table>
@@ -816,9 +799,8 @@ o <a href="mailto:rasgo.instruments@gmail.com">email</a>; enviar audio es opcion
 Orientación oficial: <a href="https://support.apple.com/en-us/102445">Apple</a> y
 <a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="configuracion-y-compatibilidad">Configuración y compatibilidad</h3>
-<p>El candidato x86_64 se compiló en Ubuntu 22.04 y se probó en ese entorno
-aislado y en Linux Mint 22. Todavía no es una
-descarga pública. Formatos: <code>.deb</code>, AppImage y <code>.tar.gz</code>. Generar un paquete
+<p>El paquete Linux x86_64 se compiló en Ubuntu 22.04 y se probó en ese entorno
+aislado y en Linux Mint 22. Formatos: <code>.deb</code>, AppImage y <code>.tar.gz</code>. Generar un paquete
 no demuestra compatibilidad con todas las distribuciones.</p>
 <table>
 <thead>
@@ -868,8 +850,10 @@ que ejecutar la aplicación.</p>
 inicio, disposición y cierre en Debian12, Ubuntu24.04, Fedora y Arch con
 pantalla virtual, no escucha en hardware. Mint21 y todas las versiones de
 esas distribuciones no están certificadas.
-AppImage no elimina el requisito de glibc. musl/Alpine, ARM, Windows y macOS
-no están validados. No se requiere MIDI, GPU dedicada ni internet para
+AppImage no elimina el requisito de glibc. Este paquete no cubre Linux
+musl/Alpine ni Linux ARM. Windows/macOS tienen sus propios paquetes arriba.
+AppImage se probó extraído, no montado mediante FUSE.
+No se requiere MIDI, GPU dedicada ni internet para
 componer; la AudioBox USB es opcional.</p>
 <h3 id="instalar-y-abrir">Instalar y abrir</h3>
 <p><code>.tar.gz</code>: extraer la carpeta completa; desde su terminal ejecutar

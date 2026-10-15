@@ -12,12 +12,14 @@ choices and musical direction, exploring rhythm, timbre, form and chance.
 - [Manual](docs/en/manual.md) · [Installation and requirements](INSTALL.md#english)
 - [Build and dependencies](DEPENDENCIES.md) · [Credits](CREDITS.md)
 
-Version 0.1.0 is experimental. Source code is public; installers remain in an
-unpublished draft. Linux startup/layout/close checks passed in virtual Debian12,
+Version 0.1.0 is an [experimental release](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0)
+with Linux AppImage/.deb/.tar.gz, Windows installer/ZIP and one Universal 2
+Mac DMG. Linux startup/layout/close checks passed in virtual Debian12,
 Ubuntu24.04, Fedora and Arch, alongside local Ubuntu22.04/Mint22 checks.
-Windows x64 and Intel/Apple Silicon macOS packages have been built; installed
-runtime tests and the AppImage distribution review remain open. Compilation
-does not establish hardware audio acceptance. Website files above are source
+Windows and the same final Mac DMG passed automated render, Unicode paths and
+normal close tests. AppImage includes runtime notices and a separate full
+runtime source kit; FUSE mounting remains untested. These tests do not establish
+manual installer or hardware audio acceptance. Website files above are source
 previews, not a deployed website. Builds/publication are manual.
 
 Mix balance, timbral variety and expressivity are still being developed.
@@ -47,9 +49,11 @@ Português, English, Français, Español.
 
 Versão0.1.0 experimental. O candidato Linux x86_64 foi compilado em Ubuntu22.04,
 testado nessa base isolada e no Mint22, com exportação WAV e fechamento.
-Pacotes Windows x64 e macOS Intel/Apple Silicon já compilados. O uso nativo
-instalado e a revisão de distribuição AppImage seguem em validação. Código
-público não significa instalador público: os pacotes estão em rascunho.
+Os [pacotes 0.1.0 estão públicos](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0):
+Linux AppImage/.deb/.tar.gz, Windows instalador/ZIP e Mac DMG Universal 2.
+Windows e o mesmo DMG Mac passaram render Unicode e fechamento automatizados.
+AppImage inclui avisos e kit completo de fontes do runtime. Instalação
+manual/escuta física Windows/Mac e montagem FUSE continuam sem teste.
 Os links do site acima apontam às fontes, não a um website já implantado.
 
 Não há lançamento automático por push. Mistura, diversidade tímbrica e
@@ -77,12 +81,14 @@ de choix de modules et d'une direction musicale : rythme, timbre, forme et hasar
 - [Manuel](docs/fr/manual.md) · [Installation et configuration](INSTALL.md#francais)
 - [Compilation et dépendances](DEPENDENCIES.md) · [Crédits](CREDITS.md)
 
-Version 0.1.0 expérimentale. Code source public ; installateurs en brouillon
-non publié. Tests Linux de démarrage/disposition/fermeture sous Debian12,
+Version 0.1.0 [expérimentale disponible](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0) :
+Linux AppImage/.deb/.tar.gz, Windows installateur/ZIP et Mac DMG Universal 2.
+Tests Linux de démarrage/disposition/fermeture sous Debian12,
 Ubuntu24.04, Fedora et Arch virtuels, et tests locaux Ubuntu22.04/Mint22.
-Paquets Windows x64 et macOS Intel/Apple Silicon compilés ; utilisation
-installée et révision AppImage encore en validation. Pas de validation audio
-sur matériel réel par une simple compilation. Les liens web montrent les
+Windows et le même DMG Mac ont passé rendu Unicode et fermeture automatisés.
+AppImage contient les notices et un kit complet des sources du runtime.
+Installation manuelle/écoute Windows/Mac et montage FUSE non testés.
+Les liens web montrent les
 sources, pas un site déployé. Builds/publication manuels.
 
 Mixage, variété des timbres et expressivité restent en développement.
@@ -101,11 +107,13 @@ elecciones de módulos y dirección musical: ritmo, timbre, forma y azar.
 - [Manual](docs/es/manual.md) · [Instalación y requisitos](INSTALL.md#espanol)
 - [Compilar y dependencias](DEPENDENCIES.md) · [Créditos](CREDITS.md)
 
-Versión 0.1.0 experimental. Código fuente público; instaladores en borrador
-sin publicar. Pruebas Linux de inicio/disposición/cierre en Debian12,
+Versión 0.1.0 [experimental disponible](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0):
+Linux AppImage/.deb/.tar.gz, Windows instalador/ZIP y Mac DMG Universal 2.
+Pruebas Linux de inicio/disposición/cierre en Debian12,
 Ubuntu24.04, Fedora y Arch virtuales, además de Ubuntu22.04/Mint22 locales.
-Paquetes Windows x64 y macOS Intel/Apple Silicon compilados; uso instalado y
-revisión AppImage todavía en validación. Compilar no valida audio en hardware.
+Windows y el mismo DMG Mac pasaron render Unicode y cierre automatizados.
+AppImage incluye avisos y un kit completo de fuentes del runtime.
+Instalación manual/escucha Windows/Mac y montaje FUSE todavía sin probar.
 Los enlaces web muestran fuentes, no un sitio desplegado. Builds/publicación
 manuales.
 

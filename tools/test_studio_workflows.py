@@ -91,6 +91,39 @@ class WorkflowContractTests(unittest.TestCase):
                         count += 1
         self.assertGreaterEqual(count, 8)
 
+    def test_pages_is_manual_bounded_and_only_publishes_static_export(self):
+        document = workflow("publish-site.yml")
+        self.assertEqual(set(document["on"]), {"workflow_dispatch"})
+        self.assertEqual(document["on"]["workflow_dispatch"]["inputs"]["confirm_publish"]["default"], "false")
+        job = document["jobs"]["publish"]
+        self.assertEqual(int(job["timeout-minutes"]), 5)
+        self.assertIn("inputs.confirm_publish", job["if"])
+        self.assertEqual(job["permissions"], {"contents": "read", "pages": "write", "id-token": "write"})
+        upload = next(step for step in job["steps"] if "upload-pages-artifact@" in step.get("uses", ""))
+        self.assertEqual(upload["with"]["path"], "site")
+        self.assertEqual(upload["with"]["retention-days"], "1")
+        text = (ROOT / ".github/workflows/publish-site.yml").read_text()
+        for marker in ("releases/tags/v0.1.0", "--jq .draft", "sha256sum --check"):
+            self.assertIn(marker, text)
+        for forbidden in ("cmake --build", "gh release edit", "0_BRAINSTORM", "actions/upload-artifact@"):
+            self.assertNotIn(forbidden, text)
+        for step in job["steps"]:
+            if "run" in step:
+                result = subprocess.run(["bash", "-n"], input=step["run"], text=True,
+                                        capture_output=True, timeout=3)
+                self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_future_native_smoke_uses_public_packages_not_expired_old_candidates(self):
+        document = workflow("smoke-native.yml")
+        text = (ROOT / ".github/workflows/smoke-native.yml").read_text()
+        self.assertNotIn("38642240658", text)
+        self.assertIn("gh release download v0.1.0", text)
+        rows = document["jobs"]["smoke"]["strategy"]["matrix"]["include"]
+        macs = [row for row in rows if row["platform"].startswith("macos-")]
+        self.assertEqual(len(macs), 2)
+        self.assertEqual({row["package"] for row in macs}, {"rasgo-synth-studio-0.1.0-macos-universal.dmg"})
+        self.assertEqual({row["sha256"] for row in macs}, {"d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35"})
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,50 @@
+name: Studio — publish validated static website (manual)
+
+# One standard public Linux runner, five-minute ceiling, no app compilation.
+# Publishes only the explicit, hash-checked site export; artifact retained one day.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_publish:
+        description: Publish the prepared Studio website after checking public v0.1.0
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: studio-pages
+  cancel-in-progress: true
+jobs:
+  publish:
+    if: ${{ inputs.confirm_publish }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check release availability and the exact static payload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/v0.1.0" --jq .draft)" = false
+          (cd site && sha256sum --check --quiet SHA256SUMS)
+          test -f site/index.html
+          test -f site/en.html
+          test -f site/fr.html
+          test -f site/es.html
+          test -f site/INSTALL.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+          retention-days: 1
+      - uses: actions/deploy-pages@v4
+        id: deployment

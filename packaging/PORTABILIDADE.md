@@ -2,7 +2,19 @@
 
 Atualizado em 2026-10-15. Código próprio sob AGPL-3.0-or-later; a revisão
 JUCE e seus avisos estão em `DEPENDENCIES.md` e `THIRD_PARTY_NOTICES.md`.
-Este documento não declara versões Windows/macOS disponíveis.
+Publicação experimental0.1.0 confirmada em15/10/2026 (21:59:54 UTC):
+https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0
+Linux3 formatos,Windows2 eMac Universal2;14 assets, hashes conferidos.
+As seções anteriores de preparação abaixo são históricas e não revogam
+este estado. Instalação manual/escuta e montagem FUSE não foram testadas.
+
+Universal2 concluído15/10:38809000106 verde em Apple Silicon e Intel,
+sem recompilar. Mesmo DMG, render UTF-8/fechamento/assertions0, duas fatias
+preservadas e assinatura ad-hoc integral/codesign strict. Hash do DMG:
+d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35.
+Manifesto v2 separa as fontes exatas Windows/Linux33fbe3c e Mac029c5bf;
+não renomear pacotes antigos como se fossem uma mesma build. INSTALL nos4
+idiomas atualizado para um único DMG. Release/site ainda não confirmados.
 
 Seguimento15/10, substituindo o aceite Mac pendente abaixo:
 38786582616/029c5bf terminou verde nos dois Macs, com render Unicode,

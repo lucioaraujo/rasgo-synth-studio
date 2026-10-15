@@ -7,29 +7,29 @@
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "f945c8850a914605e72350258fcea6eaa4ef17bc0715164e05552b3229ce0e3e",
-      "output_sha256": "c1a6a6250273dbfb8d6d87a81107dbed5bdd7b1b24a9ce11f0d3421374ba6f80",
+      "source_sha256": "1636810669415269a5800595cb6b29883bb35ac03b2637b035f67ef1182952c7",
+      "output_sha256": "d4d43b333d826192c2801a850e966d977eb1cfa8d001eb6a8f179304a36e7f65",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "0e8c9bb00d1914ca7cc6b6ddf23489a4acbdc71640ca0e45cd8ef7b8488787df",
-      "output_sha256": "66930c61d46cd47f017192b0c59207c4e51028dc6484b4005a0ffa794155f5f0",
+      "source_sha256": "54a574fe8484a123dd8ad3f5c68c96d4dbb35c48a4ca65544a89b501a121f1bb",
+      "output_sha256": "e1eae0a4e62eff9993b7c1e24556a502c04b2bd21f4d344d8ba4e4a240ef7e25",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "5e92ae12775d879d43bb7f73b0b08c11f4118fff152b95f0fa7d13305e848972",
-      "output_sha256": "32dd1aebc6733b6a7e3b48097d7bd838007e763d4910d17c371950c6476ae2c8",
+      "source_sha256": "38ac2016a6e815c3cad74c2a43b3a02276d5e77dd7981d94f23d3436e34f994a",
+      "output_sha256": "a4263b1e42146c1547942c57cea0a46a49eac0fa11d4f1aed06d6a9578a3b640",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "7c7f56b7f6897b54c439984ad82b8b1f6f8d953132f65490283b38c79f408d65",
-      "output_sha256": "603a6597eb593f75432594f599f96ecedb3a1a33a0b32b904b5bc2b24726a1f4",
+      "source_sha256": "b1b0daae8fe8c0954ac5a83563b709f38b67893e4ba76cb9d9fe5edf6bdd1173",
+      "output_sha256": "d1ec11b08459c96ad443472cb7adc4bd3abdc8b67341a8fcfc51cc0e7ab36c2b",
       "transformed": true
     },
     {
@@ -329,8 +329,8 @@
     {
       "source": "INSTALL.md",
       "output": "INSTALL.html",
-      "source_sha256": "c19195f86a0e681d46fb895e46c547a2fa071e571c2e99fc4e6d915c4ab7a091",
-      "output_sha256": "f52d690448bb5800cb0e23a5ed4935724df273f9a686fd70572857d7385e06c5",
+      "source_sha256": "9dba7adb34d5dd5a5863f766ee67f2c1a9490ba9d74e2790191ab602065899a2",
+      "output_sha256": "bd0b03cc9a55bf2d8a170878e1afbd1cc3e2ec1f6c7dcd479abdd5095eeb5233",
       "transformed": true
     },
     {
