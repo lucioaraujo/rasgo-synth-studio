@@ -17,6 +17,11 @@
       "sha256": "88bec7320b3814a90adeae3ffb1c001dade6bd3811b43682dcc9f995f94f9b67"
     },
     {
+      "path": ".github/workflows/package-macos-universal.yml",
+      "source": ".github/workflows/package-macos-universal.yml",
+      "sha256": "e5ca550e0985b0d68f91e8dc1a0c4ce2019e0b4541a58dd8b526fbe94d86b153"
+    },
+    {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
       "sha256": "85928e4f0cdddedc5965ec942a625a761da22b73e7b83d7bc960bc163f8b400d"
@@ -44,7 +49,7 @@
     {
       "path": "INSTALL.md",
       "source": "INSTALL.md",
-      "sha256": "fe2388fd2a20b9594522b61719ba07937f5bddd151e1723cacf3423ff635a8bd"
+      "sha256": "c19195f86a0e681d46fb895e46c547a2fa071e571c2e99fc4e6d915c4ab7a091"
     },
     {
       "path": "LICENSE",
@@ -174,7 +179,7 @@
     {
       "path": "packaging/PORTABILIDADE.md",
       "source": "packaging/PORTABILIDADE.md",
-      "sha256": "5c000b275099556d7dc6905ce6b447fe7b466c2c49e1fb335e4c4e73727e3f21"
+      "sha256": "bc6a328dd79c1e1dfb4b54e3b595befce77921bcf38ef0e0dd0ba5f23fd50ca0"
     },
     {
       "path": "packaging/appimage/RUNTIME_SOURCES.md",
@@ -1742,6 +1747,11 @@
       "sha256": "83d82c3f25be11e311fd0fe46f2736b7d7782e96b4ba69ee76539813226ae793"
     },
     {
+      "path": "tools/build_studio_universal_macos.py",
+      "source": "tools/build_studio_universal_macos.py",
+      "sha256": "b5cbba4cd5724854423781f2185aa3b48fa3b0afcf4b14698a8b566b0595c8eb"
+    },
+    {
       "path": "tools/build_studio_website.py",
       "source": "tools/build_studio_website.py",
       "sha256": "d563a5d5bdba50882ef03904b38ac31d8361410623b78d295b293d62f4493ad6"
@@ -1754,7 +1764,7 @@
     {
       "path": "tools/export_studio_source.py",
       "source": "tools/export_studio_source.py",
-      "sha256": "33d7ef406aeba4bed3b50c7d3b7b9f0c7af6486a4e33cdca2159596ed99544e8"
+      "sha256": "e8bf9fc939821b6a5df21d2f898ebda562bea25de4c53cd69311fd09824bbb53"
     },
     {
       "path": "tools/package_studio_linux.py",
@@ -1842,9 +1852,19 @@
       "sha256": "699d9a63e47de8ba39ea107ec4d47c9e12aa41f84132abd8e36a19fe14265295"
     },
     {
+      "path": "tools/test_studio_installation_guide.py",
+      "source": "tools/test_studio_installation_guide.py",
+      "sha256": "8d0b0bbbb5b22cbf92ee3a5beb122cf47e1cc499aba5728aff9a4b98333aa7c2"
+    },
+    {
       "path": "tools/test_studio_package_policy.py",
       "source": "tools/test_studio_package_policy.py",
       "sha256": "6e959c31754098f3b099fcff95ceb63fe4fc70f74e4c7b1013501730c1615547"
+    },
+    {
+      "path": "tools/test_studio_universal_macos.py",
+      "source": "tools/test_studio_universal_macos.py",
+      "sha256": "3c2314db48e3ba18920c4e1817fc14a30b883199be21d9c9783cce50668b6866"
     },
     {
       "path": "tools/test_studio_workflows.py",

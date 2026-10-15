@@ -1,0 +1,154 @@
+name: Studio — Universal 2 from validated Mac candidates (manual)
+
+# No compilation: one ARM packaging job (12 min) + one Intel test (10 min).
+# Standard public runners; artifacts retained7 days, no audio or publication.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_budget:
+        description: Approve packaging and native tests only (22 runner-min ceiling)
+        required: true
+        type: boolean
+        default: false
+      native_run:
+        description: Successful native candidate run containing both Macs
+        required: true
+        type: string
+      source_commit:
+        description: Exact build commit expected in the native run
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: studio-universal-candidate
+  cancel-in-progress: true
+env:
+  STUDIO_NATIVE_RUN: ${{ inputs.native_run }}
+  STUDIO_SOURCE_COMMIT: ${{ inputs.source_commit }}
+jobs:
+  merge:
+    if: ${{ inputs.confirm_budget }}
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require successful native run at the exact source commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [[ "$STUDIO_NATIVE_RUN" =~ ^[0-9]+$ ]]
+          [[ "$STUDIO_SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN" --jq .conclusion)" = success
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN" --jq .head_sha)" = "$STUDIO_SOURCE_COMMIT"
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-macos-x86_64-candidates
+          path: .local-build/intel
+          run-id: ${{ inputs.native_run }}
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-macos-arm64-candidates
+          path: .local-build/arm
+          run-id: ${{ inputs.native_run }}
+          github-token: ${{ github.token }}
+      - name: Verify images and copy the two bundles without opening them
+        run: |
+          set -euo pipefail
+          mountpoint="$PWD/.local-build/mount"
+          mkdir "$mountpoint"
+          mounted=false
+          trap 'if $mounted; then hdiutil detach "$mountpoint"; fi' EXIT
+          for arch in x86_64 arm64; do
+            folder=intel
+            if test "$arch" = arm64; then folder=arm; fi
+            (cd ".local-build/$folder" && shasum -a 256 -c SHA256SUMS)
+            image="$PWD/.local-build/$folder/rasgo-synth-studio-0.1.0-macos-$arch.dmg"
+            printf 'Y\n' | hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" "$image"
+            mounted=true
+            ditto "$mountpoint/Rasgo Synth Studio.app" "$PWD/.local-build/input-$arch.app"
+            hdiutil detach "$mountpoint"
+            mounted=false
+          done
+      - name: Merge, verify unchanged machine code, seal both slices and package
+        run: |
+          set -euo pipefail
+          python -B tools/build_studio_universal_macos.py \
+            --intel-bundle "$PWD/.local-build/input-x86_64.app" \
+            --arm-bundle "$PWD/.local-build/input-arm64.app" \
+            --output "$PWD/.local-build/universal" \
+            --source-commit "$STUDIO_SOURCE_COMMIT" --native-run "$STUDIO_NATIVE_RUN"
+      - name: Test the final DMG on Apple Silicon
+        run: |
+          set -euo pipefail
+          mountpoint="$PWD/.local-build/final-mount"
+          mkdir "$mountpoint"
+          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" .local-build/universal/rasgo-synth-studio-0.1.0-macos-universal.dmg
+          trap 'hdiutil detach "$mountpoint"' EXIT
+          bundle="$PWD/.local-build/universal-arm-test.app"
+          ditto "$mountpoint/Rasgo Synth Studio.app" "$bundle"
+          codesign --verify --deep --strict "$bundle"
+          python -B tools/smoke_studio_native.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" \
+            --bundle "$bundle" --output "$PWD/.local-build/universal-arm-smoke"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-macos-universal-candidate
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            .local-build/universal/*.dmg
+            .local-build/universal/SHA256SUMS
+            .local-build/universal/universal-manifest.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-universal-arm-diagnostics
+          retention-days: 7
+          path: |
+            .local-build/universal/*.log
+            .local-build/universal-arm-smoke/report.json
+            .local-build/universal-arm-smoke/launcher.log
+            .local-build/universal-arm-smoke/dados-*/Logs/*.log
+
+  intel:
+    needs: merge
+    runs-on: macos-15-intel
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-macos-universal-candidate
+          path: .local-build/universal
+      - name: Verify, mount and test the same final DMG natively on Intel
+        run: |
+          set -euo pipefail
+          (cd .local-build/universal && shasum -a 256 -c SHA256SUMS)
+          mountpoint="$PWD/.local-build/final-mount"
+          mkdir "$mountpoint"
+          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" .local-build/universal/rasgo-synth-studio-0.1.0-macos-universal.dmg
+          trap 'hdiutil detach "$mountpoint"' EXIT
+          bundle="$PWD/.local-build/universal-intel-test.app"
+          ditto "$mountpoint/Rasgo Synth Studio.app" "$bundle"
+          lipo "$bundle/Contents/MacOS/Rasgo Synth Studio" -verify_arch x86_64 arm64
+          codesign --verify --deep --strict "$bundle"
+          python -B tools/smoke_studio_native.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" \
+            --bundle "$bundle" --output "$PWD/.local-build/universal-intel-smoke"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-universal-intel-diagnostics
+          retention-days: 7
+          path: |
+            .local-build/universal-intel-smoke/report.json
+            .local-build/universal-intel-smoke/launcher.log
+            .local-build/universal-intel-smoke/dados-*/Logs/*.log

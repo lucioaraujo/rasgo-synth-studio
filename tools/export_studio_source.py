@@ -25,7 +25,8 @@ TOOLS = ("package_studio_linux.py", "build_studio_tutorial.py", "build_studio_we
          "test_native_portability_contract.py", "build_appimage_source_kit.py",
          "test_appimage_source_kit.py", "supplement_studio_appimage.py",
          "test_supplement_studio_appimage.py", "debug_studio_macos.py",
-         "test_debug_studio_macos.py")
+         "test_debug_studio_macos.py", "test_studio_installation_guide.py",
+         "build_studio_universal_macos.py", "test_studio_universal_macos.py")
 PRIVATE = {".git", ".local-build", "0_BRAINSTORM", "recordings", "__pycache__"}
 SUFFIXES = {".hpp", ".h", ".cpp", ".c", ".cmake", ".sh", ".py", ".md", ".yml", ".desktop"}
 
@@ -55,7 +56,8 @@ def selection(root=ROOT):
                      "rasgo-synth-app/build_juce_minimal.sh", "rasgo-synth-core/CMakeLists.txt",
                      "rasgo-synth-core/LICENSE", ".github/workflows/package-native.yml",
                      ".github/workflows/package-linux.yml", ".github/workflows/smoke-native.yml",
-                     ".github/workflows/diagnose-macos-intel.yml"))
+                     ".github/workflows/diagnose-macos-intel.yml",
+                     ".github/workflows/package-macos-universal.yml"))
     for directory in ("rasgo-synth-app/src", "rasgo-synth-app/tests", "rasgo-synth-core/src",
                       "packaging"):
         for path in (root / directory).rglob("*"):

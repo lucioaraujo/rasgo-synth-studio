@@ -66,8 +66,75 @@ instalada, use Aplicativos do Windows; preserve suas gravações e preferências
 </ol>
 <p>Alvo de compilação: macOS12 ou posterior, não um mínimo comprovado por testes.
 Há DMGs separados, não um bundle universal. Não alegamos assinatura com
-identidade de distribuição nem notarização. Abrir, renderizar e fechar ainda
-está em validação; não há aceitação de áudio físico nesses sistemas.</p>
+identidade de distribuição nem notarização. Os candidatos separados passaram
+nos testes automatizados de abertura, render e fechamento em Intel e Apple
+Silicon. Um DMG Universal 2 está em preparação, ainda sem validação final.
+Isso não substitui instalação manual ou escuta em hardware real.</p>
+<h3 id="se-nao-instalar-ou-nao-abrir">Se não instalar ou não abrir</h3>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>O que verificar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows: “O Windows protegeu o computador”</td>
+<td>Confira a publicação oficial e o SHA256. Se confiar no arquivo e a opção estiver disponível, use Mais informações → Executar assim mesmo somente para ele. Não crie uma exclusão geral no antivírus. Um aviso explícito de malware exige interromper a instalação.</td>
+</tr>
+<tr>
+<td>Windows: <code>VCRUNTIME140.dll</code> ou <code>MSVCP140.dll</code> ausente</td>
+<td>O pacote Studio é preparado com runtime C++ estático; essa DLL não deve ser necessária. Baixe novamente o pacote completo e informe versão/erro se persistir. Não baixe DLLs avulsas nem aplique automaticamente a solução de versões antigas de outro instrumento.</td>
+</tr>
+<tr>
+<td>Windows: o atalho não abre</td>
+<td>Tente o executável na pasta escolhida durante a instalação. Se ele abrir, o problema é o atalho: reinstale o pacote oficial no mesmo destino e envie o caminho do atalho antigo. Não apague gravações ou preferências.</td>
+</tr>
+<tr>
+<td>Imagens/fontes ausentes, ou ZIP que não abre</td>
+<td>Extraia tudo antes de executar. Mantenha <code>assets</code> e <code>licenses</code> com o programa; não copie só o <code>.exe</code>. Use a pasta completa da versão nova, sem misturar arquivos de versões diferentes.</td>
+</tr>
+<tr>
+<td>Mac: “a Apple não pôde verificar” ou desenvolvedor não identificado</td>
+<td>Depois de tentar abrir a cópia em Aplicativos, e somente se confiar na origem e integridade, vá a Ajustes do Sistema → Privacidade e Segurança → Abrir Mesmo Assim; confirme Abrir. Isso é uma exceção para aquele aplicativo, não uma aprovação de segurança pela Apple.</td>
+</tr>
+<tr>
+<td>Mac: “danificado”, alerta de malware, ou falta de permissão para liberar</td>
+<td>Não trate todos os avisos como falsos positivos. Pare, baixe novamente da fonte oficial e compare o hash; se continuar, envie a mensagem. Num Mac administrado, consulte o responsável. Não desative o Gatekeeper globalmente.</td>
+</tr>
+<tr>
+<td>Atualização, versão errada ou programa já aberto</td>
+<td>Feche o Studio antes de atualizar. No Mac, ejete o DMG e use a cópia em Aplicativos. No Windows, mantenha o mesmo destino; remova duplicatas por Configurações → Aplicativos, sem excluir as pastas de dados.</td>
+</tr>
+</tbody>
+</table>
+<p>Para conferir um arquivo no Windows, abra PowerShell na pasta do download e
+use <code>Get-FileHash ".\NOME-EXATO-DO-ARQUIVO.exe" -Algorithm SHA256</code>;
+compare o resultado com a linha correspondente em <code>SHA256SUMS</code>. No Mac,
+use <code>shasum -a 256 "/caminho/NOME-EXATO-DO-ARQUIVO.dmg"</code>. Substitua o nome
+pelo arquivo baixado. Hash igual confirma os bytes, não a confiabilidade de
+uma fonte desconhecida. Uma assinatura ad-hoc preserva a integridade local,
+mas não equivale a Developer ID ou notarização.</p>
+<p>Se a janela abrir, mas não houver som, a instalação já não é a primeira
+hipótese: confira o mute/volume e a saída de áudio do sistema, a indicação
+de áudio no rodapé do Studio, gere uma peça curta e então use Play. Nenhum
+microfone ou controlador MIDI é necessário. Se fechar durante o render,
+isso é uma falha de execução a investigar, não motivo para reinstalar DLLs.</p>
+<p>Para pedir ajuda, informe sistema/versão, processador, versão do Studio,
+nome exato do pacote e mensagem/captura. Antes de reabrir o programa, copie
+<code>rasgo_synth.log</code> e <code>rasgo_synth_console.log</code>: eles são reiniciados no arranque.
+Sem overrides, ficam em:</p>
+<ul>
+<li>Windows: <code>%APPDATA%\Rasgo Synth\Logs</code> (cole na barra do Explorador).</li>
+<li>Mac: <code>~/Library/Rasgo Synth/Logs</code> (Finder → Ir → Ir para a pasta).</li>
+<li>Linux: <code>~/.config/Rasgo Synth/Logs</code>, ou a pasta definida por <code>XDG_CONFIG_HOME</code>.</li>
+</ul>
+<p>Se usar <code>RASGO_SYNTH_DATA_DIR</code>, procure <code>Logs</code> nesse diretório. Remova dados
+pessoais dos logs antes de enviar. Use <a href="https://github.com/lucioaraujo/rasgo-synth-studio/issues">Issues do Studio</a>
+ou <a href="mailto:rasgo.instruments@gmail.com">email</a>. Não envie áudios sem desejar
+compartilhá-los. Orientações oficiais: <a href="https://support.apple.com/en-us/102445">Apple</a>
+e <a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="configuracao-e-compatibilidade">Configuração e compatibilidade</h3>
 <p>O candidato x86_64 foi compilado em Ubuntu 22.04 e testado nessa base isolada
 e no Linux Mint 22. Ainda não é um
@@ -244,8 +311,73 @@ Apps; keep recordings and preferences separate.</p>
 </ol>
 <p>Build target: macOS12 or later, not a tested minimum. Separate architecture
 DMGs, not a universal bundle. No distribution-identity signing or notarization
-is claimed. Startup/render/close are being validated; physical audio acceptance
-has not been performed on these systems.</p>
+is claimed. The separate candidates passed automated startup/render/close
+tests on Intel and Apple Silicon. A Universal 2 DMG is being prepared and has
+not passed final validation yet. This does not replace manual installation
+or listening on real hardware.</p>
+<h3 id="if-installation-or-startup-fails">If installation or startup fails</h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows: “Windows protected your PC”</td>
+<td>Verify the official release and SHA256. If you trust the file and the option exists, use More info → Run anyway for this file only. Do not add a general antivirus exclusion. Stop if malware is explicitly detected.</td>
+</tr>
+<tr>
+<td>Windows: missing <code>VCRUNTIME140.dll</code> or <code>MSVCP140.dll</code></td>
+<td>Studio is packaged with the static C++ runtime; these DLLs should not be required. Download the complete package again and report the version/error if it persists. Do not download loose DLLs or automatically apply a workaround for an old version of another instrument.</td>
+</tr>
+<tr>
+<td>Windows: shortcut does nothing</td>
+<td>Try the executable in the installation folder you selected. If it opens, reinstall the official package in the same destination and report the old shortcut target. Do not delete recordings or preferences.</td>
+</tr>
+<tr>
+<td>Missing images/fonts, or failure inside ZIP</td>
+<td>Extract everything first. Keep <code>assets</code> and <code>licenses</code> with the program; do not copy only the executable. Use the complete new-version folder without mixing files from different versions.</td>
+</tr>
+<tr>
+<td>Mac: Apple cannot verify the app or developer</td>
+<td>First try the copy in Applications. Only if you trust its source and integrity, use System Settings → Privacy &amp; Security → Open Anyway, then confirm Open. This is an exception for that app, not Apple security approval.</td>
+</tr>
+<tr>
+<td>Mac: “damaged”, malware warning, or no permission to allow it</td>
+<td>Do not assume every warning is a false positive. Stop, download again from the official source and compare the hash; report the message if it persists. On a managed Mac, ask its administrator. Do not disable Gatekeeper globally.</td>
+</tr>
+<tr>
+<td>Updating, wrong version or an already-open app</td>
+<td>Close Studio first. On Mac, eject the DMG and use the Applications copy. On Windows, keep the same installation destination; remove duplicates through Settings → Apps without deleting user-data folders.</td>
+</tr>
+</tbody>
+</table>
+<p>In PowerShell in the download folder, run
+<code>Get-FileHash ".\EXACT-DOWNLOAD-NAME.exe" -Algorithm SHA256</code> and compare
+the result with that file's <code>SHA256SUMS</code> entry. On Mac use
+<code>shasum -a 256 "/path/EXACT-DOWNLOAD-NAME.dmg"</code>. Substitute the actual
+download name. A matching hash verifies bytes, not an unknown source's
+trustworthiness. An ad-hoc signature seals local integrity; it is neither
+a Developer ID signature nor notarization.</p>
+<p>If the window opens without sound, first check system mute/volume and output,
+the Studio audio status in the footer, generate a short piece, then press
+Play. No microphone or MIDI controller is needed. An exit during rendering
+is a runtime failure to investigate, not a reason to install random DLLs.</p>
+<p>For help, include OS/version, processor, Studio version, exact package name
+and the message/screenshot. Before reopening Studio, copy <code>rasgo_synth.log</code>
+and <code>rasgo_synth_console.log</code>: startup resets them. Without overrides:</p>
+<ul>
+<li>Windows: <code>%APPDATA%\Rasgo Synth\Logs</code> in the Explorer address bar.</li>
+<li>Mac: <code>~/Library/Rasgo Synth/Logs</code> via Finder → Go → Go to Folder.</li>
+<li>Linux: <code>~/.config/Rasgo Synth/Logs</code>, or the <code>XDG_CONFIG_HOME</code> location.</li>
+</ul>
+<p>With <code>RASGO_SYNTH_DATA_DIR</code>, use its <code>Logs</code> directory. Remove personal
+information before sharing logs. Use <a href="https://github.com/lucioaraujo/rasgo-synth-studio/issues">Studio Issues</a>
+or <a href="mailto:rasgo.instruments@gmail.com">email</a>; audio sharing is optional.
+Official guidance: <a href="https://support.apple.com/en-us/102445">Apple</a> and
+<a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="requirements-and-compatibility">Requirements and compatibility</h3>
 <p>The x86_64 candidate was built on Ubuntu 22.04 and tested in that isolated
 environment and on Linux Mint 22. It is not a public
@@ -395,8 +527,74 @@ effacer ses enregistrements et préférences.</p>
 </ol>
 <p>Cible de compilation : macOS12 ou suivant, pas un minimum vérifié. DMGs
 séparés, pas de bundle universel. Aucune signature avec identité de distribution
-ni notarisation revendiquée. Démarrage/rendu/fermeture en validation ; pas de
-validation audio sur matériel réel sur ces systèmes.</p>
+ni notarisation revendiquée. Les candidats séparés ont passé les tests
+automatisés de démarrage/rendu/fermeture sur Intel et Apple Silicon.
+Un DMG Universal 2 est en préparation, sans validation finale pour le moment.
+Cela ne remplace ni installation manuelle ni écoute sur matériel réel.</p>
+<h3 id="en-cas-de-probleme-dinstallation-ou-de-demarrage">En cas de problème d'installation ou de démarrage</h3>
+<table>
+<thead>
+<tr>
+<th>Symptôme</th>
+<th>Vérification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows : « Windows a protégé votre ordinateur »</td>
+<td>Vérifier la publication officielle et le SHA256. Si la source est fiable et l'option disponible, choisir Informations complémentaires → Exécuter quand même uniquement pour ce fichier. Pas d'exclusion générale de l'antivirus. Arrêter si un logiciel malveillant est explicitement détecté.</td>
+</tr>
+<tr>
+<td>Windows : <code>VCRUNTIME140.dll</code> ou <code>MSVCP140.dll</code> absent</td>
+<td>Le Studio utilise le runtime C++ statique ; ces DLL ne devraient pas être nécessaires. Télécharger à nouveau le paquet complet et signaler version/erreur si cela persiste. Ne pas télécharger de DLL isolée ni appliquer automatiquement une solution propre à une ancienne version d'un autre instrument.</td>
+</tr>
+<tr>
+<td>Windows : raccourci inopérant</td>
+<td>Essayer l'exécutable dans le dossier choisi à l'installation. S'il fonctionne, réinstaller le paquet officiel au même endroit et signaler la cible de l'ancien raccourci. Conserver enregistrements et préférences.</td>
+</tr>
+<tr>
+<td>Images/polices absentes, lancement depuis le ZIP</td>
+<td>Extraire tout le dossier, conserver <code>assets</code> et <code>licenses</code> avec le programme. Ne pas déplacer seulement l'exécutable ni mélanger les fichiers de différentes versions.</td>
+</tr>
+<tr>
+<td>Mac : Apple ne peut pas vérifier l'app ou le développeur</td>
+<td>Essayer d'abord la copie dans Applications. Uniquement si provenance et intégrité sont fiables : Réglages Système → Confidentialité et sécurité → Ouvrir quand même, puis Ouvrir. Cette exception concerne l'app ; ce n'est pas une approbation de sécurité par Apple.</td>
+</tr>
+<tr>
+<td>Mac : app « endommagée », alerte de malware ou autorisation impossible</td>
+<td>Ne pas supposer que toute alerte est fausse. Arrêter, retélécharger depuis la source officielle et comparer le hash ; signaler le message s'il persiste. Sur un Mac administré, consulter le responsable. Ne pas désactiver Gatekeeper globalement.</td>
+</tr>
+<tr>
+<td>Mise à jour, mauvaise version ou app déjà ouverte</td>
+<td>Fermer le Studio. Sur Mac, éjecter le DMG et utiliser la copie dans Applications. Sous Windows, garder la même destination ; retirer les doublons par Paramètres → Applications, sans supprimer les données personnelles.</td>
+</tr>
+</tbody>
+</table>
+<p>Dans PowerShell, depuis le dossier téléchargé :
+<code>Get-FileHash ".\NOM-EXACT-DU-FICHIER.exe" -Algorithm SHA256</code> ; comparer
+à l'entrée correspondante de <code>SHA256SUMS</code>. Sur Mac :
+<code>shasum -a 256 "/chemin/NOM-EXACT-DU-FICHIER.dmg"</code>. Remplacer le nom par
+celui du téléchargement. Un hash identique vérifie les octets, pas la
+fiabilité d'une source inconnue. Une signature ad-hoc scelle l'intégrité
+locale ; ce n'est ni une signature Developer ID ni une notarisation.</p>
+<p>Fenêtre ouverte sans son : vérifier mute/volume, sortie du système et état
+audio au pied du Studio ; générer une pièce courte puis lancer Play. Ni
+microphone ni contrôleur MIDI nécessaire. Une fermeture pendant le rendu
+est un incident d'exécution, pas une raison d'installer des DLL au hasard.</p>
+<p>Pour demander de l'aide : système/version, processeur, version du Studio,
+nom exact du paquet, message/capture. Avant de rouvrir, copier
+<code>rasgo_synth.log</code> et <code>rasgo_synth_console.log</code> : ils sont réinitialisés au
+démarrage. Sans overrides :</p>
+<ul>
+<li>Windows : <code>%APPDATA%\Rasgo Synth\Logs</code> dans l'Explorateur.</li>
+<li>Mac : <code>~/Library/Rasgo Synth/Logs</code> par Finder → Aller → Aller au dossier.</li>
+<li>Linux : <code>~/.config/Rasgo Synth/Logs</code>, ou l'emplacement <code>XDG_CONFIG_HOME</code>.</li>
+</ul>
+<p>Avec <code>RASGO_SYNTH_DATA_DIR</code>, chercher son dossier <code>Logs</code>. Retirer les données
+personnelles avant de partager. Utiliser <a href="https://github.com/lucioaraujo/rasgo-synth-studio/issues">Issues du Studio</a>
+ou <a href="mailto:rasgo.instruments@gmail.com">email</a> ; partager l'audio est facultatif.
+Références officielles : <a href="https://support.apple.com/en-us/102445">Apple</a> et
+<a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="configuration-et-compatibilite">Configuration et compatibilité</h3>
 <p>Le candidat x86_64 a été compilé sous Ubuntu 22.04 et testé dans cet
 environnement isolé et sous Linux Mint 22. Il ne s'agit pas
@@ -549,8 +747,74 @@ conservando grabaciones y preferencias.</p>
 </ol>
 <p>Objetivo de compilación: macOS12 o posterior, no un mínimo comprobado.
 DMG separados, no un bundle universal. No se declara firma con identidad de
-distribución ni notarización. Inicio/render/cierre en validación; sin
-aceptación de audio en hardware real en estos sistemas.</p>
+distribución ni notarización. Los candidatos separados pasaron las pruebas
+automatizadas de inicio/render/cierre en Intel y Apple Silicon.
+Un DMG Universal 2 está en preparación, todavía sin validación final.
+Esto no sustituye la instalación manual ni la escucha en hardware real.</p>
+<h3 id="si-falla-la-instalacion-o-el-inicio">Si falla la instalación o el inicio</h3>
+<table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Qué comprobar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows: «Windows protegió su PC»</td>
+<td>Compruebe publicación oficial y SHA256. Si confía en el archivo y existe la opción, use Más información → Ejecutar de todas formas solo para ese archivo. No añada una exclusión general al antivirus. Deténgase si se detecta malware explícitamente.</td>
+</tr>
+<tr>
+<td>Windows: falta <code>VCRUNTIME140.dll</code> o <code>MSVCP140.dll</code></td>
+<td>Studio incluye el runtime C++ estático; no deberían necesitarse esas DLL. Descargue de nuevo el paquete completo e informe de versión/error si persiste. No descargue DLL sueltas ni aplique automáticamente soluciones de versiones antiguas de otro instrumento.</td>
+</tr>
+<tr>
+<td>Windows: acceso directo inoperante</td>
+<td>Pruebe el ejecutable en la carpeta elegida durante la instalación. Si abre, reinstale el paquete oficial en el mismo destino e indique la ruta del acceso anterior. Conserve grabaciones y preferencias.</td>
+</tr>
+<tr>
+<td>Faltan imágenes/fuentes, o intenta abrir desde ZIP</td>
+<td>Extraiga todo; mantenga <code>assets</code> y <code>licenses</code> con el programa. No copie solo el ejecutable ni mezcle archivos de versiones distintas.</td>
+</tr>
+<tr>
+<td>Mac: Apple no puede verificar la app o el desarrollador</td>
+<td>Primero intente abrir la copia de Aplicaciones. Solo si confía en origen e integridad: Ajustes del Sistema → Privacidad y seguridad → Abrir igualmente; confirme Abrir. Es una excepción para esa app, no una aprobación de seguridad de Apple.</td>
+</tr>
+<tr>
+<td>Mac: app «dañada», aviso de malware o sin permiso para autorizar</td>
+<td>No suponga que todo aviso es un falso positivo. Deténgase, descargue de nuevo de la fuente oficial y compare el hash; informe si persiste. En un Mac administrado, consulte al responsable. No desactive Gatekeeper globalmente.</td>
+</tr>
+<tr>
+<td>Actualización, versión incorrecta o app ya abierta</td>
+<td>Cierre Studio. En Mac, expulse el DMG y utilice la copia de Aplicaciones. En Windows, conserve el mismo destino; quite duplicados mediante Configuración → Aplicaciones sin borrar carpetas de datos.</td>
+</tr>
+</tbody>
+</table>
+<p>En PowerShell, desde la carpeta descargada:
+<code>Get-FileHash ".\NOMBRE-EXACTO-DEL-ARCHIVO.exe" -Algorithm SHA256</code>; compare
+con la entrada correspondiente de <code>SHA256SUMS</code>. En Mac:
+<code>shasum -a 256 "/ruta/NOMBRE-EXACTO-DEL-ARCHIVO.dmg"</code>. Sustituya el nombre
+por el archivo descargado. El hash comprueba los bytes, no la fiabilidad de
+una fuente desconocida. Una firma ad-hoc sella la integridad local; no es
+una firma Developer ID ni una notarización.</p>
+<p>Si la ventana abre sin sonido, compruebe mute/volumen, salida del sistema y
+estado de audio al pie de Studio; genere una pieza corta y pulse Play.
+No requiere micrófono ni controlador MIDI. Un cierre durante el render es
+un fallo de ejecución a investigar, no motivo para instalar DLL al azar.</p>
+<p>Para pedir ayuda: sistema/versión, procesador, versión de Studio, nombre
+exacto del paquete y mensaje/captura. Antes de volver a abrir, copie
+<code>rasgo_synth.log</code> y <code>rasgo_synth_console.log</code>: se reinician al arrancar.
+Sin overrides:</p>
+<ul>
+<li>Windows: <code>%APPDATA%\Rasgo Synth\Logs</code> en el Explorador.</li>
+<li>Mac: <code>~/Library/Rasgo Synth/Logs</code> mediante Finder → Ir → Ir a la carpeta.</li>
+<li>Linux: <code>~/.config/Rasgo Synth/Logs</code>, o la ubicación <code>XDG_CONFIG_HOME</code>.</li>
+</ul>
+<p>Con <code>RASGO_SYNTH_DATA_DIR</code>, busque su carpeta <code>Logs</code>. Quite datos personales
+antes de compartir. Use <a href="https://github.com/lucioaraujo/rasgo-synth-studio/issues">Issues de Studio</a>
+o <a href="mailto:rasgo.instruments@gmail.com">email</a>; enviar audio es opcional.
+Orientación oficial: <a href="https://support.apple.com/en-us/102445">Apple</a> y
+<a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/">Microsoft SmartScreen</a>.</p>
 <h3 id="configuracion-y-compatibilidad">Configuración y compatibilidad</h3>
 <p>El candidato x86_64 se compiló en Ubuntu 22.04 y se probó en ese entorno
 aislado y en Linux Mint 22. Todavía no es una

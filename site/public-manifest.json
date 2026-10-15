@@ -329,8 +329,8 @@
     {
       "source": "INSTALL.md",
       "output": "INSTALL.html",
-      "source_sha256": "fe2388fd2a20b9594522b61719ba07937f5bddd151e1723cacf3423ff635a8bd",
-      "output_sha256": "b4915b64b29b3b578979fecae6a7c949a94793348467dbef575f3c8058af4d5b",
+      "source_sha256": "c19195f86a0e681d46fb895e46c547a2fa071e571c2e99fc4e6d915c4ab7a091",
+      "output_sha256": "f52d690448bb5800cb0e23a5ed4935724df273f9a686fd70572857d7385e06c5",
       "transformed": true
     },
     {

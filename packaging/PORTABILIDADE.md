@@ -4,6 +4,23 @@ Atualizado em 2026-10-15. Código próprio sob AGPL-3.0-or-later; a revisão
 JUCE e seus avisos estão em `DEPENDENCIES.md` e `THIRD_PARTY_NOTICES.md`.
 Este documento não declara versões Windows/macOS disponíveis.
 
+Seguimento15/10, substituindo o aceite Mac pendente abaixo:
+38786582616/029c5bf terminou verde nos dois Macs, com render Unicode,
+assertions zero e fechamento. Windows/Linux não foram recompilados.
+O guia INSTALL agora detalha os problemas conhecidos de instalação nos4
+idiomas. Comparação com Modular/Antitotem foi somente leitura.
+
+Para alinhar o pacote Mac ao Universal 2 da família, foram preparados
+build_studio_universal_macos.py e package-macos-universal.yml: reutilização
+dos bundles verdes do MESMO commit, comparação de recursos e código,
+lipo Intel+ARM, assinatura ad-hoc do bundle inteiro e testes do DMG final
+nas duas arquiteturas. Ainda não executados nativamente nem enviados.
+Orçamento manual máximo22 runner-min, artefatos7 dias, sem compilação,
+áudio publicado ou alteração de release. Não é Developer ID/notarização.
+O alvo macOS12 não foi reduzido por analogia aos instrumentos irmãos.
+Continuam pendentes aceite do DMG final, fontes/manifesto atualizados e
+publicação conjunta; não usar pacotes Mac anteriores que falharam.
+
 Estado15/10, substituindo os registros históricos abaixo: a receita já foi
 executada nos três sistemas. O último candidato33fbe3c passou render,
 metadados/caminho Unicode e fechamento Windows; Linux passou nas4 distribuições.
