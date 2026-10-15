@@ -2,13 +2,15 @@
 
 [English](#english) · [Português](#português) · [Français](#français) · [Español](#español)
 
+Website: [Português](https://lucioaraujo.github.io/rasgo-synth-studio/) · [English](https://lucioaraujo.github.io/rasgo-synth-studio/en.html) · [Français](https://lucioaraujo.github.io/rasgo-synth-studio/fr.html) · [Español](https://lucioaraujo.github.io/rasgo-synth-studio/es.html)
+
 ## English
 
 A generative musical instrument by Lucio de Araujo, part of the RASGO family.
 Developed in C++/JUCE, Studio composes pieces and albums from seeds, module
 choices and musical direction, exploring rhythm, timbre, form and chance.
 
-- [Presentation](site/en.html) · [Tutorial](site/quickstart.html#en)
+- [Presentation](https://lucioaraujo.github.io/rasgo-synth-studio/en.html) · [Tutorial](https://lucioaraujo.github.io/rasgo-synth-studio/quickstart.html#en)
 - [Manual](docs/en/manual.md) · [Installation and requirements](INSTALL.md#english)
 - [Build and dependencies](DEPENDENCIES.md) · [Credits](CREDITS.md)
 
@@ -19,8 +21,8 @@ Ubuntu24.04, Fedora and Arch, alongside local Ubuntu22.04/Mint22 checks.
 Windows and the same final Mac DMG passed automated render, Unicode paths and
 normal close tests. AppImage includes runtime notices and a separate full
 runtime source kit; FUSE mounting remains untested. These tests do not establish
-manual installer or hardware audio acceptance. Website files above are source
-previews, not a deployed website. Builds/publication are manual.
+manual installer or hardware audio acceptance. The website links above open
+the published site. Builds/publication are manual.
 
 Mix balance, timbral variety and expressivity are still being developed.
 Start at a low volume. Recordings/preferences stay outside the application.
@@ -38,7 +40,7 @@ Generative composition instrument / instrument de composition générative /
 instrumento de composición generativa. Interface, tutorial e manual:
 Português, English, Français, Español.
 
-- [Apresentação e tutorial](site/index.html)
+- [Apresentação](https://lucioaraujo.github.io/rasgo-synth-studio/) · [Tutorial](https://lucioaraujo.github.io/rasgo-synth-studio/quickstart.html#pt)
 - [Manual PT](docs/pt/manual.md) · [EN](docs/en/manual.md) ·
   [FR](docs/fr/manual.md) · [ES](docs/es/manual.md)
 - [Instalação e requisitos](INSTALL.md#portugues)
@@ -54,7 +56,7 @@ Linux AppImage/.deb/.tar.gz, Windows instalador/ZIP e Mac DMG Universal 2.
 Windows e o mesmo DMG Mac passaram render Unicode e fechamento automatizados.
 AppImage inclui avisos e kit completo de fontes do runtime. Instalação
 manual/escuta física Windows/Mac e montagem FUSE continuam sem teste.
-Os links do site acima apontam às fontes, não a um website já implantado.
+Os links do site acima abrem o website publicado.
 
 Não há lançamento automático por push. Mistura, diversidade tímbrica e
 expressividade continuam em desenvolvimento; esta versão não é apresentada
@@ -77,7 +79,7 @@ Instrument musical génératif de Lucio de Araujo, de la famille RASGO.
 Développé en C++/JUCE, Studio compose pièces et albums à partir de seeds,
 de choix de modules et d'une direction musicale : rythme, timbre, forme et hasard.
 
-- [Présentation](site/fr.html) · [Tutoriel](site/quickstart.html#fr)
+- [Présentation](https://lucioaraujo.github.io/rasgo-synth-studio/fr.html) · [Tutoriel](https://lucioaraujo.github.io/rasgo-synth-studio/quickstart.html#fr)
 - [Manuel](docs/fr/manual.md) · [Installation et configuration](INSTALL.md#francais)
 - [Compilation et dépendances](DEPENDENCIES.md) · [Crédits](CREDITS.md)
 
@@ -88,8 +90,7 @@ Ubuntu24.04, Fedora et Arch virtuels, et tests locaux Ubuntu22.04/Mint22.
 Windows et le même DMG Mac ont passé rendu Unicode et fermeture automatisés.
 AppImage contient les notices et un kit complet des sources du runtime.
 Installation manuelle/écoute Windows/Mac et montage FUSE non testés.
-Les liens web montrent les
-sources, pas un site déployé. Builds/publication manuels.
+Les liens web ci-dessus ouvrent le site publié. Builds/publication manuels.
 
 Mixage, variété des timbres et expressivité restent en développement.
 Commencer à faible volume. Enregistrements/préférences restent hors de
@@ -103,7 +104,7 @@ Instrumento musical generativo de Lucio de Araujo, de la familia RASGO.
 Desarrollado en C++/JUCE, Studio compone piezas y álbumes a partir de seeds,
 elecciones de módulos y dirección musical: ritmo, timbre, forma y azar.
 
-- [Presentación](site/es.html) · [Tutorial](site/quickstart.html#es)
+- [Presentación](https://lucioaraujo.github.io/rasgo-synth-studio/es.html) · [Tutorial](https://lucioaraujo.github.io/rasgo-synth-studio/quickstart.html#es)
 - [Manual](docs/es/manual.md) · [Instalación y requisitos](INSTALL.md#espanol)
 - [Compilar y dependencias](DEPENDENCIES.md) · [Créditos](CREDITS.md)
 
@@ -114,7 +115,7 @@ Ubuntu24.04, Fedora y Arch virtuales, además de Ubuntu22.04/Mint22 locales.
 Windows y el mismo DMG Mac pasaron render Unicode y cierre automatizados.
 AppImage incluye avisos y un kit completo de fuentes del runtime.
 Instalación manual/escucha Windows/Mac y montaje FUSE todavía sin probar.
-Los enlaces web muestran fuentes, no un sitio desplegado. Builds/publicación
+Los enlaces web abren el sitio publicado. Builds/publicación
 manuales.
 
 Mezcla, variedad tímbrica y expresividad siguen en desarrollo. Empezar con

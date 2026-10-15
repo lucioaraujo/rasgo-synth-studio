@@ -64,7 +64,7 @@
     {
       "path": "README.md",
       "source": "packaging/public/README.md",
-      "sha256": "fa82171639136bf1e3ac27b4f484bc041fdbcfc781f569943f43dcbc30a475c3"
+      "sha256": "f1cfb9d4b5ad129470719a0daacf0ed08bead04292021132ca34e8ad2ed816e9"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -249,7 +249,7 @@
     {
       "path": "packaging/public/README.md",
       "source": "packaging/public/README.md",
-      "sha256": "fa82171639136bf1e3ac27b4f484bc041fdbcfc781f569943f43dcbc30a475c3"
+      "sha256": "f1cfb9d4b5ad129470719a0daacf0ed08bead04292021132ca34e8ad2ed816e9"
     },
     {
       "path": "packaging/public/gitignore",
