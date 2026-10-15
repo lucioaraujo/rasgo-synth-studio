@@ -37,12 +37,18 @@ jobs:
       - name: Build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential pkg-config dpkg-dev file libasound2-dev \
+          sudo apt-get install -y build-essential pkg-config dpkg-dev file squashfs-tools libasound2-dev \
             libfreetype6-dev libfontconfig1-dev libx11-dev libxext-dev libxrender-dev \
             libpng-dev libjpeg-dev zlib1g-dev
+      - name: Verify actual piece and album artist metadata
+        run: |
+          cmake -S rasgo-synth-core -B .local-build/artist-core -DBUILD_TESTING=ON \
+            -DRASGO_ENABLE_RENDER_INTEGRATION_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+          cmake --build .local-build/artist-core --target rasgo_artist_metadata_tests --parallel 1
+          ctest --test-dir .local-build/artist-core -R '^rasgo_artist_metadata_tests$' --output-on-failure
       - name: Serial build with locked JUCE
         run: |
-          mkdir .local-build
+          mkdir -p .local-build
           bash packaging/linux/preparar-build.sh JUCE-checkout .local-build/linux-baseline
       - name: Packaging tools (explicit pins, verified before execution)
         run: |
@@ -67,6 +73,38 @@ jobs:
             --runtime-license .local-build/tooling/AppImage-runtime-LICENSE
           cd .local-build/packages
           sha256sum -c SHA256SUMS
+      - name: Preserve complete runtime notices in the final AppImage
+        run: |
+          set -euo pipefail
+          kit=rasgo-synth-studio-0.1.0-appimage-runtime-sources.tar.gz
+          curl --fail --location --connect-timeout 15 --max-time 90 --max-filesize 33554432 \
+            -o ".local-build/tooling/$kit" \
+            "https://github.com/lucioaraujo/rasgo-synth-studio/releases/download/v0.1.0/$kit"
+          echo "7b68b69b38baa7faac6570cbe26faa2028229bf5902f29d4e6b1bed8d28f5af2  .local-build/tooling/$kit" | sha256sum -c -
+          tar -xzf ".local-build/tooling/$kit" -C .local-build/tooling
+          candidate="$PWD/.local-build/packages/rasgo-synth-studio-0.1.1-linux-x86_64.AppImage"
+          python3 -B tools/supplement_studio_appimage.py --candidate "$candidate" \
+            --sha256 "$(sha256sum "$candidate" | cut -d ' ' -f 1)" \
+            --runtime "$PWD/.local-build/tooling/runtime-x86_64" \
+            --linuxdeploy "$PWD/.local-build/tooling/linuxdeploy-x86_64.AppImage" \
+            --kit "$PWD/.local-build/tooling/rasgo-synth-studio-0.1.0-appimage-runtime-sources" \
+            --output "$PWD/.local-build/appimage-final"
+          cp .local-build/appimage-final/*.AppImage .local-build/packages/
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('.local-build/packages')
+          path = root / 'package-manifest.json'
+          manifest = json.loads(path.read_text())
+          artifacts = manifest['artifacts']
+          for name in artifacts:
+              artifacts[name] = hashlib.sha256((root / name).read_bytes()).hexdigest()
+          report = json.loads(Path('.local-build/appimage-final/supplement-report.json').read_text())
+          manifest['appimage_supplement'] = {k:v for k,v in report.items() if k != 'original_tree'}
+          path.write_text(json.dumps(manifest, indent=2) + '\n')
+          (root / 'SHA256SUMS').write_text(''.join(f'{sha}  {name}\n' for name, sha in sorted(artifacts.items())))
+          PY
+          (cd .local-build/packages && sha256sum -c SHA256SUMS)
       - uses: actions/upload-artifact@v4
         with:
           name: studio-linux-candidates
@@ -133,7 +171,7 @@ jobs:
             studio_wm_pid=$!
             trap "kill $studio_wm_pid" EXIT
             sleep 2
-            python3 -B tools/smoke_studio_window.py --binary .local-build/launch/tar/rasgo-synth-studio-0.1.0-linux-x86_64/run --output .local-build/launch/tar-smoke --size 1366 768
+            python3 -B tools/smoke_studio_window.py --binary .local-build/launch/tar/rasgo-synth-studio-0.1.1-linux-x86_64/run --output .local-build/launch/tar-smoke --size 1366 768
             python3 -B tools/smoke_studio_window.py --binary .local-build/launch/appimage/squashfs-root/AppRun --output .local-build/launch/appimage-smoke --size 1366 768
             if test -x /usr/bin/rasgo-synth-studio; then
               python3 -B tools/smoke_studio_window.py --binary /usr/bin/rasgo-synth-studio --output .local-build/launch/deb-smoke --size 1366 768

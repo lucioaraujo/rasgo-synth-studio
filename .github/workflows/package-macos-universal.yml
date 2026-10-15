@@ -69,7 +69,7 @@ jobs:
             folder=intel
             if test "$arch" = arm64; then folder=arm; fi
             (cd ".local-build/$folder" && shasum -a 256 -c SHA256SUMS)
-            image="$PWD/.local-build/$folder/rasgo-synth-studio-0.1.0-macos-$arch.dmg"
+            image="$PWD/.local-build/$folder/rasgo-synth-studio-0.1.1-macos-$arch.dmg"
             printf 'Y\n' | hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" "$image"
             mounted=true
             ditto "$mountpoint/Rasgo Synth Studio.app" "$PWD/.local-build/input-$arch.app"
@@ -89,7 +89,7 @@ jobs:
           set -euo pipefail
           mountpoint="$PWD/.local-build/final-mount"
           mkdir "$mountpoint"
-          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" .local-build/universal/rasgo-synth-studio-0.1.0-macos-universal.dmg
+          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" .local-build/universal/rasgo-synth-studio-0.1.1-macos-universal.dmg
           trap 'hdiutil detach "$mountpoint"' EXIT
           bundle="$PWD/.local-build/universal-arm-test.app"
           ditto "$mountpoint/Rasgo Synth Studio.app" "$bundle"
@@ -135,7 +135,7 @@ jobs:
           (cd .local-build/universal && shasum -a 256 -c SHA256SUMS)
           mountpoint="$PWD/.local-build/final-mount"
           mkdir "$mountpoint"
-          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" .local-build/universal/rasgo-synth-studio-0.1.0-macos-universal.dmg
+          hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" .local-build/universal/rasgo-synth-studio-0.1.1-macos-universal.dmg
           trap 'hdiutil detach "$mountpoint"' EXIT
           bundle="$PWD/.local-build/universal-intel-test.app"
           ditto "$mountpoint/Rasgo Synth Studio.app" "$bundle"

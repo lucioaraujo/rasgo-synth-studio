@@ -82,11 +82,11 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          cmake -S rasgo-synth-core -B .local-build/native-core -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+          cmake -S rasgo-synth-core -B .local-build/native-core -DBUILD_TESTING=ON -DRASGO_ENABLE_RENDER_INTEGRATION_TESTS=ON -DCMAKE_BUILD_TYPE=Release
           if ($LASTEXITCODE -ne 0) { throw "Core test configure failed" }
-          cmake --build .local-build/native-core --config Release --target rasgo_native_portability_tests rasgo_index_stack_budget_tests --parallel 1
+          cmake --build .local-build/native-core --config Release --target rasgo_native_portability_tests rasgo_index_stack_budget_tests rasgo_artist_metadata_tests --parallel 1
           if ($LASTEXITCODE -ne 0) { throw "Core portability build failed" }
-          ctest --test-dir .local-build/native-core -C Release -R '^rasgo_(native_portability|index_stack_budget)_tests$' --output-on-failure
+          ctest --test-dir .local-build/native-core -C Release -R '^rasgo_(native_portability|index_stack_budget|artist_metadata)_tests$' --output-on-failure
           if ($LASTEXITCODE -ne 0) { throw "Core native UTF-8/formatting regression" }
       - name: Serial native build and install tree
         shell: pwsh

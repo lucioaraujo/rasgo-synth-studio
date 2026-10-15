@@ -72,6 +72,14 @@ if(BUILD_TESTING)
     # compile the monolithic engine or perform musical renders implicitly.
     option(RASGO_ENABLE_RENDER_INTEGRATION_TESTS "Build bounded render regressions" OFF)
     if(RASGO_ENABLE_RENDER_INTEGRATION_TESTS)
+        add_executable(rasgo_artist_metadata_tests src/tests/test_artist_metadata_render.cpp)
+        target_include_directories(rasgo_artist_metadata_tests PRIVATE src)
+        if(MSVC)
+            target_compile_options(rasgo_artist_metadata_tests PRIVATE /utf-8)
+        endif()
+        add_test(NAME rasgo_artist_metadata_tests COMMAND rasgo_artist_metadata_tests)
+        set_tests_properties(rasgo_artist_metadata_tests PROPERTIES
+            TIMEOUT 90 RUN_SERIAL TRUE LABELS "render-integration")
         add_executable(rasgo_album_manifest_render src/tests/validate_album_manifest.cpp)
         target_include_directories(rasgo_album_manifest_render PRIVATE src)
         # Manual normal/collision/directory modes, each with fresh evidence.

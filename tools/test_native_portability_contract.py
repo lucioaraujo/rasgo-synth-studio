@@ -6,6 +6,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class NativePortabilityContract(unittest.TestCase):
+    def test_generated_music_never_inherits_developer_authorship(self):
+        piece = (ROOT / "rasgo-synth-core/src/engine/PieceRenderer.hpp").read_text(encoding="utf-8")
+        self.assertIn("meta.artist = cfg.artistOverride;", piece)
+        self.assertNotIn('cfg.artistOverride : "Lucio de Araujo"', piece)
+        album = (ROOT / "rasgo-synth-core/src/engine/AlbumRenderer.hpp").read_text(encoding="utf-8")
+        self.assertIn("pc.artistOverride = cfg.artistOverride;", album)
+
+    def test_every_platform_build_gates_on_actual_artist_render_regression(self):
+        for name in ("package-native.yml", "package-linux.yml"):
+            workflow = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")
+            self.assertIn("RASGO_ENABLE_RENDER_INTEGRATION_TESTS=ON", workflow)
+            self.assertIn("rasgo_artist_metadata_tests", workflow)
+
     def test_log_strings_do_not_use_platform_dependent_wide_printf(self):
         main = (ROOT / "rasgo-synth-app/src/MainComponent.h").read_text(encoding="utf-8")
         self.assertNotIn("juce::String::formatted", main)

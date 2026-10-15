@@ -9736,7 +9736,9 @@ inline PieceResult renderIntegratedPiece(const PieceConfig &cfg, const ProgressC
 
     WavMetadata meta;
     meta.title = !cfg.titleOverride.empty() ? cfg.titleOverride : "Rasgo Synth Core - integrated piece";
-    meta.artist = !cfg.artistOverride.empty() ? cfg.artistOverride : "Lucio de Araujo";
+    // Musical authorship belongs to the user, not to the software developer.
+    // Preserve an explicitly supplied name; an unset artist must stay unset.
+    meta.artist = cfg.artistOverride;
     meta.comment = std::move(configJsonText);
     if (selfEpitaphEnabled) {
         std::ostringstream epitaphOs;

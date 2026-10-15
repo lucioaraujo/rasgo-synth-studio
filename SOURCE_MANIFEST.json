@@ -14,17 +14,17 @@
     {
       "path": ".github/workflows/package-linux.yml",
       "source": ".github/workflows/package-linux.yml",
-      "sha256": "88bec7320b3814a90adeae3ffb1c001dade6bd3811b43682dcc9f995f94f9b67"
+      "sha256": "79c9de26ebde084e4142bd7fad2867f9093a5360f58dbb4a5f4f5837efe6228f"
     },
     {
       "path": ".github/workflows/package-macos-universal.yml",
       "source": ".github/workflows/package-macos-universal.yml",
-      "sha256": "e5ca550e0985b0d68f91e8dc1a0c4ce2019e0b4541a58dd8b526fbe94d86b153"
+      "sha256": "665a35f3b7f6da5511eb2c386de3c6a742bb052b737020249fa1c2fb422f6c3f"
     },
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "85928e4f0cdddedc5965ec942a625a761da22b73e7b83d7bc960bc163f8b400d"
+      "sha256": "71726f190f19acbd772e3558f40882860eeb091c1417d8e23b9a1e3bf7999ca3"
     },
     {
       "path": ".github/workflows/publish-site.yml",
@@ -334,7 +334,7 @@
     {
       "path": "rasgo-synth-app/src/AppVersion.h",
       "source": "rasgo-synth-app/src/AppVersion.h",
-      "sha256": "c9f14483f28453ff4edefd8bb28c14b7610752627fcfc231196ea8f1e3f35250"
+      "sha256": "b24e5cf5b11201524bdeb982dd375559340d3c46f630684d011d745bab323109"
     },
     {
       "path": "rasgo-synth-app/src/ArcTimelineView.h",
@@ -529,7 +529,7 @@
     {
       "path": "rasgo-synth-core/CMakeLists.txt",
       "source": "rasgo-synth-core/CMakeLists.txt",
-      "sha256": "8fc9b184814b4640926e3d2b1294e4a5e25dfb6a166d88b37d984a07d218f10c"
+      "sha256": "2b28f0be326578689df14142f2b508c0ff64d04b0c48a4a74f9a9d5a2b485d47"
     },
     {
       "path": "rasgo-synth-core/LICENSE",
@@ -1129,7 +1129,7 @@
     {
       "path": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
       "source": "rasgo-synth-core/src/engine/PieceRenderer.hpp",
-      "sha256": "7a4dbec0fc6cc9be87917e3d001e408d40fafe7ac135793f421d4144c60e7ee6"
+      "sha256": "a8a3dd1974ccabb28e33caef085f12066e216bb3dab3dbb1b89f4b4e6a412ef7"
     },
     {
       "path": "rasgo-synth-core/src/engine/ProbabilityMarket.hpp",
@@ -1335,6 +1335,11 @@
       "path": "rasgo-synth-core/src/tests/test_album_plan.cpp",
       "source": "rasgo-synth-core/src/tests/test_album_plan.cpp",
       "sha256": "32ca228a3d6d3e54c3de63ef989b651a24466f261842f0fc5e234fe02d3a051b"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_artist_metadata_render.cpp",
+      "source": "rasgo-synth-core/src/tests/test_artist_metadata_render.cpp",
+      "sha256": "ba61fa5d4a0c258d312c78ad41c114a013ce77c36cc70faa159bb66be3faee6f"
     },
     {
       "path": "rasgo-synth-core/src/tests/test_bass_body_adapters.cpp",
@@ -1829,7 +1834,7 @@
     {
       "path": "tools/test_native_portability_contract.py",
       "source": "tools/test_native_portability_contract.py",
-      "sha256": "b56d612d57a6729c8773a18ba65acb2fe0656673ab7d72d4cded060c81978c55"
+      "sha256": "47c152793be6d70753a6837ef98a9b4a33c2a33496dc728781ea25bfc7f22f7a"
     },
     {
       "path": "tools/test_package_studio_linux.py",
