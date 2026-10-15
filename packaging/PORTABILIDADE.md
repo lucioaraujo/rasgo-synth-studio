@@ -1,8 +1,29 @@
 # Studio — build nativa e distribuição multiplataforma
 
-Atualizado em 2026-10-14. Código próprio sob AGPL-3.0-or-later; a revisão
+Atualizado em 2026-10-15. Código próprio sob AGPL-3.0-or-later; a revisão
 JUCE e seus avisos estão em `DEPENDENCIES.md` e `THIRD_PARTY_NOTICES.md`.
 Este documento não declara versões Windows/macOS disponíveis.
+
+Estado15/10, substituindo os registros históricos abaixo: a receita já foi
+executada nos três sistemas. O último candidato33fbe3c passou render,
+metadados/caminho Unicode e fechamento Windows; Linux passou nas4 distribuições.
+Mac Intel teve SIGBUS durante render; ARM gravou e fechou, mas uma assertion
+String reprovou o aceite. Tooltip/replacements UTF-8 corrigidos em fonte
+6fde722, sem novo aceite nativo ainda. Diagnóstico LLDB no DMG Intel anterior
+com hash fixado localizou estouro de pilha em Recorder/PublishedIndex. Buffer
+offline64 KiB foi movido para heap limitado; regressão em pthread64 KiB e
+seis outros CTests passaram localmente. Controle com código antigo saiu139.
+Recompilar/testar somente Macs pelo novo native_scope=macos e build_linux=false
+é o próximo portão; nenhum novo aceite nativo por inferência do teste Linux.
+Combo38654762892 não está verde. Release413230683 permanece rascunho com
+candidatos anteriores; site/downloads ainda não publicados.
+
+Windows/macOS agora executam teste puro de publicação Unicode antes da build
+e render/fechamento da árvore instalada ANTES do CPack. O harness reprova
+assertions JUCE, registra retorno prematuro e não envia áudio. Inspeção de
+arquitetura/compilação isoladamente não substitui esses testes. Orçamentos
+manuais/concorrência limitada permanecem; não repetir Windows/Linux verdes
+para investigar um problema exclusivo do Mac.
 
 ## Receita CMake
 

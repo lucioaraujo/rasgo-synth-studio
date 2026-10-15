@@ -19,7 +19,7 @@
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "ffd187cfe36ec46d792303f1af4d48a7210558064648fa04b73b696579b61e50"
+      "sha256": "85928e4f0cdddedc5965ec942a625a761da22b73e7b83d7bc960bc163f8b400d"
     },
     {
       "path": ".github/workflows/smoke-native.yml",
@@ -174,7 +174,7 @@
     {
       "path": "packaging/PORTABILIDADE.md",
       "source": "packaging/PORTABILIDADE.md",
-      "sha256": "c5962773ca33ca1371b2e49bed7ae6ab367b4b8b8fb57b0b413aef3a84b5bbaf"
+      "sha256": "5c000b275099556d7dc6905ce6b447fe7b466c2c49e1fb335e4c4e73727e3f21"
     },
     {
       "path": "packaging/appimage/RUNTIME_SOURCES.md",
@@ -519,7 +519,7 @@
     {
       "path": "rasgo-synth-core/CMakeLists.txt",
       "source": "rasgo-synth-core/CMakeLists.txt",
-      "sha256": "b40f0b4f9b3a9384ef9012474191026378bd8954fc2fbade6aad11926c7ad9ea"
+      "sha256": "8fc9b184814b4640926e3d2b1294e4a5e25dfb6a166d88b37d984a07d218f10c"
     },
     {
       "path": "rasgo-synth-core/LICENSE",
@@ -1199,7 +1199,7 @@
     {
       "path": "rasgo-synth-core/src/io/PublishedIndex.hpp",
       "source": "rasgo-synth-core/src/io/PublishedIndex.hpp",
-      "sha256": "c8ae041570ea5fab7aa2deb542d3066368738e7c3a283ef0da8d91db9fb28b8f"
+      "sha256": "9f85ce85ac9a6c8f801c75f6df07823cf29b93b1049fa6e054a404e7f922d8ed"
     },
     {
       "path": "rasgo-synth-core/src/io/PublishedScore.hpp",
@@ -1424,7 +1424,12 @@
     {
       "path": "rasgo-synth-core/src/tests/test_index_publication.cpp",
       "source": "rasgo-synth-core/src/tests/test_index_publication.cpp",
-      "sha256": "50ba6b188db0b7068619b32bac65aee6a888c2219de81ce3fab85e906b93e126"
+      "sha256": "e61b4fe8c03ab612477dec6f8ba07ace790d2f18ea9822f14d10c7c146c2551c"
+    },
+    {
+      "path": "rasgo-synth-core/src/tests/test_index_stack_budget.cpp",
+      "source": "rasgo-synth-core/src/tests/test_index_stack_budget.cpp",
+      "sha256": "8a256f806f74510224e13057f32c8d89c0fc1d261e428a9aec422c3cadf7387b"
     },
     {
       "path": "rasgo-synth-core/src/tests/test_intermodular_orchestra.cpp",
@@ -1809,7 +1814,7 @@
     {
       "path": "tools/test_native_portability_contract.py",
       "source": "tools/test_native_portability_contract.py",
-      "sha256": "5d8a508c8e317ba0d5f401174c0b4683c1f60bdf68c960acee6ebf17b5af441e"
+      "sha256": "b56d612d57a6729c8773a18ba65acb2fe0656673ab7d72d4cded060c81978c55"
     },
     {
       "path": "tools/test_package_studio_linux.py",
@@ -1844,7 +1849,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "de112c566a4ec1c88e5caf1bc3e0821a883a210045a1ff0afaddf2284db72271"
+      "sha256": "c70221fd00dfa458e4048e64fa7cf3b9a2b51a202d76d5ea0ecf46f443c5e024"
     },
     {
       "path": "tools/test_supplement_studio_appimage.py",

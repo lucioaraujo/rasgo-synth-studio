@@ -1,10 +1,11 @@
 #pragma once
 #include "RecordingPublication.hpp"
 #include <algorithm>
-#include <array>
 #include <chrono>
 #include <cstdint>
 #include <fstream>
+#include <memory>
+#include <new>
 #include <thread>
 
 namespace rasgo {
@@ -32,6 +33,7 @@ inline const char* indexAppendMessage(IndexAppendStatus status) noexcept {
 }
 
 namespace index_detail {
+inline constexpr std::size_t copyBufferBytes = 64 * 1024;
 // Cooperative writers, including separate processes, use the same directory.
 // Only our own empty lock is removed. A crash retains it: bounded refusal,
 // not unsafe lock stealing based on time/PID. Never used in an audio callback.
@@ -123,14 +125,18 @@ inline IndexAppendStatus appendIndexLine(const std::filesystem::path& target,
     if (before.exists) {
         std::ifstream previous(target, std::ios::binary);
         if (!previous.is_open()) return IndexAppendStatus::ReadFailed;
-        std::array<char, 64 * 1024> buffer{};
+        // Offline file publication, never the audio callback. This bounded
+        // workspace must not extend the already-large renderer stack: the
+        // Intel Mac worker hit ___chkstk_darwin here before any index write.
+        std::unique_ptr<char[]> buffer(new (std::nothrow) char[index_detail::copyBufferBytes]);
+        if (!buffer) return IndexAppendStatus::WriteFailed;
         auto remaining = before.size;
         char last = '\n';
         while (remaining) {
-            const auto count = static_cast<std::streamsize>(std::min<std::uintmax_t>(remaining, buffer.size()));
-            previous.read(buffer.data(), count);
+            const auto count = static_cast<std::streamsize>(std::min<std::uintmax_t>(remaining, index_detail::copyBufferBytes));
+            previous.read(buffer.get(), count);
             if (previous.gcount() != count || previous.bad()) return IndexAppendStatus::ReadFailed;
-            output.write(buffer.data(), count);
+            output.write(buffer.get(), count);
             if (!output.good()) return IndexAppendStatus::WriteFailed;
             last = buffer[static_cast<std::size_t>(count) - 1];
             remaining -= static_cast<std::uintmax_t>(count);

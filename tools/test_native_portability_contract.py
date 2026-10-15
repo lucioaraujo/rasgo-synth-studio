@@ -39,6 +39,14 @@ class NativePortabilityContract(unittest.TestCase):
                         workflow.index("cpack --config"))
         self.assertNotIn("native-runtime/**/*.wav", workflow)
 
+    def test_index_copy_workspace_is_bounded_offline_heap_not_worker_stack(self):
+        index = (ROOT / "rasgo-synth-core/src/io/PublishedIndex.hpp").read_text()
+        self.assertIn("copyBufferBytes = 64 * 1024", index)
+        self.assertIn("std::unique_ptr<char[]> buffer(new (std::nothrow)", index)
+        self.assertNotIn("std::array<char, 64 * 1024>", index)
+        workflow = (ROOT / ".github/workflows/package-native.yml").read_text()
+        self.assertIn("--target rasgo_native_portability_tests rasgo_index_stack_budget_tests", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

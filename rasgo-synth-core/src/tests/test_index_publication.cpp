@@ -1,6 +1,7 @@
 #include "../io/PublishedIndex.hpp"
 #include "../io/Recorder.hpp"
 #include <cassert>
+#include <array>
 #include <cstdlib>
 #include <iostream>
 #include <iterator>

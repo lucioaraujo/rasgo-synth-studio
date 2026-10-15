@@ -3,6 +3,7 @@ name: Studio — native release candidates (manual)
 # Prepared only. This nested workflow is inert in the RASGO monorepo.
 # A public Studio-only source selection and budget decision precede invocation.
 # Native ceiling: Windows25 + Intel35 + ARM35 =95 runner minutes, serial.
+# macos scope reuses passed Windows/Linux results; its ceiling is70 minutes.
 # Optional Linux adds its separate25+4*15 ceiling. No automatic release/site.
 on:
   workflow_dispatch:
@@ -17,6 +18,12 @@ on:
         required: true
         type: boolean
         default: false
+      native_scope:
+        description: Native systems to rebuild (macos avoids repeating Windows)
+        required: true
+        type: choice
+        options: [all, macos]
+        default: all
 permissions:
   contents: read
   actions: read
@@ -38,19 +45,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        include:
-          - runner: windows-2022
-            platform: windows-x64
-            architecture: x64
-            timeout: 25
-          - runner: macos-15-intel
-            platform: macos-x86_64
-            architecture: x86_64
-            timeout: 35
-          - runner: macos-15
-            platform: macos-arm64
-            architecture: arm64
-            timeout: 35
+        include: ${{ fromJSON(inputs.native_scope == 'macos' && '[{"runner":"macos-15-intel","platform":"macos-x86_64","architecture":"x86_64","timeout":35},{"runner":"macos-15","platform":"macos-arm64","architecture":"arm64","timeout":35}]' || '[{"runner":"windows-2022","platform":"windows-x64","architecture":"x64","timeout":25},{"runner":"macos-15-intel","platform":"macos-x86_64","architecture":"x86_64","timeout":35},{"runner":"macos-15","platform":"macos-arm64","architecture":"arm64","timeout":35}]') }}
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
@@ -89,9 +84,9 @@ jobs:
           $ErrorActionPreference = "Stop"
           cmake -S rasgo-synth-core -B .local-build/native-core -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
           if ($LASTEXITCODE -ne 0) { throw "Core test configure failed" }
-          cmake --build .local-build/native-core --config Release --target rasgo_native_portability_tests --parallel 1
+          cmake --build .local-build/native-core --config Release --target rasgo_native_portability_tests rasgo_index_stack_budget_tests --parallel 1
           if ($LASTEXITCODE -ne 0) { throw "Core portability build failed" }
-          ctest --test-dir .local-build/native-core -C Release -R '^rasgo_native_portability_tests$' --output-on-failure
+          ctest --test-dir .local-build/native-core -C Release -R '^rasgo_(native_portability|index_stack_budget)_tests$' --output-on-failure
           if ($LASTEXITCODE -ne 0) { throw "Core native UTF-8/formatting regression" }
       - name: Serial native build and install tree
         shell: pwsh

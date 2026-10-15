@@ -1,5 +1,7 @@
 """Static release-workflow contract; does not execute Actions/native builds."""
 from pathlib import Path
+import json
+import re
 import subprocess
 import unittest
 
@@ -11,6 +13,16 @@ ROOT = Path(__file__).resolve().parents[1]
 def workflow(name):
     return yaml.load((ROOT / ".github/workflows" / name).read_text(encoding="utf-8"),
                      Loader=yaml.BaseLoader)
+
+
+def native_matrix(scope="all"):
+    expression = workflow("package-native.yml")["jobs"]["native"]["strategy"]["matrix"]["include"]
+    if "inputs.native_scope == 'macos'" not in expression:
+        raise ValueError("missing explicit native scope")
+    cases = re.findall(r"'(\[.*?\])'", expression)
+    if len(cases) != 2:
+        raise ValueError("unexpected native matrix expression")
+    return json.loads(cases[0 if scope == "macos" else 1])
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -27,12 +39,18 @@ class WorkflowContractTests(unittest.TestCase):
     def test_three_native_architectures_and_serial_budget(self):
         job = workflow("package-native.yml")["jobs"]["native"]
         self.assertEqual(job["strategy"]["max-parallel"], "1")
-        matrix = job["strategy"]["matrix"]["include"]
+        matrix = native_matrix()
         self.assertEqual({row["platform"] for row in matrix},
                          {"windows-x64", "macos-x86_64", "macos-arm64"})
         self.assertEqual(sum(int(row["timeout"]) for row in matrix), 95)
         for row in matrix:
             self.assertNotIn("latest", row["runner"])
+
+    def test_mac_only_scope_cannot_start_windows_job(self):
+        matrix = native_matrix("macos")
+        self.assertEqual({row["platform"] for row in matrix}, {"macos-x86_64", "macos-arm64"})
+        self.assertEqual(sum(row["timeout"] for row in matrix), 70)
+        self.assertEqual(matrix, [row for row in native_matrix() if row["platform"].startswith("macos-")])
 
     def test_linux_reuse_remains_manual_and_source_read_only(self):
         native = workflow("package-native.yml")
