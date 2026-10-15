@@ -60,6 +60,9 @@ class UniversalTests(unittest.TestCase):
         for forbidden in ("cmake --build", "gh release", "*.wav", "spctl --master-disable", "xattr -d"):
             self.assertNotIn(forbidden, text)
         self.assertIn(".head_sha", text)
+        self.assertIn("('macos-x86_64', 'macos-arm64')", text)
+        self.assertIn("matching[0]['conclusion'] != 'success'", text)
+        self.assertIn('test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN" --jq .status)" = completed', text)
         for job in document["jobs"].values():
             for step in job.get("steps", []):
                 if "run" in step:

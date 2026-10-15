@@ -22,7 +22,7 @@ on:
         description: Native systems to rebuild (macos avoids repeating Windows)
         required: true
         type: choice
-        options: [all, macos]
+        options: [all, macos, windows]
         default: all
 permissions:
   contents: read
@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        include: ${{ fromJSON(inputs.native_scope == 'macos' && '[{"runner":"macos-15-intel","platform":"macos-x86_64","architecture":"x86_64","timeout":35},{"runner":"macos-15","platform":"macos-arm64","architecture":"arm64","timeout":35}]' || '[{"runner":"windows-2022","platform":"windows-x64","architecture":"x64","timeout":25},{"runner":"macos-15-intel","platform":"macos-x86_64","architecture":"x86_64","timeout":35},{"runner":"macos-15","platform":"macos-arm64","architecture":"arm64","timeout":35}]') }}
+        include: ${{ fromJSON(inputs.native_scope == 'windows' && '[{"runner":"windows-2022","platform":"windows-x64","architecture":"x64","timeout":25}]' || inputs.native_scope == 'macos' && '[{"runner":"macos-15-intel","platform":"macos-x86_64","architecture":"x86_64","timeout":35},{"runner":"macos-15","platform":"macos-arm64","architecture":"arm64","timeout":35}]' || '[{"runner":"windows-2022","platform":"windows-x64","architecture":"x64","timeout":25},{"runner":"macos-15-intel","platform":"macos-x86_64","architecture":"x86_64","timeout":35},{"runner":"macos-15","platform":"macos-arm64","architecture":"arm64","timeout":35}]') }}
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4

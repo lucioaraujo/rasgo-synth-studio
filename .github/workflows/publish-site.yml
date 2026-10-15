@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm_publish:
-        description: Publish the prepared Studio website after checking public v0.1.0
+        description: Publish the prepared Studio website after checking public v0.1.1
         required: true
         type: boolean
         default: false
@@ -34,7 +34,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test "$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/v0.1.0" --jq .draft)" = false
+          test "$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/v0.1.1" --jq .draft)" = false
           (cd site && sha256sum --check --quiet SHA256SUMS)
           test -f site/index.html
           test -f site/en.html

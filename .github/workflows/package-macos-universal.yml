@@ -11,7 +11,7 @@ on:
         type: boolean
         default: false
       native_run:
-        description: Successful native candidate run containing both Macs
+        description: Completed native run containing two successful Mac candidate jobs
         required: true
         type: string
       source_commit:
@@ -37,15 +37,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Require successful native run at the exact source commit
+      - name: Require both successful Mac jobs at the exact source commit
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           [[ "$STUDIO_NATIVE_RUN" =~ ^[0-9]+$ ]]
           [[ "$STUDIO_SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
-          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN" --jq .conclusion)" = success
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN" --jq .status)" = completed
           test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN" --jq .head_sha)" = "$STUDIO_SOURCE_COMMIT"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$STUDIO_NATIVE_RUN/jobs?per_page=100" > .mac-jobs.json
+          python - <<'PY'
+          import json
+          jobs = json.load(open('.mac-jobs.json'))['jobs']
+          for platform in ('macos-x86_64', 'macos-arm64'):
+              matching = [j for j in jobs if f', {platform},' in j['name']]
+              if len(matching) != 1 or matching[0]['conclusion'] != 'success':
+                  raise SystemExit('Missing successful native Mac job: ' + platform)
+          PY
       - uses: actions/download-artifact@v4
         with:
           name: studio-macos-x86_64-candidates

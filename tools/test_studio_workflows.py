@@ -20,9 +20,9 @@ def native_matrix(scope="all"):
     if "inputs.native_scope == 'macos'" not in expression:
         raise ValueError("missing explicit native scope")
     cases = re.findall(r"'(\[.*?\])'", expression)
-    if len(cases) != 2:
+    if len(cases) != 3:
         raise ValueError("unexpected native matrix expression")
-    return json.loads(cases[0 if scope == "macos" else 1])
+    return json.loads(cases[{"windows": 0, "macos": 1, "all": 2}[scope]])
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -51,6 +51,11 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertEqual({row["platform"] for row in matrix}, {"macos-x86_64", "macos-arm64"})
         self.assertEqual(sum(row["timeout"] for row in matrix), 70)
         self.assertEqual(matrix, [row for row in native_matrix() if row["platform"].startswith("macos-")])
+
+    def test_windows_retry_does_not_rebuild_passed_macs(self):
+        matrix = native_matrix("windows")
+        self.assertEqual([row["platform"] for row in matrix], ["windows-x64"])
+        self.assertEqual(sum(row["timeout"] for row in matrix), 25)
 
     def test_linux_reuse_remains_manual_and_source_read_only(self):
         native = workflow("package-native.yml")
@@ -103,7 +108,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertEqual(upload["with"]["path"], "site")
         self.assertEqual(upload["with"]["retention-days"], "1")
         text = (ROOT / ".github/workflows/publish-site.yml").read_text()
-        for marker in ("releases/tags/v0.1.0", "--jq .draft", "sha256sum --check"):
+        for marker in ("releases/tags/v0.1.1", "--jq .draft", "sha256sum --check"):
             self.assertIn(marker, text)
         for forbidden in ("cmake --build", "gh release edit", "0_BRAINSTORM", "actions/upload-artifact@"):
             self.assertNotIn(forbidden, text)

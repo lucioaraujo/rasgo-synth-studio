@@ -76,6 +76,7 @@ if(BUILD_TESTING)
         target_include_directories(rasgo_artist_metadata_tests PRIVATE src)
         if(MSVC)
             target_compile_options(rasgo_artist_metadata_tests PRIVATE /utf-8)
+            target_compile_definitions(rasgo_artist_metadata_tests PRIVATE NOMINMAX _USE_MATH_DEFINES)
         endif()
         add_test(NAME rasgo_artist_metadata_tests COMMAND rasgo_artist_metadata_tests)
         set_tests_properties(rasgo_artist_metadata_tests PROPERTIES
