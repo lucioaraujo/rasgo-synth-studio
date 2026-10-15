@@ -24,7 +24,7 @@
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "ae4609683f20de73ea5b0d40d80c4a4b1201315488a5453ea56ef41146605e94"
+      "sha256": "e8212af612af07cf35a72a591ef8395190308b8801496c1561d7da9139513823"
     },
     {
       "path": ".github/workflows/publish-site.yml",
@@ -1879,7 +1879,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "d36b204bb9adbe26d21e406264913b8dfe2d87eb7e85742b3f2c7e80f1327545"
+      "sha256": "6beaea870c71427fa7e9c506dfb9b00dc899de3aeb4a009f049b61e5effaaed8"
     },
     {
       "path": "tools/test_supplement_studio_appimage.py",

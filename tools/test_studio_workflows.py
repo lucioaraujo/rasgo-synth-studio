@@ -56,6 +56,9 @@ class WorkflowContractTests(unittest.TestCase):
         matrix = native_matrix("windows")
         self.assertEqual([row["platform"] for row in matrix], ["windows-x64"])
         self.assertEqual(sum(row["timeout"] for row in matrix), 25)
+        group = workflow("package-native.yml")["concurrency"]["group"]
+        self.assertIn("inputs.native_scope", group)
+        self.assertIn("inputs.build_linux", group)
 
     def test_linux_reuse_remains_manual_and_source_read_only(self):
         native = workflow("package-native.yml")

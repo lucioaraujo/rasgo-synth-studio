@@ -28,7 +28,7 @@ permissions:
   contents: read
   actions: read
 concurrency:
-  group: studio-native-candidates-${{ github.ref }}
+  group: studio-native-candidates-${{ github.ref }}-${{ inputs.native_scope }}-${{ inputs.build_linux }}
   cancel-in-progress: true
 
 jobs:
