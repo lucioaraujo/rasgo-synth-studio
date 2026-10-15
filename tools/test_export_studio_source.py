@@ -9,6 +9,15 @@ import export_studio_source as exporter
 
 
 class SourceExportTests(unittest.TestCase):
+    def test_deployed_presentations_have_no_footer_navigation(self):
+        files, _ = exporter.prepare()
+        for page in ("index.html", "en.html", "fr.html", "es.html"):
+            text = files["site/" + page].decode("utf-8")
+            footer = text.split('<footer class="studio-footer">', 1)[1].split("</footer>", 1)[0]
+            self.assertNotIn("<a ", footer, page)
+            self.assertNotIn("<nav", footer, page)
+            self.assertEqual(text.count("<nav "), 1, page)
+
     def test_real_selection_is_studio_only(self):
         files, mapping = exporter.prepare()
         for path in files:

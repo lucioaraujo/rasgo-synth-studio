@@ -206,7 +206,7 @@ def prepare(root=ROOT):
     validate(files)
     if len(files) > 64 or sum(map(len, files.values())) > MAX_TOTAL:
         raise ValueError("output exceeds budget")
-    manifest = {"kind": "reviewed website export, not binary release approval", "date": "2026-10-15",
+    manifest = {"kind": "reviewed website export, not binary release approval", "date": "2026-10-16",
                 "builder": "tools/build_studio_website.py", "markdown_version": markdown.__version__,
                 "files": provenance, "marked_internal_references": marked,
                 "source_selection": "explicit allowlist; no audio, logs, other instruments or app code"}

@@ -1,35 +1,35 @@
 {
   "kind": "reviewed website export, not binary release approval",
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "builder": "tools/build_studio_website.py",
   "markdown_version": "3.5.2",
   "files": [
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "1636810669415269a5800595cb6b29883bb35ac03b2637b035f67ef1182952c7",
-      "output_sha256": "d4d43b333d826192c2801a850e966d977eb1cfa8d001eb6a8f179304a36e7f65",
+      "source_sha256": "c64223cf10e60391656493911ededa996797e82bbbed5969b6e4f33c0e20e428",
+      "output_sha256": "5f7287fd2d4bbbc277445db8885eeba82f20b36f588018b8beeb8ccb5a10db4c",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "54a574fe8484a123dd8ad3f5c68c96d4dbb35c48a4ca65544a89b501a121f1bb",
-      "output_sha256": "e1eae0a4e62eff9993b7c1e24556a502c04b2bd21f4d344d8ba4e4a240ef7e25",
+      "source_sha256": "52d6e588c7be6290fba673cd2ed5d3ddbf38e859ef3f73c90142e45a572e56df",
+      "output_sha256": "bb043fd003d0d70b0ea3df3f52dd62f92685fe09e1e31b4886aec8dac164f91f",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "38ac2016a6e815c3cad74c2a43b3a02276d5e77dd7981d94f23d3436e34f994a",
-      "output_sha256": "a4263b1e42146c1547942c57cea0a46a49eac0fa11d4f1aed06d6a9578a3b640",
+      "source_sha256": "f70370d8aeaf20552db5829d34fa39f5e4e3acaad5bcc57749fec01944cea9fc",
+      "output_sha256": "7e85b00fae69b0e341fccb49664c94eb357f4360d3b98ca518e89371429cf9fd",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "b1b0daae8fe8c0954ac5a83563b709f38b67893e4ba76cb9d9fe5edf6bdd1173",
-      "output_sha256": "d1ec11b08459c96ad443472cb7adc4bd3abdc8b67341a8fcfc51cc0e7ab36c2b",
+      "source_sha256": "6302c25751a7266f3d4485e64aafd6de4adf0e4b7be1d0c1212552f1623dd521",
+      "output_sha256": "9558dc8ae04a266c6485d03708bfeb7af2a9afc96afac3e4a6d473e8bc3e6930",
       "transformed": true
     },
     {
