@@ -17,6 +17,12 @@ class NativePortabilityContract(unittest.TestCase):
         for label in ("CONT↑", "CONT↓"):
             self.assertIn('juce::String::fromUTF8("' + label + '")', panel)
 
+    def test_language_tooltip_and_log_translations_are_utf8(self):
+        main = (ROOT / "rasgo-synth-app/src/MainComponent.h").read_text(encoding="utf-8")
+        self.assertIn('setTooltip(juce::String::fromUTF8("English / Português / Français / Español"))', main)
+        self.assertNotIn('localized.replace(replacement.first, replacement.second)', main)
+        self.assertEqual(main.count('juce::String::fromUTF8(replacement.second)'), 3)
+
     def test_recording_and_companion_paths_are_explicit_utf8(self):
         recorder = (ROOT / "rasgo-synth-core/src/io/Recorder.hpp").read_text()
         self.assertIn("RecordingPublication publication(std::filesystem::u8path(path))", recorder)

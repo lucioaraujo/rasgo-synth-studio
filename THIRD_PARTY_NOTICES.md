@@ -128,6 +128,21 @@ incluindo:
 - bibliotecas de execução do compilador e do sistema, como `libstdc++`,
   `libgcc`, `libm`, `libdl`, `pthread` e a biblioteca C.
 
+Complemento15/10: foi preparado um kit separado de fontes do runtime fixado,
+com arquivos integrais de AppImage/type2-runtime, libfuse3.15.0,
+squashfuse0.5.2, musl1.2.5, zstd1.5.6, zlib1.3.2 e mimalloc2.1.7. Os
+patches do runtime/Alpine são identificados separadamente. Instruções,
+proveniência e limites: [`RUNTIME_SOURCES.md`](packaging/appimage/RUNTIME_SOURCES.md).
+`tools/build_appimage_source_kit.py` verifica os hashes antes de preparar
+fontes/avisos; `tools/supplement_studio_appimage.py` acrescenta esses avisos
+ao candidato sem recompilar ou substituir suas bibliotecas. O kit preserva
+o cabeçalho MIT do runtime, além do aviso-resumo, e os textos completos
+LGPL/GPL do libfuse, COPYRIGHT composto do musl e MIT do mimalloc. Não atribui
+esses componentes ao Rasgo nem altera suas licenças. O kit deve acompanhar
+a mesma release do AppImage; a preparação local não implica publicação ou
+rebuild/relink executado. As bibliotecas dinâmicas do aplicativo conservam
+seu inventário próprio, distinto do launcher estático.
+
 Essas bibliotecas não são armazenadas neste repositório. Elas são resolvidas no
 sistema de build e de execução, e mantêm seus próprios titulares e licenças. A
 lista efetiva pode variar por plataforma, distribuição, configuração do linker

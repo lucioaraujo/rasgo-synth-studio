@@ -39,7 +39,8 @@ def selection():
                   ("manual.md", overview, "Manifesto.md", "Arquitetura_Fluxograma.md", "Documento_de_Referencia.md")]
     return paths + ["docs/pt/_catalogo_mecanismos.md", "docs/GROOVE_RHYTHM.md",
                     "CREDITS.md", "THIRD_PARTY_NOTICES.md", "DEPENDENCIES.md", "LICENSE", "INSTALL.md",
-                    "packaging/linux/README.md", "rasgo-synth-app/assets/README.md"]
+                    "packaging/linux/README.md", "packaging/appimage/RUNTIME_SOURCES.md",
+                    "rasgo-synth-app/assets/README.md"]
 
 
 def destination(source):

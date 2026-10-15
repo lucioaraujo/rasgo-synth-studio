@@ -1,0 +1,88 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AppImage runtime — sources and relinking</title><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/studio.css"></head><body class="studio-public"><div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div><header class="studio-header topbar">
+<a class="studio-mark mark" href="../../index.html"><img class="mark-logo" src="../../assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
+<nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links"><a href="../../index.html#instrument">Instrumento</a><a href="../../index.html#album">Álbum</a><a href="../../quickstart.html#pt">Tutorial</a><a href="../../INSTALL.html#portugues">Instalação</a><a href="../../index.html#documentation">Documentação</a><a href="../../index.html#release">Créditos</a></span><span class="studio-languages"><a href="../../en.html" lang="en" hreflang="en">English</a><a href="../../index.html" lang="pt-BR" hreflang="pt-BR" aria-current="page">Português</a><a href="../../fr.html" lang="fr" hreflang="fr">Français</a><a href="../../es.html" lang="es" hreflang="es">Español</a></span></nav>
+</header><main class="quickstart"><h1 id="appimage-runtime-sources-and-relinking">AppImage runtime — sources and relinking</h1>
+<p>Prepared 2026-10-15 for Rasgo Synth Studio 0.1.0. These are the sources of
+the AppImage launcher, not the musical engine. Application and JUCE sources
+are separate assets in the same release. No third-party source here is
+claimed as work by the author of Rasgo.</p>
+<h2 id="what-accompanies-the-binary">What accompanies the binary</h2>
+<p><code>manifest.json</code> records seven upstream archives, their immutable checksums,
+the Alpine patches and their original locations. <code>notices/</code> contains the
+complete selected license texts, including musl's composite COPYRIGHT,
+libfuse's LGPL 2.1 and GPL 2 texts, and mimalloc's MIT notice. The runtime
+source header is also preserved: its Simon Peter/Alexander Larsson and
+public-domain MD5 credits are not replaced by the shorter root LICENSE.</p>
+<p>The complete original archives are in <code>upstream/</code>. Their original copyright
+headers and all other source licenses remain in place. libfuse's own LICENSE
+distinguishes the LGPL library from GPL utilities. This bundle does not
+relicense either. zstd offers a BSD license as well as GPLv2; its complete
+original texts are retained. Alpine musl/mimalloc patches are separately
+identified in <code>patches/</code>, with original authors and headers retained.</p>
+<p>Verify the extracted kit with <code>sha256sum -c SHA256SUMS</code> before using sources.
+The generator neither downloads nor runs these sources. Do not run arbitrary
+downloaded build scripts on a production workstation.</p>
+<h2 id="build-provenance">Build provenance</h2>
+<p>The official launcher is AppImage/type2-runtime commit
+<code>8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa</code>, SHA-256
+<code>156f4bdbde9c52d01814600013e0a273f0118dc2de98975f3c8c63427ec79074</code>.
+Its upstream build is <a href="https://github.com/AppImage/type2-runtime/actions/runs/36463736478">run 36463736478</a>,
+x86_64 job 109068477114. It used Alpine 3.21 image digest
+<code>sha256:ce64758a109eb420d874a118f87920e625e12d3634e03b4a5573fd9f6e5d3507</code>,
+musl 1.2.5-r11, zstd 1.5.6-r2, zlib 1.3.2-r0 and mimalloc 2.1.7-r0.
+The recipe itself builds libfuse 3.15.0 and squashfuse 0.5.2.</p>
+<p>The runtime archive includes its original Makefile, linker script, version,
+Docker/chroot recipes and libfuse patch. The Alpine package recipes used to
+check package revisions and patch checksums can be consulted at:</p>
+<ul>
+<li><a href="https://github.com/alpinelinux/aports/blob/8999cf56154b9bd09c995f293d8dfd3aa8001e3a/main/musl/APKBUILD">musl 1.2.5-r11</a></li>
+<li><a href="https://github.com/alpinelinux/aports/blob/5a1a5dc3216a69e3cd66a57ee07cb5ef01b8be39/community/mimalloc2/APKBUILD">mimalloc2 2.1.7-r0</a></li>
+<li><a href="https://github.com/alpinelinux/aports/blob/5c2ddf18f193dafdd25ae7391d96c7e30766eecd/main/zstd/APKBUILD">zstd 1.5.6-r2</a></li>
+<li><a href="https://github.com/alpinelinux/aports/blob/2b38f55109add14f4f99a974c2fdf421b6b9e9e9/main/zlib/APKBUILD">zlib 1.3.2-r0</a></li>
+</ul>
+<p>Package recipe metadata is not a relicensing of the recipe itself. Recipes
+are linked here, not represented as Rasgo-owned source. The musl command-line
+utilities getconf/getent/iconv are not incorporated into the launcher.</p>
+<h2 id="rebuild-or-change-libfuse">Rebuild or change libfuse</h2>
+<p>Use a disposable x86_64 Linux container/VM and inspect the original recipes
+before running anything. Limit builds to one worker. The launcher can be
+rebuilt entirely from source; no proprietary object or signing key is needed.</p>
+<ol>
+<li>Extract the seven verified archives into a fresh working directory.
+   The runtime source directory is <code>AppImage-type2-runtime-8f39b89</code>.</li>
+<li>Supply the musl/static-library development environment from the pinned
+   Alpine base. For equivalent source builds, the supplied musl patches are
+   applied in the order in <code>manifest.json</code>; set its VERSION to 1.2.5. Follow
+   the linked recipe for target flags. zlib and zstd have no Alpine source
+   patches in these revisions. Apply the supplied mimalloc CMake patch and
+   build its static secure variant (<code>MI_SECURE=ON</code>), as selected by Alpine's
+   <code>libmimalloc.a</code> symlink. These instructions do not claim a bit-identical
+   compiler/toolchain reconstruction.</li>
+<li>In <code>fuse-3.15.0</code>, apply the runtime's <code>patches/libfuse/mount.c.diff</code> to
+   <code>lib/mount.c</code>, following <code>scripts/common/install-dependencies.sh</code>. Build
+   with Meson <code>--default-library static --prefix=/usr</code>, then <code>ninja -j1</code>
+   and install only inside the disposable environment. To modify libfuse,
+   edit this source before building. Its LGPL license permits such changes;
+   preserve the original notices and mark modifications.</li>
+<li>Build squashfuse 0.5.2 as in the original dependency script (<code>autogen.sh</code>,
+   configure with <code>LDFLAGS=-static</code>, then <code>make -j1</code> and install). Make the
+   static libraries and headers visible to clang and the linker. The source
+   kit preserves the exact upstream dependency build script for details.</li>
+<li>In the runtime's <code>src/runtime/</code>, preserve the supplied <code>version</code> file and
+   run <code>make -j1</code>. The Makefile links <code>squashfuse</code>, <code>squashfuse_ll</code>, <code>zstd</code>,
+   <code>z</code>, <code>fuse3</code> and <code>mimalloc</code>, with <code>-static -static-pie</code> and the supplied
+   linker script. Re-running this step relinks against your modified libfuse.</li>
+<li>Repackage the original AppDir using the generated <code>runtime</code>, e.g. set
+   <code>LDAI_RUNTIME_FILE=/absolute/path/to/your/runtime</code> when using linuxdeploy's
+   AppImage output plugin. The Studio packaging recipe rejects an unpinned
+   runtime intentionally; a local experimental rebuild must explicitly
+   change its runtime pin. Do not overwrite the original release file.</li>
+<li>Test the newly named AppImage and its extracted <code>AppRun</code>. Include the
+   changed source, notices and hashes when redistributing a modified build.</li>
+</ol>
+<p>The runtime rebuild/relink procedure has been inspected, not executed for
+this release. Runtime-source completeness checks do not validate audio,
+FUSE mounting, or every distributor's legal situation. Dynamically bundled
+application libraries have a separate version/copyright inventory inside
+the AppImage. Installing <code>.deb</code> or the portable tar archive does not use
+this AppImage launcher.</p></main></body></html>

@@ -1423,7 +1423,7 @@ private:
     void refreshLocalizedInterface() {
         using namespace ui::strings;
         languageButton_.setButtonText(ui::languageLabel(uiLanguage_));
-        languageButton_.setTooltip("English / Português / Français / Español");
+        languageButton_.setTooltip(juce::String::fromUTF8("English / Português / Français / Español"));
         tutorialButton_.setButtonText(ui::text(tutorial, uiLanguage_));
         aboutButton_.setButtonText(ui::text(about, uiLanguage_));
         subtitleLabel_.setText(ui::text(subtitle, uiLanguage_), juce::dontSendNotification);
@@ -1648,7 +1648,9 @@ private:
                 { "oculto", "hidden" }, { "colapso por coerencia", "coherence collapse" },
                 { "evento(s) real(is)", "real event(s)" }
             };
-            for (const auto& replacement : replacements) localized = localized.replace(replacement.first, replacement.second);
+            for (const auto& replacement : replacements)
+                localized = localized.replace(juce::String::fromUTF8(replacement.first),
+                                               juce::String::fromUTF8(replacement.second));
         } else if (uiLanguage_ == ui::Language::french) {
             const std::pair<const char*, const char*> replacements[] {
                 { "compondo album", "création de l’album" }, { "faixas", "pistes" },
@@ -1684,7 +1686,9 @@ private:
                 { "so funciona durante a reproducao", "fonctionne uniquement pendant la lecture" },
                 { "evento(s) real(is)", "événement(s) réel(s)" }
             };
-            for (const auto& replacement : replacements) localized = localized.replace(replacement.first, replacement.second);
+            for (const auto& replacement : replacements)
+                localized = localized.replace(juce::String::fromUTF8(replacement.first),
+                                               juce::String::fromUTF8(replacement.second));
         } else if (uiLanguage_ == ui::Language::spanish) {
             const std::pair<const char*, const char*> replacements[] {
                 { "compondo album", "creando álbum" }, { "faixas", "pistas" },
@@ -1720,19 +1724,21 @@ private:
                 { "so funciona durante a reproducao", "solo funciona durante la reproducción" },
                 { "evento(s) real(is)", "evento(s) real(es)" }
             };
-            for (const auto& replacement : replacements) localized = localized.replace(replacement.first, replacement.second);
+            for (const auto& replacement : replacements)
+                localized = localized.replace(juce::String::fromUTF8(replacement.first),
+                                               juce::String::fromUTF8(replacement.second));
         }
         if (uiLanguage_ == ui::Language::english) {
             localized = localized.replace("falha ao abrir dispositivo", "device open failed")
                                  .replace("nenhum dispositivo de saida foi aberto (sem erro reportado)", "no output device was opened (no error reported)")
                                  .replace("canal(is) de saida", "output channel(s)");
         } else if (uiLanguage_ == ui::Language::french) {
-            localized = localized.replace("falha ao abrir dispositivo", "échec d’ouverture du périphérique")
-                                 .replace("nenhum dispositivo de saida foi aberto (sem erro reportado)", "aucun périphérique de sortie ouvert (aucune erreur signalée)")
+            localized = localized.replace("falha ao abrir dispositivo", juce::String::fromUTF8("échec d’ouverture du périphérique"))
+                                 .replace("nenhum dispositivo de saida foi aberto (sem erro reportado)", juce::String::fromUTF8("aucun périphérique de sortie ouvert (aucune erreur signalée)"))
                                  .replace("canal(is) de saida", "canal(aux) de sortie");
         } else if (uiLanguage_ == ui::Language::spanish) {
             localized = localized.replace("falha ao abrir dispositivo", "fallo al abrir el dispositivo")
-                                 .replace("nenhum dispositivo de saida foi aberto (sem erro reportado)", "no se abrió ningún dispositivo de salida (sin error informado)")
+                                 .replace("nenhum dispositivo de saida foi aberto (sem erro reportado)", juce::String::fromUTF8("no se abrió ningún dispositivo de salida (sin error informado)"))
                                  .replace("canal(is) de saida", "canal(es) de salida");
         }
         return localized;

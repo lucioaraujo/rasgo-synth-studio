@@ -7,6 +7,11 @@
   "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
   "files": [
     {
+      "path": ".github/workflows/diagnose-macos-intel.yml",
+      "source": ".github/workflows/diagnose-macos-intel.yml",
+      "sha256": "39acf03acc7cbd9d693dbaf1d86373888b0cb20f1f5f801347d3fe9924bdaa8c"
+    },
+    {
       "path": ".github/workflows/package-linux.yml",
       "source": ".github/workflows/package-linux.yml",
       "sha256": "88bec7320b3814a90adeae3ffb1c001dade6bd3811b43682dcc9f995f94f9b67"
@@ -54,7 +59,7 @@
     {
       "path": "THIRD_PARTY_NOTICES.md",
       "source": "THIRD_PARTY_NOTICES.md",
-      "sha256": "15f6415381bd4c04c52c32e024fee828a253a8eb15bda48886ff09239c8bdd3e"
+      "sha256": "82489ebf0ab4043d2ca70421227dc360d9103a758dfe91e0a13b8fe5344d32be"
     },
     {
       "path": "docs/GROOVE_RHYTHM.md",
@@ -172,6 +177,11 @@
       "sha256": "c5962773ca33ca1371b2e49bed7ae6ab367b4b8b8fb57b0b413aef3a84b5bbaf"
     },
     {
+      "path": "packaging/appimage/RUNTIME_SOURCES.md",
+      "source": "packaging/appimage/RUNTIME_SOURCES.md",
+      "sha256": "f7535e1fd8055782aa52e3d121d6b6f7a2c025af2b94c71b66960e51682745cb"
+    },
+    {
       "path": "packaging/cmake/InstallStudio.cmake",
       "source": "packaging/cmake/InstallStudio.cmake",
       "sha256": "e2ff163b44dd676ef2443dff047869bb79b565d5e73daa6646b14ac50893ac83"
@@ -184,7 +194,7 @@
     {
       "path": "packaging/linux/README.md",
       "source": "packaging/linux/README.md",
-      "sha256": "b4789d1dceb71fc56deda6b93829dd32fef005f263f04a217bfc0cd9f708260c"
+      "sha256": "273e14b2e53923b3dc034d44f9107fe210f54a0fb5e20edd3a1c33a7cdc3e184"
     },
     {
       "path": "packaging/linux/empacotar.sh",
@@ -379,7 +389,7 @@
     {
       "path": "rasgo-synth-app/src/MainComponent.h",
       "source": "rasgo-synth-app/src/MainComponent.h",
-      "sha256": "334074e8cf095c9209e6d1cbae2dce7e5468d003c1fcbb09bc9f0fd5ed1b5693"
+      "sha256": "a0fab68f6f0feea0e3e586504c116f21216de1b2c8da935953d17e7d31b20e39"
     },
     {
       "path": "rasgo-synth-app/src/ModulePanelView.h",
@@ -1717,6 +1727,11 @@
       "sha256": "3b95dcd60ba756093d9eb955b18b2b737511a3c3b1b30654f04dc8153f0e3be4"
     },
     {
+      "path": "tools/build_appimage_source_kit.py",
+      "source": "tools/build_appimage_source_kit.py",
+      "sha256": "524ed3c55017d2ea192aed87a40e8b2b7e1e84fdd96b4bfd098ecae047dc54fe"
+    },
+    {
       "path": "tools/build_studio_tutorial.py",
       "source": "tools/build_studio_tutorial.py",
       "sha256": "83d82c3f25be11e311fd0fe46f2736b7d7782e96b4ba69ee76539813226ae793"
@@ -1724,12 +1739,17 @@
     {
       "path": "tools/build_studio_website.py",
       "source": "tools/build_studio_website.py",
-      "sha256": "628b53da4d69ecaf344ad13360b8822877d57fbc6f3eceaf8d4bb0303bc6bb26"
+      "sha256": "d563a5d5bdba50882ef03904b38ac31d8361410623b78d295b293d62f4493ad6"
+    },
+    {
+      "path": "tools/debug_studio_macos.py",
+      "source": "tools/debug_studio_macos.py",
+      "sha256": "1fd32115e2965b6efd8af90f353c85335a0974de751cc0f062ff7ae5b3064c96"
     },
     {
       "path": "tools/export_studio_source.py",
       "source": "tools/export_studio_source.py",
-      "sha256": "d691f7219a1bf1b515f2534b5346ba8c3cffa95ab382e5dc1f74215502db5e64"
+      "sha256": "33d7ef406aeba4bed3b50c7d3b7b9f0c7af6486a4e33cdca2159596ed99544e8"
     },
     {
       "path": "tools/package_studio_linux.py",
@@ -1762,6 +1782,21 @@
       "sha256": "5217e53fcca24ec577909a444aaeb7fed324ffa25f1692d1c9e0e5b465d2a7a6"
     },
     {
+      "path": "tools/supplement_studio_appimage.py",
+      "source": "tools/supplement_studio_appimage.py",
+      "sha256": "93f74c23287d36164035e8312a8f7bc809af6525e82c7360d057198c8901e8e4"
+    },
+    {
+      "path": "tools/test_appimage_source_kit.py",
+      "source": "tools/test_appimage_source_kit.py",
+      "sha256": "47d90bf961adf9280e824a73a51d072fbffa40cadc73544d1ea6f30d933a794b"
+    },
+    {
+      "path": "tools/test_debug_studio_macos.py",
+      "source": "tools/test_debug_studio_macos.py",
+      "sha256": "c48d8fa41bc2cdcfdaa7eed05e10990758cdb0ee9988d907c295ef64101ce08a"
+    },
+    {
       "path": "tools/test_export_studio_source.py",
       "source": "tools/test_export_studio_source.py",
       "sha256": "9a05c759f09aa274f796defb10178ea2d6bbe471dcfb237593275b257c80396e"
@@ -1774,7 +1809,7 @@
     {
       "path": "tools/test_native_portability_contract.py",
       "source": "tools/test_native_portability_contract.py",
-      "sha256": "d0f7b616bf9a1061bc8bbdfb53ac6ac456abc6461d91275ab87f7048c1f02e57"
+      "sha256": "5d8a508c8e317ba0d5f401174c0b4683c1f60bdf68c960acee6ebf17b5af441e"
     },
     {
       "path": "tools/test_package_studio_linux.py",
@@ -1810,6 +1845,11 @@
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
       "sha256": "de112c566a4ec1c88e5caf1bc3e0821a883a210045a1ff0afaddf2284db72271"
+    },
+    {
+      "path": "tools/test_supplement_studio_appimage.py",
+      "source": "tools/test_supplement_studio_appimage.py",
+      "sha256": "970c191fffbb4a192e477a2b4016d2ba7bb64f39f66fead3169394ac6a0c4c9f"
     },
     {
       "path": "tools/validate_portable_install.py",

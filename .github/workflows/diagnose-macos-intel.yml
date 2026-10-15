@@ -1,0 +1,60 @@
+name: Studio — diagnose existing macOS Intel candidate (manual)
+
+# One six-minute public-runner ceiling; no build, publication or audio upload.
+# Reuses the old exact DMG to capture a stack trace before any further rebuild.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_budget:
+        description: Run bounded LLDB diagnosis of the existing Intel DMG
+        type: boolean
+        required: true
+        default: false
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: studio-mac-intel-diagnosis
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    if: ${{ inputs.confirm_budget }}
+    runs-on: macos-15-intel
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-macos-x86_64-candidates
+          path: .local-build/candidates
+          run-id: 38642240658
+          github-token: ${{ github.token }}
+      - name: Verify, mount read-only, copy and diagnose owned bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          file=.local-build/candidates/rasgo-synth-studio-0.1.0-macos-x86_64.dmg
+          expected=2c19ad1d99a5dbcb2d7b7dd12626c60f34833f5e3aad87f939ecd0864d093faf
+          test "$(shasum -a 256 "$file" | cut -d ' ' -f 1)" = "$expected"
+          mountpoint="$PWD/.local-build/mount"
+          mkdir "$mountpoint"
+          printf 'Y\n' | hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" "$file"
+          trap 'hdiutil detach "$mountpoint"' EXIT
+          bundle="$PWD/.local-build/diagnostic-studio.app"
+          ditto "$mountpoint/Rasgo Synth Studio.app" "$bundle"
+          python -B tools/debug_studio_macos.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" \
+            --bundle "$bundle" --output "$PWD/.local-build/mac-diagnosis"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-mac-intel-lldb-diagnosis
+          retention-days: 3
+          if-no-files-found: warn
+          path: |
+            .local-build/mac-diagnosis/report.json
+            .local-build/mac-diagnosis/lldb.log
+            .local-build/mac-diagnosis/data/lifecycle-history.jsonl
+            .local-build/mac-diagnosis/data/Logs/*.log

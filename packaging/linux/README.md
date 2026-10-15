@@ -1,6 +1,19 @@
 # Empacotamento Linux do Studio
 
-Atualização: 2026-10-14.
+Atualização: 2026-10-15.
+
+Estado atual15/10: o candidato público33fbe3c foi compilado em Ubuntu22.04
+na rodada38654762892 e passou pelos ensaios Debian12/Ubuntu24.04/Fedora/Arch.
+Foi preparado um [kit de fontes/avisos do runtime](../appimage/RUNTIME_SOURCES.md)
+e um suplementador offline de AppImage. Este usa SOMENTE o plugin de saída
+do linuxdeploy fixado: invocar linuxdeploy completo novamente recopia
+dependências do host e não é aceitável para suplementar um candidato já
+testado. A conferência exige que executável, bibliotecas, assets e atalhos
+anteriores permaneçam byte a byte; apenas avisos identificados são novos.
+O AppImage suplementado abriu/fechou no Mint, layout sem violações em1366×768;
+não houve render/escuta nesse ensaio nem montagem FUSE (`/dev/fuse` ausente).
+Release/site ainda aguardam o fechamento macOS. Os parágrafos históricos
+abaixo não substituem esse estado nem autorizam repetição de build.
 
 Padrão RASGO: `.deb`, AppImage e `.tar.gz`, assets, menu desktop, licenças,
 instruções e checksums. Não requer outro instrumento no build.

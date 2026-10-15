@@ -308,8 +308,8 @@
     {
       "source": "THIRD_PARTY_NOTICES.md",
       "output": "THIRD_PARTY_NOTICES.html",
-      "source_sha256": "15f6415381bd4c04c52c32e024fee828a253a8eb15bda48886ff09239c8bdd3e",
-      "output_sha256": "30bd81fc629a1ee8ff3a10cab17bb059428b58217303b78cd06df814a8001aa2",
+      "source_sha256": "82489ebf0ab4043d2ca70421227dc360d9103a758dfe91e0a13b8fe5344d32be",
+      "output_sha256": "48e0082c6faa332e1c2309331591684d86dfda13569059bf817cf93edc0e980c",
       "transformed": true
     },
     {
@@ -336,8 +336,15 @@
     {
       "source": "packaging/linux/README.md",
       "output": "packaging/linux/README.html",
-      "source_sha256": "b4789d1dceb71fc56deda6b93829dd32fef005f263f04a217bfc0cd9f708260c",
-      "output_sha256": "ea42715258abcced7a6d6ea57b35226ea233c93731dbd07070c594857efc70c4",
+      "source_sha256": "273e14b2e53923b3dc034d44f9107fe210f54a0fb5e20edd3a1c33a7cdc3e184",
+      "output_sha256": "ee66ec48e63adf25bab6b630ebab14989056126b2d92e24668b92142de9cd555",
+      "transformed": true
+    },
+    {
+      "source": "packaging/appimage/RUNTIME_SOURCES.md",
+      "output": "packaging/appimage/RUNTIME_SOURCES.html",
+      "source_sha256": "f7535e1fd8055782aa52e3d121d6b6f7a2c025af2b94c71b66960e51682745cb",
+      "output_sha256": "a6bae17ebb0c8b412651974764b9c6e44b257cbd6b8aeceb51a48891808d18e8",
       "transformed": true
     },
     {

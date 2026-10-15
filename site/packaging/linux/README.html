@@ -2,7 +2,19 @@
 <a class="studio-mark mark" href="../../index.html"><img class="mark-logo" src="../../assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
 <nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links"><a href="../../index.html#instrument">Instrumento</a><a href="../../index.html#album">Álbum</a><a href="../../quickstart.html#pt">Tutorial</a><a href="../../INSTALL.html#portugues">Instalação</a><a href="../../index.html#documentation">Documentação</a><a href="../../index.html#release">Créditos</a></span><span class="studio-languages"><a href="../../en.html" lang="en" hreflang="en">English</a><a href="../../index.html" lang="pt-BR" hreflang="pt-BR" aria-current="page">Português</a><a href="../../fr.html" lang="fr" hreflang="fr">Français</a><a href="../../es.html" lang="es" hreflang="es">Español</a></span></nav>
 </header><main class="quickstart"><h1 id="empacotamento-linux-do-studio">Empacotamento Linux do Studio</h1>
-<p>Atualização: 2026-10-14.</p>
+<p>Atualização: 2026-10-15.</p>
+<p>Estado atual15/10: o candidato público33fbe3c foi compilado em Ubuntu22.04
+na rodada38654762892 e passou pelos ensaios Debian12/Ubuntu24.04/Fedora/Arch.
+Foi preparado um <a href="../appimage/RUNTIME_SOURCES.html">kit de fontes/avisos do runtime</a>
+e um suplementador offline de AppImage. Este usa SOMENTE o plugin de saída
+do linuxdeploy fixado: invocar linuxdeploy completo novamente recopia
+dependências do host e não é aceitável para suplementar um candidato já
+testado. A conferência exige que executável, bibliotecas, assets e atalhos
+anteriores permaneçam byte a byte; apenas avisos identificados são novos.
+O AppImage suplementado abriu/fechou no Mint, layout sem violações em1366×768;
+não houve render/escuta nesse ensaio nem montagem FUSE (<code>/dev/fuse</code> ausente).
+Release/site ainda aguardam o fechamento macOS. Os parágrafos históricos
+abaixo não substituem esse estado nem autorizam repetição de build.</p>
 <p>Padrão RASGO: <code>.deb</code>, AppImage e <code>.tar.gz</code>, assets, menu desktop, licenças,
 instruções e checksums. Não requer outro instrumento no build.</p>
 <p>Referência consultada somente em leitura: Rasgo Modular, commit
