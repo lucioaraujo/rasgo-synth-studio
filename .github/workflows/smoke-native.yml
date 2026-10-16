@@ -27,16 +27,16 @@ jobs:
         include:
           - runner: windows-2022
             platform: windows-x64
-            package: rasgo-synth-studio-0.1.0-windows-x64.exe
-            sha256: 36bf2f7a7ca499c73bf659ac46411fcaf6f350576ed50ab40d4728aaac55340c
+            package: rasgo-synth-studio-0.1.1-windows-x64.exe
+            sha256: b87e495d3de34722dcaeca9aab5df83c25ee02b51f4b10bd9b36117e36065126
           - runner: macos-15-intel
             platform: macos-x86_64
-            package: rasgo-synth-studio-0.1.0-macos-universal.dmg
-            sha256: d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35
+            package: rasgo-synth-studio-0.1.1-macos-universal.dmg
+            sha256: c818640b5b8ec5608b664df5c815be5963818d6b6b9f2b85c0f24bbc4f84a5c9
           - runner: macos-15
             platform: macos-arm64
-            package: rasgo-synth-studio-0.1.0-macos-universal.dmg
-            sha256: d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35
+            package: rasgo-synth-studio-0.1.1-macos-universal.dmg
+            sha256: c818640b5b8ec5608b664df5c815be5963818d6b6b9f2b85c0f24bbc4f84a5c9
     runs-on: ${{ matrix.runner }}
     env:
       STUDIO_PACKAGE: ${{ matrix.package }}
@@ -52,7 +52,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh release download v0.1.0 --repo "$GITHUB_REPOSITORY" \
+          gh release download v0.1.1 --repo "$GITHUB_REPOSITORY" \
             --pattern "$STUDIO_PACKAGE" --dir .local-build/candidates
       - name: Verify exact existing package before execution
         shell: pwsh

@@ -50,7 +50,7 @@ class NativeSmokeTests(unittest.TestCase):
         self.assertEqual(job["timeout-minutes"], "8")
         self.assertEqual(len(job["strategy"]["matrix"]["include"]), 3)
         download = next(step for step in job["steps"] if "gh release download" in step.get("run", ""))
-        self.assertIn("gh release download v0.1.0", download["run"])
+        self.assertIn("gh release download v0.1.1", download["run"])
         self.assertIn('--pattern "$STUDIO_PACKAGE"', download["run"])
         self.assertNotIn("run-id", download)
         for row in job["strategy"]["matrix"]["include"]:

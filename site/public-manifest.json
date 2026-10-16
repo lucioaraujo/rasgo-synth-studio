@@ -7,43 +7,43 @@
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "c64223cf10e60391656493911ededa996797e82bbbed5969b6e4f33c0e20e428",
-      "output_sha256": "5f7287fd2d4bbbc277445db8885eeba82f20b36f588018b8beeb8ccb5a10db4c",
+      "source_sha256": "bcca79351489af67347d2efcd41d78b9eea9ab28c342bd85a122b353fc730c8f",
+      "output_sha256": "4b79ff76477982dd00ac358e95a5054e4d9cadf55d97a4bdb8c0621ce787012b",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "52d6e588c7be6290fba673cd2ed5d3ddbf38e859ef3f73c90142e45a572e56df",
-      "output_sha256": "bb043fd003d0d70b0ea3df3f52dd62f92685fe09e1e31b4886aec8dac164f91f",
+      "source_sha256": "9bf5681edf9bd0aaf4ce1d7b15391c5a272568e76af5abba554ed237b2d24f3e",
+      "output_sha256": "4f8e47c235fa69fc0bd166d453fd5abc609a3e2fdb7c7af065ebedd5e9ab174d",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "f70370d8aeaf20552db5829d34fa39f5e4e3acaad5bcc57749fec01944cea9fc",
-      "output_sha256": "7e85b00fae69b0e341fccb49664c94eb357f4360d3b98ca518e89371429cf9fd",
+      "source_sha256": "efc806671107acfe552e9e825681bf9ffbe5d323080be5b11f3f9b57a98e1470",
+      "output_sha256": "1b5ab805be5df00f42ced6db360cbe21fd964b66c336c728e2aa98bf132481b1",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "6302c25751a7266f3d4485e64aafd6de4adf0e4b7be1d0c1212552f1623dd521",
-      "output_sha256": "9558dc8ae04a266c6485d03708bfeb7af2a9afc96afac3e4a6d473e8bc3e6930",
+      "source_sha256": "b0fdb8e2c9377ac9cb6ff5bd00e39adc71d068eca77c15cc8335fcd55c5bfbe7",
+      "output_sha256": "14590d65f6c5194617c74db416e072c12bec2fdb88ca484f250cc287fd437e82",
       "transformed": true
     },
     {
       "source": "website/quickstart.html",
       "output": "quickstart.html",
-      "source_sha256": "5b3ce8abceae38c61ef9121de14084139791a1800c52fb77fa9d66b0e2442e77",
-      "output_sha256": "96c83d73ba08fefdde9fec851494fbb0328d4c1e0c64ab42008198d8932ff9ce",
+      "source_sha256": "ab6b15ed59848da7683bd0f5a2dc9217b0057ee5dfebb9893135952be86cf419",
+      "output_sha256": "b1fc6a68a7fa31524fe32b69b12832a696ca05b009c7beed3ef65fc72f952701",
       "transformed": true
     },
     {
       "source": "website/catalogo.html",
       "output": "catalogo.html",
-      "source_sha256": "5a416261b9692e576801de28d6c67951015fde5ad0c76efd0670469962c4c60a",
-      "output_sha256": "b30df8218b0293eb98238cc1359e0ef5617455f78b6f8b015940dc38968669b8",
+      "source_sha256": "0efe843c9ce9dc43c44062550811325297e0df5c381798ab705ec2d91a259690",
+      "output_sha256": "b9d1060d3644590efd9bd79c8629c4c9559f7b7731d88f7f8c198a91799bd113",
       "transformed": true
     },
     {
@@ -147,8 +147,8 @@
     {
       "source": "docs/pt/manual.md",
       "output": "docs/pt/manual.html",
-      "source_sha256": "5569880f11709d648018574bd1b999c83cb5caf92c99963af3797e51162750ee",
-      "output_sha256": "af073d8acb9e3fe840ff4819988e1f893febb0a8dcfcda2ea036b56ba966a08b",
+      "source_sha256": "13c9ba99e55cfe90b47a851ff1aa3df299decd2553637701f31b0fa452ba7f9d",
+      "output_sha256": "cff154cfb9cbbb1331ccba5e620393e5b6380796779c75613ce7ae9850705768",
       "transformed": true
     },
     {
@@ -182,8 +182,8 @@
     {
       "source": "docs/en/manual.md",
       "output": "docs/en/manual.html",
-      "source_sha256": "2062ca08dfb064e7a320e44c658624c30cce40b8c0ba031e57b1a020acc061f6",
-      "output_sha256": "4bd85a8acfe2f138ae3606497155bce7a773f162b7d60517e9fdddca0fe70cb1",
+      "source_sha256": "d9c696c533db0d14bc5681447248bc9b512fc930cdb15446f5a64f099667043f",
+      "output_sha256": "3f652edb2ec69a383a19de1688c68b08caea5086ccb046e39dcf5a92881fdd01",
       "transformed": true
     },
     {
@@ -217,8 +217,8 @@
     {
       "source": "docs/fr/manual.md",
       "output": "docs/fr/manual.html",
-      "source_sha256": "64671d0eea28d4f25f34d48856f29b009f779ac064e5916e17d793e24fdba963",
-      "output_sha256": "07e18b9ed48b147db2d00a3083ada338e2ce1b5967d8a1ef97f1a2efdf4299fc",
+      "source_sha256": "e64cfe57e3908398811cad852ad2bc2dfc9727ee400132744fb3434972cd93b1",
+      "output_sha256": "3d4d2b6e4c141c771eb0ff1e50eefaac4ab003061ba69adb98f1fef187e23bf0",
       "transformed": true
     },
     {
@@ -252,8 +252,8 @@
     {
       "source": "docs/es/manual.md",
       "output": "docs/es/manual.html",
-      "source_sha256": "237452918b734343ac73d31d62ceb773f4b7420601e8b14f1551fb98105d8ab7",
-      "output_sha256": "ad913c24452f1576cea6b89d83b237c9cc612a9b9cca35e64318db0b9789cde3",
+      "source_sha256": "5af3be3c7b26ee09b95f511f01d87584b59b712a4367a7a930ca55b2d867f02d",
+      "output_sha256": "277cbb02312031ba2fb8cc6eb01f3321b0a546eace54afdafd26be9fbf745b89",
       "transformed": true
     },
     {
@@ -315,8 +315,8 @@
     {
       "source": "DEPENDENCIES.md",
       "output": "DEPENDENCIES.html",
-      "source_sha256": "9a592859dbbb335f2b05dfd3b54af28c0d0e55e663d137688b1788408a5378fe",
-      "output_sha256": "f5ba67a59b248e8b3513e05ab2d8545438f9b8fa8ff15c6ff583874a3c95f0a1",
+      "source_sha256": "343a342da3721f1ca875389d4ee09cc8fdff33c27d12524800ffd723c7d16a63",
+      "output_sha256": "8a16265b3cd80b55d70b9488429955905f475a19e9d6c390f07da214b5dc79dc",
       "transformed": true
     },
     {
@@ -329,8 +329,8 @@
     {
       "source": "INSTALL.md",
       "output": "INSTALL.html",
-      "source_sha256": "9dba7adb34d5dd5a5863f766ee67f2c1a9490ba9d74e2790191ab602065899a2",
-      "output_sha256": "bd0b03cc9a55bf2d8a170878e1afbd1cc3e2ec1f6c7dcd479abdd5095eeb5233",
+      "source_sha256": "61ee3b6c1fa604eacf5ef153acf2e1ceaf8c990173e88871abb93842e90a843d",
+      "output_sha256": "2f531679f0435ae9f1fd0a14d9dbb1f9113b79632cf6ad93f9c24e6755e5aa50",
       "transformed": true
     },
     {
@@ -447,18 +447,6 @@
     {
       "source": "CREDITS.md",
       "reference": "CONTINUIDADE.md"
-    },
-    {
-      "source": "DEPENDENCIES.md",
-      "reference": "TAREFAS_STUDIO.md"
-    },
-    {
-      "source": "DEPENDENCIES.md",
-      "reference": "TAREFAS_STUDIO.md"
-    },
-    {
-      "source": "DEPENDENCIES.md",
-      "reference": "packaging/PORTABILIDADE.md"
     },
     {
       "source": "packaging/linux/README.md",

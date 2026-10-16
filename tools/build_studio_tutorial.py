@@ -117,7 +117,7 @@ def generate(root=ROOT):
             + '</div><a class="studio-skip" href="#tutorial-content">Skip / Pular / Aller au / Ir al contenido</a>'
             + navigation("en", context="tutorial") +
             '<main id="tutorial-content" class="quickstart"><header>'
-            '<p>RASGO SYNTH STUDIO · 0.1.0 EXPERIMENTAL · 2026-10-12</p>'
+            '<p>RASGO SYNTH STUDIO · 0.1.1 EXPERIMENTAL · 2026-10-16</p>'
             '</header>'
             + '\n'.join(articles) + '</main></body></html>\n')
 

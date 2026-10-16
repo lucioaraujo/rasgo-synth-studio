@@ -34,7 +34,7 @@
     {
       "path": ".github/workflows/smoke-native.yml",
       "source": ".github/workflows/smoke-native.yml",
-      "sha256": "2ab107271cf620c0d781ad3ad269f36ca211fe7122f880b86a343004ee84b8cc"
+      "sha256": "4a488b9fdeefbef5695deddc538cfa4d5f1a45296ffa2ff66bcdec1ec023df70"
     },
     {
       "path": ".gitignore",
@@ -54,7 +54,7 @@
     {
       "path": "INSTALL.md",
       "source": "INSTALL.md",
-      "sha256": "9dba7adb34d5dd5a5863f766ee67f2c1a9490ba9d74e2790191ab602065899a2"
+      "sha256": "61ee3b6c1fa604eacf5ef153acf2e1ceaf8c990173e88871abb93842e90a843d"
     },
     {
       "path": "LICENSE",
@@ -64,7 +64,7 @@
     {
       "path": "README.md",
       "source": "packaging/public/README.md",
-      "sha256": "f1cfb9d4b5ad129470719a0daacf0ed08bead04292021132ca34e8ad2ed816e9"
+      "sha256": "ae1541c09e110d283a951b3ba73cf6972bca551ef18bca7ce2a99b3a9119839e"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -99,7 +99,7 @@
     {
       "path": "docs/en/manual.md",
       "source": "docs/en/manual.md",
-      "sha256": "2062ca08dfb064e7a320e44c658624c30cce40b8c0ba031e57b1a020acc061f6"
+      "sha256": "d9c696c533db0d14bc5681447248bc9b512fc930cdb15446f5a64f099667043f"
     },
     {
       "path": "docs/es/Arquitetura_Fluxograma.md",
@@ -124,7 +124,7 @@
     {
       "path": "docs/es/manual.md",
       "source": "docs/es/manual.md",
-      "sha256": "237452918b734343ac73d31d62ceb773f4b7420601e8b14f1551fb98105d8ab7"
+      "sha256": "5af3be3c7b26ee09b95f511f01d87584b59b712a4367a7a930ca55b2d867f02d"
     },
     {
       "path": "docs/fr/Arquitetura_Fluxograma.md",
@@ -149,7 +149,7 @@
     {
       "path": "docs/fr/manual.md",
       "source": "docs/fr/manual.md",
-      "sha256": "64671d0eea28d4f25f34d48856f29b009f779ac064e5916e17d793e24fdba963"
+      "sha256": "e64cfe57e3908398811cad852ad2bc2dfc9727ee400132744fb3434972cd93b1"
     },
     {
       "path": "docs/pt/Arquitetura_Fluxograma.md",
@@ -179,7 +179,7 @@
     {
       "path": "docs/pt/manual.md",
       "source": "docs/pt/manual.md",
-      "sha256": "5569880f11709d648018574bd1b999c83cb5caf92c99963af3797e51162750ee"
+      "sha256": "13c9ba99e55cfe90b47a851ff1aa3df299decd2553637701f31b0fa452ba7f9d"
     },
     {
       "path": "packaging/PORTABILIDADE.md",
@@ -249,7 +249,7 @@
     {
       "path": "packaging/public/README.md",
       "source": "packaging/public/README.md",
-      "sha256": "f1cfb9d4b5ad129470719a0daacf0ed08bead04292021132ca34e8ad2ed816e9"
+      "sha256": "ae1541c09e110d283a951b3ba73cf6972bca551ef18bca7ce2a99b3a9119839e"
     },
     {
       "path": "packaging/public/gitignore",
@@ -1754,7 +1754,7 @@
     {
       "path": "tools/build_studio_tutorial.py",
       "source": "tools/build_studio_tutorial.py",
-      "sha256": "83d82c3f25be11e311fd0fe46f2736b7d7782e96b4ba69ee76539813226ae793"
+      "sha256": "d45705514e6b53c6bf157c6743621c1b8a55130392b9d526c666403a7cd73835"
     },
     {
       "path": "tools/build_studio_universal_macos.py",
@@ -1764,7 +1764,7 @@
     {
       "path": "tools/build_studio_website.py",
       "source": "tools/build_studio_website.py",
-      "sha256": "4ce601d4057ec8bbc3eb93cdf203178e2651cf5f6ab4053c2890b268d9bd65ec"
+      "sha256": "fcd607cb9d0dc25039e0d928eb0f865ba06a6e845da23f531e475a9eeb6b6640"
     },
     {
       "path": "tools/debug_studio_macos.py",
@@ -1854,7 +1854,7 @@
     {
       "path": "tools/test_smoke_studio_native.py",
       "source": "tools/test_smoke_studio_native.py",
-      "sha256": "c8aa09128b6cd22f6eaa955f5133e240e540acca0307034066e4241833acd332"
+      "sha256": "00a8689555ed05f437be08a9d6c5644704e746017eb6960d091371d08810158a"
     },
     {
       "path": "tools/test_smoke_studio_window.py",
@@ -1864,7 +1864,7 @@
     {
       "path": "tools/test_studio_installation_guide.py",
       "source": "tools/test_studio_installation_guide.py",
-      "sha256": "d00b42ff921faac6c00bb8d466550bf751a587cdf801f95f8ef3767088a02721"
+      "sha256": "2d17f5971ea72828b1193b01b1fbb08ce37546518888dfc249df7776d8bb8c3f"
     },
     {
       "path": "tools/test_studio_package_policy.py",
@@ -1879,7 +1879,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "6beaea870c71427fa7e9c506dfb9b00dc899de3aeb4a009f049b61e5effaaed8"
+      "sha256": "05bee8fff0d4335c0076cb6cab64a3da19ad5653dff978db2a21e366914e0c68"
     },
     {
       "path": "tools/test_supplement_studio_appimage.py",
@@ -1964,32 +1964,32 @@
     {
       "path": "website/catalogo.html",
       "source": "website/catalogo.html",
-      "sha256": "5a416261b9692e576801de28d6c67951015fde5ad0c76efd0670469962c4c60a"
+      "sha256": "0efe843c9ce9dc43c44062550811325297e0df5c381798ab705ec2d91a259690"
     },
     {
       "path": "website/en.html",
       "source": "website/en.html",
-      "sha256": "c64223cf10e60391656493911ededa996797e82bbbed5969b6e4f33c0e20e428"
+      "sha256": "bcca79351489af67347d2efcd41d78b9eea9ab28c342bd85a122b353fc730c8f"
     },
     {
       "path": "website/es.html",
       "source": "website/es.html",
-      "sha256": "6302c25751a7266f3d4485e64aafd6de4adf0e4b7be1d0c1212552f1623dd521"
+      "sha256": "b0fdb8e2c9377ac9cb6ff5bd00e39adc71d068eca77c15cc8335fcd55c5bfbe7"
     },
     {
       "path": "website/fr.html",
       "source": "website/fr.html",
-      "sha256": "f70370d8aeaf20552db5829d34fa39f5e4e3acaad5bcc57749fec01944cea9fc"
+      "sha256": "efc806671107acfe552e9e825681bf9ffbe5d323080be5b11f3f9b57a98e1470"
     },
     {
       "path": "website/index.html",
       "source": "website/index.html",
-      "sha256": "52d6e588c7be6290fba673cd2ed5d3ddbf38e859ef3f73c90142e45a572e56df"
+      "sha256": "9bf5681edf9bd0aaf4ce1d7b15391c5a272568e76af5abba554ed237b2d24f3e"
     },
     {
       "path": "website/quickstart.html",
       "source": "website/quickstart.html",
-      "sha256": "5b3ce8abceae38c61ef9121de14084139791a1800c52fb77fa9d66b0e2442e77"
+      "sha256": "ab6b15ed59848da7683bd0f5a2dc9217b0057ee5dfebb9893135952be86cf419"
     }
   ],
   "site": "site/public-manifest.json",

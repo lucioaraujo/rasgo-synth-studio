@@ -1,6 +1,6 @@
 # Rasgo Synth Studio — Manual
 
-Experimental version 0.1.0 — 2026
+Experimental version 0.1.1 — 2026
 
 Reviewed on 2026-10-12 against current controls and contracts. [Step-by-step tutorial](../../website/quickstart.html#en).
 
@@ -58,11 +58,15 @@ The desktop application uses JUCE. The local JUCE 9 source offers AGPLv3 or a co
 
 ### Before you start
 
-This guide describes experimental Studio 0.1.0, not Rasgo Modular or Performance. Keep listening volume low, choose a writable output folder and work on one piece at a time. The eighth-note icon ♪ starts composition; PLAY plays rendered audio. The control names below match the English interface.
+This guide describes experimental Studio 0.1.1, not Rasgo Modular or Performance. Keep listening volume low, choose a writable output folder and work on one piece at a time. The eighth-note icon ♪ starts composition; PLAY plays rendered audio. The control names below match the English interface.
 
 ### Your first piece — six steps
 
 1. Check the audio output, lower MASTER and choose the output folder. Optionally enter title and artist; files are saved there.
+
+    The artist field is optional: leaving it empty assigns no artist to the
+    audio. A name you enter is saved in your preferences. The initial output
+    folder is `Rasgo Synth` inside your own Music folder; you can change it.
 2. Set SEED and TEMPO. Turn WILD MODE off for this exercise. Leave MUSICAL DIRECTION and EXPRESSIVE off, with modules on Automatic, as a starting reference.
 3. Press COMPOSE (♪). Wait for rendering and the saved confirmation; PLAY is not how you start composition.
 4. Press PLAY. Listen without changing anything first: notice entrances, exits, rests, low register, percussion and textures.

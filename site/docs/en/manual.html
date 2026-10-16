@@ -2,7 +2,7 @@
 <a class="studio-mark mark" href="../../en.html"><img class="mark-logo" src="../../assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
 <nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links"><a href="../../en.html#instrument">Instrument</a><a href="../../en.html#album">Album</a><a href="../../quickstart.html#en">Tutorial</a><a href="../../INSTALL.html#english">Installation</a><a href="../../en.html#documentation">Documentation</a><a href="../../en.html#release">Credits</a></span><span class="studio-languages"><a href="../../en.html" lang="en" hreflang="en" aria-current="page">English</a><a href="../../index.html" lang="pt-BR" hreflang="pt-BR">Português</a><a href="../../fr.html" lang="fr" hreflang="fr">Français</a><a href="../../es.html" lang="es" hreflang="es">Español</a></span></nav>
 </header><main class="quickstart"><h1 id="rasgo-synth-studio-manual">Rasgo Synth Studio — Manual</h1>
-<p>Experimental version 0.1.0 — 2026</p>
+<p>Experimental version 0.1.1 — 2026</p>
 <p>Reviewed on 2026-10-12 against current controls and contracts. <a href="../../quickstart.html#en">Step-by-step tutorial</a>.</p>
 <h2 id="1-concept">1. Concept</h2>
 <p>Rasgo Synth Studio is a generative musical instrument: you choose composition conditions, and it synthesizes a whole piece. The seed is a starting point; tempo, module selection, expressive options, musical direction and relevant state also matter. It is not a note-by-note keyboard instrument or a manually cabled rack.</p>
@@ -39,15 +39,20 @@
 <p>The desktop application uses JUCE. The local JUCE 9 source offers AGPLv3 or a commercial JUCE license, so anyone distributing a combined build must comply with the applicable JUCE terms in addition to Rasgo Synth's own license. Other bundled or linked components retain their respective licenses; see <a href="../../THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
 <h2 id="6-tutorial">6. Tutorial</h2>
 <h3 id="before-you-start">Before you start</h3>
-<p>This guide describes experimental Studio 0.1.0, not Rasgo Modular or Performance. Keep listening volume low, choose a writable output folder and work on one piece at a time. The eighth-note icon ♪ starts composition; PLAY plays rendered audio. The control names below match the English interface.</p>
+<p>This guide describes experimental Studio 0.1.1, not Rasgo Modular or Performance. Keep listening volume low, choose a writable output folder and work on one piece at a time. The eighth-note icon ♪ starts composition; PLAY plays rendered audio. The control names below match the English interface.</p>
 <h3 id="your-first-piece-six-steps">Your first piece — six steps</h3>
 <ol>
-<li>Check the audio output, lower MASTER and choose the output folder. Optionally enter title and artist; files are saved there.</li>
-<li>Set SEED and TEMPO. Turn WILD MODE off for this exercise. Leave MUSICAL DIRECTION and EXPRESSIVE off, with modules on Automatic, as a starting reference.</li>
-<li>Press COMPOSE (♪). Wait for rendering and the saved confirmation; PLAY is not how you start composition.</li>
-<li>Press PLAY. Listen without changing anything first: notice entrances, exits, rests, low register, percussion and textures.</li>
-<li>Drag on the waveform to select a region and use PLAY REGION. SEED FROM REGION derives another starting point, not a sample export. Compose again to hear it.</li>
-<li>Keep the WAV and companion files. Use ALEA for another seed, or follow the exercises below changing one choice at a time.</li>
+<li>
+<p>Check the audio output, lower MASTER and choose the output folder. Optionally enter title and artist; files are saved there.</p>
+<p>The artist field is optional: leaving it empty assigns no artist to the
+audio. A name you enter is saved in your preferences. The initial output
+folder is <code>Rasgo Synth</code> inside your own Music folder; you can change it.
+2. Set SEED and TEMPO. Turn WILD MODE off for this exercise. Leave MUSICAL DIRECTION and EXPRESSIVE off, with modules on Automatic, as a starting reference.
+3. Press COMPOSE (♪). Wait for rendering and the saved confirmation; PLAY is not how you start composition.
+4. Press PLAY. Listen without changing anything first: notice entrances, exits, rests, low register, percussion and textures.
+5. Drag on the waveform to select a region and use PLAY REGION. SEED FROM REGION derives another starting point, not a sample export. Compose again to hear it.
+6. Keep the WAV and companion files. Use ALEA for another seed, or follow the exercises below changing one choice at a time.</p>
+</li>
 </ol>
 <h3 id="seed-and-tempo">Seed and tempo</h3>
 <p>What it is: SEED chooses a starting point; TEMPO sets a piece's initial tempo.</p>

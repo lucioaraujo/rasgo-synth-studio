@@ -2,7 +2,7 @@
 <a class="studio-mark mark" href="../../fr.html"><img class="mark-logo" src="../../assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
 <nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links"><a href="../../fr.html#instrument">Instrument</a><a href="../../fr.html#album">Album</a><a href="../../quickstart.html#fr">Tutoriel</a><a href="../../INSTALL.html#francais">Installation</a><a href="../../fr.html#documentation">Documentation</a><a href="../../fr.html#release">Crédits</a></span><span class="studio-languages"><a href="../../en.html" lang="en" hreflang="en">English</a><a href="../../index.html" lang="pt-BR" hreflang="pt-BR">Português</a><a href="../../fr.html" lang="fr" hreflang="fr" aria-current="page">Français</a><a href="../../es.html" lang="es" hreflang="es">Español</a></span></nav>
 </header><main class="quickstart"><h1 id="rasgo-synth-studio-manuel">Rasgo Synth Studio — Manuel</h1>
-<p>Version expérimentale 0.1.0 — 2026</p>
+<p>Version expérimentale 0.1.1 — 2026</p>
 <p>Révisé le 2026-10-12 selon les contrôles et contrats actuels. <a href="../../quickstart.html#fr">Tutoriel pas à pas</a>.</p>
 <h2 id="1-concept">1. Concept</h2>
 <p>Rasgo Synth Studio est un instrument musical génératif : vous choisissez des conditions de composition, puis il synthétise une pièce entière. La seed est un point de départ ; tempo, sélection des modules, expression, direction musicale et état pertinent interviennent aussi. Ce n’est ni un clavier joué note par note ni un rack câblé manuellement.</p>
@@ -39,15 +39,20 @@
 <p>L'application de bureau utilise JUCE. Le code source local de JUCE 9 propose l'AGPLv3 ou une licence commerciale JUCE ; quiconque distribue une build combinée doit donc respecter les conditions JUCE applicables en plus de la licence propre de Rasgo Synth. Les autres composants intégrés ou liés conservent leurs licences respectives ; voir <a href="../../THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
 <h2 id="6-tutoriel">6. Tutoriel</h2>
 <h3 id="avant-de-commencer">Avant de commencer</h3>
-<p>Ce guide décrit Studio 0.1.0 expérimental, et non Rasgo Modular ou Performance. Gardez un volume faible, choisissez un dossier accessible en écriture et travaillez sur une pièce à la fois. L’icône de croche ♪ lance la composition ; PLAY lit l’audio déjà calculé. Les noms ci-dessous correspondent à l’interface française.</p>
+<p>Ce guide décrit Studio 0.1.1 expérimental, et non Rasgo Modular ou Performance. Gardez un volume faible, choisissez un dossier accessible en écriture et travaillez sur une pièce à la fois. L’icône de croche ♪ lance la composition ; PLAY lit l’audio déjà calculé. Les noms ci-dessous correspondent à l’interface française.</p>
 <h3 id="votre-premiere-piece-six-etapes">Votre première pièce — six étapes</h3>
 <ol>
-<li>Vérifiez la sortie audio, baissez MASTER et choisissez le dossier de sortie. Saisissez éventuellement titre et artiste ; les fichiers y seront sauvegardés.</li>
-<li>Réglez SEED et TEMPO. Désactivez MODE SAUVAGE pour cet exercice. Laissez DIRECTION MUSICALE et EXPRESSIF désactivés et les modules en Automatique comme référence.</li>
-<li>Appuyez sur COMPOSER (♪). Attendez le rendu et la confirmation de sauvegarde ; PLAY ne lance pas la composition.</li>
-<li>Appuyez sur PLAY. Écoutez sans modifier de paramètres : repérez entrées, sorties, silences, registre grave, percussion et textures.</li>
-<li>Glissez sur la forme d’onde pour sélectionner une région, puis utilisez LIRE LA RÉGION. SEED DE LA RÉGION dérive un nouveau départ, sans exporter d’échantillon. Recomposez pour l’entendre.</li>
-<li>Gardez le WAV et les fichiers compagnons. Utilisez ALEA pour une autre seed, ou suivez les exercices en changeant un choix à la fois.</li>
+<li>
+<p>Vérifiez la sortie audio, baissez MASTER et choisissez le dossier de sortie. Saisissez éventuellement titre et artiste ; les fichiers y seront sauvegardés.</p>
+<p>Le champ artiste est facultatif : vide, il n'attribue aucun artiste aux
+fichiers audio. Le nom saisi est conservé dans vos préférences. Le dossier
+initial est <code>Rasgo Synth</code> dans votre propre dossier Musique ; il est modifiable.
+2. Réglez SEED et TEMPO. Désactivez MODE SAUVAGE pour cet exercice. Laissez DIRECTION MUSICALE et EXPRESSIF désactivés et les modules en Automatique comme référence.
+3. Appuyez sur COMPOSER (♪). Attendez le rendu et la confirmation de sauvegarde ; PLAY ne lance pas la composition.
+4. Appuyez sur PLAY. Écoutez sans modifier de paramètres : repérez entrées, sorties, silences, registre grave, percussion et textures.
+5. Glissez sur la forme d’onde pour sélectionner une région, puis utilisez LIRE LA RÉGION. SEED DE LA RÉGION dérive un nouveau départ, sans exporter d’échantillon. Recomposez pour l’entendre.
+6. Gardez le WAV et les fichiers compagnons. Utilisez ALEA pour une autre seed, ou suivez les exercices en changeant un choix à la fois.</p>
+</li>
 </ol>
 <h3 id="seed-et-tempo">Seed et tempo</h3>
 <p>Ce que c’est : SEED choisit un point de départ ; TEMPO définit le tempo initial d’une pièce.</p>

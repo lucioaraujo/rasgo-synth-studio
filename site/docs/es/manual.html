@@ -2,7 +2,7 @@
 <a class="studio-mark mark" href="../../es.html"><img class="mark-logo" src="../../assets/rasgo_logo.svg" width="136" height="28" alt="RASGO">RASGO<span>SYNTH</span> · STUDIO</a>
 <nav class="studio-navigation" aria-label="Studio"><span class="studio-menu-links"><a href="../../es.html#instrument">Instrumento</a><a href="../../es.html#album">Álbum</a><a href="../../quickstart.html#es">Tutorial</a><a href="../../INSTALL.html#espanol">Instalación</a><a href="../../es.html#documentation">Documentación</a><a href="../../es.html#release">Créditos</a></span><span class="studio-languages"><a href="../../en.html" lang="en" hreflang="en">English</a><a href="../../index.html" lang="pt-BR" hreflang="pt-BR">Português</a><a href="../../fr.html" lang="fr" hreflang="fr">Français</a><a href="../../es.html" lang="es" hreflang="es" aria-current="page">Español</a></span></nav>
 </header><main class="quickstart"><h1 id="rasgo-synth-studio-manual">Rasgo Synth Studio — Manual</h1>
-<p>Versión experimental 0.1.0 — 2026</p>
+<p>Versión experimental 0.1.1 — 2026</p>
 <p>Revisado el 2026-10-12 según los controles y contratos actuales. <a href="../../quickstart.html#es">Tutorial paso a paso</a>.</p>
 <h2 id="1-concepto">1. Concepto</h2>
 <p>Rasgo Synth Studio es un instrumento musical generativo: eliges condiciones de composición y él sintetiza una pieza completa. La seed es un punto de partida; tempo, selección de módulos, expresión, dirección musical y estado pertinente también importan. No es un teclado tocado nota a nota ni un rack con cables manuales.</p>
@@ -39,15 +39,20 @@
 <p>La aplicación de escritorio usa JUCE. El código local de JUCE 9 ofrece AGPLv3 o una licencia comercial de JUCE; por lo tanto, quien distribuya una compilación combinada debe cumplir los términos de JUCE aplicables además de la propia licencia de Rasgo Synth. Otros componentes incorporados o enlazados mantienen sus respectivas licencias; véase <a href="../../THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
 <h2 id="6-tutorial">6. Tutorial</h2>
 <h3 id="antes-de-empezar">Antes de empezar</h3>
-<p>Esta guía describe Studio 0.1.0 experimental, no Rasgo Modular ni Performance. Mantén bajo el volumen, elige una carpeta con permiso de escritura y trabaja con una pieza a la vez. El icono de corchea ♪ inicia la composición; PLAY reproduce audio ya generado. Los nombres siguientes corresponden a la interfaz española.</p>
+<p>Esta guía describe Studio 0.1.1 experimental, no Rasgo Modular ni Performance. Mantén bajo el volumen, elige una carpeta con permiso de escritura y trabaja con una pieza a la vez. El icono de corchea ♪ inicia la composición; PLAY reproduce audio ya generado. Los nombres siguientes corresponden a la interfaz española.</p>
 <h3 id="tu-primera-pieza-seis-pasos">Tu primera pieza — seis pasos</h3>
 <ol>
-<li>Comprueba la salida de audio, baja MASTER y elige la carpeta de salida. Puedes introducir título y artista; los archivos se guardarán allí.</li>
-<li>Define SEED y TEMPO. Desactiva MODO SALVAJE para este ejercicio. Deja DIRECCIÓN MUSICAL y EXPRESIVO desactivados y módulos en Automático como referencia inicial.</li>
-<li>Pulsa COMPONER (♪). Espera el render y la confirmación de guardado; PLAY no inicia la composición.</li>
-<li>Pulsa PLAY. Escucha primero sin cambiar nada: identifica entradas, salidas, pausas, registro grave, percusión y texturas.</li>
-<li>Arrastra en la forma de onda para seleccionar una región y utiliza REPRODUCIR REGIÓN. SEED DE LA REGIÓN deriva otro origen, sin exportar una muestra. Compón de nuevo para escucharlo.</li>
-<li>Conserva el WAV y los archivos acompañantes. Usa ALEA para otra seed o sigue los ejercicios cambiando una elección cada vez.</li>
+<li>
+<p>Comprueba la salida de audio, baja MASTER y elige la carpeta de salida. Puedes introducir título y artista; los archivos se guardarán allí.</p>
+<p>El campo artista es opcional: vacío, no atribuye artista a los archivos de
+audio. El nombre introducido se guarda en tus preferencias. La carpeta
+inicial es <code>Rasgo Synth</code> dentro de tu propia carpeta Música; puedes cambiarla.
+2. Define SEED y TEMPO. Desactiva MODO SALVAJE para este ejercicio. Deja DIRECCIÓN MUSICAL y EXPRESIVO desactivados y módulos en Automático como referencia inicial.
+3. Pulsa COMPONER (♪). Espera el render y la confirmación de guardado; PLAY no inicia la composición.
+4. Pulsa PLAY. Escucha primero sin cambiar nada: identifica entradas, salidas, pausas, registro grave, percusión y texturas.
+5. Arrastra en la forma de onda para seleccionar una región y utiliza REPRODUCIR REGIÓN. SEED DE LA REGIÓN deriva otro origen, sin exportar una muestra. Compón de nuevo para escucharlo.
+6. Conserva el WAV y los archivos acompañantes. Usa ALEA para otra seed o sigue los ejercicios cambiando una elección cada vez.</p>
+</li>
 </ol>
 <h3 id="seed-y-tempo">Seed y tempo</h3>
 <p>Qué es: SEED elige un punto de partida; TEMPO define el tempo inicial de la pieza.</p>

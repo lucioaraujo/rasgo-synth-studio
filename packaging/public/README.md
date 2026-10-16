@@ -14,7 +14,7 @@ choices and musical direction, exploring rhythm, timbre, form and chance.
 - [Manual](docs/en/manual.md) · [Installation and requirements](INSTALL.md#english)
 - [Build and dependencies](DEPENDENCIES.md) · [Credits](CREDITS.md)
 
-Version 0.1.0 is an [experimental release](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0)
+Version 0.1.1 is an [experimental release](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1)
 with Linux AppImage/.deb/.tar.gz, Windows installer/ZIP and one Universal 2
 Mac DMG. Linux startup/layout/close checks passed in virtual Debian12,
 Ubuntu24.04, Fedora and Arch, alongside local Ubuntu22.04/Mint22 checks.
@@ -49,9 +49,9 @@ Português, English, Français, Español.
 
 ### Estado
 
-Versão0.1.0 experimental. O candidato Linux x86_64 foi compilado em Ubuntu22.04,
+Versão0.1.1 experimental. O candidato Linux x86_64 foi compilado em Ubuntu22.04,
 testado nessa base isolada e no Mint22, com exportação WAV e fechamento.
-Os [pacotes 0.1.0 estão públicos](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0):
+Os [pacotes 0.1.1 estão públicos](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1):
 Linux AppImage/.deb/.tar.gz, Windows instalador/ZIP e Mac DMG Universal 2.
 Windows e o mesmo DMG Mac passaram render Unicode e fechamento automatizados.
 AppImage inclui avisos e kit completo de fontes do runtime. Instalação
@@ -83,7 +83,7 @@ de choix de modules et d'une direction musicale : rythme, timbre, forme et hasar
 - [Manuel](docs/fr/manual.md) · [Installation et configuration](INSTALL.md#francais)
 - [Compilation et dépendances](DEPENDENCIES.md) · [Crédits](CREDITS.md)
 
-Version 0.1.0 [expérimentale disponible](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0) :
+Version 0.1.1 [expérimentale disponible](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1) :
 Linux AppImage/.deb/.tar.gz, Windows installateur/ZIP et Mac DMG Universal 2.
 Tests Linux de démarrage/disposition/fermeture sous Debian12,
 Ubuntu24.04, Fedora et Arch virtuels, et tests locaux Ubuntu22.04/Mint22.
@@ -108,7 +108,7 @@ elecciones de módulos y dirección musical: ritmo, timbre, forma y azar.
 - [Manual](docs/es/manual.md) · [Instalación y requisitos](INSTALL.md#espanol)
 - [Compilar y dependencias](DEPENDENCIES.md) · [Créditos](CREDITS.md)
 
-Versión 0.1.0 [experimental disponible](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0):
+Versión 0.1.1 [experimental disponible](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1):
 Linux AppImage/.deb/.tar.gz, Windows instalador/ZIP y Mac DMG Universal 2.
 Pruebas Linux de inicio/disposición/cierre en Debian12,
 Ubuntu24.04, Fedora y Arch virtuales, además de Ubuntu22.04/Mint22 locales.

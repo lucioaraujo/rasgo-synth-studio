@@ -1,6 +1,6 @@
 # Rasgo Synth Studio — instalação / installation
 
-Revisão: 2026-10-16 · versão 0.1.0 experimental.
+Revisão: 2026-10-16 · versão 0.1.1 experimental.
 
 PT · [Português](#portugues) / EN · [English](#english) /
 FR · [Français](#francais) / ES · [Español](#espanol)
@@ -16,7 +16,7 @@ FR · [Français](#francais) / ES · [Español](#espanol)
 | Windows x64 | Instalador `.exe` ou pasta portátil `.zip` |
 | Mac Intel ou Apple Silicon (M1 ou posterior) | Um único `.dmg` com `macos-universal` no nome |
 
-Os pacotes estão na [publicação experimental 0.1.0](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0).
+Os pacotes estão na [publicação experimental 0.1.1](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1).
 O [código-fonte é público](https://github.com/lucioaraujo/rasgo-synth-studio).
 Use somente os arquivos dessa publicação oficial do Studio.
 Este guia explica os formatos; não certifica todos os sistemas.
@@ -174,7 +174,7 @@ Para um candidato compatível com seu sistema, abra o terminal na pasta do
 arquivo e use o nome exato que baixou:
 
 ```bash
-sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb
+sudo apt install ./rasgo-synth-studio-0.1.1-linux-x86_64.deb
 ```
 
 Depois abra Rasgo Synth Studio no menu de aplicativos ou execute
@@ -186,14 +186,14 @@ Depois abra Rasgo Synth Studio no menu de aplicativos ou execute
 Marque o arquivo como executável nas propriedades ou pelo terminal:
 
 ```bash
-chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage
-./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage
+chmod +x rasgo-synth-studio-0.1.1-linux-x86_64.AppImage
+./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage
 ```
 
 Se o sistema não oferece FUSE, tente a extração temporária:
 
 ```bash
-APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage
+APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage
 ```
 
 Não requer instalação permanente. Confira o hash com `sha256sum -c SHA256SUMS`
@@ -222,7 +222,7 @@ ficam dentro do pacote. Para testes isolados, use `RASGO_SYNTH_DATA_DIR` e
 | Windows x64 | `.exe` installer or portable `.zip` |
 | Intel or Apple Silicon Mac (M1 or later) | One DMG named `macos-universal` |
 
-Packages are available in the [experimental 0.1.0 release](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0).
+Packages are available in the [experimental 0.1.1 release](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1).
 [Source code is public](https://github.com/lucioaraujo/rasgo-synth-studio).
 Only use files from this official Studio release. These
 instructions explain the formats; they do not certify every operating system.
@@ -352,13 +352,13 @@ Prefer one installation method rather than duplicate local and `.deb`
 installations. Older archives without the script remain portable only.
 
 `.deb`: from the downloaded file's folder run
-`sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb`, then open
+`sudo apt install ./rasgo-synth-studio-0.1.1-linux-x86_64.deb`, then open
 Rasgo Synth Studio from the application menu or run `rasgo-synth-studio`.
 Removal: `sudo apt remove rasgo-synth-studio`; compositions are preserved.
 
-AppImage: `chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`, then
-`./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`. Without FUSE, try
-`APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`.
+AppImage: `chmod +x rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`, then
+`./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`. Without FUSE, try
+`APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`.
 Check downloads with `sha256sum -c SHA256SUMS`. Only run the author's release
 files. No permanent installation is required for AppImage or `.tar.gz`.
 
@@ -379,7 +379,7 @@ the package. Isolated tests may override `RASGO_SYNTH_DATA_DIR` and
 | Windows x64 | Installateur `.exe` ou archive portable `.zip` |
 | Mac Intel ou Apple Silicon (M1 ou suivant) | Un seul DMG portant `macos-universal` |
 
-Les paquets sont disponibles dans la [publication expérimentale 0.1.0](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0).
+Les paquets sont disponibles dans la [publication expérimentale 0.1.1](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1).
 Le [code source est public](https://github.com/lucioaraujo/rasgo-synth-studio).
 Utiliser uniquement ces fichiers officiels. Ces instructions ne certifient pas tous les systèmes.
 
@@ -508,14 +508,14 @@ Liens symboliques et caractères spéciaux non pris en charge sont refusés.
 Éviter de cumuler installation locale et `.deb`. Les anciens paquets sans
 ce script restent utilisables en mode portable.
 
-`.deb` : `sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb` dans
+`.deb` : `sudo apt install ./rasgo-synth-studio-0.1.1-linux-x86_64.deb` dans
 le dossier du fichier ; lancer Rasgo Synth Studio depuis le menu ou avec
 `rasgo-synth-studio`. Désinstaller : `sudo apt remove rasgo-synth-studio`.
 Vos compositions sont conservées.
 
-AppImage : `chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`, puis
-`./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`. Sans FUSE, essayer
-`APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`.
+AppImage : `chmod +x rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`, puis
+`./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`. Sans FUSE, essayer
+`APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`.
 Vérifier les fichiers par `sha256sum -c SHA256SUMS`. N'exécuter que les
 fichiers publiés par l'auteur. AppImage et `.tar.gz` n'exigent pas
 d'installation permanente.
@@ -537,7 +537,7 @@ hors du paquet. Tests isolés : `RASGO_SYNTH_DATA_DIR` et
 | Windows x64 | Instalador `.exe` o archivo portátil `.zip` |
 | Mac Intel o Apple Silicon (M1 o posterior) | Un único DMG con `macos-universal` en el nombre |
 
-Los paquetes están en la [publicación experimental 0.1.0](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0).
+Los paquetes están en la [publicación experimental 0.1.1](https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1).
 El [código fuente es público](https://github.com/lucioaraujo/rasgo-synth-studio).
 Utilice solo archivos de esa publicación oficial.
 Estas instrucciones no certifican todos los sistemas.
@@ -668,14 +668,14 @@ Se rechazan enlaces simbólicos y caracteres especiales no admitidos.
 Evite duplicar instalaciones locales y `.deb`. Los paquetes anteriores sin
 el script siguen siendo portátiles.
 
-`.deb`: `sudo apt install ./rasgo-synth-studio-0.1.0-linux-x86_64.deb` desde
+`.deb`: `sudo apt install ./rasgo-synth-studio-0.1.1-linux-x86_64.deb` desde
 la carpeta del archivo. Abrir Rasgo Synth Studio en el menú o ejecutar
 `rasgo-synth-studio`. Desinstalar: `sudo apt remove rasgo-synth-studio`;
 se conservan las composiciones.
 
-AppImage: `chmod +x rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`, después
-`./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`. Sin FUSE, intentar
-`APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.0-linux-x86_64.AppImage`.
+AppImage: `chmod +x rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`, después
+`./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`. Sin FUSE, intentar
+`APPIMAGE_EXTRACT_AND_RUN=1 ./rasgo-synth-studio-0.1.1-linux-x86_64.AppImage`.
 Verificar con `sha256sum -c SHA256SUMS`. Ejecute solo archivos de la
 publicación del autor. AppImage y `.tar.gz` no requieren instalación permanente.
 

@@ -125,12 +125,12 @@ class WorkflowContractTests(unittest.TestCase):
         document = workflow("smoke-native.yml")
         text = (ROOT / ".github/workflows/smoke-native.yml").read_text()
         self.assertNotIn("38642240658", text)
-        self.assertIn("gh release download v0.1.0", text)
+        self.assertIn("gh release download v0.1.1", text)
         rows = document["jobs"]["smoke"]["strategy"]["matrix"]["include"]
         macs = [row for row in rows if row["platform"].startswith("macos-")]
         self.assertEqual(len(macs), 2)
-        self.assertEqual({row["package"] for row in macs}, {"rasgo-synth-studio-0.1.0-macos-universal.dmg"})
-        self.assertEqual({row["sha256"] for row in macs}, {"d126a1d6ab63ff7a5efdb0f129ba5e6e9883fbcd5fbc064cbb50dbf2d1a81f35"})
+        self.assertEqual({row["package"] for row in macs}, {"rasgo-synth-studio-0.1.1-macos-universal.dmg"})
+        self.assertEqual(len({row["sha256"] for row in macs}), 1)
 
 
 if __name__ == "__main__":

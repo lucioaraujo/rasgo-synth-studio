@@ -48,7 +48,7 @@ class InstallationGuideTests(unittest.TestCase):
 
     def test_published_release_and_one_universal_package_in_every_language(self):
         for section in self.sections():
-            self.assertIn("https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.0", section)
+            self.assertIn("https://github.com/lucioaraujo/rasgo-synth-studio/releases/tag/v0.1.1", section)
             self.assertIn("macos-universal", section)
             self.assertIn("Rosetta", section)
             self.assertIn("FUSE", section)

@@ -1,6 +1,6 @@
 # Rasgo Synth Studio — Manual
 
-Versión experimental 0.1.0 — 2026
+Versión experimental 0.1.1 — 2026
 
 Revisado el 2026-10-12 según los controles y contratos actuales. [Tutorial paso a paso](../../website/quickstart.html#es).
 
@@ -58,11 +58,15 @@ La aplicación de escritorio usa JUCE. El código local de JUCE 9 ofrece AGPLv3 
 
 ### Antes de empezar
 
-Esta guía describe Studio 0.1.0 experimental, no Rasgo Modular ni Performance. Mantén bajo el volumen, elige una carpeta con permiso de escritura y trabaja con una pieza a la vez. El icono de corchea ♪ inicia la composición; PLAY reproduce audio ya generado. Los nombres siguientes corresponden a la interfaz española.
+Esta guía describe Studio 0.1.1 experimental, no Rasgo Modular ni Performance. Mantén bajo el volumen, elige una carpeta con permiso de escritura y trabaja con una pieza a la vez. El icono de corchea ♪ inicia la composición; PLAY reproduce audio ya generado. Los nombres siguientes corresponden a la interfaz española.
 
 ### Tu primera pieza — seis pasos
 
 1. Comprueba la salida de audio, baja MASTER y elige la carpeta de salida. Puedes introducir título y artista; los archivos se guardarán allí.
+
+    El campo artista es opcional: vacío, no atribuye artista a los archivos de
+    audio. El nombre introducido se guarda en tus preferencias. La carpeta
+    inicial es `Rasgo Synth` dentro de tu propia carpeta Música; puedes cambiarla.
 2. Define SEED y TEMPO. Desactiva MODO SALVAJE para este ejercicio. Deja DIRECCIÓN MUSICAL y EXPRESIVO desactivados y módulos en Automático como referencia inicial.
 3. Pulsa COMPONER (♪). Espera el render y la confirmación de guardado; PLAY no inicia la composición.
 4. Pulsa PLAY. Escucha primero sin cambiar nada: identifica entradas, salidas, pausas, registro grave, percusión y texturas.

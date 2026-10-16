@@ -199,7 +199,7 @@ def prepare(root=ROOT):
         'Les références internes signalées mènent ici ; les journaux de travail ne sont pas distribués. Cette note ne les remplace pas.</p>'
         '<p lang="es">Manuales derivados HTML de fuentes Markdown. '
         'Las referencias internas señaladas llevan aquí; no se distribuyen diarios de trabajo. Esta nota no los sustituye.</p>'
-        '<p>Rasgo Synth Studio · 0.1.0 experimental</p>'
+        '<p>Rasgo Synth Studio · 0.1.1 experimental</p>'
         '<p><a href="index.html">PT</a> · <a href="en.html">EN</a> · <a href="fr.html">FR</a> · <a href="es.html">ES</a></p>'
         '<p><a href="CREDITS.html">Créditos</a> · <a href="THIRD_PARTY_NOTICES.html">Notices</a> · <a href="LICENSE.txt">AGPL-3.0-or-later</a></p>'
         '</main></body></html>\n').encode()
