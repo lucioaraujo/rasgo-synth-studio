@@ -8,7 +8,7 @@ project(RasgoSynthStudio VERSION "${studio_version}" LANGUAGES C CXX)
 
 # Local dependency only: no FetchContent, sibling instrument or implicit download.
 set(RASGO_JUCE_ROOT "" CACHE PATH "Clean JUCE checkout at the Studio dependency lock")
-set(RASGO_JUCE_COMMIT "f8f8864172464b9adf9eba6101e1f784838d1597")
+set(RASGO_JUCE_COMMIT "be29c81492b6151c8ea8d14c840e1311963b3a83")
 if(NOT EXISTS "${RASGO_JUCE_ROOT}/CMakeLists.txt")
     message(FATAL_ERROR "Set RASGO_JUCE_ROOT to the locked JUCE checkout; no download performed")
 endif()
@@ -54,7 +54,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
         JUCE_USE_XRANDR=0 JUCE_USE_XINERAMA=0 JUCE_USE_XCURSOR=0 JUCE_USE_XINPUT=0)
 endif()
 target_link_libraries(RasgoSynthStudio PRIVATE juce::juce_gui_basics
-    juce::juce_audio_basics juce::juce_audio_devices)
+    juce::juce_audio_basics juce::juce_audio_devices
+    juce::juce_osc)   # receptor do Maestruc (src/MaestrucLink.h), 15/11/2026
 
 # Explicit assets, not a recursive copy of the development directory.
 if(APPLE)

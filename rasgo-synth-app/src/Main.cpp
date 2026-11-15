@@ -7,6 +7,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <string>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include "ConsoleRedirect.h"
 #include "RasgoPaths.h"
@@ -41,6 +42,15 @@ public:
     RasgoViewport() {
         setViewedComponent(&mainComponent_, false);
         if (std::getenv("RASGO_LAYOUT_AUDIT") != nullptr) startTimer(250);
+        // Maestruc (15/11/2026): `--seed N` (0 a 4294967295) para a primeira
+        // peça; `--maestruc` ou RASGO_STUDIO_MAESTRUC=1 liga o receptor.
+        const auto args = juce::JUCEApplicationBase::getCommandLineParameterArray();
+        if (const int i = args.indexOf("--seed"); i >= 0 && i + 1 < args.size())
+            if (!mainComponent_.applySeedFromOutside(args[i + 1].unquoted()))
+                std::fprintf(stderr, "Studio: --seed precisa de um inteiro de 0 a 4294967295\n");
+        const char* env = std::getenv("RASGO_STUDIO_MAESTRUC");
+        if (args.contains("--maestruc") || (env != nullptr && std::string(env) == "1"))
+            mainComponent_.enableMaestrucLink();
     }
     rasgo::ui::MainComponent &mainComponent() { return mainComponent_; }
 

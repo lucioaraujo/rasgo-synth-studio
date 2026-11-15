@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: juce-framework/JUCE
-          ref: f8f8864172464b9adf9eba6101e1f784838d1597
+          ref: be29c81492b6151c8ea8d14c840e1311963b3a83
           path: .dependencies/JUCE
       - name: Configure Windows x64
         if: runner.os == 'Windows'

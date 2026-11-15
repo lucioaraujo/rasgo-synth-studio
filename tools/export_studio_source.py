@@ -101,7 +101,7 @@ def prepare(root=ROOT):
         "schema": 1, "kind": "Studio-only public source export, not release approval",
         "date": "2026-10-16", "author": "Lucio de Araujo",
         "history": "Private monorepository history intentionally not exported",
-        "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
+        "juce_commit": "be29c81492b6151c8ea8d14c840e1311963b3a83",
         "files": records, "site": "site/public-manifest.json",
         "excluded": ["private diaries", "generated audio", "builds", "sibling instruments", "Git history"]
     }, ensure_ascii=False, indent=2) + "\n").encode()

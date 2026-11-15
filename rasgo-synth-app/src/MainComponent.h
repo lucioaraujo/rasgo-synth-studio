@@ -1,5 +1,6 @@
 #pragma once
 #include <juce_gui_basics/juce_gui_basics.h>
+#include "MaestrucLink.h"   // regente da família (maestruc.link/1)
 #include <atomic>
 #include <algorithm>
 #include <cmath>
@@ -268,6 +269,30 @@ private:
 // A real on/off toggle for MODO ALBUM rather than a checkbox -- off reads
 // as black with a thin copper outline (inert, matches the console's own
 // idle look), on fills solid copper so the mode change is unmistakable.
+// Maestruc (15/11/2026): o tocador de sempre, mais a ponte de som. Depois do
+// bloco normal, a mistura vai ao Maestruc; enquanto ele lê, o Studio cala a
+// própria saída (sem som em dobro) e volta sozinho se ele some. Sem
+// `--maestruc` o portão fica fechado e nada muda.
+class MaestrucSourcePlayer final : public juce::AudioSourcePlayer {
+public:
+    rasgo::maestruc::PortaoDeSom portao;
+    std::atomic<double> taxa { 0.0 };
+    std::function<void()> aoComecar;   // chamado no fio de mensagens
+    void audioDeviceIOCallbackWithContext(const float* const* in, int numIn, float* const* out, int numOut,
+                                          int frames, const juce::AudioIODeviceCallbackContext& ctx) override {
+        juce::AudioSourcePlayer::audioDeviceIOCallbackWithContext(in, numIn, out, numOut, frames, ctx);
+        if (portao.escrever(out, numOut, frames))
+            for (int c = 0; c < numOut; ++c)
+                if (out[c] != nullptr) juce::FloatVectorOperations::clear(out[c], frames);
+    }
+    void audioDeviceAboutToStart(juce::AudioIODevice* device) override {
+        juce::AudioSourcePlayer::audioDeviceAboutToStart(device);
+        portao.fecharEsperar();   // a ponte reabre na taxa nova
+        taxa.store(device != nullptr ? device->getCurrentSampleRate() : 0.0);
+        if (aoComecar) juce::MessageManager::callAsync(aoComecar);
+    }
+};
+
 class MainComponent : public juce::Component, private juce::Timer {
 public:
     MainComponent() {
@@ -899,7 +924,59 @@ public:
         pollRenderSessions();
     }
 
+    // Seed vinda de fora (Maestruc ou --seed): o mesmo efeito de digitar no
+    // campo SEED; vale para a próxima peça gerada. Inválida: ignorada.
+    bool applySeedFromOutside(const juce::String& text) {
+        const auto t = text.trim();
+        if (t.isEmpty() || t.length() > 10 || !t.containsOnly("0123456789")
+            || t.getLargeIntValue() > static_cast<juce::int64>(0xffffffffu))
+            return false;
+        currentSeed_ = static_cast<unsigned>(t.getLargeIntValue());
+        seedEditor_.setText(juce::String(currentSeed_));
+        return true;
+    }
+
+    // Maestruc (maestruc.link/1, 15/11/2026): o regente da família pode dar
+    // seed e tempo para a próxima peça (os mesmos campos SEED e TEMPO; a peça
+    // só muda ao GERAR), tocar/parar a peça gerada (o mesmo botão) e saber o
+    // estado. Desligado por padrão; liga com --maestruc ou
+    // RASGO_STUDIO_MAESTRUC=1.
+    void enableMaestrucLink() {
+        if (maestrucLink_ != nullptr) return;
+        maestrucLink_ = std::make_unique<rasgo::maestruc::Link>("Studio", rasgo::ui::appVersion);
+        auto& h = maestrucLink_->handlers;
+        h.seed = [this](const juce::String& seed) { applySeedFromOutside(seed); };
+        h.tempo = [this](float bpm) {
+            if (bpm < 20.0f || bpm > 220.0f) return;
+            bpmSlider_.setValue(std::round(static_cast<double>(bpm)), juce::sendNotificationSync);
+        };
+        h.play = [this](juce::int64) {
+            if (!transportSource_.isPlaying() && !lastResult_.samples.empty()) startPlaybackAt(0.0);
+        };
+        h.stop = [this] { if (transportSource_.isPlaying()) stopPlayback(); };
+        h.state = [this](bool& playing, juce::String& seed, float& bpm) {
+            playing = transportSource_.isPlaying();
+            seed = juce::String(currentSeed_);
+            bpm = static_cast<float>(bpmSlider_.getValue());
+        };
+        if (!maestrucLink_->start()) { maestrucLink_.reset(); return; }
+        juce::Component::SafePointer<MainComponent> safe(this);
+        audioSourcePlayer_.aoComecar = [safe] { if (safe != nullptr) safe->openMaestrucBridge(); };
+        openMaestrucBridge();
+    }
+    // Fio de mensagens. A ponte leva a mistura (um par estéreo) na taxa da placa.
+    void openMaestrucBridge() {
+        audioSourcePlayer_.portao.fecharEsperar();
+        const double rate = audioSourcePlayer_.taxa.load();
+        if (maestrucLink_ == nullptr || rate <= 0.0) return;
+        if (maestrucLink_->openSoundBridge(1, rate, {"mix"}))
+            audioSourcePlayer_.portao.abrir(maestrucLink_.get());
+    }
+
     ~MainComponent() override {
+        audioSourcePlayer_.portao.fecharEsperar();   // o áudio deixa de usar a ponte
+        audioSourcePlayer_.aoComecar = nullptr;
+        maestrucLink_.reset();   // antes de tudo: nenhum comando chega a meio desmonte
         stopTimer();
         if (pieceSession_) pieceSession_->requestCancel();
         if (albumSession_) albumSession_->requestCancel();
@@ -2592,7 +2669,7 @@ private:
     bool regionPlaybackActive_ = false;
     double regionEndSeconds_ = 0.0;
     juce::AudioDeviceManager audioDeviceManager_;
-    juce::AudioSourcePlayer audioSourcePlayer_;
+    MaestrucSourcePlayer audioSourcePlayer_;
     juce::AudioTransportSource transportSource_;
     std::unique_ptr<BufferPlaybackSource> playbackSource_;
     ArcTimelineView arcView_;
@@ -2671,6 +2748,7 @@ private:
     juce::ComboBox albumTrackBox_;
     juce::Label albumTrackLabel_;
     std::vector<rasgo::AlbumTrackResult> albumResults_;
+    std::unique_ptr<rasgo::maestruc::Link> maestrucLink_;
 };
 
 } // namespace rasgo::ui

@@ -1,6 +1,6 @@
 # Rasgo Synth Studio — Manuel
 
-Version expérimentale 0.1.1 — 2026
+Version expérimentale 0.2.0 — 2026
 
 Révisé le 2026-10-12 selon les contrôles et contrats actuels. [Tutoriel pas à pas](../../website/quickstart.html#fr).
 
@@ -58,7 +58,7 @@ L'application de bureau utilise JUCE. Le code source local de JUCE 9 propose l'A
 
 ### Avant de commencer
 
-Ce guide décrit Studio 0.1.1 expérimental, et non Rasgo Modular ou Performance. Gardez un volume faible, choisissez un dossier accessible en écriture et travaillez sur une pièce à la fois. L’icône de croche ♪ lance la composition ; PLAY lit l’audio déjà calculé. Les noms ci-dessous correspondent à l’interface française.
+Ce guide décrit Studio 0.2.0 expérimental, et non Rasgo Modular ou Performance. Gardez un volume faible, choisissez un dossier accessible en écriture et travaillez sur une pièce à la fois. L’icône de croche ♪ lance la composition ; PLAY lit l’audio déjà calculé. Les noms ci-dessous correspondent à l’interface française.
 
 ### Votre première pièce — six étapes
 

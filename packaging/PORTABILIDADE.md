@@ -59,7 +59,7 @@ para investigar um problema exclusivo do Mac.
 O aplicativo tem agora um alvo JUCE em `rasgo-synth-app/CMakeLists.txt`,
 com C++17, módulos GUI/áudio, assets explícitos e tratamento de compilador
 MSVC/GCC/Clang. A dependência precisa ser um checkout limpo no commit
-`f8f8864172464b9adf9eba6101e1f784838d1597`. A configuração recusa outra
+`be29c81492b6151c8ea8d14c840e1311963b3a83`. A configuração recusa outra
 revisão e não baixa código. Não usa nenhum instrumento irmão no build.
 
 Da raiz do Studio, com compiladores, CMake3.22+ e dependências locais:

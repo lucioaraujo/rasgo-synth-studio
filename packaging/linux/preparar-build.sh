@@ -10,7 +10,7 @@ case "$studio_output" in
   *) echo 'Output must be inside Studio/.local-build' >&2; exit 1 ;;
 esac
 [[ ! -e "$studio_output" ]] || { echo 'Output already exists' >&2; exit 1; }
-[[ "$(git -C "$studio_juce" rev-parse HEAD)" == f8f8864172464b9adf9eba6101e1f784838d1597 ]] || {
+[[ "$(git -C "$studio_juce" rev-parse HEAD)" == be29c81492b6151c8ea8d14c840e1311963b3a83 ]] || {
   echo 'JUCE revision does not match DEPENDENCIES.md' >&2; exit 1;
 }
 [[ -z "$(git -C "$studio_juce" status --porcelain)" ]] || { echo 'JUCE checkout is dirty' >&2; exit 1; }

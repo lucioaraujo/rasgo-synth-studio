@@ -35,10 +35,10 @@ escritas para o Rasgo Synth.
 
 O aplicativo em `rasgo-synth-app/` é construído com o
 **[JUCE](https://github.com/juce-framework/JUCE)**. Os arquivos locais
-examinados declaram **JUCE 9.0.0**; `JUCE-master/` é ignorado pelo Git e não faz
+examinados declaram **JUCE 9.0.3**; `JUCE-master/` é ignorado pelo Git e não faz
 parte do código publicado neste repositório. A referência reproduzível adotada
-para novos checkouts é a tag `9.0.0`, commit
-`f8f8864172464b9adf9eba6101e1f784838d1597`, registrada em
+para novos checkouts é a tag `9.0.3`, commit
+`be29c81492b6151c8ea8d14c840e1311963b3a83`, registrada em
 [`DEPENDENCIES.md`](DEPENDENCIES.md).
 
 O script `rasgo-synth-app/build_juce_minimal.sh` compila os seguintes módulos:

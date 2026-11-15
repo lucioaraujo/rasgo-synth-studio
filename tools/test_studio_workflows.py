@@ -83,7 +83,7 @@ class WorkflowContractTests(unittest.TestCase):
                     checkout = step.get("with", {})
                     if checkout.get("repository") == "juce-framework/JUCE":
                         self.assertEqual(checkout["ref"],
-                                         "f8f8864172464b9adf9eba6101e1f784838d1597")
+                                         "be29c81492b6151c8ea8d14c840e1311963b3a83")
                     self.assertNotIn("gh release", step.get("run", ""))
                     self.assertNotIn("deploy-pages", step.get("uses", ""))
 
@@ -111,7 +111,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertEqual(upload["with"]["path"], "site")
         self.assertEqual(upload["with"]["retention-days"], "1")
         text = (ROOT / ".github/workflows/publish-site.yml").read_text()
-        for marker in ("releases/tags/v0.1.1", "--jq .draft", "sha256sum --check"):
+        for marker in ("releases/tags/v0.2.0", "--jq .draft", "sha256sum --check"):
             self.assertIn(marker, text)
         for forbidden in ("cmake --build", "gh release edit", "0_BRAINSTORM", "actions/upload-artifact@"):
             self.assertNotIn(forbidden, text)
@@ -125,11 +125,11 @@ class WorkflowContractTests(unittest.TestCase):
         document = workflow("smoke-native.yml")
         text = (ROOT / ".github/workflows/smoke-native.yml").read_text()
         self.assertNotIn("38642240658", text)
-        self.assertIn("gh release download v0.1.1", text)
+        self.assertIn("gh release download v0.2.0", text)
         rows = document["jobs"]["smoke"]["strategy"]["matrix"]["include"]
         macs = [row for row in rows if row["platform"].startswith("macos-")]
         self.assertEqual(len(macs), 2)
-        self.assertEqual({row["package"] for row in macs}, {"rasgo-synth-studio-0.1.1-macos-universal.dmg"})
+        self.assertEqual({row["package"] for row in macs}, {"rasgo-synth-studio-0.2.0-macos-universal.dmg"})
         self.assertEqual(len({row["sha256"] for row in macs}), 1)
 
 

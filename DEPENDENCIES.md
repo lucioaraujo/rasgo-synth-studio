@@ -3,18 +3,18 @@
 Authorial source: AGPL-3.0-or-later. JUCE option: AGPLv3. Complete notices:
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-## JUCE9.0.0
+## JUCE9.0.3
 
 Official upstream: https://github.com/juce-framework/JUCE
 
 Required clean Git checkout:
-f8f8864172464b9adf9eba6101e1f784838d1597.
+be29c81492b6151c8ea8d14c840e1311963b3a83.
 The framework is not vendored here. Do not substitute a sibling instrument's
 JUCE checkout or a different revision. Source dependency and its full licenses:
-https://github.com/juce-framework/JUCE/tree/f8f8864172464b9adf9eba6101e1f784838d1597
+https://github.com/juce-framework/JUCE/tree/be29c81492b6151c8ea8d14c840e1311963b3a83
 
     git clone https://github.com/juce-framework/JUCE.git JUCE-master
-    git -C JUCE-master checkout f8f8864172464b9adf9eba6101e1f784838d1597
+    git -C JUCE-master checkout be29c81492b6151c8ea8d14c840e1311963b3a83
     cmake -S rasgo-synth-app -B .local-build/native -DCMAKE_BUILD_TYPE=Release -DRASGO_JUCE_ROOT=/absolute/path/to/JUCE-master
     cmake --build .local-build/native --config Release --parallel 1
 
