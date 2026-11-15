@@ -39,6 +39,7 @@ juce_add_gui_app(RasgoSynthStudio
 target_sources(RasgoSynthStudio PRIVATE src/Main.cpp src/LinuxKeyboardSymbols.cpp)
 target_compile_definitions(RasgoSynthStudio PRIVATE
     JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_MODAL_LOOPS_PERMITTED=1
+    JUCE_USE_WEBP=0   # JUCE 9.0.3 traz WebP (libwebp); o Studio não usa (15/11/2026)
     JUCE_STANDALONE_APPLICATION=1 JUCE_INCLUDE_JPEGLIB_CODE=1 JUCE_INCLUDE_PNGLIB_CODE=1)
 if(MSVC)
     target_compile_options(RasgoSynthStudio PRIVATE /utf-8 /fp:precise /UNDEBUG /U_NDEBUG)

@@ -46,7 +46,7 @@ MODULES="$JUCE_ROOT/modules"
 DEFS=(-DJUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1 -DJUCE_USE_CURL=0 -DJUCE_WEB_BROWSER=0
       -DJUCE_MODAL_LOOPS_PERMITTED=1 -DJUCE_STANDALONE_APPLICATION=1
       -DJUCE_USE_XRANDR=0 -DJUCE_USE_XINERAMA=0 -DJUCE_USE_XCURSOR=0 -DJUCE_USE_XINPUT=0
-      -DJUCE_JACK=0 -DJUCE_ALSA=1 "${IMAGE_DEFS[@]}")
+      -DJUCE_JACK=0 -DJUCE_ALSA=1 -DJUCE_USE_WEBP=0 "${IMAGE_DEFS[@]}")   # sem WebP (JUCE 9.0.3), 15/11/2026
 INC=(-I"$MODULES" $(pkg-config --cflags freetype2 fontconfig))
 CXX_COMMON=(-std=c++17 -finput-charset=UTF-8 -fexec-charset=UTF-8 "${OPT_FLAGS[@]}")
 
@@ -68,6 +68,8 @@ declare -A MODULE_WRAPPERS=(
   [juce_gui_basics_5]="juce_gui_basics/juce_gui_basics_5.cpp"
   [juce_audio_basics]="juce_audio_basics/juce_audio_basics.cpp"
   [juce_audio_devices]="juce_audio_devices/juce_audio_devices.cpp"
+  # o receptor do Maestruc (src/MaestrucLink.h), 15/11/2026
+  [juce_osc]="juce_osc/juce_osc.cpp"
 )
 OBJS=("$WORK/app.o")
 if [[ -f "$(dirname "$SRC")/AccentedTextEditor.h" ]]; then
