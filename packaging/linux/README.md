@@ -71,7 +71,9 @@ release oficial (metadados de28/09/2026): commit
 SHA256 `156f4bdbde9c52d01814600013e0a273f0118dc2de98975f3c8c63427ec79074`;
 aviso SHA256 `aa154fc9070614bbe7921f89db11efd1dba7a1f3a41685958110e2230f9c0ca1`.
 A URL `continuous` não é tratada como pin: mudança de bytes faz o script
-recusar a execução. Fonte: [runtime oficial](https://github.com/AppImage/type2-runtime)
+recusar a execução. Foi o que aconteceu em 19/10/2026 (o projeto trocou o
+arquivo); desde 16/11/2026 a cópia exata fica no repositório, em
+`packaging/appimage/runtime/` (README com a procedência). Fonte: [runtime oficial](https://github.com/AppImage/type2-runtime)
 e [aviso da revisão](https://github.com/AppImage/type2-runtime/blob/8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa/LICENSE).
 Bibliotecas copiadas pelo linuxdeploy precisam de revisão dos seus avisos e
 fontes correspondentes antes da publicação; AppImage não elimina exigências

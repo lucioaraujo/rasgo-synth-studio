@@ -56,12 +56,12 @@ jobs:
           curl --fail --location --connect-timeout 15 --max-time 90 --max-filesize 33554432 \
             -o .local-build/tooling/linuxdeploy-x86_64.AppImage \
             https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-x86_64.AppImage
-          curl --fail --location --connect-timeout 15 --max-time 60 --max-filesize 2097152 \
-            -o .local-build/tooling/runtime-x86_64 \
-            https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64
-          curl --fail --location --connect-timeout 15 --max-time 30 --max-filesize 65536 \
-            -o .local-build/tooling/AppImage-runtime-LICENSE \
-            https://raw.githubusercontent.com/AppImage/type2-runtime/8f39b89e2ac31e1640b3d3f7e9a5108e6ce805fa/LICENSE
+          # O runtime do AppImage vem do repositório (packaging/appimage/runtime/,
+          # commit 8f39b89 do type2-runtime): a release "continuous" troca de
+          # conteúdo e deixou de ter o arquivo travado (16/11/2026).
+          cp packaging/appimage/runtime/runtime-x86_64 .local-build/tooling/runtime-x86_64
+          cp packaging/appimage/runtime/LICENSE .local-build/tooling/AppImage-runtime-LICENSE
+          (cd packaging/appimage/runtime && sha256sum -c SHA256SUMS)
           chmod +x .local-build/tooling/linuxdeploy-x86_64.AppImage
       - name: Three formats, same application tree
         run: |
