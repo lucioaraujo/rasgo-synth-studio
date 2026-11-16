@@ -200,7 +200,9 @@ jobs:
           mountpoint="$PWD/mount"
           mkdir "$mountpoint"
           for attempt in 1 2 3 4 5; do
-            if hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" "$image"; then break; fi
+            # the DMG shows the AGPL licence first (CPack): answer it, as the
+            # manual Universal workflow did
+            if printf 'Y\n' | hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" "$image" > /dev/null; then break; fi
             test "$attempt" -lt 5
             sleep $((attempt * 5))
           done
