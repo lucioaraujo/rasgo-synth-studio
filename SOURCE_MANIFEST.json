@@ -4,7 +4,7 @@
   "date": "2026-10-16",
   "author": "Lucio de Araujo",
   "history": "Private monorepository history intentionally not exported",
-  "juce_commit": "f8f8864172464b9adf9eba6101e1f784838d1597",
+  "juce_commit": "be29c81492b6151c8ea8d14c840e1311963b3a83",
   "files": [
     {
       "path": ".github/workflows/diagnose-macos-intel.yml",
@@ -14,27 +14,32 @@
     {
       "path": ".github/workflows/package-linux.yml",
       "source": ".github/workflows/package-linux.yml",
-      "sha256": "79c9de26ebde084e4142bd7fad2867f9093a5360f58dbb4a5f4f5837efe6228f"
+      "sha256": "d7c9c7b6b81ed1ba1d2efd704d3941cf7af939f30651328e453b81da39f2565e"
     },
     {
       "path": ".github/workflows/package-macos-universal.yml",
       "source": ".github/workflows/package-macos-universal.yml",
-      "sha256": "cea85a69ee0e4ab0a45ea12e25ef008c7db2eacdf35be9f475b6d2d86ad86442"
+      "sha256": "43ed17e1834822a66e425c5a2fba6a231bebcff55d453c01f8ce8c2b979793de"
     },
     {
       "path": ".github/workflows/package-native.yml",
       "source": ".github/workflows/package-native.yml",
-      "sha256": "e8212af612af07cf35a72a591ef8395190308b8801496c1561d7da9139513823"
+      "sha256": "4e51d82f87b354c751e725b39eb1916070a33460e8c0a54526e4cc7b0c071fc3"
+    },
+    {
+      "path": ".github/workflows/package.yml",
+      "source": ".github/workflows/package.yml",
+      "sha256": "ec3dc2e6a4cff2ce8fd5f39f55f1b2a1dbae35348cdb6455f274fd8161e60a5a"
     },
     {
       "path": ".github/workflows/publish-site.yml",
       "source": ".github/workflows/publish-site.yml",
-      "sha256": "f499e7aa6daea873b6788c1a51e23314ee109f8f65466a5618c1e92d8ababd3e"
+      "sha256": "9f1eb6dd9cac64672187ca7c723370c53216ecf8c4ea11b9ca31f31ff417db26"
     },
     {
       "path": ".github/workflows/smoke-native.yml",
       "source": ".github/workflows/smoke-native.yml",
-      "sha256": "4a488b9fdeefbef5695deddc538cfa4d5f1a45296ffa2ff66bcdec1ec023df70"
+      "sha256": "4bf52e9ff11773a64aa4cf999c31eb62f2800f8f8e760fe4c2559791f86b9c30"
     },
     {
       "path": ".gitignore",
@@ -49,12 +54,12 @@
     {
       "path": "DEPENDENCIES.md",
       "source": "packaging/public/DEPENDENCIES.md",
-      "sha256": "343a342da3721f1ca875389d4ee09cc8fdff33c27d12524800ffd723c7d16a63"
+      "sha256": "7bdea6a33f99111ba12cf2481c846a26238c54b17de5d5e87fc438a29a7976b6"
     },
     {
       "path": "INSTALL.md",
       "source": "INSTALL.md",
-      "sha256": "61ee3b6c1fa604eacf5ef153acf2e1ceaf8c990173e88871abb93842e90a843d"
+      "sha256": "1456ebbe632df3cb247dfcccc02341dc7c097fda0841be7f79ec8d171c84963a"
     },
     {
       "path": "LICENSE",
@@ -64,12 +69,12 @@
     {
       "path": "README.md",
       "source": "packaging/public/README.md",
-      "sha256": "ae1541c09e110d283a951b3ba73cf6972bca551ef18bca7ce2a99b3a9119839e"
+      "sha256": "4155ee116268246a61b20ce00463a48d26f84a55794d7c4a413512355140dd75"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
       "source": "THIRD_PARTY_NOTICES.md",
-      "sha256": "82489ebf0ab4043d2ca70421227dc360d9103a758dfe91e0a13b8fe5344d32be"
+      "sha256": "d1c65f7f3d8ea2476e8e9f2c3cba500746e7fd81c699aed0710488c39ff85035"
     },
     {
       "path": "docs/GROOVE_RHYTHM.md",
@@ -99,7 +104,7 @@
     {
       "path": "docs/en/manual.md",
       "source": "docs/en/manual.md",
-      "sha256": "d9c696c533db0d14bc5681447248bc9b512fc930cdb15446f5a64f099667043f"
+      "sha256": "5377e250164649cbdfe03d0b149218a516e4e24b93f3e281feacc385a959060c"
     },
     {
       "path": "docs/es/Arquitetura_Fluxograma.md",
@@ -124,7 +129,7 @@
     {
       "path": "docs/es/manual.md",
       "source": "docs/es/manual.md",
-      "sha256": "5af3be3c7b26ee09b95f511f01d87584b59b712a4367a7a930ca55b2d867f02d"
+      "sha256": "3b0ab3ac14647a36f81f61a3bd266bfb4bf5f4aaf0dcff54381b554afcd720a7"
     },
     {
       "path": "docs/fr/Arquitetura_Fluxograma.md",
@@ -149,7 +154,7 @@
     {
       "path": "docs/fr/manual.md",
       "source": "docs/fr/manual.md",
-      "sha256": "e64cfe57e3908398811cad852ad2bc2dfc9727ee400132744fb3434972cd93b1"
+      "sha256": "a5534f9c3298e1328eac8a5c3c038be78f309a2a5b0a79b227d1c7725f48d7fc"
     },
     {
       "path": "docs/pt/Arquitetura_Fluxograma.md",
@@ -179,17 +184,22 @@
     {
       "path": "docs/pt/manual.md",
       "source": "docs/pt/manual.md",
-      "sha256": "13c9ba99e55cfe90b47a851ff1aa3df299decd2553637701f31b0fa452ba7f9d"
+      "sha256": "47e179b1e88745d2c8842ce6dc8110b4720bafb817b82c6e8e8dadd9f4698eb3"
     },
     {
       "path": "packaging/PORTABILIDADE.md",
       "source": "packaging/PORTABILIDADE.md",
-      "sha256": "af5efbf43889cedf0863863888465f337f19d1cd9dda0bdb996e5952b678a28a"
+      "sha256": "c480f2033e529f016ce1f7c3038d02d4d713d64b9d4408eecc3adef0b80c4de0"
     },
     {
       "path": "packaging/appimage/RUNTIME_SOURCES.md",
       "source": "packaging/appimage/RUNTIME_SOURCES.md",
       "sha256": "f7535e1fd8055782aa52e3d121d6b6f7a2c025af2b94c71b66960e51682745cb"
+    },
+    {
+      "path": "packaging/appimage/runtime/README.md",
+      "source": "packaging/appimage/runtime/README.md",
+      "sha256": "11170f6d8ba307f902b477873dc1e0e75ce3216872962292f065b8e43ee8c496"
     },
     {
       "path": "packaging/cmake/InstallStudio.cmake",
@@ -204,7 +214,7 @@
     {
       "path": "packaging/linux/README.md",
       "source": "packaging/linux/README.md",
-      "sha256": "273e14b2e53923b3dc034d44f9107fe210f54a0fb5e20edd3a1c33a7cdc3e184"
+      "sha256": "647fb257ad4aaf2fb949cdde10f42fb96e1de7354f36f7c505ea4878ca61f5a6"
     },
     {
       "path": "packaging/linux/empacotar.sh",
@@ -229,7 +239,7 @@
     {
       "path": "packaging/linux/preparar-build.sh",
       "source": "packaging/linux/preparar-build.sh",
-      "sha256": "d57070178d306f864b5badfc882f33fd247ec65beec082da5be6a373ea5b217d"
+      "sha256": "d15f990edb438b883ad1eea7c1ff26f5bea81d7bd42f69cfadf697216111d2d4"
     },
     {
       "path": "packaging/linux/rasgo-synth-studio.desktop",
@@ -244,12 +254,12 @@
     {
       "path": "packaging/public/DEPENDENCIES.md",
       "source": "packaging/public/DEPENDENCIES.md",
-      "sha256": "343a342da3721f1ca875389d4ee09cc8fdff33c27d12524800ffd723c7d16a63"
+      "sha256": "7bdea6a33f99111ba12cf2481c846a26238c54b17de5d5e87fc438a29a7976b6"
     },
     {
       "path": "packaging/public/README.md",
       "source": "packaging/public/README.md",
-      "sha256": "ae1541c09e110d283a951b3ba73cf6972bca551ef18bca7ce2a99b3a9119839e"
+      "sha256": "4155ee116268246a61b20ce00463a48d26f84a55794d7c4a413512355140dd75"
     },
     {
       "path": "packaging/public/gitignore",
@@ -259,7 +269,7 @@
     {
       "path": "rasgo-synth-app/CMakeLists.txt",
       "source": "rasgo-synth-app/CMakeLists.txt",
-      "sha256": "5ba04fb8b776f5ec12876a9a7c652f74198555a1490018aa35aaabd6e0013e90"
+      "sha256": "9f4679775099559543b1e24507274cc31d72b6309ff9e78e6c383be32a2a10fb"
     },
     {
       "path": "rasgo-synth-app/assets/README.md",
@@ -309,7 +319,7 @@
     {
       "path": "rasgo-synth-app/build_juce_minimal.sh",
       "source": "rasgo-synth-app/build_juce_minimal.sh",
-      "sha256": "f8f56050494f7b53672a74d11c1f84a89e903210796954dba68c72a5fa8075d5"
+      "sha256": "478a5636f2f3c772efc05e20d6e581266e44907f85fbb19485d54196dc38c0cd"
     },
     {
       "path": "rasgo-synth-app/src/AccentComposition.h",
@@ -334,7 +344,7 @@
     {
       "path": "rasgo-synth-app/src/AppVersion.h",
       "source": "rasgo-synth-app/src/AppVersion.h",
-      "sha256": "b24e5cf5b11201524bdeb982dd375559340d3c46f630684d011d745bab323109"
+      "sha256": "e3e1cf3dcef4c857dc34c1813df39c183be8076b9a252b007e6afa58870fdcda"
     },
     {
       "path": "rasgo-synth-app/src/ArcTimelineView.h",
@@ -392,14 +402,19 @@
       "sha256": "a0d5c96ea151d6394459543cefafcecad4b9f3820d2aecf47a07b15c01df3db0"
     },
     {
+      "path": "rasgo-synth-app/src/MaestrucLink.h",
+      "source": "rasgo-synth-app/src/MaestrucLink.h",
+      "sha256": "2a2379c694014d36428aa89268a6c05d9b00c64f290c9fade5e52966ca154d02"
+    },
+    {
       "path": "rasgo-synth-app/src/Main.cpp",
       "source": "rasgo-synth-app/src/Main.cpp",
-      "sha256": "15b4894c0e6b2651ac3615bbcfd8ead0ba154344a134be27dfa47d2d329009ac"
+      "sha256": "44170e0a07f5dc98c7a978b4bdbbd7153650bbf03de6fec30e2a8c55b1263332"
     },
     {
       "path": "rasgo-synth-app/src/MainComponent.h",
       "source": "rasgo-synth-app/src/MainComponent.h",
-      "sha256": "a0fab68f6f0feea0e3e586504c116f21216de1b2c8da935953d17e7d31b20e39"
+      "sha256": "d1e5e663c3a2692ff7b0590a4dfad7ade8f7cbb76d238b9d3cdade7959d9e706"
     },
     {
       "path": "rasgo-synth-app/src/ModulePanelView.h",
@@ -420,6 +435,11 @@
       "path": "rasgo-synth-app/src/PhasePortraitView.h",
       "source": "rasgo-synth-app/src/PhasePortraitView.h",
       "sha256": "3ad6ee1b03119ed8567d06256beb7437187cc244998f4b6d6fc6348260c075a4"
+    },
+    {
+      "path": "rasgo-synth-app/src/PonteDeSom.h",
+      "source": "rasgo-synth-app/src/PonteDeSom.h",
+      "sha256": "093d5ad9c88aa7008c752e0084ce6452a3c2f92324a38d11de75d2d1a373960e"
     },
     {
       "path": "rasgo-synth-app/src/PortableTextFormat.h",
@@ -1754,7 +1774,7 @@
     {
       "path": "tools/build_studio_tutorial.py",
       "source": "tools/build_studio_tutorial.py",
-      "sha256": "d45705514e6b53c6bf157c6743621c1b8a55130392b9d526c666403a7cd73835"
+      "sha256": "19a1c3c13d02b0b7eee108252976be082ca12a5d8ce6be2410ae4849df5af6bc"
     },
     {
       "path": "tools/build_studio_universal_macos.py",
@@ -1764,7 +1784,7 @@
     {
       "path": "tools/build_studio_website.py",
       "source": "tools/build_studio_website.py",
-      "sha256": "fcd607cb9d0dc25039e0d928eb0f865ba06a6e845da23f531e475a9eeb6b6640"
+      "sha256": "04d208a17f11e163cb9ef71f86fee06f632f2c81ddd12e8a0d50c2ed70c2c4ea"
     },
     {
       "path": "tools/debug_studio_macos.py",
@@ -1774,7 +1794,7 @@
     {
       "path": "tools/export_studio_source.py",
       "source": "tools/export_studio_source.py",
-      "sha256": "70fa459be93a84b48f9d0715d7911ce7fd3728b995ba15737bdbede4784cf345"
+      "sha256": "1fa3e38dc847e816a2d153dfe3d01b7ed793f8e6c2f60681d1652e1fd00add1d"
     },
     {
       "path": "tools/package_studio_linux.py",
@@ -1854,7 +1874,7 @@
     {
       "path": "tools/test_smoke_studio_native.py",
       "source": "tools/test_smoke_studio_native.py",
-      "sha256": "00a8689555ed05f437be08a9d6c5644704e746017eb6960d091371d08810158a"
+      "sha256": "5f5317d96c6749d2b292cb69fc2fe28995f0dd02b6ccfc932a23895b119083b3"
     },
     {
       "path": "tools/test_smoke_studio_window.py",
@@ -1864,7 +1884,7 @@
     {
       "path": "tools/test_studio_installation_guide.py",
       "source": "tools/test_studio_installation_guide.py",
-      "sha256": "2d17f5971ea72828b1193b01b1fbb08ce37546518888dfc249df7776d8bb8c3f"
+      "sha256": "7a6435554a501e91c6d0a5603edf83619bee9f43615642cf82630da321e7f8a3"
     },
     {
       "path": "tools/test_studio_package_policy.py",
@@ -1879,7 +1899,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "05bee8fff0d4335c0076cb6cab64a3da19ad5653dff978db2a21e366914e0c68"
+      "sha256": "c3ac43432362b9283d1218982ec91a2a9e1cac46833ff50eb2b7636f8b6c70c9"
     },
     {
       "path": "tools/test_supplement_studio_appimage.py",
@@ -1964,32 +1984,32 @@
     {
       "path": "website/catalogo.html",
       "source": "website/catalogo.html",
-      "sha256": "0efe843c9ce9dc43c44062550811325297e0df5c381798ab705ec2d91a259690"
+      "sha256": "2fdba333606279e2935b0b4bf76387c650ac50c4d30871b3a71122b94e493737"
     },
     {
       "path": "website/en.html",
       "source": "website/en.html",
-      "sha256": "bcca79351489af67347d2efcd41d78b9eea9ab28c342bd85a122b353fc730c8f"
+      "sha256": "98d4b9e506860c3cb758a26e279c8ae4da7b9435be9afbb5003c297df6e4a440"
     },
     {
       "path": "website/es.html",
       "source": "website/es.html",
-      "sha256": "b0fdb8e2c9377ac9cb6ff5bd00e39adc71d068eca77c15cc8335fcd55c5bfbe7"
+      "sha256": "0ad65612c2f96642df8a4aaa5742d5196e651a18b9028620bd7fa702afb44bd3"
     },
     {
       "path": "website/fr.html",
       "source": "website/fr.html",
-      "sha256": "efc806671107acfe552e9e825681bf9ffbe5d323080be5b11f3f9b57a98e1470"
+      "sha256": "0e78e15a1521585b72caa15a13df02ef43c8013f2457aaf662ab031ccb156e4b"
     },
     {
       "path": "website/index.html",
       "source": "website/index.html",
-      "sha256": "9bf5681edf9bd0aaf4ce1d7b15391c5a272568e76af5abba554ed237b2d24f3e"
+      "sha256": "0ea6b62e45bdb0d0324ac45e85d4c63f91cbc6b8b21fef94a73a032dd73f2f5d"
     },
     {
       "path": "website/quickstart.html",
       "source": "website/quickstart.html",
-      "sha256": "ab6b15ed59848da7683bd0f5a2dc9217b0057ee5dfebb9893135952be86cf419"
+      "sha256": "a6f066edd9a1b0b0947af945ab533c74a6127779a3b0d45048816472c9f370f0"
     }
   ],
   "site": "site/public-manifest.json",

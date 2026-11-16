@@ -4,7 +4,7 @@
 </header><main class="quickstart"><h1 id="studio-build-and-dependency-lock">Studio — build and dependency lock</h1>
 <p>Authorial source: AGPL-3.0-or-later. JUCE option: AGPLv3. Complete notices:
 <a href="THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
-<h2 id="juce900">JUCE9.0.3</h2>
+<h2 id="juce903">JUCE9.0.3</h2>
 <p>Official upstream: https://github.com/juce-framework/JUCE</p>
 <p>Required clean Git checkout:
 be29c81492b6151c8ea8d14c840e1311963b3a83.
@@ -21,8 +21,9 @@ dependencies. Linux: build-essential, pkg-config, libasound2-dev,
 libfreetype6-dev, libfontconfig1-dev, libx11-dev, libxext-dev, libxrender-dev,
 zlib1g-dev. CMake configuration also builds juceaide; keep parallelism bounded.
 Windows: Visual Studio2022 C++ x64; NSIS for the installer.
-macOS: Xcode command-line tools; select -DCMAKE_OSX_ARCHITECTURES=arm64
-or x86_64 and explicit deployment target (the workflow selects12.0).</p>
+macOS: Xcode command-line tools; select -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+(Universal 2, as published), arm64 or x86_64, and an explicit deployment target
+(the workflow selects12.0).</p>
 <p>Create packages only after checking the native binary:</p>
 <pre><code>cmake --install .local-build/native --config Release --prefix .local-build/stage
 cpack --config .local-build/native/CPackConfig.cmake -C Release -B .local-build/packages
@@ -30,7 +31,10 @@ cpack --config .local-build/native/CPackConfig.cmake -C Release -B .local-build/
 <p>Windows prepares NSIS/ZIP; macOS prepares DMG. Signing/notarization is not
 provided by these commands. Linux's .deb/AppImage/tar recipe and tool hashes
 are in <a href="packaging/linux/README.html">packaging/linux/README.md</a>.
-Manual release workflows live in .github/workflows; never build on every push.</p>
+Since 16/11/2026, as in the sibling instruments, a <code>v*</code> tag runs
+.github/workflows/package.yml: it builds, tests and packages on the three systems
+and creates the GitHub release. Other workflows are manual diagnostics; nothing
+builds on every push.</p>
 <h2 id="assets-and-verification-tools">Assets and verification tools</h2>
 <p>Fonts: <a href="rasgo-synth-app/assets/README.html">exact upstream revisions/hashes</a>;
 no runtime CDN. Python is not required to run the instrument. Python3.8+ is
