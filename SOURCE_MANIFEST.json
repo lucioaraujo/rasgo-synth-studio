@@ -54,7 +54,7 @@
     {
       "path": "DEPENDENCIES.md",
       "source": "packaging/public/DEPENDENCIES.md",
-      "sha256": "7bdea6a33f99111ba12cf2481c846a26238c54b17de5d5e87fc438a29a7976b6"
+      "sha256": "99976cbcf46ebe5acd0e8584c6dc6af009ab594cb0e7475063a0b2e479296d62"
     },
     {
       "path": "INSTALL.md",
@@ -254,7 +254,7 @@
     {
       "path": "packaging/public/DEPENDENCIES.md",
       "source": "packaging/public/DEPENDENCIES.md",
-      "sha256": "7bdea6a33f99111ba12cf2481c846a26238c54b17de5d5e87fc438a29a7976b6"
+      "sha256": "99976cbcf46ebe5acd0e8584c6dc6af009ab594cb0e7475063a0b2e479296d62"
     },
     {
       "path": "packaging/public/README.md",

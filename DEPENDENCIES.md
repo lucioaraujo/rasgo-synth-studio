@@ -1,6 +1,7 @@
 # Studio — build and dependency lock
 
-Authorial source: AGPL-3.0-or-later. JUCE option: AGPLv3. Complete notices:
+Authorial source: AGPL-3.0-or-later. JUCE option: AGPLv3 (license decision,
+2026-10-12). No commercial JUCE license is claimed. Complete notices:
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## JUCE9.0.3

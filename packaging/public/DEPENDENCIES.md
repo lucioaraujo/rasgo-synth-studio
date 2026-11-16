@@ -1,6 +1,7 @@
 # Studio — build and dependency lock
 
-Authorial source: AGPL-3.0-or-later. JUCE option: AGPLv3. Complete notices:
+Authorial source: AGPL-3.0-or-later. JUCE option: AGPLv3 (license decision,
+2026-10-12). No commercial JUCE license is claimed. Complete notices:
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## JUCE9.0.3
@@ -23,8 +24,9 @@ dependencies. Linux: build-essential, pkg-config, libasound2-dev,
 libfreetype6-dev, libfontconfig1-dev, libx11-dev, libxext-dev, libxrender-dev,
 zlib1g-dev. CMake configuration also builds juceaide; keep parallelism bounded.
 Windows: Visual Studio2022 C++ x64; NSIS for the installer.
-macOS: Xcode command-line tools; select -DCMAKE_OSX_ARCHITECTURES=arm64
-or x86_64 and explicit deployment target (the workflow selects12.0).
+macOS: Xcode command-line tools; select -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+(Universal 2, as published), arm64 or x86_64, and an explicit deployment target
+(the workflow selects12.0).
 
 Create packages only after checking the native binary:
 
@@ -34,7 +36,10 @@ Create packages only after checking the native binary:
 Windows prepares NSIS/ZIP; macOS prepares DMG. Signing/notarization is not
 provided by these commands. Linux's .deb/AppImage/tar recipe and tool hashes
 are in [packaging/linux/README.md](packaging/linux/README.md).
-Manual release workflows live in .github/workflows; never build on every push.
+Since 16/11/2026, as in the sibling instruments, a `v*` tag runs
+.github/workflows/package.yml: it builds, tests and packages on the three systems
+and creates the GitHub release. Other workflows are manual diagnostics; nothing
+builds on every push.
 
 ## Assets and verification tools
 

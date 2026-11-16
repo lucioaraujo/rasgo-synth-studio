@@ -315,8 +315,8 @@
     {
       "source": "DEPENDENCIES.md",
       "output": "DEPENDENCIES.html",
-      "source_sha256": "744034be09648b618fbf35a7eff7dbbddca21a1e28b7ec49c3ae80423d8cc0f6",
-      "output_sha256": "341e1d578be78c795045b870d3f2d7520d7452a8006fde09cb8d000235c331ab",
+      "source_sha256": "99976cbcf46ebe5acd0e8584c6dc6af009ab594cb0e7475063a0b2e479296d62",
+      "output_sha256": "7287b29407b4a57807f5c38f86160bf3074d9cf9c58ff481ee494d71207b1dd4",
       "transformed": true
     },
     {
