@@ -248,7 +248,9 @@ jobs:
             fi
           done
           find pacotes -type f -name '*.dmg' | grep -q 'macos-universal'
-          for sums in $(find pacotes -name SHA256SUMS); do (cd "$(dirname "$sums")" && sha256sum -c SHA256SUMS); done
+          # the Windows SHA256SUMS comes with CRLF line ends (16/11: the first
+          # v0.2.0 release failed on the stray \r); read both
+          for sums in $(find pacotes -name SHA256SUMS); do (cd "$(dirname "$sums")" && tr -d '\r' < SHA256SUMS | sha256sum -c -); done
           mkdir -p release
           find pacotes -type f \( -name '*.deb' -o -name '*.AppImage' -o -name '*.tar.gz' -o -name '*.dmg' -o -name '*.exe' -o -name '*.zip' \) -exec cp {} release/ \;
           (cd release && sha256sum * > SHA256SUMS && cat SHA256SUMS)
