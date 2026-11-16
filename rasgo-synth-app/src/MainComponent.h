@@ -1,6 +1,7 @@
 #pragma once
 #include <juce_gui_basics/juce_gui_basics.h>
 #include "MaestrucLink.h"   // regente da família (maestruc.link/1)
+#include "StreamingVersion.h"   // versão de entrega a -14 LUFS (16/11/2026)
 #include <atomic>
 #include <algorithm>
 #include <cmath>
@@ -2060,6 +2061,9 @@ private:
         albumTrackCountEditor_.setEnabled(true);
         stopPlayback(false);
         albumResults_ = std::move(results);
+        // versão de entrega de cada faixa (16/11/2026, saida-ref 1.1), num fio próprio
+        for (const auto& track : albumResults_)
+            queueStreamingVersion(track.piece);
         progressBar_.setVisible(false);
         composeButton_.setEnabled(true);
         rendering_.store(false);
@@ -2314,6 +2318,7 @@ private:
         } else {
             setStatusText(ui::text(ui::strings::saved, uiLanguage_), false);
             appendLog("gravado: " + juce::String::fromUTF8(result.path.c_str()));
+            queueStreamingVersion(result);   // versão de entrega (16/11/2026)
             appendLog(formatUtf8(
                 "identidade: foco %s | escala %s | raiz MIDI %d | voz %s | ritmo %s | harmonia %s | conjunto %s",
                 result.info.materialFocus.c_str(), result.info.scaleFamily.c_str(), result.info.initialRootMidiNote,
@@ -2731,6 +2736,18 @@ private:
     bool closing_ = false, renderCancelled_ = false, renderAuditProgressReported_ = false;
     std::uint64_t coalescedProgress_ = 0;
     rasgo::PieceResult lastResult_;
+    // Versão de entrega (16/11/2026, saida-ref 1.1; o autor: "nivele todos os
+    // instrumentos para que fiquem preparados para os spotifys da vida"):
+    // <peça>_streaming.wav a -14 LUFS ao lado do WAV da peça, num fio próprio.
+    // A peça e o som não mudam. O destrutor do pool espera o que estiver rodando.
+    juce::ThreadPool streamingPool_ { juce::ThreadPoolOptions {}
+        .withThreadName("Studio streaming master").withNumberOfThreads(1) };
+    void queueStreamingVersion(const rasgo::PieceResult& piece) {
+        if (piece.path.empty() || piece.samples.empty()) return;
+        streamingPool_.addJob([path = piece.path, samples = piece.samples, rate = piece.sampleRate] {
+            rasgo::writeStreamingVersion(path, samples, rate);
+        });
+    }
 
     bool albumMode_ = false;
     bool albumSettingsOpen_ = false;

@@ -37,6 +37,10 @@ juce_add_gui_app(RasgoSynthStudio
     BUNDLE_ID "net.arquiviagem.rasgo.synthstudio"
     VERSION "${PROJECT_VERSION}")
 target_sources(RasgoSynthStudio PRIVATE src/Main.cpp src/LinuxKeyboardSymbols.cpp)
+# saida-ref 1.1 (16/11/2026): o master de entrega da peça
+target_sources(RasgoSynthStudio PRIVATE
+    src/saida/DeliveryMaster.cpp src/saida/OutputStage.cpp src/saida/LoudnessMeter.cpp
+    src/saida/TruePeakDetector.cpp src/saida/TakeAnalysis.cpp)
 target_compile_definitions(RasgoSynthStudio PRIVATE
     JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_MODAL_LOOPS_PERMITTED=1
     JUCE_USE_WEBP=0   # JUCE 9.0.3 traz WebP (libwebp); o Studio não usa (15/11/2026)

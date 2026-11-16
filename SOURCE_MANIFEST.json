@@ -269,7 +269,7 @@
     {
       "path": "rasgo-synth-app/CMakeLists.txt",
       "source": "rasgo-synth-app/CMakeLists.txt",
-      "sha256": "9f4679775099559543b1e24507274cc31d72b6309ff9e78e6c383be32a2a10fb"
+      "sha256": "975b749e933a846e8484eba23f2c418e44437e6ae9db3e94c4ad14b86c6e7152"
     },
     {
       "path": "rasgo-synth-app/assets/README.md",
@@ -414,7 +414,7 @@
     {
       "path": "rasgo-synth-app/src/MainComponent.h",
       "source": "rasgo-synth-app/src/MainComponent.h",
-      "sha256": "d1e5e663c3a2692ff7b0590a4dfad7ade8f7cbb76d238b9d3cdade7959d9e706"
+      "sha256": "ea6e7998f1883154ae62d2cc1a23c7acfb458b228741dfaa5aad185c3ffa7711"
     },
     {
       "path": "rasgo-synth-app/src/ModulePanelView.h",
@@ -482,6 +482,11 @@
       "sha256": "c699518c86d859978e20fd05eea37978d3a192ec10461c94d7a30b55a6e46c9c"
     },
     {
+      "path": "rasgo-synth-app/src/StreamingVersion.h",
+      "source": "rasgo-synth-app/src/StreamingVersion.h",
+      "sha256": "88e3627a9f432d4ba0e5d9fa34ab5352cfc8410d04b6742d50cc4acfef08bfc9"
+    },
+    {
       "path": "rasgo-synth-app/src/StudioLayoutBudget.h",
       "source": "rasgo-synth-app/src/StudioLayoutBudget.h",
       "sha256": "4c1a20628e037d82d8835228d04cbb9b0316464af8a2b243f559285f7e804e5d"
@@ -500,6 +505,61 @@
       "path": "rasgo-synth-app/src/WaveformView.h",
       "source": "rasgo-synth-app/src/WaveformView.h",
       "sha256": "a01e3eb1b89580d214f5f7f8f370c6d15b24a045a46e57b838948173c017c6f4"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/DeliveryMaster.cpp",
+      "source": "rasgo-synth-app/src/saida/DeliveryMaster.cpp",
+      "sha256": "51d1d0b0389474cc75584708b949ab87d83f03f88500e20230ca94965d83fdcb"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/DeliveryMaster.h",
+      "source": "rasgo-synth-app/src/saida/DeliveryMaster.h",
+      "sha256": "23961e1c8200cb9aa9053c48135e412cba8659a3189b5afc11dc025a13d0ea0f"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/LoudnessMeter.cpp",
+      "source": "rasgo-synth-app/src/saida/LoudnessMeter.cpp",
+      "sha256": "2d1d7620064b18e25650cd12022ada05c24c2e683e5af2bba47660461a59e531"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/LoudnessMeter.h",
+      "source": "rasgo-synth-app/src/saida/LoudnessMeter.h",
+      "sha256": "3d62262b5749a8743374ccda58fd1264f5c7a0edd36bf39017f1781a47fdd397"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/Numeric.h",
+      "source": "rasgo-synth-app/src/saida/Numeric.h",
+      "sha256": "131447017b7347a932f35d4c5d41e96c1c66c0f2ec586a2921cdd6d42b356ee2"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/OutputStage.cpp",
+      "source": "rasgo-synth-app/src/saida/OutputStage.cpp",
+      "sha256": "67377221f9ba537b177ac5a992dff496997c9b0db0f56994650a0780c3c8a200"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/OutputStage.h",
+      "source": "rasgo-synth-app/src/saida/OutputStage.h",
+      "sha256": "eb8766c5d5826e0541a7509c0d3b562d79417597a40627d9cbde7663d4ffe6a4"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/TakeAnalysis.cpp",
+      "source": "rasgo-synth-app/src/saida/TakeAnalysis.cpp",
+      "sha256": "73f8cb2d0a0925a1e14dafd9d64ebe8251ee9d49b2cc7d8a7980b98f43c80f48"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/TakeAnalysis.h",
+      "source": "rasgo-synth-app/src/saida/TakeAnalysis.h",
+      "sha256": "2740aaa74519129018479b957e83e7db5c9214802c472802fe2e837b75df1900"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/TruePeakDetector.cpp",
+      "source": "rasgo-synth-app/src/saida/TruePeakDetector.cpp",
+      "sha256": "7736501501e3a2d9a08414fed0a8f2df2cb6675f2cf09cb687a0713c40c95349"
+    },
+    {
+      "path": "rasgo-synth-app/src/saida/TruePeakDetector.h",
+      "source": "rasgo-synth-app/src/saida/TruePeakDetector.h",
+      "sha256": "e3bd6a23d7f1cf9df0cfa09d1aad791f0d4a14a4da43dbc7b6fa8828861a11ba"
     },
     {
       "path": "rasgo-synth-app/src/test_accent_composition.cpp",
