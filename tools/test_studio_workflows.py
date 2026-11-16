@@ -99,19 +99,24 @@ class WorkflowContractTests(unittest.TestCase):
                         count += 1
         self.assertGreaterEqual(count, 8)
 
-    def test_pages_is_manual_bounded_and_only_publishes_static_export(self):
+    def test_pages_is_bounded_and_only_publishes_static_export(self):
+        # 16/11/2026: like the sibling instruments, a push to main that changes
+        # site/ publishes it; the manual button stays
         document = workflow("publish-site.yml")
-        self.assertEqual(set(document["on"]), {"workflow_dispatch"})
+        self.assertEqual(set(document["on"]), {"push", "workflow_dispatch"})
+        self.assertEqual(document["on"]["push"]["branches"], ["main"])
+        self.assertIn("site/**", document["on"]["push"]["paths"])
         self.assertEqual(document["on"]["workflow_dispatch"]["inputs"]["confirm_publish"]["default"], "false")
         job = document["jobs"]["publish"]
         self.assertEqual(int(job["timeout-minutes"]), 5)
         self.assertIn("inputs.confirm_publish", job["if"])
+        self.assertIn("github.event_name == 'push'", job["if"])
         self.assertEqual(job["permissions"], {"contents": "read", "pages": "write", "id-token": "write"})
         upload = next(step for step in job["steps"] if "upload-pages-artifact@" in step.get("uses", ""))
         self.assertEqual(upload["with"]["path"], "site")
         self.assertEqual(upload["with"]["retention-days"], "1")
         text = (ROOT / ".github/workflows/publish-site.yml").read_text()
-        for marker in ("releases/tags/v0.2.0", "--jq .draft", "sha256sum --check"):
+        for marker in ("releases/latest", "--jq .draft", "sha256sum --check"):
             self.assertIn(marker, text)
         for forbidden in ("cmake --build", "gh release edit", "0_BRAINSTORM", "actions/upload-artifact@"):
             self.assertNotIn(forbidden, text)
@@ -131,6 +136,46 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertEqual(len(macs), 2)
         self.assertEqual({row["package"] for row in macs}, {"rasgo-synth-studio-0.2.0-macos-universal.dmg"})
         self.assertEqual(len({row["sha256"] for row in macs}), 1)
+
+
+class FamilyReleaseWorkflowTests(unittest.TestCase):
+    """16/11/2026: "já faça o studio ser como os demais" - the family's tag ->
+    release workflow (Batruc, Antitotem, Trioio, Rasgo Modular)."""
+
+    def test_tag_builds_and_releases_but_plain_push_does_not(self):
+        document = workflow("package.yml")
+        self.assertEqual(document["on"]["push"], {"tags": ["v*"]})
+        self.assertIn("workflow_dispatch", document["on"])
+        self.assertNotIn("branches", document["on"]["push"])
+        release = document["jobs"]["release"]
+        self.assertEqual(release["if"], "startsWith(github.ref, 'refs/tags/v')")
+        self.assertEqual(set(release["needs"]), {"linux", "native", "mac-intel"})
+        self.assertEqual(release["permissions"], {"contents": "write"})
+        text = (ROOT / ".github/workflows/package.yml").read_text(encoding="utf-8")
+        for marker in ("gh release create", "--verify-tag", "SHA256SUMS", "macos-universal"):
+            self.assertIn(marker, text)
+        for ext in ("deb", "AppImage", "tar.gz", "dmg", "exe", "zip"):
+            self.assertIn(ext, text)
+
+    def test_one_universal_dmg_tested_on_intel_and_the_same_linux_path(self):
+        document = workflow("package.yml")
+        self.assertEqual(document["jobs"]["linux"]["uses"], "./.github/workflows/package-linux.yml")
+        platforms = {row["platform"] for row in document["jobs"]["native"]["strategy"]["matrix"]["include"]}
+        self.assertEqual(platforms, {"windows-x64", "macos-universal"})
+        text = (ROOT / ".github/workflows/package.yml").read_text(encoding="utf-8")
+        self.assertIn("-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64", text)
+        self.assertIn("be29c81492b6151c8ea8d14c840e1311963b3a83", text)
+        self.assertIn("codesign --force --deep --sign -", text)
+        self.assertIn("smoke_studio_native.py", text)
+        intel = document["jobs"]["mac-intel"]
+        self.assertEqual(intel["runs-on"], "macos-15-intel")
+        self.assertEqual(intel["needs"], "native")
+        for job in document["jobs"].values():
+            for step in job.get("steps", []):
+                if "run" in step and step.get("shell", "bash") == "bash":
+                    result = subprocess.run(["bash", "-n"], input=step["run"], text=True,
+                                            capture_output=True, timeout=3)
+                    self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == "__main__":

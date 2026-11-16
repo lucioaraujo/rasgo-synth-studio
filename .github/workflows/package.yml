@@ -1,0 +1,276 @@
+# Rasgo Synth Studio — build, teste e pacotes, no padrão da família (16/11/2026).
+#
+# Pedido do autor: "já faça o studio ser como os demais". Como no Batruc, no
+# Antitotem, no Trioio e no Rasgo Modular: a tag `v*` compila, testa,
+# empacota nos três sistemas e CRIA A RELEASE sozinha. Antes, o Studio tinha
+# só workflows manuais com portões de orçamento (package-native,
+# package-macos-universal, publish-site), da época em que vivia no monorepo
+# privado; o repositório é público e o Actions é gratuito.
+#
+# O que vem do Studio e continua valendo (package-native.yml, 15/10):
+#  - o JUCE fixado no commit be29c81 (9.0.3);
+#  - os testes nativos de UTF-8, pilha e metadados antes do build completo;
+#  - o render e o fechamento do binário instalado, sem tocar áudio
+#    (tools/smoke_studio_native.py), antes de empacotar;
+#  - o Linux reutilizável (package-linux.yml): .deb, AppImage com o runtime
+#    guardado no repositório, .tar.gz e abertura em Debian 12, Ubuntu 24.04,
+#    Fedora e Arch.
+# O que muda: o Mac é UM DMG Universal 2, compilado de uma vez para arm64 e
+# x86_64 (PackagePolicy.cmake dá o nome macos-universal), com assinatura
+# ad-hoc do pacote inteiro, como nos irmãos. O mesmo DMG é testado depois
+# num Mac Intel. A montagem do DMG tenta de novo: em 16/11 o runner falhou com
+# "hdiutil: attach failed - Resource temporarily unavailable".
+name: Studio — build, test & package
+
+on:
+  push:
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: studio-package-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    uses: ./.github/workflows/package-linux.yml
+
+  native:
+    name: native (${{ matrix.platform }})
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2022
+            platform: windows-x64
+          - runner: macos-15
+            platform: macos-universal
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/checkout@v4
+        with:
+          repository: juce-framework/JUCE
+          ref: be29c81492b6151c8ea8d14c840e1311963b3a83
+          path: .dependencies/JUCE
+      - name: Configure Windows x64
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $nsis = "${env:ProgramFiles(x86)}\NSIS"
+          if (!(Test-Path "$nsis\makensis.exe")) { throw "NSIS is required; no implicit installation" }
+          $nsis | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          cmake -S rasgo-synth-app -B .local-build/native -G "Visual Studio 17 2022" -A x64 "-DRASGO_JUCE_ROOT=$pwd/.dependencies/JUCE"
+          if ($LASTEXITCODE -ne 0) { throw "CMake configure failed" }
+      - name: Configure macOS Universal 2
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S rasgo-synth-app -B .local-build/native \
+            -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+            "-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64" \
+            "-DRASGO_JUCE_ROOT=$PWD/.dependencies/JUCE"
+      - name: Verify native Unicode file publication before the full build
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          cmake -S rasgo-synth-core -B .local-build/native-core -DBUILD_TESTING=ON -DRASGO_ENABLE_RENDER_INTEGRATION_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+          if ($LASTEXITCODE -ne 0) { throw "Core test configure failed" }
+          cmake --build .local-build/native-core --config Release --target rasgo_native_portability_tests rasgo_index_stack_budget_tests rasgo_artist_metadata_tests --parallel 2
+          if ($LASTEXITCODE -ne 0) { throw "Core portability build failed" }
+          ctest --test-dir .local-build/native-core -C Release -R '^rasgo_(native_portability|index_stack_budget|artist_metadata)_tests$' --output-on-failure
+          if ($LASTEXITCODE -ne 0) { throw "Core native UTF-8/formatting regression" }
+      - name: Build the app
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          cmake --build .local-build/native --config Release --parallel 2
+          if ($LASTEXITCODE -ne 0) { throw "Native build failed" }
+      - name: Seal the whole macOS bundle (ad-hoc) and check both slices
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -euo pipefail
+          app=$(find .local-build/native -type d -name 'Rasgo Synth Studio.app' -not -path '*/_CPack_Packages/*' | head -1)
+          test -n "$app"
+          exe="$app/Contents/MacOS/Rasgo Synth Studio"
+          lipo "$exe" -verify_arch arm64 x86_64
+          otool -l "$exe" | grep -A4 'LC_BUILD_VERSION' | head -12
+          codesign --force --deep --sign - "$app"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          for arch in arm64 x86_64; do
+            codesign -dv --arch "$arch" "$app" 2>&1 | grep -q 'Signature=adhoc'
+          done
+      - name: Install tree
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          cmake --install .local-build/native --config Release --prefix .local-build/native-stage
+          if ($LASTEXITCODE -ne 0) { throw "Install tree failed" }
+      - name: Render and close the fresh installed binary without audio playback
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          if ($IsWindows) {
+            python -B tools/smoke_studio_native.py --binary "$pwd/.local-build/native-stage/Rasgo Synth Studio.exe" --output "$pwd/.local-build/native-runtime"
+          } else {
+            $bundle = "$pwd/.local-build/native-stage/Rasgo Synth Studio.app"
+            python -B tools/smoke_studio_native.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" --bundle "$bundle" --output "$pwd/.local-build/native-runtime"
+          }
+          if ($LASTEXITCODE -ne 0) { throw "Fresh native runtime failed" }
+      - name: Package only after the native runtime passes
+        shell: pwsh
+        run: |
+          cpack --config .local-build/native/CPackConfig.cmake -C Release -B .local-build/native-packages
+          if ($LASTEXITCODE -ne 0) { throw "Native packaging failed" }
+      - name: Checksums
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $packages = @(Get-ChildItem .local-build/native-packages -File | Where-Object { $_.Extension -in ".exe", ".zip", ".dmg" })
+          if ($packages.Count -eq 0) { throw "Missing native packages" }
+          $lines = foreach ($file in $packages) {
+            $hash = (Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $($file.Name)"
+          }
+          [System.IO.File]::WriteAllLines("$pwd/.local-build/native-packages/SHA256SUMS", $lines, [System.Text.UTF8Encoding]::new($false))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-${{ matrix.platform }}-candidates
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            .local-build/native-packages/*.exe
+            .local-build/native-packages/*.zip
+            .local-build/native-packages/*.dmg
+            .local-build/native-packages/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-${{ matrix.platform }}-runtime-diagnostics
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            .local-build/native-runtime/report.json
+            .local-build/native-runtime/launcher.log
+            .local-build/native-runtime/dados-*/lifecycle-history.jsonl
+            .local-build/native-runtime/dados-*/Logs/*.log
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: studio-${{ matrix.platform }}-build-diagnostics
+          retention-days: 7
+          path: |
+            .local-build/native/CMakeCache.txt
+            .local-build/native/CMakeFiles/CMakeConfigureLog.yaml
+            .local-build/native/_CPack_Packages/**/NSISOutput.log
+
+  # O MESMO DMG Universal, aberto e testado num Mac Intel (o que o Studio já
+  # fazia com o DMG montado à mão, 15/10).
+  mac-intel:
+    needs: native
+    runs-on: macos-15-intel
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: studio-macos-universal-candidates
+          path: dmg
+      - name: Verify, mount and test the same final DMG on Intel
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd dmg && shasum -a 256 -c SHA256SUMS)
+          image=$(ls dmg/*.dmg)
+          mountpoint="$PWD/mount"
+          mkdir "$mountpoint"
+          for attempt in 1 2 3 4 5; do
+            if hdiutil attach -readonly -nobrowse -mountpoint "$mountpoint" "$image"; then break; fi
+            test "$attempt" -lt 5
+            sleep $((attempt * 5))
+          done
+          trap 'hdiutil detach "$mountpoint" || true' EXIT
+          cp -R "$mountpoint/Rasgo Synth Studio.app" "$PWD/Rasgo Synth Studio.app"
+          bundle="$PWD/Rasgo Synth Studio.app"
+          lipo "$bundle/Contents/MacOS/Rasgo Synth Studio" -verify_arch x86_64 arm64
+          codesign --verify --deep --strict "$bundle"
+          python -B tools/smoke_studio_native.py --binary "$bundle/Contents/MacOS/Rasgo Synth Studio" --bundle "$bundle" --output "$PWD/runtime"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-macos-intel-runtime-diagnostics
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            runtime/report.json
+            runtime/launcher.log
+
+  # ---- release: a tag vira algo que alguém consegue BAIXAR ----------------
+  # Como nos irmãos (Batruc, Antitotem…): só em tag, depois de TODOS os
+  # pacotes e testes; `gh` do próprio runner, sem ação de terceiro.
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [linux, native, mac-intel]
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: studio-*-candidates
+          path: pacotes
+      - name: Conferir o que chegou
+        run: |
+          set -euo pipefail
+          find pacotes -type f -print
+          for ext in deb AppImage tar.gz dmg exe zip; do
+            if ! find pacotes -type f -name "*.$ext" | grep -q .; then
+              echo "::error::nenhum pacote .$ext entre os artefatos"
+              exit 1
+            fi
+          done
+          find pacotes -type f -name '*.dmg' | grep -q 'macos-universal'
+          for sums in $(find pacotes -name SHA256SUMS); do (cd "$(dirname "$sums")" && sha256sum -c SHA256SUMS); done
+          mkdir -p release
+          find pacotes -type f \( -name '*.deb' -o -name '*.AppImage' -o -name '*.tar.gz' -o -name '*.dmg' -o -name '*.exe' -o -name '*.zip' \) -exec cp {} release/ \;
+          (cd release && sha256sum * > SHA256SUMS && cat SHA256SUMS)
+      - name: Criar a release com os pacotes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRE=""
+          case "${GITHUB_REF_NAME}" in *-*) PRE="--prerelease" ;; esac
+          gh release create "${GITHUB_REF_NAME}" ${PRE} \
+            --repo "${GITHUB_REPOSITORY}" \
+            --title "Rasgo Synth Studio ${GITHUB_REF_NAME#v}" \
+            --verify-tag \
+            --notes "Release notes: [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/CHANGELOG.md) · installation per platform: [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md).
+
+          **Linux:** \`.deb\` for Ubuntu, Debian and Mint; AppImage or \`.tar.gz\` for other distributions (x86-64; tested at launch on Debian 12, Ubuntu 24.04, Fedora and Arch). **Windows:** installer (.exe) or portable (.zip). **macOS:** one Universal 2 DMG (Intel and Apple Silicon), ad-hoc signed, without Developer ID or notarisation, so Gatekeeper warns on first launch. Checksums in \`SHA256SUMS\`.
+
+          **Platform validation:** Windows and macOS packages are built, rendered and closed in CI (the same DMG on Apple Silicon and Intel); they have not yet been installed and played on real Windows or macOS machines.
+
+          ---
+
+          Notas desta versão: [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/CHANGELOG.md) · instalação por plataforma: [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md).
+
+          **Linux:** \`.deb\` para Ubuntu, Debian e Mint; AppImage ou \`.tar.gz\` para as demais distribuições (x86-64; testados na abertura em Debian 12, Ubuntu 24.04, Fedora e Arch). **Windows:** instalador (.exe) ou portátil (.zip). **macOS:** um DMG Universal 2 (Intel e Apple Silicon), com assinatura ad-hoc, sem Developer ID nem notarização, então o Gatekeeper avisa na primeira abertura. Checksums em \`SHA256SUMS\`.
+
+          **Validação por plataforma:** os pacotes Windows e macOS são compilados, renderizam e fecham na CI (o mesmo DMG em Apple Silicon e Intel); ainda não foram instalados e tocados em máquinas reais Windows ou macOS." \
+            release/*

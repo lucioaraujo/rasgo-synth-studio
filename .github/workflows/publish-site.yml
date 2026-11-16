@@ -1,12 +1,20 @@
-name: Studio — publish validated static website (manual)
+name: Studio — publish validated static website
 
 # One standard public Linux runner, five-minute ceiling, no app compilation.
 # Publishes only the explicit, hash-checked site export; artifact retained one day.
+# 16/11/2026 ("já faça o studio ser como os demais"): like the sibling
+# instruments, a push to main that changes site/ publishes it; the manual
+# button stays. It still refuses to publish while the latest release is a draft.
 on:
+  push:
+    branches: [main]
+    paths:
+      - site/**
+      - .github/workflows/publish-site.yml
   workflow_dispatch:
     inputs:
       confirm_publish:
-        description: Publish the prepared Studio website after checking public v0.2.0
+        description: Publish the prepared Studio website after checking the public release
         required: true
         type: boolean
         default: false
@@ -17,7 +25,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   publish:
-    if: ${{ inputs.confirm_publish }}
+    if: ${{ github.event_name == 'push' || inputs.confirm_publish }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
@@ -34,7 +42,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test "$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/v0.2.0" --jq .draft)" = false
+          test "$(gh api "repos/$GITHUB_REPOSITORY/releases/latest" --jq .draft)" = false
           (cd site && sha256sum --check --quiet SHA256SUMS)
           test -f site/index.html
           test -f site/en.html

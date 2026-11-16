@@ -58,7 +58,7 @@ def selection(root=ROOT):
                      ".github/workflows/package-linux.yml", ".github/workflows/smoke-native.yml",
                      ".github/workflows/diagnose-macos-intel.yml",
                      ".github/workflows/package-macos-universal.yml",
-                     ".github/workflows/publish-site.yml"))
+                     ".github/workflows/publish-site.yml", ".github/workflows/package.yml"))
     for directory in ("rasgo-synth-app/src", "rasgo-synth-app/tests", "rasgo-synth-core/src",
                       "packaging"):
         for path in (root / directory).rglob("*"):
