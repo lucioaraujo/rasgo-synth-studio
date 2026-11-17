@@ -76,6 +76,15 @@ if [[ -f "$(dirname "$SRC")/AccentedTextEditor.h" ]]; then
   g++ "${CXX_COMMON[@]}" -c "$(dirname "$SRC")/LinuxKeyboardSymbols.cpp" -o "$WORK/keyboard.o"
   OBJS+=("$WORK/keyboard.o")
 fi
+# saida-ref (17/11/2026): o master de entrega da peça (src/StreamingVersion.h)
+# chama código em src/saida/*.cpp; o CMake já os lista, e este caminho do
+# pacote Linux não os compilava (link sem DeliveryMaster na v0.2.1).
+if [[ -d "$(dirname "$SRC")/saida" ]]; then
+  for unit in "$(dirname "$SRC")"/saida/*.cpp; do
+    g++ "${CXX_COMMON[@]}" -c "$unit" -o "$WORK/saida_$(basename "${unit%.cpp}").o"
+    OBJS+=("$WORK/saida_$(basename "${unit%.cpp}").o")
+  done
+fi
 for name in "${!MODULE_WRAPPERS[@]}"; do
   printf '#include <%s>\n' "${MODULE_WRAPPERS[$name]}" > "$WORK/mod_$name.cpp"
   g++ "${CXX_COMMON[@]}" "${INC[@]}" "${DEFS[@]}" -c "$WORK/mod_$name.cpp" -o "$WORK/mod_$name.o"
