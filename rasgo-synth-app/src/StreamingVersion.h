@@ -49,10 +49,10 @@ inline void writeStreamingVersion(const std::string& piecePath, const std::vecto
     WavMetadata meta;
     meta.title = "Rasgo Synth Studio (streaming)";
     meta.artist = "Lucio de Araujo";
-    meta.comment = "Versao de entrega: -14 LUFS, true peak <= -1 dBTP (saida-ref 1.1)";
+    meta.comment = "Versao de entrega: -14 LUFS, true peak <= -1 dBTP (saida-ref 1.2)";
     if (!writeWavFile(wav.u8string(), sink.out, 2, sampleRate, meta)) return;
     std::ofstream text(std::filesystem::path(wav).replace_extension(".txt"));
-    text << "Rasgo Synth Studio - versao de entrega (streaming), saida-ref 1.1\n"
+    text << "Rasgo Synth Studio - versao de entrega (streaming), saida-ref 1.2\n"
          << "peca: " << piece.filename().u8string() << "\n"
          << "alvo: -14 LUFS, true peak <= -1 dBTP; limitador no maximo 6 dB (guarda de dinamica)\n"
          << "entrada: " << report.inputLufs << " LUFS, " << report.inputTruePeakDb << " dBTP\n"
