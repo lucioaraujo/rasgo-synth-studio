@@ -1,6 +1,6 @@
 # Rasgo Synth Studio — Manual
 
-Experimental version 0.2.0 — 2026
+Experimental version 0.2.1 — 2026
 
 Reviewed on 2026-10-12 against current controls and contracts. [Step-by-step tutorial](../../website/quickstart.html#en).
 
@@ -58,7 +58,7 @@ The desktop application uses JUCE. The local JUCE 9 source offers AGPLv3 or a co
 
 ### Before you start
 
-This guide describes experimental Studio 0.2.0, not Rasgo Modular or Performance. Keep listening volume low, choose a writable output folder and work on one piece at a time. The eighth-note icon ♪ starts composition; PLAY plays rendered audio. The control names below match the English interface.
+This guide describes experimental Studio 0.2.1, not Rasgo Modular or Performance. Keep listening volume low, choose a writable output folder and work on one piece at a time. The eighth-note icon ♪ starts composition; PLAY plays rendered audio. The control names below match the English interface.
 
 ### Your first piece — six steps
 

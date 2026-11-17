@@ -59,7 +59,7 @@
     {
       "path": "INSTALL.md",
       "source": "INSTALL.md",
-      "sha256": "1456ebbe632df3cb247dfcccc02341dc7c097fda0841be7f79ec8d171c84963a"
+      "sha256": "6265a08d504ba5244a04820ce3f9e4b8f4683cca626462cb1780008a04a8b307"
     },
     {
       "path": "LICENSE",
@@ -69,7 +69,7 @@
     {
       "path": "README.md",
       "source": "packaging/public/README.md",
-      "sha256": "4155ee116268246a61b20ce00463a48d26f84a55794d7c4a413512355140dd75"
+      "sha256": "56cff480b89268f6a717fbf468ed039468063d3e7b02934cfb158bb3942d8da4"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -104,7 +104,7 @@
     {
       "path": "docs/en/manual.md",
       "source": "docs/en/manual.md",
-      "sha256": "5377e250164649cbdfe03d0b149218a516e4e24b93f3e281feacc385a959060c"
+      "sha256": "6c6bd03c467e829883a0405a1e6908d63748f462239a1a97cd713f30887ec843"
     },
     {
       "path": "docs/es/Arquitetura_Fluxograma.md",
@@ -129,7 +129,7 @@
     {
       "path": "docs/es/manual.md",
       "source": "docs/es/manual.md",
-      "sha256": "3b0ab3ac14647a36f81f61a3bd266bfb4bf5f4aaf0dcff54381b554afcd720a7"
+      "sha256": "a531ef53ba242ab57a3bb4f8e4ff107e6b86bad4d7bb9993bac9d59099e67eb0"
     },
     {
       "path": "docs/fr/Arquitetura_Fluxograma.md",
@@ -154,7 +154,7 @@
     {
       "path": "docs/fr/manual.md",
       "source": "docs/fr/manual.md",
-      "sha256": "a5534f9c3298e1328eac8a5c3c038be78f309a2a5b0a79b227d1c7725f48d7fc"
+      "sha256": "8fe6d171c4aa0e36e4fd632634a9713c4067274a98f9e48cc13987bea02f2fd2"
     },
     {
       "path": "docs/pt/Arquitetura_Fluxograma.md",
@@ -184,7 +184,7 @@
     {
       "path": "docs/pt/manual.md",
       "source": "docs/pt/manual.md",
-      "sha256": "47e179b1e88745d2c8842ce6dc8110b4720bafb817b82c6e8e8dadd9f4698eb3"
+      "sha256": "d0934c81923f5c2c387503c11b68a2e5bcc5c97cbf6c80f7721374c928e71766"
     },
     {
       "path": "packaging/PORTABILIDADE.md",
@@ -259,7 +259,7 @@
     {
       "path": "packaging/public/README.md",
       "source": "packaging/public/README.md",
-      "sha256": "4155ee116268246a61b20ce00463a48d26f84a55794d7c4a413512355140dd75"
+      "sha256": "56cff480b89268f6a717fbf468ed039468063d3e7b02934cfb158bb3942d8da4"
     },
     {
       "path": "packaging/public/gitignore",
@@ -319,7 +319,7 @@
     {
       "path": "rasgo-synth-app/build_juce_minimal.sh",
       "source": "rasgo-synth-app/build_juce_minimal.sh",
-      "sha256": "478a5636f2f3c772efc05e20d6e581266e44907f85fbb19485d54196dc38c0cd"
+      "sha256": "cb535329a02ba5fa6ac97cceb2de22a388e3ae610fd5071043216cfb624f7fbc"
     },
     {
       "path": "rasgo-synth-app/src/AccentComposition.h",
@@ -414,7 +414,7 @@
     {
       "path": "rasgo-synth-app/src/MainComponent.h",
       "source": "rasgo-synth-app/src/MainComponent.h",
-      "sha256": "ea6e7998f1883154ae62d2cc1a23c7acfb458b228741dfaa5aad185c3ffa7711"
+      "sha256": "3b25a1e782e34b61ea8b3cdae3a95e631aeffb7abd30c60cb512a4d931cfc6d6"
     },
     {
       "path": "rasgo-synth-app/src/ModulePanelView.h",
@@ -484,7 +484,7 @@
     {
       "path": "rasgo-synth-app/src/StreamingVersion.h",
       "source": "rasgo-synth-app/src/StreamingVersion.h",
-      "sha256": "88e3627a9f432d4ba0e5d9fa34ab5352cfc8410d04b6742d50cc4acfef08bfc9"
+      "sha256": "9ed0e799a1e392197ad9016e7e0747996d64c61413afbd0f574fe0bac5e7b267"
     },
     {
       "path": "rasgo-synth-app/src/StudioLayoutBudget.h",
@@ -509,12 +509,12 @@
     {
       "path": "rasgo-synth-app/src/saida/DeliveryMaster.cpp",
       "source": "rasgo-synth-app/src/saida/DeliveryMaster.cpp",
-      "sha256": "51d1d0b0389474cc75584708b949ab87d83f03f88500e20230ca94965d83fdcb"
+      "sha256": "5465b86aea95585612cfc213fc9063a3d202f3432d8994d219b2f77ec660e2e4"
     },
     {
       "path": "rasgo-synth-app/src/saida/DeliveryMaster.h",
       "source": "rasgo-synth-app/src/saida/DeliveryMaster.h",
-      "sha256": "23961e1c8200cb9aa9053c48135e412cba8659a3189b5afc11dc025a13d0ea0f"
+      "sha256": "e6262a5bd60721f2b2116f1bc830ffc010a8cb05db26a608cab24c6aa157f698"
     },
     {
       "path": "rasgo-synth-app/src/saida/LoudnessMeter.cpp",
@@ -554,12 +554,12 @@
     {
       "path": "rasgo-synth-app/src/saida/TruePeakDetector.cpp",
       "source": "rasgo-synth-app/src/saida/TruePeakDetector.cpp",
-      "sha256": "7736501501e3a2d9a08414fed0a8f2df2cb6675f2cf09cb687a0713c40c95349"
+      "sha256": "f121e3485020d2b12bb91d3dfcfa7cb0f29854985af9a69e3d5f31fbdcf932c5"
     },
     {
       "path": "rasgo-synth-app/src/saida/TruePeakDetector.h",
       "source": "rasgo-synth-app/src/saida/TruePeakDetector.h",
-      "sha256": "e3bd6a23d7f1cf9df0cfa09d1aad791f0d4a14a4da43dbc7b6fa8828861a11ba"
+      "sha256": "bc937ef04eaf8e421f96bfa0955b7f231b527bb7c91845c6ad318d6e16addc05"
     },
     {
       "path": "rasgo-synth-app/src/test_accent_composition.cpp",
@@ -1834,7 +1834,7 @@
     {
       "path": "tools/build_studio_tutorial.py",
       "source": "tools/build_studio_tutorial.py",
-      "sha256": "19a1c3c13d02b0b7eee108252976be082ca12a5d8ce6be2410ae4849df5af6bc"
+      "sha256": "a0255c502556b743509dd8e3b71206e96a6bd8dcea7fd55200ab1061f511cbe3"
     },
     {
       "path": "tools/build_studio_universal_macos.py",
@@ -1844,7 +1844,7 @@
     {
       "path": "tools/build_studio_website.py",
       "source": "tools/build_studio_website.py",
-      "sha256": "04d208a17f11e163cb9ef71f86fee06f632f2c81ddd12e8a0d50c2ed70c2c4ea"
+      "sha256": "72091b381bee40cf81f02e90b4f9177724058fcb1f453e25afbed57933db7837"
     },
     {
       "path": "tools/debug_studio_macos.py",
@@ -1944,7 +1944,7 @@
     {
       "path": "tools/test_studio_installation_guide.py",
       "source": "tools/test_studio_installation_guide.py",
-      "sha256": "7a6435554a501e91c6d0a5603edf83619bee9f43615642cf82630da321e7f8a3"
+      "sha256": "a2941539da6684514c7d615539b5c9cef26e88bf854c2d4244228e4200b48b0a"
     },
     {
       "path": "tools/test_studio_package_policy.py",
@@ -2044,32 +2044,32 @@
     {
       "path": "website/catalogo.html",
       "source": "website/catalogo.html",
-      "sha256": "2fdba333606279e2935b0b4bf76387c650ac50c4d30871b3a71122b94e493737"
+      "sha256": "7b155505c59f361d26ac514dcc648c4728456c93a9ceec505320392e737375b8"
     },
     {
       "path": "website/en.html",
       "source": "website/en.html",
-      "sha256": "98d4b9e506860c3cb758a26e279c8ae4da7b9435be9afbb5003c297df6e4a440"
+      "sha256": "c5562e5a92e31e7bd5aabb213fcfe53a72af35e6d9502166d147a185c8e18fb2"
     },
     {
       "path": "website/es.html",
       "source": "website/es.html",
-      "sha256": "0ad65612c2f96642df8a4aaa5742d5196e651a18b9028620bd7fa702afb44bd3"
+      "sha256": "1dbe08dcffd1a58f7b0a1f0e2abaa5daaa6b94eb7b9b0afa76c6ff6058dae8b2"
     },
     {
       "path": "website/fr.html",
       "source": "website/fr.html",
-      "sha256": "0e78e15a1521585b72caa15a13df02ef43c8013f2457aaf662ab031ccb156e4b"
+      "sha256": "bc2f8348b0215d246984f828901b8ca64dbfdcf435ded8d5c506233329f3b91a"
     },
     {
       "path": "website/index.html",
       "source": "website/index.html",
-      "sha256": "0ea6b62e45bdb0d0324ac45e85d4c63f91cbc6b8b21fef94a73a032dd73f2f5d"
+      "sha256": "e738ce67e8ec7a13fce2f02df4ea9d55eedd23cc43ac3296878ffdb0bf82894b"
     },
     {
       "path": "website/quickstart.html",
       "source": "website/quickstart.html",
-      "sha256": "a6f066edd9a1b0b0947af945ab533c74a6127779a3b0d45048816472c9f370f0"
+      "sha256": "ba15b258cfa853cef0d00638b7b6331d31bf884fde01352f16448b429f64e6e8"
     }
   ],
   "site": "site/public-manifest.json",

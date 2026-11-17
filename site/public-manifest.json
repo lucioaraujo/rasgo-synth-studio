@@ -7,43 +7,43 @@
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "98d4b9e506860c3cb758a26e279c8ae4da7b9435be9afbb5003c297df6e4a440",
-      "output_sha256": "d4563289bad72e145d9eb469609ae9768f0d7474a87605be2d9bd04eace3f8c9",
+      "source_sha256": "c5562e5a92e31e7bd5aabb213fcfe53a72af35e6d9502166d147a185c8e18fb2",
+      "output_sha256": "7891545c2a0de9c3c468f456f769fe1d8d95ed0e13ade6e7e55662b669aab107",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "0ea6b62e45bdb0d0324ac45e85d4c63f91cbc6b8b21fef94a73a032dd73f2f5d",
-      "output_sha256": "78ee3441f086aee4fd9de969d7a004c214474ff5bebfdafd0b2edd7b2921beb3",
+      "source_sha256": "e738ce67e8ec7a13fce2f02df4ea9d55eedd23cc43ac3296878ffdb0bf82894b",
+      "output_sha256": "760f1e086a8e65c7a05a4e8c23dc0d9be86d5d05d1adce22954abaa245c16151",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "0e78e15a1521585b72caa15a13df02ef43c8013f2457aaf662ab031ccb156e4b",
-      "output_sha256": "9d593571e3a1ed20a105376dd8abde735e2e8e476bc02ddcfb0a0a823bd56a55",
+      "source_sha256": "bc2f8348b0215d246984f828901b8ca64dbfdcf435ded8d5c506233329f3b91a",
+      "output_sha256": "ef606b20a504da650b6fb5a7f5b40176e8dfece6f838e330e3697cedf6872aa3",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "0ad65612c2f96642df8a4aaa5742d5196e651a18b9028620bd7fa702afb44bd3",
-      "output_sha256": "4f40d8b4cedfe23a5a12fd5616a6187212730b9584ef154a7b9504cccb8a1209",
+      "source_sha256": "1dbe08dcffd1a58f7b0a1f0e2abaa5daaa6b94eb7b9b0afa76c6ff6058dae8b2",
+      "output_sha256": "921a470e2540d1183509a3a20aff30ede775b8c661a6aa3a121970e8863346c1",
       "transformed": true
     },
     {
       "source": "website/quickstart.html",
       "output": "quickstart.html",
-      "source_sha256": "a6f066edd9a1b0b0947af945ab533c74a6127779a3b0d45048816472c9f370f0",
-      "output_sha256": "4c9cfe6f133a1c8a791a30797bcb3c39898fad48007aeb28af0524d6e02c9f17",
+      "source_sha256": "ba15b258cfa853cef0d00638b7b6331d31bf884fde01352f16448b429f64e6e8",
+      "output_sha256": "1c8c2b9737f7c27acfd8c6891f1eb1776ac41ffb35fb29b6e91d8c6f9afc1e4b",
       "transformed": true
     },
     {
       "source": "website/catalogo.html",
       "output": "catalogo.html",
-      "source_sha256": "2fdba333606279e2935b0b4bf76387c650ac50c4d30871b3a71122b94e493737",
-      "output_sha256": "c15256c7746d1e39a09ffee1def8d4f58ffc684525a6118bd41dcc4c0ad5ec03",
+      "source_sha256": "7b155505c59f361d26ac514dcc648c4728456c93a9ceec505320392e737375b8",
+      "output_sha256": "58b12e4db7d6d7980bef9e9b8d981359dc71726e3cd0fff7031c51390c2332b8",
       "transformed": true
     },
     {
@@ -147,8 +147,8 @@
     {
       "source": "docs/pt/manual.md",
       "output": "docs/pt/manual.html",
-      "source_sha256": "47e179b1e88745d2c8842ce6dc8110b4720bafb817b82c6e8e8dadd9f4698eb3",
-      "output_sha256": "f0004aca348a81ef26c2f27b4b3f5735f20c2b843522e86ea5bf75d0b0b10a8a",
+      "source_sha256": "d0934c81923f5c2c387503c11b68a2e5bcc5c97cbf6c80f7721374c928e71766",
+      "output_sha256": "8dd0f20468e658c8b7ab45bc053e7a53ae89515fb46524786eeb23ea9a41355e",
       "transformed": true
     },
     {
@@ -182,8 +182,8 @@
     {
       "source": "docs/en/manual.md",
       "output": "docs/en/manual.html",
-      "source_sha256": "5377e250164649cbdfe03d0b149218a516e4e24b93f3e281feacc385a959060c",
-      "output_sha256": "6a9709ae58b0e02052fef6d926fcd4bb51fc4e1290d09ea17e4b18ba53929251",
+      "source_sha256": "6c6bd03c467e829883a0405a1e6908d63748f462239a1a97cd713f30887ec843",
+      "output_sha256": "b68659a5e5a42d2928a5ea856c4b126261e004a910d47cae3ad06a313ff40065",
       "transformed": true
     },
     {
@@ -217,8 +217,8 @@
     {
       "source": "docs/fr/manual.md",
       "output": "docs/fr/manual.html",
-      "source_sha256": "a5534f9c3298e1328eac8a5c3c038be78f309a2a5b0a79b227d1c7725f48d7fc",
-      "output_sha256": "5d1ae27a377513701259b471b32e3a082a79c8b4045c96616404310981f859ba",
+      "source_sha256": "8fe6d171c4aa0e36e4fd632634a9713c4067274a98f9e48cc13987bea02f2fd2",
+      "output_sha256": "1533ee409ccd325aae1c7fb7c95d88fe66e1ec932041eeef21323fd20c76728a",
       "transformed": true
     },
     {
@@ -252,8 +252,8 @@
     {
       "source": "docs/es/manual.md",
       "output": "docs/es/manual.html",
-      "source_sha256": "3b0ab3ac14647a36f81f61a3bd266bfb4bf5f4aaf0dcff54381b554afcd720a7",
-      "output_sha256": "43abea3446e8653608232864e2b983a9454f7501a8bb02bf648e01aec9aa7a6b",
+      "source_sha256": "a531ef53ba242ab57a3bb4f8e4ff107e6b86bad4d7bb9993bac9d59099e67eb0",
+      "output_sha256": "79fb9280d34a8005dc7b4cfd1145c970904a1208ba11ba0ee26b245c3ace2658",
       "transformed": true
     },
     {
@@ -329,8 +329,8 @@
     {
       "source": "INSTALL.md",
       "output": "INSTALL.html",
-      "source_sha256": "1456ebbe632df3cb247dfcccc02341dc7c097fda0841be7f79ec8d171c84963a",
-      "output_sha256": "b13ef0a9606bf9fdd9d76bc14dcada290fdfeb063624778e2ed904d0ee0325f3",
+      "source_sha256": "6265a08d504ba5244a04820ce3f9e4b8f4683cca626462cb1780008a04a8b307",
+      "output_sha256": "8acc825bc1d7d13f176d4f07a4460eebfd9dffba0861f789d013b78ccfb2cb0a",
       "transformed": true
     },
     {

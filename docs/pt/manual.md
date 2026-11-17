@@ -1,6 +1,6 @@
 # Rasgo Synth Studio — Manual
 
-Versão 0.2.0 experimental — 2026
+Versão 0.2.1 experimental — 2026
 
 Revisado em 2026-10-12 com base nos controles e contratos atuais. [Tutorial didático](../../website/quickstart.html#pt).
 
@@ -58,7 +58,7 @@ O aplicativo desktop usa JUCE. O código local do JUCE 9 oferece AGPLv3 ou uma l
 
 ### Antes de começar
 
-Este guia descreve o Studio 0.2.0 experimental, não o Rasgo Modular ou o Performance. Use volume de escuta baixo, uma pasta com permissão de escrita e uma peça por vez. O ícone de colcheia ♪ é o botão de composição; PLAY reproduz o áudio já gerado. Os nomes abaixo correspondem à interface em português.
+Este guia descreve o Studio 0.2.1 experimental, não o Rasgo Modular ou o Performance. Use volume de escuta baixo, uma pasta com permissão de escrita e uma peça por vez. O ícone de colcheia ♪ é o botão de composição; PLAY reproduz o áudio já gerado. Os nomes abaixo correspondem à interface em português.
 
 ### Sua primeira peça — seis passos
 
