@@ -39,7 +39,7 @@
     {
       "path": ".github/workflows/smoke-native.yml",
       "source": ".github/workflows/smoke-native.yml",
-      "sha256": "4bf52e9ff11773a64aa4cf999c31eb62f2800f8f8e760fe4c2559791f86b9c30"
+      "sha256": "5fdb87f70421e3ee0b19564a5ce6005b99efdf5b7014cb4011009770e083b91f"
     },
     {
       "path": ".gitignore",
@@ -1934,7 +1934,7 @@
     {
       "path": "tools/test_smoke_studio_native.py",
       "source": "tools/test_smoke_studio_native.py",
-      "sha256": "5f5317d96c6749d2b292cb69fc2fe28995f0dd02b6ccfc932a23895b119083b3"
+      "sha256": "62a8c3392f8f2bc1a053af06f0ab4439845d399dd685492b5efe6b265f30fa62"
     },
     {
       "path": "tools/test_smoke_studio_window.py",
@@ -1959,7 +1959,7 @@
     {
       "path": "tools/test_studio_workflows.py",
       "source": "tools/test_studio_workflows.py",
-      "sha256": "c3ac43432362b9283d1218982ec91a2a9e1cac46833ff50eb2b7636f8b6c70c9"
+      "sha256": "0ad60f71c05a4aed56df5dc3c0210c145d7bd78d2219ea1adfc3d4f328519dac"
     },
     {
       "path": "tools/test_supplement_studio_appimage.py",
