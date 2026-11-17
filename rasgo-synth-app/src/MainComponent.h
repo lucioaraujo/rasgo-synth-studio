@@ -982,6 +982,12 @@ public:
         if (pieceSession_) pieceSession_->requestCancel();
         if (albumSession_) albumSession_->requestCancel();
         if (renderThread_.joinable()) renderThread_.join();
+        // A versão de entrega em curso (ou na fila) termina antes de sair
+        // (17/11/2026): o destrutor do juce::ThreadPool só espera 5 s e depois
+        // mata o fio à força (jassertfalse) - no Mac Intel da CI, 2 assertions
+        // e o _streaming.wav pela metade.
+        while (streamingPool_.getNumJobs() > 0)
+            juce::Thread::sleep(20);
         audioDeviceManager_.removeAudioCallback(&audioSourcePlayer_);
         audioSourcePlayer_.setSource(nullptr);
         transportSource_.setSource(nullptr);
@@ -2739,7 +2745,8 @@ private:
     // Versão de entrega (16/11/2026, saida-ref 1.1; o autor: "nivele todos os
     // instrumentos para que fiquem preparados para os spotifys da vida"):
     // <peça>_streaming.wav a -14 LUFS ao lado do WAV da peça, num fio próprio.
-    // A peça e o som não mudam. O destrutor do pool espera o que estiver rodando.
+    // A peça e o som não mudam. O ~MainComponent espera o que estiver na fila
+    // (o destrutor do pool sozinho só espera 5 s e depois mata o fio).
     juce::ThreadPool streamingPool_ { juce::ThreadPoolOptions {}
         .withThreadName("Studio streaming master").withNumberOfThreads(1) };
     void queueStreamingVersion(const rasgo::PieceResult& piece) {
