@@ -18,11 +18,12 @@ from urllib.parse import unquote, urlsplit
 import markdown
 from build_studio_tutorial import ROOT, FAMILY, PAGES, STRIPS, generate, navigation
 
+SITE_BASE = "https://lucioaraujo.github.io/rasgo-synth-studio/"
 MAX_FILE = 2 * 1024 * 1024
 MAX_TOTAL = 8 * 1024 * 1024
 INTERNAL = {"CONTINUIDADE.md", "Plano_de_Upgrade_Instrumento_Generativo.md",
             "TAREFAS_STUDIO.md", "docs/INTERMODULAR_LAB.md", "packaging/PORTABILIDADE.md"}
-ASSETS = ("app_screenshot.png", "mechanisms.pt.json", "quickstart.js", "rasgo_logo.svg",
+ASSETS = ("app_screenshot.png", "og-studio.jpg", "mechanisms.pt.json", "quickstart.js", "rasgo_logo.svg",
           "site.css", "site.js", "studio.css", "architecture.svg", "genealogy.svg",
           "fonts/BigShouldersDisplay.ttf", "fonts/IBMPlexMono-Regular.ttf",
           "fonts/IBMPlexMono-Bold.ttf", "fonts/LICENSE-BigShoulders.txt",
@@ -32,7 +33,7 @@ OVERVIEWS = {"pt": "Instrumento_Integral.md", "en": "Instrument_Overview.md",
 
 
 def selection():
-    paths = [f"website/{name}" for name in (*PAGES.values(), "quickstart.html", "catalogo.html")]
+    paths = [f"website/{name}" for name in (*PAGES.values(), "quickstart.html", "catalogo.html", "sitemap.xml")]
     paths += [f"website/assets/{name}" for name in ASSETS]
     for code, overview in OVERVIEWS.items():
         paths += [f"docs/{code}/{name}" for name in
@@ -77,6 +78,11 @@ class Links(HTMLParser):
             self.ids.add(attrs["id"])
         for key in ("href", "src"):
             if key in attrs:
+                # canonical/alternate só nomeiam o próprio site (SEO, 19/11/2026):
+                # não carregam nada, então podem ser absolutos
+                if tag == "link" and key == "href" and attrs.get("rel") in ("canonical", "alternate") \
+                        and attrs[key].startswith(SITE_BASE):
+                    continue
                 self.refs.append((tag, key, attrs[key]))
 
 

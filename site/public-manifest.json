@@ -7,29 +7,29 @@
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "0dd857c0652d956258dcb199881ba65dcf46f9616ce97788b3998170fa2cb041",
-      "output_sha256": "5ec6113ca6a1dc6f1e017fa263985e0fa862303969e21d208a22bcb6aca4f02e",
+      "source_sha256": "7396588a3072f099582788f70c781b9240aa1fb3cb74991b65f0ee251dd48304",
+      "output_sha256": "65ff193a88b07c5e364516d23fdabd3a4e38a6aa006b32eca152bd6899540880",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "4b813d39b9f907d81847b64b44f9b54d1498fd546ccef76c563c5c5cece2dec9",
-      "output_sha256": "eaf2ae6daa2df6b1127dc1ff67761c7695955cb0a9ca54189bbce80c2195b264",
+      "source_sha256": "1c928c5c4c1745b5f04c2369c6a3048ebe9f46f59e1e8c350390edec5e4d55a6",
+      "output_sha256": "aa1864f83dcc0ecce697cace07e0602017540cbfcb3faac4caa184301461fbbd",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "40b4ecd05ce185204fd896a938b0b7d6ff179d840a539a229c7d436e9dd05ea5",
-      "output_sha256": "5220bb04f3994c6a449d920078d8f5e29323e120844234f010c309f55c702fb1",
+      "source_sha256": "9f441b83e97665226ed45afff89bb7fa276f1683b09a91ede1bd9778621dcf00",
+      "output_sha256": "4f51c57df4eb3b938d1ec640754e07afb90ed94513a634ac17970e16dfd9f9dc",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "61e9bc243a9fa22fe5a211554899059e5fe1a37817d9756766fd87ee0eb7475e",
-      "output_sha256": "6fccff668d8becbfc8b4443930b3255d2657b533aff4be1671d7a67a090a60ab",
+      "source_sha256": "3bea491d936296c8b882584591e13f3779d5401fde3aabbb2702e4d804988697",
+      "output_sha256": "fbcd5ee722c4ec4ce818e673715f40ef961dd2a99f9dd5113f299d29b9d4a794",
       "transformed": true
     },
     {
@@ -47,10 +47,24 @@
       "transformed": true
     },
     {
+      "source": "website/sitemap.xml",
+      "output": "sitemap.xml",
+      "source_sha256": "dd38fd22fdafe1b7b4cccfadfb38fa449a25043c2c9898e2e0ee0d8318fd3147",
+      "output_sha256": "dd38fd22fdafe1b7b4cccfadfb38fa449a25043c2c9898e2e0ee0d8318fd3147",
+      "transformed": false
+    },
+    {
       "source": "website/assets/app_screenshot.png",
       "output": "assets/app_screenshot.png",
       "source_sha256": "39b627a093baf43098d1e858241bc380236dab4682dba3a42d075e9aa03d93ab",
       "output_sha256": "39b627a093baf43098d1e858241bc380236dab4682dba3a42d075e9aa03d93ab",
+      "transformed": false
+    },
+    {
+      "source": "website/assets/og-studio.jpg",
+      "output": "assets/og-studio.jpg",
+      "source_sha256": "f76fe91ec03d25b3532accb59da82d2ac61952554324ad583939f0315fddb6ba",
+      "output_sha256": "f76fe91ec03d25b3532accb59da82d2ac61952554324ad583939f0315fddb6ba",
       "transformed": false
     },
     {
