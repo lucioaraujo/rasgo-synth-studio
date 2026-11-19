@@ -7,29 +7,29 @@
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "c5562e5a92e31e7bd5aabb213fcfe53a72af35e6d9502166d147a185c8e18fb2",
-      "output_sha256": "7891545c2a0de9c3c468f456f769fe1d8d95ed0e13ade6e7e55662b669aab107",
+      "source_sha256": "0dd857c0652d956258dcb199881ba65dcf46f9616ce97788b3998170fa2cb041",
+      "output_sha256": "5ec6113ca6a1dc6f1e017fa263985e0fa862303969e21d208a22bcb6aca4f02e",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "e738ce67e8ec7a13fce2f02df4ea9d55eedd23cc43ac3296878ffdb0bf82894b",
-      "output_sha256": "760f1e086a8e65c7a05a4e8c23dc0d9be86d5d05d1adce22954abaa245c16151",
+      "source_sha256": "4b813d39b9f907d81847b64b44f9b54d1498fd546ccef76c563c5c5cece2dec9",
+      "output_sha256": "eaf2ae6daa2df6b1127dc1ff67761c7695955cb0a9ca54189bbce80c2195b264",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "bc2f8348b0215d246984f828901b8ca64dbfdcf435ded8d5c506233329f3b91a",
-      "output_sha256": "ef606b20a504da650b6fb5a7f5b40176e8dfece6f838e330e3697cedf6872aa3",
+      "source_sha256": "40b4ecd05ce185204fd896a938b0b7d6ff179d840a539a229c7d436e9dd05ea5",
+      "output_sha256": "5220bb04f3994c6a449d920078d8f5e29323e120844234f010c309f55c702fb1",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "1dbe08dcffd1a58f7b0a1f0e2abaa5daaa6b94eb7b9b0afa76c6ff6058dae8b2",
-      "output_sha256": "921a470e2540d1183509a3a20aff30ede775b8c661a6aa3a121970e8863346c1",
+      "source_sha256": "61e9bc243a9fa22fe5a211554899059e5fe1a37817d9756766fd87ee0eb7475e",
+      "output_sha256": "6fccff668d8becbfc8b4443930b3255d2657b533aff4be1671d7a67a090a60ab",
       "transformed": true
     },
     {
