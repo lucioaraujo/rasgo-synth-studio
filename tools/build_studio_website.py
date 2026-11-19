@@ -23,7 +23,7 @@ MAX_FILE = 2 * 1024 * 1024
 MAX_TOTAL = 8 * 1024 * 1024
 INTERNAL = {"CONTINUIDADE.md", "Plano_de_Upgrade_Instrumento_Generativo.md",
             "TAREFAS_STUDIO.md", "docs/INTERMODULAR_LAB.md", "packaging/PORTABILIDADE.md"}
-ASSETS = ("app_screenshot.png", "og-studio.jpg", "mechanisms.pt.json", "quickstart.js", "rasgo_logo.svg",
+ASSETS = ("app_screenshot.png", "og-studio.jpg", "favicon.svg", "favicon-32.png", "apple-touch-icon.png", "mechanisms.pt.json", "quickstart.js", "rasgo_logo.svg",
           "site.css", "site.js", "studio.css", "architecture.svg", "genealogy.svg",
           "fonts/BigShouldersDisplay.ttf", "fonts/IBMPlexMono-Regular.ttf",
           "fonts/IBMPlexMono-Bold.ttf", "fonts/LICENSE-BigShoulders.txt",
@@ -140,6 +140,7 @@ def prepare(root=ROOT):
                     + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
                     + '<title>' + html.escape(raw.decode().splitlines()[0].lstrip("# ")) + '</title>'
                     + f'<link rel="stylesheet" href="{stylesheet}"><link rel="stylesheet" href="{style}">'
+                    + f'<link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="{prefix}assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="{prefix}assets/apple-touch-icon.png">'
                     + script + '</head><body class="studio-public"><div class="rasgo-strip">'
                     + f'<a href="{FAMILY}{"" if code == "pt" else PAGES[code]}">{STRIPS[code]}</a></div>'
                     + navigation(code, prefix, public=True, context=context)

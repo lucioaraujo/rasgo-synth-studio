@@ -83,7 +83,7 @@ def select(binary, root=ROOT):
              "install.sh": safe_file(root / "packaging/linux/install.sh"),
              "install_studio.py": safe_file(root / "packaging/linux/install_studio.py"),
              "share/applications/rasgo-synth-studio.desktop": safe_file(root / "packaging/linux/rasgo-synth-studio.desktop"),
-             "share/icons/hicolor/scalable/apps/rasgo-synth-studio.svg": safe_file(root / "rasgo-synth-app/assets/rasgo_logo_2026.svg")}
+             "share/icons/hicolor/scalable/apps/rasgo-synth-studio.svg": safe_file(root / "rasgo-synth-app/assets/studio-icon.svg")}
     for name in ASSETS:
         files["share/rasgo-synth/assets/" + name] = safe_file(root / "rasgo-synth-app/assets" / name)
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md", "CREDITS.md", "DEPENDENCIES.md", "INSTALL.md"):

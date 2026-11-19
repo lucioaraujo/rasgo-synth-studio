@@ -16,6 +16,7 @@ class LinuxPackageTest(unittest.TestCase):
             paths = [binary, root / "packaging/linux/run", root / "packaging/linux/rasgo-synth-studio.desktop",
                      root / "packaging/linux/install.sh", root / "packaging/linux/install_studio.py"]
             paths += [root / "rasgo-synth-app/assets" / name for name in ASSETS]
+            paths += [root / "rasgo-synth-app/assets/studio-icon.svg"]   # ícone do app (19/11/2026)
             paths += [root / name for name in ("LICENSE", "THIRD_PARTY_NOTICES.md", "CREDITS.md", "DEPENDENCIES.md", "INSTALL.md")]
             paths += [binary.parent / "third-party-licenses" / name for name in
                       ("JUCE-LICENSE.md", "HarfBuzz-COPYING", "SheenBidi-LICENSE", "LunaSVG-LICENSE", "PlutoVG-LICENSE")]

@@ -7,36 +7,36 @@
     {
       "source": "website/en.html",
       "output": "en.html",
-      "source_sha256": "7396588a3072f099582788f70c781b9240aa1fb3cb74991b65f0ee251dd48304",
-      "output_sha256": "65ff193a88b07c5e364516d23fdabd3a4e38a6aa006b32eca152bd6899540880",
+      "source_sha256": "3ee36ef878899344a674bc2813f725c8d7f3452eb121955f291ccecaab1ff4bd",
+      "output_sha256": "2e3701551872b8187d9cb2c6ba2ecb5aabdc6fe7634c3a17cf75a9cdefa288ee",
       "transformed": true
     },
     {
       "source": "website/index.html",
       "output": "index.html",
-      "source_sha256": "1c928c5c4c1745b5f04c2369c6a3048ebe9f46f59e1e8c350390edec5e4d55a6",
-      "output_sha256": "aa1864f83dcc0ecce697cace07e0602017540cbfcb3faac4caa184301461fbbd",
+      "source_sha256": "4ab9b1d3dd7d816203a754221c46dff529dfacc16964e6e3a89cd0ca5cc7183d",
+      "output_sha256": "50cd346ffdfafc8c5082dcf4daad27f6cda002628e4a6a6567e21c55c9472d4c",
       "transformed": true
     },
     {
       "source": "website/fr.html",
       "output": "fr.html",
-      "source_sha256": "9f441b83e97665226ed45afff89bb7fa276f1683b09a91ede1bd9778621dcf00",
-      "output_sha256": "4f51c57df4eb3b938d1ec640754e07afb90ed94513a634ac17970e16dfd9f9dc",
+      "source_sha256": "bfc022ff1c6ebd45c60f9dda6e573a958337075bfb00aad703a925eda2cf76b9",
+      "output_sha256": "7ed25c981579c24325533271364f37e8e2612034fadf56932166719d2a00b996",
       "transformed": true
     },
     {
       "source": "website/es.html",
       "output": "es.html",
-      "source_sha256": "3bea491d936296c8b882584591e13f3779d5401fde3aabbb2702e4d804988697",
-      "output_sha256": "fbcd5ee722c4ec4ce818e673715f40ef961dd2a99f9dd5113f299d29b9d4a794",
+      "source_sha256": "b1767fd51a7ef1153e4737644c7888886a24f957661a485dd5878dafaf04c91f",
+      "output_sha256": "197ca9b40cd3b16d4bc79a37ccc779f76ec617b379ec6aa246f20b21a684de15",
       "transformed": true
     },
     {
       "source": "website/quickstart.html",
       "output": "quickstart.html",
-      "source_sha256": "ba15b258cfa853cef0d00638b7b6331d31bf884fde01352f16448b429f64e6e8",
-      "output_sha256": "1c8c2b9737f7c27acfd8c6891f1eb1776ac41ffb35fb29b6e91d8c6f9afc1e4b",
+      "source_sha256": "47c0453ebe4d67f4bc71ee53e87acd0a1abd90f5086c20468d1cd86304d556bd",
+      "output_sha256": "3db818676b5821498a0eddcd64a471efeed57f3f6f6753a9dfc6d19d86f4d1e3",
       "transformed": true
     },
     {
@@ -65,6 +65,27 @@
       "output": "assets/og-studio.jpg",
       "source_sha256": "f76fe91ec03d25b3532accb59da82d2ac61952554324ad583939f0315fddb6ba",
       "output_sha256": "f76fe91ec03d25b3532accb59da82d2ac61952554324ad583939f0315fddb6ba",
+      "transformed": false
+    },
+    {
+      "source": "website/assets/favicon.svg",
+      "output": "assets/favicon.svg",
+      "source_sha256": "88dc0ed30835a2135d97e64c8874e31cb8bd6d8007b07a049dfbb0a0426f0c13",
+      "output_sha256": "88dc0ed30835a2135d97e64c8874e31cb8bd6d8007b07a049dfbb0a0426f0c13",
+      "transformed": false
+    },
+    {
+      "source": "website/assets/favicon-32.png",
+      "output": "assets/favicon-32.png",
+      "source_sha256": "ae2754f7cfadf220a44d10be5f92f93e70879058e035f409326098c71b603fba",
+      "output_sha256": "ae2754f7cfadf220a44d10be5f92f93e70879058e035f409326098c71b603fba",
+      "transformed": false
+    },
+    {
+      "source": "website/assets/apple-touch-icon.png",
+      "output": "assets/apple-touch-icon.png",
+      "source_sha256": "462cfb5a0dc760cef6fdc691de55fd9144a789c4f0e776d42e42ca2ad96e7357",
+      "output_sha256": "462cfb5a0dc760cef6fdc691de55fd9144a789c4f0e776d42e42ca2ad96e7357",
       "transformed": false
     },
     {
@@ -162,175 +183,175 @@
       "source": "docs/pt/manual.md",
       "output": "docs/pt/manual.html",
       "source_sha256": "d0934c81923f5c2c387503c11b68a2e5bcc5c97cbf6c80f7721374c928e71766",
-      "output_sha256": "8dd0f20468e658c8b7ab45bc053e7a53ae89515fb46524786eeb23ea9a41355e",
+      "output_sha256": "a917fb8416e94f94b29243212f5ced9cd4653530f9466d38ba898b1f1f75e057",
       "transformed": true
     },
     {
       "source": "docs/pt/Instrumento_Integral.md",
       "output": "docs/pt/Instrumento_Integral.html",
       "source_sha256": "d915a75e0710c48f026e0d5de4c248e1d9d8fc1f169b84e6beaf4fbf9269f130",
-      "output_sha256": "2802d864d71693040ad436097a581cb5b3e9cb0e4c8d038958313eddfd6e638e",
+      "output_sha256": "9e22ed530b3c957cbb9fc67cc753008f0deed056272ff4bd49d1c96ac8efa0d4",
       "transformed": true
     },
     {
       "source": "docs/pt/Manifesto.md",
       "output": "docs/pt/Manifesto.html",
       "source_sha256": "00d46f0545128f5c11e4a66bba8c35571857bcaacdd8a49650e9795f65964eed",
-      "output_sha256": "f6eeb1a86b43ffac8ec05229e51c28cb33d617190e6d263d0d4740eaafa016b1",
+      "output_sha256": "40dcde87135cf2def784b7297c95eccb386e780aaeafc2d275eb084862141ee1",
       "transformed": true
     },
     {
       "source": "docs/pt/Arquitetura_Fluxograma.md",
       "output": "docs/pt/Arquitetura_Fluxograma.html",
       "source_sha256": "8fb7f2754d9daf42fcdfee5e8d59ab50c4d1d72761492e69558b92212e61a267",
-      "output_sha256": "d263fa64afe84607bb8dce8891476a37d3764b49c0d1e5cd20404b9e1ded6b6c",
+      "output_sha256": "08b863558a342deebe4f719d0eb217d32b7aa9b004a1f2c4b3282b0f964a90ad",
       "transformed": true
     },
     {
       "source": "docs/pt/Documento_de_Referencia.md",
       "output": "docs/pt/Documento_de_Referencia.html",
       "source_sha256": "33133407cbdd577ca94b655a04a48f061fabdd7bd7372a60c84c6f33fd75ddf3",
-      "output_sha256": "ed24b5291d244413231926260a855c6ac8e22e3132bde24b345990f335cfa3ff",
+      "output_sha256": "c8da7ef4d46474d887add8caecba376a2ec1b41302f326cc5d075c2107581205",
       "transformed": true
     },
     {
       "source": "docs/en/manual.md",
       "output": "docs/en/manual.html",
       "source_sha256": "6c6bd03c467e829883a0405a1e6908d63748f462239a1a97cd713f30887ec843",
-      "output_sha256": "b68659a5e5a42d2928a5ea856c4b126261e004a910d47cae3ad06a313ff40065",
+      "output_sha256": "0153d7a75d0da5a5d03323b4bd8c6e7ef0554412f953dc4aeab95d624743adb5",
       "transformed": true
     },
     {
       "source": "docs/en/Instrument_Overview.md",
       "output": "docs/en/Instrument_Overview.html",
       "source_sha256": "293f1309415ded34026d280aa5ccc048a7ed7b37435507fd95bf3d0096795193",
-      "output_sha256": "8f2cd8602ba1b0d5f1a662b81812910b25c5d1bd85776d3f503dafecbffa2c6c",
+      "output_sha256": "695b61e396cca224054a281e2d861dc3988453f07a8784ef1e206173231123a2",
       "transformed": true
     },
     {
       "source": "docs/en/Manifesto.md",
       "output": "docs/en/Manifesto.html",
       "source_sha256": "73aa0493fb2ac8126f9c1f5d39d0690ab13746c7652e8b3b0aca9af05ec6ff85",
-      "output_sha256": "58320ff42badcafd734118c874a65ee88d2696a5e92feb500510bc082cc32929",
+      "output_sha256": "2e6180e63371f14c478047bd1647d3ccecc52ee68ca6cb078f2146072bda8452",
       "transformed": true
     },
     {
       "source": "docs/en/Arquitetura_Fluxograma.md",
       "output": "docs/en/Arquitetura_Fluxograma.html",
       "source_sha256": "78fc8c701c59ef85e0a7a852cc7e369c73254ee703e866e82d29d7a23ae7f2cb",
-      "output_sha256": "8d19474054001a731195e7caf0b838e5b994095c9e0edcead608c59319de6a9f",
+      "output_sha256": "0a5e99e602dc14f732ff1d779e981714a336a4e8d28b05982352eb0cc4050a65",
       "transformed": true
     },
     {
       "source": "docs/en/Documento_de_Referencia.md",
       "output": "docs/en/Documento_de_Referencia.html",
       "source_sha256": "9b8b2101564e0e62fa09ddb85ffb94ef76bfe98a3043c1b04d7d880e25452878",
-      "output_sha256": "1e4da049900396eee978d6c1dfd83ece3353a2fd7ae2c1f8e08eaeb2b96d4dfb",
+      "output_sha256": "a6a739eeb955aac31b8b5591d0b12d48990c44ad8053ae8eec9809a72501acab",
       "transformed": true
     },
     {
       "source": "docs/fr/manual.md",
       "output": "docs/fr/manual.html",
       "source_sha256": "8fe6d171c4aa0e36e4fd632634a9713c4067274a98f9e48cc13987bea02f2fd2",
-      "output_sha256": "1533ee409ccd325aae1c7fb7c95d88fe66e1ec932041eeef21323fd20c76728a",
+      "output_sha256": "6d950dbd26420dda3850093923176e2f65930d0b690ceb91ef52aab67d668a4b",
       "transformed": true
     },
     {
       "source": "docs/fr/Instrument_Integral.md",
       "output": "docs/fr/Instrument_Integral.html",
       "source_sha256": "0c23e17d1001488c2005195f3bdf87b254f49475fba5d01b3f9ebf27a22e6c56",
-      "output_sha256": "1efc8a5710fb42b8590c311e541981f510a4068436a34a1900a1bbe933f5c14b",
+      "output_sha256": "7bf57e4aacd83797ddb5b429dd28e81cba96b0648f4001094ae6a2a057ff9648",
       "transformed": true
     },
     {
       "source": "docs/fr/Manifesto.md",
       "output": "docs/fr/Manifesto.html",
       "source_sha256": "96ad0d16d0796200e58c77f6632daf14a89fbbff3d7da4a839d9634c0cf57941",
-      "output_sha256": "2a027c5558e0914f0fd12fe5be5ad82fd3abac326e52cce63847ce4ea6806f4a",
+      "output_sha256": "99715c95b3a725521a5899b5453a202cacc647ced71377f111626a1f72475f70",
       "transformed": true
     },
     {
       "source": "docs/fr/Arquitetura_Fluxograma.md",
       "output": "docs/fr/Arquitetura_Fluxograma.html",
       "source_sha256": "b6bed4897bcd3ef8da5e84a33955f9d2fb1b91b1b4eeb65da3ae7b8425d7aa7e",
-      "output_sha256": "27f734030679e0a1efae1a043f5a94bf765b9a0fab657114baa526f0ce35f7e1",
+      "output_sha256": "ff6cd9bb5e204b36fc1889aeebff73bec869bd31b186c2a052c032b9040c70f2",
       "transformed": true
     },
     {
       "source": "docs/fr/Documento_de_Referencia.md",
       "output": "docs/fr/Documento_de_Referencia.html",
       "source_sha256": "72479479fa889fa63e894228e6c98ebfb4687d9ef381fe74a511ec6fa717f9ba",
-      "output_sha256": "0153a8f055ca9fb96105bf1dbea2cd4194fcf3a3a20ded0d97b7334a82df6b0b",
+      "output_sha256": "077c8602cbb8e777b443ad30e56f8c244547264ffb7c79de86b8743a60478a87",
       "transformed": true
     },
     {
       "source": "docs/es/manual.md",
       "output": "docs/es/manual.html",
       "source_sha256": "a531ef53ba242ab57a3bb4f8e4ff107e6b86bad4d7bb9993bac9d59099e67eb0",
-      "output_sha256": "79fb9280d34a8005dc7b4cfd1145c970904a1208ba11ba0ee26b245c3ace2658",
+      "output_sha256": "719f180c2b7a495392eede7d79be63d0484c6572ad443486f7397249a228bc99",
       "transformed": true
     },
     {
       "source": "docs/es/Instrumento_Integral.md",
       "output": "docs/es/Instrumento_Integral.html",
       "source_sha256": "116383f8588d4611fd8ca91073dc47902dd938c8e1252b6c151ca931fd82fb68",
-      "output_sha256": "2471cd227fe58aacda8b704136b9298a5c3a2f7224485e7df987bf6928fff052",
+      "output_sha256": "613ea76229dffb391e505d36833073a254fe46aa2534129650c695a70be628fd",
       "transformed": true
     },
     {
       "source": "docs/es/Manifesto.md",
       "output": "docs/es/Manifesto.html",
       "source_sha256": "7ab7da47375438d269ec0bffdf8f6af155366bac62a41e142ae463e1ed9abb28",
-      "output_sha256": "93239057d07308384f8951382ee949aae5a07d0fc7d14261c40f0ebe3c882c9d",
+      "output_sha256": "297b54ae6a1b263602ae65413c18de44dacbb6a24600958ed3c4528e178ac1eb",
       "transformed": true
     },
     {
       "source": "docs/es/Arquitetura_Fluxograma.md",
       "output": "docs/es/Arquitetura_Fluxograma.html",
       "source_sha256": "38a11c7bb77876f4c4d67709a8edc6d60d4a902bb90aca82de0dca84a775903f",
-      "output_sha256": "8bed024c1df192c8102b41dace1195fcb427b96b67d602389fd93e85145e9777",
+      "output_sha256": "aed2fa248af3a0c32034576ae2da0ceaa387f11ab7b2271a0a7ad1b2f001f3de",
       "transformed": true
     },
     {
       "source": "docs/es/Documento_de_Referencia.md",
       "output": "docs/es/Documento_de_Referencia.html",
       "source_sha256": "a9b04eef58dcce1c853839fab0a61500bb32a435b55c91c3b438bfcaca97acc2",
-      "output_sha256": "4fa47bfa2c21847abaaadbf347f1d72608ad521e38030ea01245d7c021758db5",
+      "output_sha256": "589eef1e7f7d61fad4fcda828491d3e7633b96f2ac33232edc1669ef7c54c217",
       "transformed": true
     },
     {
       "source": "docs/pt/_catalogo_mecanismos.md",
       "output": "docs/pt/_catalogo_mecanismos.html",
       "source_sha256": "0f283a06243221034e1ab17dcdf5c196432519fa6b5389ce0b31b1ac96240769",
-      "output_sha256": "6e580e1e19244379e7ce4abf14dbaecef59c76be0efbd0f67123f6a05d04c2b7",
+      "output_sha256": "6a65cadf34c692f484ea5c63306c457fe390edf657b33a4cd8b680ed203ed336",
       "transformed": true
     },
     {
       "source": "docs/GROOVE_RHYTHM.md",
       "output": "docs/GROOVE_RHYTHM.html",
       "source_sha256": "965a8f263312379461be8b19746302eccb347f64b547f63d749427a40a49ef67",
-      "output_sha256": "f3f679d019a9b2775da892bb1f103cca29fdb64c8d1dcb4581a8dc76cd1e25f6",
+      "output_sha256": "978cb310090fec7e4626f5de5244bfac51dd5924e480406fb07935b585993907",
       "transformed": true
     },
     {
       "source": "CREDITS.md",
       "output": "CREDITS.html",
       "source_sha256": "08c2772217d6a27630d3febcad492afa3124203d04f9d242c6fa25999bb9d1d0",
-      "output_sha256": "6bd7e097feeb61bac4092ab15d75685c00ea13cbd97008d848a5f8123386069c",
+      "output_sha256": "f87f4b8ecb860e58ef85ba156ff1b82468a0b38d203f2a8ecd88596d17476617",
       "transformed": true
     },
     {
       "source": "THIRD_PARTY_NOTICES.md",
       "output": "THIRD_PARTY_NOTICES.html",
       "source_sha256": "d1c65f7f3d8ea2476e8e9f2c3cba500746e7fd81c699aed0710488c39ff85035",
-      "output_sha256": "7511b7e17eeeda3f4daa8d9ff92a0a00b7bd238a9d7c59b5bdd107dc2cb96585",
+      "output_sha256": "b5ad3bea7f4b548649932040063d340aaa7ae6142ff00cfb6c6757aceb293152",
       "transformed": true
     },
     {
       "source": "DEPENDENCIES.md",
       "output": "DEPENDENCIES.html",
       "source_sha256": "99976cbcf46ebe5acd0e8584c6dc6af009ab594cb0e7475063a0b2e479296d62",
-      "output_sha256": "7287b29407b4a57807f5c38f86160bf3074d9cf9c58ff481ee494d71207b1dd4",
+      "output_sha256": "2cc67873372eb362eebe193eead8c848fbfa9f836c6ccdcac54725ed6a744341",
       "transformed": true
     },
     {
@@ -344,28 +365,28 @@
       "source": "INSTALL.md",
       "output": "INSTALL.html",
       "source_sha256": "6265a08d504ba5244a04820ce3f9e4b8f4683cca626462cb1780008a04a8b307",
-      "output_sha256": "8acc825bc1d7d13f176d4f07a4460eebfd9dffba0861f789d013b78ccfb2cb0a",
+      "output_sha256": "922c8d166377448ea8aebb441c956fdeae51a4e5aeb1e3fba4fa73794297bdc1",
       "transformed": true
     },
     {
       "source": "packaging/linux/README.md",
       "output": "packaging/linux/README.html",
       "source_sha256": "647fb257ad4aaf2fb949cdde10f42fb96e1de7354f36f7c505ea4878ca61f5a6",
-      "output_sha256": "628738cc2e3fa45e933ed7303e945431d9009a6c8c7acf40955a13a48cefc6fc",
+      "output_sha256": "a4355a3d34152b4d575907783ca2784854a5ad6450a793bfb4e784e38eeee49d",
       "transformed": true
     },
     {
       "source": "packaging/appimage/RUNTIME_SOURCES.md",
       "output": "packaging/appimage/RUNTIME_SOURCES.html",
       "source_sha256": "f7535e1fd8055782aa52e3d121d6b6f7a2c025af2b94c71b66960e51682745cb",
-      "output_sha256": "a6bae17ebb0c8b412651974764b9c6e44b257cbd6b8aeceb51a48891808d18e8",
+      "output_sha256": "9ea24df3192d54ba2b306fe05fb5fc7323a5e82e8f56996260c89b67bea9c008",
       "transformed": true
     },
     {
       "source": "rasgo-synth-app/assets/README.md",
       "output": "rasgo-synth-app/assets/README.html",
       "source_sha256": "db34de9fc0296d8e9c5b330593e8c951a41a9fc8f4e3df277be61b8c578278e3",
-      "output_sha256": "5c9c34c26011a268dde44d85c2d5b78f091abe267b555f1ce58b5c3cd6e34f76",
+      "output_sha256": "46e116686ce33486029d7b3192be207b8906d68e63f2faf5c6a21198058447dc",
       "transformed": true
     }
   ],

@@ -6,7 +6,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(studio_install_assets "share/rasgo-synth/assets")
     set(studio_install_notices "share/doc/rasgo-synth-studio")
     install(FILES "${studio_source_root}/packaging/linux/rasgo-synth-studio.desktop" DESTINATION share/applications)
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/assets/rasgo_logo_2026.svg"
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/assets/studio-icon.svg"   # ícone quadrado (19/11/2026)
         DESTINATION share/icons/hicolor/scalable/apps RENAME rasgo-synth-studio.svg)
 else()
     install(TARGETS RasgoSynthStudio BUNDLE DESTINATION . RUNTIME DESTINATION .)

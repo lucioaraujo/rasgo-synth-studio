@@ -109,6 +109,7 @@ def generate(root=ROOT):
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             '<title>Rasgo Synth Studio — Tutorials / Tutoriais</title>'
             '<meta name="description" content="Learn Studio step by step: controls, listening exercises, module choices and your first album. EN/PT/FR/ES.">'
+            '<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">'
             '<link rel="stylesheet" href="assets/site.css?v=6">'
             '<link rel="stylesheet" href="assets/studio.css?v=3">'
             '<script src="assets/quickstart.js" defer></script></head><body class="studio-public">'
